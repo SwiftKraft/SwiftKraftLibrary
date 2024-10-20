@@ -38,7 +38,11 @@ namespace SwiftKraft.Saving.Settings.UI
         {
             base.Init(activator);
             Component.onValueChanged.AddListener(OnValueChanged);
-            ExtraSliderEvents = Component.GetComponentInChildren<SliderEvents>();
+            ExtraSliderEvents = Component.GetComponent<SliderEvents>();
+
+            if (ExtraSliderEvents == null)
+                ExtraSliderEvents = Component.gameObject.AddComponent<SliderEvents>();
+
             ExtraSliderEvents.OnReleaseSlider += OnReleaseSlider;
         }
 

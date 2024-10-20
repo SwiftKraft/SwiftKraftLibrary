@@ -13,12 +13,15 @@ namespace SwiftKraft.Saving.Settings.UI
         /// </summary>
         public readonly List<SettingBase> Registered = new();
 
+        public bool Initialized { get; private set; }
+
         private void Awake()
         {
             SettingBase[] settings = GetComponentsInChildren<SettingBase>(true);
             Registered.AddRange(settings);
             foreach (SettingBase setting in Registered)
                 setting.Init(this);
+            Initialized = true;
         }
     }
 }

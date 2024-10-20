@@ -31,8 +31,6 @@ namespace SwiftKraft.Saving.Settings.UI
 
         public static void SetResolution(int index)
         {
-            Debug.Log("Setting Resolution: " + index);
-
             if (index < 0 || index >= Resolutions.Count)
                 return;
 

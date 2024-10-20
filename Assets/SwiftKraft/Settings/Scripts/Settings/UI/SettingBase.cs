@@ -87,7 +87,11 @@ namespace SwiftKraft.Saving.Settings.UI
         /// <summary>
         /// Called when the setting updates its value.
         /// </summary>
-        protected virtual void OnUpdate() => SettingsManager.SaveProfile();
+        protected virtual void OnUpdate()
+        {
+            if (!SettingsManager.Current.Resetting && Activator.Initialized)
+                SettingsManager.SaveProfile();
+        }
 
         /// <summary>
         /// Called when the setting resets.

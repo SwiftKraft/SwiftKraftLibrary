@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace SwiftKraft.Saving.Settings
@@ -22,12 +23,20 @@ namespace SwiftKraft.Saving.Settings
         public Dictionary<string, Setting> Settings = new();
 
         /// <summary>
+        /// Whether this profile is resetting.
+        /// </summary>
+        public bool Resetting { get; private set; }
+
+        /// <summary>
         /// Resets all settings to default value.
         /// </summary>
         public void Reset()
         {
+            Resetting = true;
             foreach (Setting setting in Settings.Values)
                 setting.Reset();
+            Resetting = false;
+            SettingsManager.SaveProfile();
         }
 
         /// <summary>
