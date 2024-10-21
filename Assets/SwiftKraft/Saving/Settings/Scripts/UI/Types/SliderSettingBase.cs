@@ -8,7 +8,7 @@ namespace SwiftKraft.Saving.Settings.UI
 {
     public class SliderSettingBase : ComponentSettingBase<SingleSetting<float>, Slider>
     {
-        protected SliderEvents ExtraSliderEvents { get; private set; }
+        protected SliderEvents ExtraSliderEvents;
 
         public string TextFormat = "0.00";
 
@@ -17,11 +17,22 @@ namespace SwiftKraft.Saving.Settings.UI
             get
             {
                 if (_text == null)
-                    _text = Component.GetComponentInChildren<TMP_Text>();
+                    _text = InputField == null || InputField.placeholder is not TMP_Text text ? Component.GetComponentInChildren<TMP_Text>() : text;
                 return _text;
             }
         }
         TMP_Text _text;
+
+        public TMP_InputField InputField
+        {
+            get
+            {
+                if (_inputField == null)
+                    _inputField = Component.GetComponentInChildren<TMP_InputField>();
+                return _inputField;
+            }
+        }
+        TMP_InputField _inputField;
 
         public override string ID => _id;
 
@@ -38,9 +49,14 @@ namespace SwiftKraft.Saving.Settings.UI
         {
             base.Init(activator);
             Component.onValueChanged.AddListener(OnValueChanged);
-            ExtraSliderEvents = Component.GetComponent<SliderEvents>();
 
-            if (ExtraSliderEvents == null)
+            if (InputField != null)
+            {
+                InputField.onEndEdit.AddListener(OnInputFieldChanged);
+                InputField.SetTextWithoutNotify(Value.ToString(TextFormat));
+            }
+
+            if (!Component.TryGetComponent(out ExtraSliderEvents))
                 ExtraSliderEvents = Component.gameObject.AddComponent<SliderEvents>();
 
             ExtraSliderEvents.OnReleaseSlider += OnReleaseSlider;
@@ -51,14 +67,31 @@ namespace SwiftKraft.Saving.Settings.UI
         protected override void OnUpdate()
         {
             Component.SetValueWithoutNotify(Value);
-            Text.SetText(Component.value.ToString(TextFormat));
+
+            if (Text != null)
+                Text.SetText(Component.value.ToString(TextFormat));
+
+            if (InputField != null)
+                InputField.SetTextWithoutNotify(Value.ToString(TextFormat));
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
             Component.onValueChanged.RemoveListener(OnValueChanged);
+
+            if (InputField != null)
+                InputField.onEndEdit.RemoveListener(OnInputFieldChanged);
+
             ExtraSliderEvents.OnReleaseSlider -= OnReleaseSlider;
+        }
+
+        protected virtual void OnInputFieldChanged(string value)
+        {
+            if (float.TryParse(value, out float res))
+                OnValueChanged(res);
+            else
+                InputField.SetTextWithoutNotify(Value.ToString(TextFormat));
         }
 
         protected virtual void OnValueChanged(float value) => Value = value;
