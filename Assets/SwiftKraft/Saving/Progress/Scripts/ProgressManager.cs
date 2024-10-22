@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace SwiftKraft.Saving.Progress
 {
-
     /// <summary>
     /// A manager class for saving game progress.
     /// </summary>
