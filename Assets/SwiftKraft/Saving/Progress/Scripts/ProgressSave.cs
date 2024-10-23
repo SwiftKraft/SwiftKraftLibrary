@@ -72,6 +72,16 @@ namespace SwiftKraft.Saving.Progress
         /// <returns>The saved data object.</returns>
         public T GetProgressable<T>(string id) where T : Progressable => Progress.ContainsKey(id) && Progress[id] is T t ? t : null;
 
+
+        /// <summary>
+        /// Used in-game to get save data even if they aren't initialized.
+        /// </summary>
+        /// <typeparam name="T">The custom type the data was saved in.</typeparam>
+        /// <param name="id">The identifier of the element.</param>
+        /// <param name="progress">The saved data object.</param>
+        /// <returns>Whether it is successful or not.</returns>
+        public bool TryProgressable<T>(string id, out T progress) where T : Progressable, new() => TryGetProgressable(id, out progress) || TryAddProgressable(id, out progress);
+
         /// <summary>
         /// Clears all elements that are saved.
         /// </summary>
