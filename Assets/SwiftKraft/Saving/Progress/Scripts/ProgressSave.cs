@@ -104,5 +104,10 @@ namespace SwiftKraft.Saving.Progress
         /// Called when the element updates.
         /// </summary>
         public event Action OnUpdate;
+
+        /// <summary>
+        /// Calls the OnUpdate event.
+        /// </summary>
+        public void CallEvent() => OnUpdate?.Invoke();
     }
 }
