@@ -18,11 +18,7 @@ namespace SwiftKraft.Saving.Settings
         /// <summary>
         /// The name for the global file that remembers which profile the user is on. (Excluding the .json extension)
         /// </summary>
-        public const string GlobalName = "Global";
-        /// <summary>
-        /// The array of folders leading up to the global file.
-        /// </summary>
-        public readonly static string[] GlobalFilePath = { "Settings" };
+        public const string GlobalKey = "Settings";
         /// <summary>
         /// The array of folders leading up to the stored setting profiles.
         /// </summary>
@@ -37,10 +33,10 @@ namespace SwiftKraft.Saving.Settings
             {
                 if (_global == null)
                 {
-                    if (!SaveManager.TryLoad(out _global, GlobalName, GlobalFilePath))
+                    if (!SaveManager.Globals.TryElement(GlobalKey, out _global))
                     {
                         _global = new();
-                        SaveManager.Save(_global, GlobalName, GlobalFilePath);
+                        Debug.LogError("Failed to get global settings!");
                     }
                     else
                         LoadProfile(_global.SelectedProfileName);
@@ -160,7 +156,7 @@ namespace SwiftKraft.Saving.Settings
                 _current = prof;
                 _current.Name = name;
                 Global.SelectedProfileName = Current.Name;
-                SaveManager.Save(Global, GlobalName, GlobalFilePath);
+                SaveManager.SaveGlobal();
                 OnProfileChange?.Invoke();
             }
 
@@ -170,8 +166,7 @@ namespace SwiftKraft.Saving.Settings
         /// <summary>
         /// The object for the global.
         /// </summary>
-        [JsonObject(MemberSerialization.OptIn, IsReference = false)]
-        public class GlobalSetting
+        public class GlobalSetting : GlobalElement
         {
             /// <summary>
             /// The name of the currently selected setting profile. (Excluding the .json extension)

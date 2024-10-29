@@ -5,10 +5,8 @@ namespace SwiftKraft.Saving.Settings.UI
 {
     public class ToggleSettingBase : ComponentSettingBase<SingleSetting<bool>, Toggle>
     {
-        [SerializeField]
-        private string _id;
-
-        public override string ID => _id;
+        [field: SerializeField]
+        public override string ID { get; set; }
 
         public bool Value
         {

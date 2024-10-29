@@ -34,10 +34,8 @@ namespace SwiftKraft.Saving.Settings.UI
         }
         TMP_InputField _inputField;
 
-        public override string ID => _id;
-
-        [SerializeField]
-        private string _id;
+        [field: SerializeField]
+        public override string ID { get; set; }
 
         public float Value
         {

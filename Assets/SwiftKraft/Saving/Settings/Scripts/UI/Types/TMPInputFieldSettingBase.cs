@@ -5,10 +5,8 @@ namespace SwiftKraft.Saving.Settings.UI
 {
     public class TMPInputFieldSettingBase : ComponentSettingBase<SingleSetting<string>, TMP_InputField>
     {
-        public override string ID => _id;
-
-        [SerializeField]
-        private string _id;
+        [field: SerializeField]
+        public override string ID { get; set; }
 
         public string Value
         {

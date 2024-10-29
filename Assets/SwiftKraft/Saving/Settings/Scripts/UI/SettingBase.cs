@@ -36,7 +36,7 @@ namespace SwiftKraft.Saving.Settings.UI
         /// <summary>
         /// The ID of the setting.
         /// </summary>
-        public abstract string ID { get; }
+        public abstract string ID { get; set; }
 
         /// <summary>
         /// The saved setting data.

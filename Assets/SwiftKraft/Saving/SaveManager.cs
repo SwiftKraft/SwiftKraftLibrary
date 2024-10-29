@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace SwiftKraft.Saving
 {
@@ -9,9 +10,37 @@ namespace SwiftKraft.Saving
     public static class SaveManager
     {
         /// <summary>
+        /// The name of the globals file.
+        /// </summary>
+        public const string GlobalName = "Globals";
+
+        /// <summary>
+        /// Global elements from various systems that interact with the save system. Not nullable.
+        /// </summary>
+        public static Globals Globals
+        {
+            get
+            {
+                if (globals == null && !TryLoad(out globals, GlobalName))
+                {
+                    globals = new();
+                    Save(globals, GlobalName);
+                }
+
+                return globals;
+            }
+        }
+        private static Globals globals;
+
+        /// <summary>
         /// The path the files are saved to.
         /// </summary>
         public static string SavePath = Path.Combine(Application.persistentDataPath, "Saved");
+
+        /// <summary>
+        /// Saves the globals.
+        /// </summary>
+        public static void SaveGlobal() => Save(Globals, GlobalName);
 
         /// <summary>
         /// Converts an object into a JSON string and writes it into a file.

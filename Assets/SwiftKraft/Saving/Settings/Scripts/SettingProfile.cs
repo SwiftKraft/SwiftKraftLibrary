@@ -71,8 +71,8 @@ namespace SwiftKraft.Saving.Settings
             if (!Settings.ContainsKey(key))
             {
                 T t = new() { ID = key };
-                t.Reset();
                 Settings.Add(key, t);
+                t.Reset();
                 return t;
             }
 

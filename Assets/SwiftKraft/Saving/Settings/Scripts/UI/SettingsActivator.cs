@@ -17,6 +17,7 @@ namespace SwiftKraft.Saving.Settings.UI
 
         private void Awake()
         {
+            SettingsManager.Global.CheckFiles();
             SettingBase[] settings = GetComponentsInChildren<SettingBase>(true);
             Registered.AddRange(settings);
             foreach (SettingBase setting in Registered)

@@ -23,10 +23,8 @@ namespace SwiftKraft.Saving.Settings.UI
         }
         TMP_Text _text;
 
-        public override string ID => _id;
-
-        [SerializeField]
-        private string _id;
+        [field: SerializeField]
+        public override string ID { get; set; }
 
         public override void Init(SettingsActivator activator)
         {
