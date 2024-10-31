@@ -75,6 +75,46 @@ namespace SwiftKraft.Saving.Progress
         }
 
         /// <summary>
+        /// Creates a new progress save and sets it to current.
+        /// </summary>
+        /// <param name="name">The name of the save file. (Excluding the .json extension)</param>
+        public static void CreateProgress(string name)
+        {
+            Current = new() { Name = name };
+            SaveProgress();
+        }
+
+        /// <summary>
+        /// Deletes the progress save with the provided name. (Excluding the .json extension)
+        /// </summary>
+        /// <param name="name">The name of the save file. (Excluding the .json extension)</param>
+        public static void DeleteProgress(string name)
+        {
+            if (Current.Name.Equals(name))
+                Current = null;
+
+            string path = Path.Combine(SaveManager.SavePath, Path.Combine(SavesFilePath), name + ".json");
+            File.Delete(path);
+            RefreshFiles();
+        }
+
+        /// <summary>
+        /// Renames the current progress save.
+        /// </summary>
+        /// <param name="name">The new name of the save file. (Excluding the .json extension)</param>
+        public static void RenameProgress(string name)
+        {
+            string path = Path.Combine(SaveManager.SavePath, Path.Combine(SavesFilePath), Current.Name + ".json");
+            string pathNew = Path.Combine(SaveManager.SavePath, Path.Combine(SavesFilePath), name + ".json");
+
+            File.Move(path, pathNew);
+            Current.Name = name;
+
+            SaveProgress(Current.Name);
+            RefreshFiles();
+        }
+
+        /// <summary>
         /// Saves the current progress.
         /// </summary>
         public static void SaveProgress() => SaveProgress(Current.Name);
