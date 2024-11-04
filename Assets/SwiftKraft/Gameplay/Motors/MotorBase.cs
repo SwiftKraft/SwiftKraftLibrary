@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay
+namespace SwiftKraft.Gameplay.Motors
 {
     public abstract class MotorBase<T> : MonoBehaviour where T : Component
     {

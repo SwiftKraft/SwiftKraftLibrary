@@ -1,7 +1,8 @@
+using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay.FPS
+namespace SwiftKraft.Gameplay.Common.FPS
 {
     [RequireComponent(typeof(CharacterController))]
     public class FPSCharacterControllerMotor : PlayerMotorBase<CharacterController>

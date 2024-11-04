@@ -16,5 +16,7 @@ namespace SwiftKraft.Utils
         T _cached;
 
         public abstract void Refresh();
+
+        public static implicit operator T(CacheBase<T> cache) => cache.Cache;
     }
 }

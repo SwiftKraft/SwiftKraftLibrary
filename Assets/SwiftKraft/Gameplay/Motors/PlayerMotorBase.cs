@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay
+namespace SwiftKraft.Gameplay.Motors
 {
     public abstract class PlayerMotorBase<T> : MotorBase<T> where T : Component
     {
