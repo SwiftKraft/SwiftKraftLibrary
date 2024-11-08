@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
+    [CreateAssetMenu(menuName = "SwiftKraft/Gameplay/Weapons/Attacks/Timer", fileName = "New Attack", order = 1)]
     public class WeaponAttackTimer : WeaponAttackScriptableBase
     {
         public Timer Prefire;

@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
+    [CreateAssetMenu(menuName = "SwiftKraft/Gameplay/Weapons/Attacks/Base", fileName = "New Attack", order = 0)]
     public class WeaponAttackScriptableBase : ScriptableObject
     {
         public GameObject Prefab;
