@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public abstract class WeaponAttackScriptableBase : ScriptableObject
+    public class WeaponAttackScriptableBase : ScriptableObject
     {
-        public abstract void Attack(Transform origin);
+        public GameObject Prefab;
+
+        public virtual void Attack(Transform origin) => Instantiate(Prefab, origin.position, origin.rotation);
 
         public virtual void Tick() { }
     }
