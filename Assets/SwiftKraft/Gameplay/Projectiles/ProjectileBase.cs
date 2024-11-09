@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using SwiftKraft.Gameplay.Bases;
 
-public class ProjectileBase : MonoBehaviour
+namespace SwiftKraft.Gameplay.Projectiles
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class ProjectileBase : PetBehaviourBase
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

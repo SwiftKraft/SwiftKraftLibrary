@@ -40,6 +40,8 @@ namespace SwiftKraft.Gameplay.Factions
 
         public readonly Dictionary<string, object> Statistics = new();
 
+        public bool FriendlyFire { get; set; }
+
         public Faction(string id, string name)
         {
             ID = id;

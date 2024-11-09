@@ -1,3 +1,5 @@
+using SwiftKraft.Gameplay.Bases;
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using System;
 using System.Collections.Generic;
@@ -5,7 +7,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class WeaponBase : MonoBehaviour
+    public class WeaponBase : PetBehaviourBase
     {
         [field: SerializeField]
         public WeaponScriptable Scriptable { get; private set; }
@@ -39,12 +41,13 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
         int _currentMode;
-
         public readonly BooleanLock CanAttack = new();
 
         public WeaponAttackScriptableBase CurrentMode => AttackModeCache.InRange(CurrentModeIndex) ? AttackModeCache[CurrentModeIndex] : null;
 
         public event Action<int> OnAttackModeUpdated;
+
+        protected virtual void Awake() => Owner = transform.root.GetComponentInChildren<IEntity>();
 
         public void RefreshAttackModes()
         {
@@ -69,7 +72,11 @@ namespace SwiftKraft.Gameplay.Weapons
         public void CloneAttackModes()
         {
             foreach (WeaponAttackScriptableBase atk in Scriptable.Attacks)
-                AttackModeCache.Add(Instantiate(atk));
+            {
+                WeaponAttackScriptableBase scr = Instantiate(atk);
+                scr.Parent = this;
+                AttackModeCache.Add(scr);
+            }
         }
 
         public virtual void Attack() => Attack(AttackOrigin);
