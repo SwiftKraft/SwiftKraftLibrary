@@ -22,10 +22,13 @@ namespace SwiftKraft.Gameplay.Bases
                 if ((object)value == this)
                     return;
                 _owner = value;
+                Initialized = true;
                 OnOwnerChanged();
             }
         }
         IEntity _owner;
+
+        public bool Initialized { get; protected set; }
 
         protected virtual void OnOwnerChanged() { }
     }

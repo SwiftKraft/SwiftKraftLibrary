@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Projectiles
@@ -25,33 +24,57 @@ namespace SwiftKraft.Gameplay.Projectiles
         public bool ConstantMotion;
 
         int currentBounce;
+        Vector3 prevVel;
 
-        protected override void Start()
+        protected void Start()
         {
-            base.Start();
             Rigidbody.velocity = transform.rotation * Speed;
+            Rigidbody.angularVelocity = Vector3.zero;
+            if (ConstantMotion)
+                Rigidbody.useGravity = false;
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
+
             if (ConstantMotion)
+            {
                 Rigidbody.velocity = transform.rotation * Speed;
+                Rigidbody.angularVelocity = Vector3.zero;
+            }
+
+            prevVel = Rigidbody.velocity;
         }
 
         protected virtual void OnCollisionEnter(Collision collision)
         {
+            if (!Initialized)
+                return;
+
             currentBounce++;
 
-            Vector3 normal = collision.GetContact(0).normal;
-            Vector3 velocity = Vector3.Reflect(Rigidbody.velocity, normal);
-            transform.forward = velocity;
-            Rigidbody.velocity = velocity;
-
             if (currentBounce > Bounces)
+            {
+                EndHit(collision);
+                return;
+            }
+            else
                 Hit(collision);
+
+            Vector3 normal = collision.GetContact(0).normal.normalized;
+            Vector3 direction = Vector3.Reflect(prevVel.normalized, normal);
+
+             Debug.DrawRay(collision.GetContact(0).point, prevVel.normalized, Color.green, 5f);
+             Debug.DrawRay(collision.GetContact(0).point, normal, Color.blue, 5f);
+             Debug.DrawRay(collision.GetContact(0).point, direction, Color.red, 5f);
+
+            Rigidbody.angularVelocity = Vector3.zero;
+            transform.forward = direction.normalized;
+            Rigidbody.velocity = Quaternion.LookRotation(direction) * Speed;
         }
 
-        public virtual void Hit(Collision collision) => Destroy(gameObject);
+        public virtual void EndHit(Collision collision) => Destroy(gameObject);
+        public virtual void Hit(Collision collision) { }
     }
 }
