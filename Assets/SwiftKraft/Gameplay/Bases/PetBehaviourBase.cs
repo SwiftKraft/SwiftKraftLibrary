@@ -22,8 +22,11 @@ namespace SwiftKraft.Gameplay.Bases
                 if ((object)value == this)
                     return;
                 _owner = value;
+                OnOwnerChanged();
             }
         }
         IEntity _owner;
+
+        protected virtual void OnOwnerChanged() { }
     }
 }

@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73840a02d380f4c83746c48c7d5762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: {x: 0, y: 1, z: 10}
-  ConstantMotion: 0
+  Speed: {x: 0, y: 0, z: 10}
+  ConstantMotion: 1

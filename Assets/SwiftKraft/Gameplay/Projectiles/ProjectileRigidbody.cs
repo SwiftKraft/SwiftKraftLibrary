@@ -20,7 +20,11 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         public Vector3 Speed;
 
+        public int Bounces = 0;
+
         public bool ConstantMotion;
+
+        int currentBounce;
 
         protected override void Start()
         {
@@ -28,10 +32,26 @@ namespace SwiftKraft.Gameplay.Projectiles
             Rigidbody.velocity = transform.rotation * Speed;
         }
 
-        protected virtual void FixedUpdate()
+        protected override void FixedUpdate()
         {
+            base.FixedUpdate();
             if (ConstantMotion)
                 Rigidbody.velocity = transform.rotation * Speed;
         }
+
+        protected virtual void OnCollisionEnter(Collision collision)
+        {
+            currentBounce++;
+
+            Vector3 normal = collision.GetContact(0).normal;
+            Vector3 velocity = Vector3.Reflect(Rigidbody.velocity, normal);
+            transform.forward = velocity;
+            Rigidbody.velocity = velocity;
+
+            if (currentBounce > Bounces)
+                Hit(collision);
+        }
+
+        public virtual void Hit(Collision collision) => Destroy(gameObject);
     }
 }
