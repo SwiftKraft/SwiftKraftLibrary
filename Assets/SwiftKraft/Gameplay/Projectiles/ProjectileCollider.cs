@@ -15,8 +15,9 @@ namespace SwiftKraft.Gameplay.Projectiles
         }
         Collider[] _colliders;
 
-        protected virtual void Start()
+        protected override void OnOwnerChanged()
         {
+            base.OnOwnerChanged();
             if (Owner is ICollider col)
                 foreach (Collider c1 in Colliders)
                     foreach (Collider c2 in col.Colliders)
