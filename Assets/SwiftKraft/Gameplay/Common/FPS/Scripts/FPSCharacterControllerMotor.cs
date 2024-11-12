@@ -13,7 +13,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
         public LayerMask GroundLayers;
 
-        public float GroundRadius = 0.25f;
+        public float GroundRadius = 0.1f;
         public float JumpSpeed = 5f;
         public float MoveSpeed = 5f;
         public float Gravity = 9.81f;
@@ -55,13 +55,14 @@ namespace SwiftKraft.Gameplay.Common.FPS
             }
             else
             {
-                currentGravity = 0f;
+                currentGravity = -1f;
                 coyoteTime.Reset();
             }
 
             if (jumpInput.GetTrigger() && !coyoteTime.Ended)
             {
                 currentGravity = JumpSpeed;
+                IsGrounded = false;
                 coyoteTime.Tick(coyoteTime.MaxValue);
             }
 
