@@ -6,6 +6,6 @@ namespace SwiftKraft.Gameplay.Projectiles
     {
         public override void Cast(ref RaycastHit[] hits) => HitCount = Physics.RaycastNonAlloc(transform.position, transform.forward, hits, Range, Layers, TriggerInteraction);
 
-        public override void Hit(RaycastHit[] hits) => Debug.Log(HitCount);
+        public override void Hit(RaycastHit[] hits) { }
     }
 }

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d346eb3ec57a664089efd29d1a442d5, type: 3}
-  m_Name: TestWeapon
+  m_Script: {fileID: 11500000, guid: 038add46bac54ed4a907315c78f5acd7, type: 3}
+  m_Name: BasicClickHitscan
   m_EditorClassIdentifier: 
-  Attacks:
-  - {fileID: 11400000, guid: 62731038cc017694d82300b97baad229, type: 2}
-  - {fileID: 11400000, guid: ea4923e5392766e4ba356f88e18f1f74, type: 2}
+  Parent: {fileID: 0}
+  Prefab: {fileID: 161029702014116550, guid: bae18ffd08e6ba84c9768f3bd7ce30c9, type: 3}

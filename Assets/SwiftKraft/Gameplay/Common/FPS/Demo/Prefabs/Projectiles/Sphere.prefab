@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime:
-    <MaxValue>k__BackingField: 4
+    <MaxValue>k__BackingField: 10
     StartEnded: 0
-  Speed: {x: 0, y: 0, z: 10}
-  Bounces: 1
+  Speed: {x: 0, y: 0, z: 5}
+  Bounces: 2
   ConstantMotion: 0
