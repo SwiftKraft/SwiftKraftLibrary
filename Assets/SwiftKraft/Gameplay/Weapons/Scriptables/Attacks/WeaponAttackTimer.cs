@@ -9,6 +9,9 @@ namespace SwiftKraft.Gameplay.Weapons
         public Timer Prefire;
         public Timer Cooldown;
 
+        [HideInInspector]
+        public bool CancelPrefire;
+
         bool triggered;
         Transform attackOrigin;
 
@@ -19,7 +22,10 @@ namespace SwiftKraft.Gameplay.Weapons
 
             attackOrigin = origin;
             triggered = true;
-            Prefire.Reset();
+
+            if (!CancelPrefire)
+                Prefire.Reset();
+
             if (Prefire.Ended)
                 PerformAttack(origin);
         }
@@ -27,6 +33,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual void PerformAttack(Transform origin)
         {
             base.Attack(origin);
+            triggered = false;
             Cooldown.Reset();
         }
 
@@ -37,10 +44,7 @@ namespace SwiftKraft.Gameplay.Weapons
             Cooldown.Tick(Time.fixedDeltaTime);
 
             if (triggered && Prefire.Ended)
-            {
-                triggered = false;
                 PerformAttack(attackOrigin);
-            }
         }
     }
 }

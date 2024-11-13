@@ -79,15 +79,20 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
-        public virtual void Attack() => Attack(AttackOrigin);
+        public virtual bool Attack() => Attack(AttackOrigin);
 
-        public virtual void Attack(Transform origin)
+        public virtual bool Attack(Transform origin)
         {
             if (!CanAttack || origin == null)
-                return;
+                return false;
 
             if (CurrentMode != null)
+            {
                 CurrentMode.Attack(origin);
+                return true;
+            }
+
+            return false;
         }
 
         protected virtual void FixedUpdate()
