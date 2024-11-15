@@ -2,7 +2,7 @@ using SwiftKraft.Gameplay.Interfaces;
 
 namespace SwiftKraft.Gameplay.Bases
 {
-    public abstract class PetBehaviourBase : EntityBehaviourBase, IPet
+    public abstract class PetBehaviourBase : PawnBehaviourBase, IPet
     {
         public override string Faction
         {
@@ -14,7 +14,7 @@ namespace SwiftKraft.Gameplay.Bases
             }
         }
 
-        public IEntity Owner
+        public IPawn Owner
         {
             get => (object)_owner == this ? null : _owner;
             set
@@ -26,7 +26,7 @@ namespace SwiftKraft.Gameplay.Bases
                 OnOwnerChanged();
             }
         }
-        IEntity _owner;
+        IPawn _owner;
 
         public bool Initialized { get; protected set; }
 

@@ -2,17 +2,17 @@ using System.Collections.Generic;
 
 namespace SwiftKraft.Gameplay.Interfaces
 {
-    public interface IPet : IEntity
+    public interface IPet : IPawn
     {
-        public IEntity Owner { get; set; }
+        public IPawn Owner { get; set; }
 
-        public IEntity GetRootOwner()
+        public IPawn GetRootOwner()
         {
-            HashSet<IEntity> visited = new();
+            HashSet<IPawn> visited = new();
             return GetRootOwner(visited);
         }
 
-        private IEntity GetRootOwner(HashSet<IEntity> visited)
+        private IPawn GetRootOwner(HashSet<IPawn> visited)
         {
             if (Owner is not IPet pet || visited.Contains(pet) || Owner == null || Owner == this)
                 return Owner;

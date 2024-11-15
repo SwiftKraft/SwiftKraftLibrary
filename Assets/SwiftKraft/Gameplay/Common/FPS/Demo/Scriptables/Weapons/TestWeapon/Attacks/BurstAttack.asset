@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 347d1033b9590c94d853cd47e7a444fb, type: 3}
-  m_Name: TimedClick
+  m_Script: {fileID: 11500000, guid: 11bb0fe17adf23445a57b413916e8cba, type: 3}
+  m_Name: BurstAttack
   m_EditorClassIdentifier: 
   Parent: {fileID: 0}
   Prefab: {fileID: 7389480120932224565, guid: c0f4bf21876661244b6e16f34a93487a, type: 3}
-  Prefire:
-    <MaxValue>k__BackingField: 0
-    StartEnded: 0
-  Cooldown:
+  Count: 3
+  Delay:
     <MaxValue>k__BackingField: 0.05
-    StartEnded: 1
+    StartEnded: 0

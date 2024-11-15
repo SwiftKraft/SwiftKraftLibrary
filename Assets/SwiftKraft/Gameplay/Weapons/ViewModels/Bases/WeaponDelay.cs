@@ -8,6 +8,9 @@ namespace SwiftKraft.Gameplay.Weapons
         public Timer Prefire;
         public Timer Cooldown;
 
+        [HideInInspector]
+        public bool CancelPrefire;
+
         Transform attackOrigin;
 
         bool triggered;
@@ -29,9 +32,11 @@ namespace SwiftKraft.Gameplay.Weapons
 
             triggered = true;
             attackOrigin = origin;
-            Prefire.Reset();
 
-            if (Prefire.Ended)
+            if (!CancelPrefire)
+                Prefire.Reset();
+
+            if (Prefire.Ended || CancelPrefire)
                 return PerformAttack(origin);
 
             return true;

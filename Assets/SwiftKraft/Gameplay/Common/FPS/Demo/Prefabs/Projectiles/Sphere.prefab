@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9144396620687726195}
   - component: {fileID: 1515070530891100633}
   - component: {fileID: 3399438743193937935}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,6 +149,6 @@ MonoBehaviour:
   Lifetime:
     <MaxValue>k__BackingField: 10
     StartEnded: 0
-  Speed: {x: 0, y: 0, z: 5}
-  Bounces: 2
+  Speed: {x: 0, y: 0, z: 15}
+  Bounces: 3
   ConstantMotion: 0

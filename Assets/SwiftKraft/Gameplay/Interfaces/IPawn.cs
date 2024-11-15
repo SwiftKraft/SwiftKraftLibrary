@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Interfaces
 {
-    public interface IEntity : IFaction
+    public interface IPawn : IFaction
     {
         public GameObject GameObject { get; }
     }

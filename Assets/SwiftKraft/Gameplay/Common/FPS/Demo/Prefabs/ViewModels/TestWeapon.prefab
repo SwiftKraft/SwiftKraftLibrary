@@ -126,12 +126,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243808998322166224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7b6d16e354d9948b82dd6b9ae3677b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b259e8bde484ab4ba595a94f31c48b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Scriptable>k__BackingField: {fileID: 11400000, guid: 2d3e30c4d63bc5c4eb4c5a4abe930f72,
     type: 2}
   <AttackOrigin>k__BackingField: {fileID: 8175185491969983762}
+  Prefire:
+    <MaxValue>k__BackingField: 0
+    StartEnded: 0
+  Cooldown:
+    <MaxValue>k__BackingField: 0.1
+    StartEnded: 0
+  CancelPrefire: 0
 --- !u!114 &7749218436193147424
 MonoBehaviour:
   m_ObjectHideFlags: 0

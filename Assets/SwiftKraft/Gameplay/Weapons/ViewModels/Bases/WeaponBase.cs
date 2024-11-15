@@ -47,7 +47,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public event Action<int> OnAttackModeUpdated;
 
-        protected virtual void Awake() => Owner = transform.root.GetComponentInChildren<IEntity>();
+        protected virtual void Awake() => Owner = transform.root.GetComponentInChildren<IPawn>();
 
         public void RefreshAttackModes()
         {

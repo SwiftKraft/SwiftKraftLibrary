@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Bases
 {
-    public abstract class EntityBehaviourBase : FactionBehaviourBase, IEntity
+    public abstract class PawnBehaviourBase : FactionBehaviourBase, IPawn
     {
         public GameObject GameObject => gameObject;
     }
