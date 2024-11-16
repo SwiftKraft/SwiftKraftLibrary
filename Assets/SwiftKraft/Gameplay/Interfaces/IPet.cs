@@ -5,19 +5,22 @@ namespace SwiftKraft.Gameplay.Interfaces
     public interface IPet : IPawn
     {
         public IPawn Owner { get; set; }
+    }
 
-        public IPawn GetRootOwner()
+    public static class IPetExtensions
+    {
+        public static IPawn GetRootOwner(this IPet pet)
         {
             HashSet<IPawn> visited = new();
-            return GetRootOwner(visited);
+            return GetRootOwnerHelper(pet, visited);
         }
 
-        private IPawn GetRootOwner(HashSet<IPawn> visited)
+        private static IPawn GetRootOwnerHelper(this IPet targetPet, HashSet<IPawn> visited)
         {
-            if (Owner is not IPet pet || visited.Contains(pet) || Owner == null || Owner == this)
-                return Owner;
+            if (targetPet.Owner is not IPet pet || visited.Contains(pet) || targetPet.Owner == null || targetPet.Owner == targetPet)
+                return targetPet.Owner;
             visited.Add(pet);
-            return pet.GetRootOwner();
+            return pet.GetRootOwnerHelper(visited);
         }
     }
 }
