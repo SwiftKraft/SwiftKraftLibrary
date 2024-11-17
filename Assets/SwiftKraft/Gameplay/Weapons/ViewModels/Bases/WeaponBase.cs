@@ -9,6 +9,10 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponBase : PetBehaviourBase
     {
+        public const string AttackAction = "Attack";
+
+        public readonly Dictionary<string, Func<bool>> Actions = new();
+
         [field: SerializeField]
         public WeaponScriptable Scriptable { get; private set; }
 
@@ -46,8 +50,23 @@ namespace SwiftKraft.Gameplay.Weapons
         public WeaponAttackScriptableBase CurrentMode => AttackModeCache.InRange(CurrentModeIndex) ? AttackModeCache[CurrentModeIndex] : null;
 
         public event Action<int> OnAttackModeUpdated;
+        public event Action OnAttack;
 
-        protected virtual void Awake() => Owner = transform.root.GetComponentInChildren<IPawn>();
+        protected virtual void Awake()
+        {
+            Owner = transform.root.GetComponentInChildren<IPawn>();
+            Actions.Add(AttackAction, Attack);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            DestroyAttackModes();
+            Actions.Remove(AttackAction);
+        }
+
+        public bool StartAction(string id) => Actions.ContainsKey(id) && Actions[id].Invoke();
+
+        public void AttackEvent() => OnAttack?.Invoke();
 
         public void RefreshAttackModes()
         {
@@ -100,7 +119,5 @@ namespace SwiftKraft.Gameplay.Weapons
             if (CurrentMode != null)
                 CurrentMode.Tick();
         }
-
-        protected virtual void OnDestroy() => DestroyAttackModes();
     }
 }

@@ -18,6 +18,9 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public override void Attack(Transform origin)
         {
+            if (!Parent.CanAttack)
+                return;
+
             attackOrigin = origin;
             count = 0;
             Firing = true;
@@ -29,7 +32,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
             Delay.Tick(Time.fixedDeltaTime);
 
-            if (Firing && count < Count)
+            if (Parent.CanAttack && Firing && count < Count)
             {
                 if (Delay.Ended)
                 {
@@ -39,9 +42,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 }
             }
             else
-            {
                 Firing = false;
-            }
         }
     }
 }

@@ -93,7 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8175185491969983762}
   - component: {fileID: 1625574590863042466}
-  - component: {fileID: 7749218436193147424}
+  - component: {fileID: 4742593255738887664}
+  - component: {fileID: 1236420926987797861}
   m_Layer: 6
   m_Name: TestWeapon
   m_TagString: Untagged
@@ -139,7 +140,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0.1
     StartEnded: 0
   CancelPrefire: 0
---- !u!114 &7749218436193147424
+--- !u!114 &4742593255738887664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,8 +149,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243808998322166224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 808a00b366359ff4b8d43e69e4a1629c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cc303c003fb5d84b9447b0a42b7bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllowHeld: 1
-  Key: 323
+  <MaxAmmo>k__BackingField: 30
+  ReloadTimer:
+    <MaxValue>k__BackingField: 2
+    StartEnded: 0
+--- !u!114 &1236420926987797861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1e610a934c12c4fbf3d84c7ce1a00e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actions:
+  - ID: Attack
+    Key: 323
+    AllowHeld: 1
+  - ID: Reload
+    Key: 114
+    AllowHeld: 0

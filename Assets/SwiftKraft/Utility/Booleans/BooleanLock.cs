@@ -13,6 +13,8 @@ namespace SwiftKraft.Utils
 
         public bool Inverse;
 
+        public event Action<bool> OnChanged;
+
         public bool Get()
         {
             foreach (Lock lk in Locks)
@@ -27,21 +29,30 @@ namespace SwiftKraft.Utils
         /// <returns>Reference to the lock.</returns>
         public Lock AddLock()
         {
-            Lock l = new();
+            Lock l = new(this);
             Locks.Add(l);
+            OnChanged?.Invoke(this);
             return l;
         }
 
         /// <summary>
         /// Removes all locks.
         /// </summary>
-        public void ClearLocks() => Locks.Clear();
+        public void ClearLocks()
+        {
+            Locks.Clear();
+            OnChanged?.Invoke(this);
+        }
 
         /// <summary>
         /// Removes a certain lock.
         /// </summary>
         /// <param name="l">The lock reference.</param>
-        public void RemoveLock(Lock l) => Locks.Remove(l);
+        public void RemoveLock(Lock l)
+        {
+            Locks.Remove(l);
+            OnChanged?.Invoke(this);
+        }
 
         public static implicit operator bool(BooleanLock boolLock) => boolLock.Get();
 
@@ -51,6 +62,8 @@ namespace SwiftKraft.Utils
         [Serializable]
         public class Lock
         {
+            public readonly BooleanLock Parent;
+
             public bool Active
             {
                 get => _active;
@@ -61,11 +74,14 @@ namespace SwiftKraft.Utils
 
                     _active = value;
                     OnChanged?.Invoke();
+                    Parent.OnChanged?.Invoke(Parent);
                 }
             }
             bool _active;
 
             public event Action OnChanged;
+
+            public Lock(BooleanLock parent) => Parent = parent;
 
             public static implicit operator bool(Lock lck) => lck.Active;
         }

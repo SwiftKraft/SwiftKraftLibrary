@@ -2,6 +2,7 @@ using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SwiftKraft.Gameplay.Projectiles
 {
@@ -15,6 +16,7 @@ namespace SwiftKraft.Gameplay.Projectiles
             base.OnOwnerChanged();
             foreach (Spawner sp in Projectiles)
                 sp.Spawn(this, Prefab);
+            Destroy(gameObject);
         }
 
         [Serializable]
@@ -22,10 +24,17 @@ namespace SwiftKraft.Gameplay.Projectiles
         {
             public GameObject OverridePrefab;
             public Vector3 Rotation;
+            public float Spread;
 
             public void Spawn(SpreadPatternHolder pattern, GameObject originalPrefab)
             {
-                GameObject go = Instantiate(OverridePrefab != null ? OverridePrefab : originalPrefab, pattern.transform.position, pattern.transform.rotation * Quaternion.Euler(Rotation));
+                Quaternion rot = pattern.transform.rotation * Quaternion.Euler(Rotation);
+
+                if (Spread > 0f)
+                    rot *= Quaternion.Euler(Random.insideUnitCircle * Spread);
+
+                GameObject go = Instantiate(OverridePrefab != null ? OverridePrefab : originalPrefab, pattern.transform.position, rot);
+
                 if (go.TryGetComponent(out IPet pet))
                     pet.Owner = pattern.GetRootOwner();
             }

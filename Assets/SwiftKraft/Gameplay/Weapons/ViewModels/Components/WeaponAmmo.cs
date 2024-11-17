@@ -6,6 +6,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAmmo : WeaponComponentBlocker
     {
+        public const string ReloadAction = "Reload";
+
         [field: SerializeField]
         public int MaxAmmo { get; set; }
         public int CurrentAmmo
@@ -23,6 +25,8 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         private int _currentAmmo;
 
+        public Timer ReloadTimer;
+
         public readonly BooleanLock CanReload = new();
 
         public event Action<int> OnAmmoUpdated;
@@ -31,6 +35,27 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.Awake();
             CurrentAmmo = MaxAmmo;
+            Parent.OnAttack += OnAttack;
+            Parent.Actions.Add(ReloadAction, StartReload);
+            ReloadTimer.OnTimerEnd += Reload;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            Parent.OnAttack -= OnAttack;
+            Parent.Actions.Remove(ReloadAction);
+            ReloadTimer.OnTimerEnd -= Reload;
+        }
+
+        public virtual void FixedUpdate()
+        {
+            ReloadTimer.Tick(Time.fixedDeltaTime);
+        }
+
+        private void OnAttack()
+        {
+            TryUseAmmo();
         }
 
         public bool HasAmmo(int ammo = 1) => CurrentAmmo >= ammo;
@@ -53,6 +78,17 @@ namespace SwiftKraft.Gameplay.Weapons
         }
 
         public bool TryUseAmmo(int ammo = 1) => TryUseAmmo(ammo, out _);
+
+        public bool StartReload()
+        {
+            if (CanReload)
+            {
+                ReloadTimer.Reset();
+                return true;
+            }
+
+            return false;
+        }
 
         public void Reload()
         {
