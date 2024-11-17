@@ -5,21 +5,9 @@ using UnityEngine;
 namespace SwiftKraft.Gameplay.Weapons.Triggers
 {
     [RequireComponent(typeof(WeaponBase))]
-    public class WeaponTrigger : MonoBehaviour
+    public class WeaponTrigger : WeaponComponent
     {
         public Action[] Actions;
-
-        public WeaponBase Weapon
-        {
-            get
-            {
-                if (_weapon == null)
-                    _weapon = GetComponent<WeaponBase>();
-
-                return _weapon;
-            }
-        }
-        WeaponBase _weapon;
 
         private void Update()
         {
@@ -31,7 +19,7 @@ namespace SwiftKraft.Gameplay.Weapons.Triggers
         {
             foreach (Action a in Actions)
                 if (a.GetInput())
-                    Weapon.StartAction(a.ID);
+                    Parent.StartAction(a.ID);
         }
 
         [Serializable]
