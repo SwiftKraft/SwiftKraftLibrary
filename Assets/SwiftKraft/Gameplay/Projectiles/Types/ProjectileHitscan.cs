@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -14,16 +15,18 @@ namespace SwiftKraft.Gameplay.Projectiles
         public int Pierce = 1;
         public int HitCount { get; protected set; }
 
-        protected override void Awake()
+        public event Action OnHit;
+
+        protected virtual void Start()
         {
-            base.Awake();
             Hits = new RaycastHit[Pierce];
-            Cast(ref Hits);
+            HitCount = Cast(ref Hits);
             Hits.OrderBy((h) => h.distance);
+            OnHit?.Invoke();
             Hit(Hits);
         }
 
-        public abstract void Cast(ref RaycastHit[] hits);
+        public abstract int Cast(ref RaycastHit[] hits);
 
         public abstract void Hit(RaycastHit[] hits);
     }

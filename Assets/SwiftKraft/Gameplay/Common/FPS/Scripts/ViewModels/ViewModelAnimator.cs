@@ -34,6 +34,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
                     anim.Play(cur.StateName, 0, 0f);
                 else
                     anim.CrossFadeInFixedTime(cur.StateName, cur.CrossFade, 0, 0f);
+
+                anim.Update(0f);
             }
 
             [Serializable]

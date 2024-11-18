@@ -10,7 +10,15 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         public bool Despawned { get; private set; }
 
-        protected virtual void Awake() => Lifetime.Reset();
+        public ProjectileComponent[] Addons { get; private set; }
+
+        protected virtual void Awake()
+        {
+            Addons = GetComponents<ProjectileComponent>();
+            foreach (ProjectileComponent comp in Addons)
+                comp.Init();
+            Lifetime.Reset();
+        }
 
         protected virtual void FixedUpdate()
         {

@@ -879,6 +879,7 @@ MonoBehaviour:
   GroundRadius: 0.1
   JumpSpeed: 5
   MoveSpeed: 5
+  SprintSpeed: 8
   Gravity: 12
 --- !u!143 &1040886789
 CharacterController:
@@ -1002,7 +1003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61ba12cccd97d9428eb76852e3b471b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 969201702}
+  MainCamera: {fileID: 574853558}
+  ViewModelCamera: {fileID: 969201702}
   Workspace: {fileID: 2106665127}
 --- !u!1 &2113630107
 GameObject:

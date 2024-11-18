@@ -4,13 +4,14 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
     public class ViewModelManager : MonoBehaviour
     {
-        public Camera Camera;
+        public Camera MainCamera;
+        public Camera ViewModelCamera;
         public Transform Workspace;
 
         public void SetFOV(float fov)
         {
-            if (Camera != null)
-                Camera.fieldOfView = fov;
+            if (ViewModelCamera != null)
+                ViewModelCamera.fieldOfView = fov;
         }
     }
 }

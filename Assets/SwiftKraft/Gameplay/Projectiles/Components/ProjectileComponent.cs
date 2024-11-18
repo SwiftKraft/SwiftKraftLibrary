@@ -2,8 +2,23 @@ using SwiftKraft.Utils;
 
 namespace SwiftKraft.Gameplay.Projectiles
 {
-    public abstract class ProjectileComponent<T> : RequiredDependencyComponent<T> where T : ProjectileBase
+    public abstract class ProjectileComponent : RequiredDependencyComponent<ProjectileBase>
     {
-        public T Projectile => Component;
+        public abstract void Init();
+    }
+
+    public abstract class ProjectileComponent<T> : ProjectileComponent where T : ProjectileBase
+    {
+        public T Projectile
+        {
+            get
+            {
+                if (_projectile == null)
+                    _projectile = Component is T t ? t : null;
+
+                return _projectile;
+            }
+        }
+        T _projectile;
     }
 }
