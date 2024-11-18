@@ -50,7 +50,7 @@ namespace SwiftKraft.Gameplay.Weapons
             Parent.CanAttack.RemoveLock(CanShoot);
         }
 
-        protected virtual void OnAttack() => TryUseAmmo();
+        protected virtual void OnAttack(GameObject go) => TryUseAmmo();
 
         public bool HasAmmo(int ammo = 1) => CurrentAmmo >= ammo;
 

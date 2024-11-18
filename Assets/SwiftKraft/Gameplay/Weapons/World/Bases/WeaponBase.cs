@@ -75,7 +75,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public event Action<int> OnAttackModeUpdated;
         public event Action<string> OnStartAction;
-        public event Action OnAttack;
+        public event Action<GameObject> OnAttack;
 
         protected virtual void Awake()
         {
@@ -120,7 +120,7 @@ namespace SwiftKraft.Gameplay.Weapons
             return status;
         }
 
-        public void AttackEvent() => OnAttack?.Invoke();
+        public void AttackEvent(GameObject go) => OnAttack?.Invoke(go);
 
         public void RefreshAttackModes()
         {

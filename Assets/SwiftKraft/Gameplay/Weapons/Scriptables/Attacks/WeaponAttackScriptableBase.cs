@@ -20,7 +20,7 @@ namespace SwiftKraft.Gameplay.Weapons
             if (go.TryGetComponent(out IPet pet))
                 pet.Owner = Parent.GetRootOwner();
 
-            Parent.AttackEvent();
+            Parent.AttackEvent(go);
         }
 
         public virtual void Tick() { }
