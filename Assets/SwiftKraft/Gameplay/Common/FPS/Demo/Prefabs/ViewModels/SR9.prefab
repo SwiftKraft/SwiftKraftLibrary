@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 1116148344141180562}
   - component: {fileID: 1236420926987797861}
   - component: {fileID: 3348710002142049648}
+  - component: {fileID: 1927972123273631365}
   m_Layer: 6
   m_Name: SR9
   m_TagString: Untagged
@@ -957,6 +958,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b90369659df0144a359601bdd6ab7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1927972123273631365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993194bd30f2a0344997d1a3ca21805d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackBlockStates: 02000000
+  MovementInterpolater:
+    <MaxValue>k__BackingField: 0
+    <SmoothTime>k__BackingField: 0.1
+    SnapRange: 0
 --- !u!1 &2498492752883993721
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,6 +2772,8 @@ GameObject:
   - component: {fileID: 8247004690765098595}
   - component: {fileID: 6482029906544610366}
   - component: {fileID: 4867886208895681561}
+  - component: {fileID: 8091149919175374234}
+  - component: {fileID: 2958165398768322846}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -2870,6 +2890,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParameterName: Ammo
+--- !u!114 &8091149919175374234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6382368516374574951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e45be7a78d5cda46aa9a11d0a675ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParameterName: Movement
+--- !u!114 &2958165398768322846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6382368516374574951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05df5297bef74b245816b4d740d23c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParameterName: Ads
 --- !u!1 &6577380579606919543
 GameObject:
   m_ObjectHideFlags: 0

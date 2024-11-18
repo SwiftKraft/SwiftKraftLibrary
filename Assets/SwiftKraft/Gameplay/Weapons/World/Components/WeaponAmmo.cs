@@ -77,7 +77,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public virtual bool StartReload()
         {
-            if (CanReload && !Reloading && !Parent.Attacking)
+            if (CanReload && CurrentAmmo < MaxAmmo && !Reloading && !Parent.Attacking)
             {
                 Reload();
                 return true;

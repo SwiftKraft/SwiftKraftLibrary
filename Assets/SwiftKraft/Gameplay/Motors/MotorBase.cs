@@ -2,19 +2,8 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors
 {
-    public abstract class MotorBase<T> : MonoBehaviour where T : Component
+    public abstract class MotorBase : MonoBehaviour
     {
-        public T Component
-        {
-            get
-            {
-                if (_component == null && !TryGetComponent(out _component))
-                    _component = gameObject.AddComponent<T>();
-                return _component;
-            }
-        }
-        T _component;
-
         public Vector3 WishMoveDirection { get; set; }
 
         public Vector3 WishMovePosition
@@ -23,7 +12,7 @@ namespace SwiftKraft.Gameplay.Motors
             set => WishLookDirection = (value - transform.position).normalized;
         }
 
-        public Vector3 CurrentMoveDirection { get; private set; }
+        public Vector3 CurrentMoveDirection { get; protected set; }
 
         public Quaternion WishLookRotation { get; set; }
 
@@ -39,10 +28,12 @@ namespace SwiftKraft.Gameplay.Motors
             set => WishLookDirection = value - LookPoint.position;
         }
 
-        public Quaternion CurrentLookRotation { get; private set; }
+        public Quaternion CurrentLookRotation { get; protected set; }
+
+        public int State { get; protected set; }
 
         [field: SerializeField]
-        public Transform LookPoint { get; private set; }
+        public Transform LookPoint { get; protected set; }
 
         [field: SerializeField]
         public bool Enabled { get; set; } = true;
@@ -78,5 +69,19 @@ namespace SwiftKraft.Gameplay.Motors
 
         public abstract void Look(Quaternion rotation);
         public abstract void Move(Vector3 direction);
+    }
+
+    public abstract class MotorBase<T> : MotorBase where T : Component
+    {
+        public T Component
+        {
+            get
+            {
+                if (_component == null && !TryGetComponent(out _component))
+                    _component = gameObject.AddComponent<T>();
+                return _component;
+            }
+        }
+        T _component;
     }
 }

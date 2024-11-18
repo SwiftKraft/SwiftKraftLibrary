@@ -1,6 +1,7 @@
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
+using static UnityEngine.EventSystems.StandaloneInputModule;
 
 namespace SwiftKraft.Gameplay.Common.FPS
 {
@@ -8,6 +9,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
     public class FPSCharacterControllerMotor : PlayerMotorBase<CharacterController>
     {
         public bool IsGrounded { get; private set; }
+        public bool IsSprinting { get; private set; }
 
         public Transform GroundPoint;
 
@@ -16,6 +18,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
         public float GroundRadius = 0.1f;
         public float JumpSpeed = 5f;
         public float MoveSpeed = 5f;
+        public float SprintSpeed = 8f;
         public float Gravity = 9.81f;
 
         readonly Timer coyoteTime = new(0.2f, false);
@@ -71,9 +74,17 @@ namespace SwiftKraft.Gameplay.Common.FPS
             base.FixedUpdate();
 
             if (!Enabled)
+            {
+                IsSprinting = false;
+                State = 0;
                 return;
+            }
 
             Vector2 inputMove = GetInputMove();
+
+            IsSprinting = Input.GetKey(KeyCode.LeftShift) && IsGrounded && inputMove.y > 0f;
+
+            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting ? 1 : 0) : 0;
 
             WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y);
         }
@@ -89,6 +100,6 @@ namespace SwiftKraft.Gameplay.Common.FPS
             LookPoint.localRotation = Quaternion.Euler(-euler.x, 0f, 0f);
         }
 
-        public override void Move(Vector3 direction) => Component.Move(direction * (Time.fixedDeltaTime * MoveSpeed));
+        public override void Move(Vector3 direction) => Component.Move(direction * (Time.fixedDeltaTime * (IsSprinting ? SprintSpeed : MoveSpeed)));
     }
 }

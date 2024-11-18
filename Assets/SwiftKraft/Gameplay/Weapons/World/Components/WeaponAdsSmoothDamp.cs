@@ -1,6 +1,6 @@
 using SwiftKraft.Utils;
 
-namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
+namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAdsSmoothDamp : WeaponAds<SmoothDampInterpolater> { }
 }
