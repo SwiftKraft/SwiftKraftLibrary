@@ -18,8 +18,12 @@ namespace SwiftKraft.Gameplay.Weapons.Triggers
         private void FixedUpdate()
         {
             foreach (Action a in Actions)
-                if (a.GetInput())
-                    Parent.StartAction(a.ID);
+            {
+                bool input = a.GetInput();
+                Parent.UpdateAction(a.ID, input);
+                if (input && Parent.StartAction(a.ID))
+                    a.Performed();
+            }
         }
 
         [Serializable]
@@ -27,23 +31,33 @@ namespace SwiftKraft.Gameplay.Weapons.Triggers
         {
             public string ID;
             public KeyCode Key;
-            public bool AllowHeld;
+            public State Style;
+            public Timer Linger = new(0.05f);
 
             readonly Trigger input = new();
 
+            bool status;
             bool resetted;
 
             public void Update()
             {
+                Linger.Tick(Time.deltaTime);
+
                 if (ValidateInput())
+                {
                     input.SetTrigger();
+                    Linger.Reset();
+
+                    if (Style == State.Toggle)
+                        status = !status;
+                }
             }
 
             public bool ValidateInput()
             {
                 bool keyed = Input.GetKey(Key);
 
-                if (AllowHeld)
+                if (Style == State.Hold)
                     return keyed;
 
                 bool valid = resetted && keyed;
@@ -58,10 +72,19 @@ namespace SwiftKraft.Gameplay.Weapons.Triggers
 
             public bool GetInput()
             {
-                if (AllowHeld && ValidateInput())
+                if ((Style == State.Hold && ValidateInput()) || status)
                     input.SetTrigger();
 
-                return input.GetTrigger();
+                return input.GetTrigger() || !Linger.Ended;
+            }
+
+            public void Performed() => Linger.Tick(Linger.MaxValue);
+
+            public enum State
+            {
+                Click,
+                Hold,
+                Toggle
             }
         }
     }

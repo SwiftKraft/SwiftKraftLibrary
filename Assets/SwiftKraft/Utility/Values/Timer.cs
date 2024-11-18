@@ -50,9 +50,9 @@ namespace SwiftKraft.Utils
 
         private float timeRemaining;
 
-        public Timer() : this(0f, true) { }
+        public Timer() : this(0f) { }
 
-        public Timer(float time, bool startEnded)
+        public Timer(float time, bool startEnded = true)
         {
             Reset(time);
             Ended = startEnded;

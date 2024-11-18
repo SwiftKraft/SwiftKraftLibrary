@@ -25,22 +25,21 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         private int _currentAmmo;
 
-        public Timer ReloadTimer;
+        public virtual bool Reloading => false;
 
         public readonly BooleanLock CanReload = new();
 
         public event Action<int> OnAmmoUpdated;
 
-        BooleanLock.Lock canShoot;
+        protected BooleanLock.Lock CanShoot;
 
         protected override void Awake()
         {
             base.Awake();
             CurrentAmmo = MaxAmmo;
             Parent.OnAttack += OnAttack;
-            Parent.Actions.Add(ReloadAction, StartReload);
-            ReloadTimer.OnTimerEnd += Reload;
-            canShoot = Parent.CanAttack.AddLock();
+            Parent.AddAction(ReloadAction, StartReload);
+            CanShoot = Parent.CanAttack.AddLock();
         }
 
         protected override void OnDestroy()
@@ -48,17 +47,10 @@ namespace SwiftKraft.Gameplay.Weapons
             base.OnDestroy();
             Parent.OnAttack -= OnAttack;
             Parent.Actions.Remove(ReloadAction);
-            ReloadTimer.OnTimerEnd -= Reload;
-            Parent.CanAttack.RemoveLock(canShoot);
+            Parent.CanAttack.RemoveLock(CanShoot);
         }
 
-        public virtual void FixedUpdate()
-        {
-            ReloadTimer.Tick(Time.fixedDeltaTime);
-            canShoot.Active = !ReloadTimer.Ended;
-        }
-
-        private void OnAttack() => TryUseAmmo();
+        protected virtual void OnAttack() => TryUseAmmo();
 
         public bool HasAmmo(int ammo = 1) => CurrentAmmo >= ammo;
 
@@ -81,18 +73,20 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public bool TryUseAmmo(int ammo = 1) => TryUseAmmo(ammo, out _);
 
-        public bool StartReload()
+        protected virtual void Reload() { EndReload(); }
+
+        public virtual bool StartReload()
         {
-            if (CanReload && ReloadTimer.Ended)
+            if (CanReload && !Reloading && !Parent.Attacking)
             {
-                ReloadTimer.Reset();
+                Reload();
                 return true;
             }
 
             return false;
         }
 
-        public void Reload()
+        public virtual void EndReload()
         {
             if (CanReload)
                 CurrentAmmo = MaxAmmo;

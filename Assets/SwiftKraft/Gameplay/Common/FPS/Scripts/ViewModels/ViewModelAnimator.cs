@@ -16,8 +16,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public void PlayAnimation(string id)
         {
             Animation anim = Animations.FirstOrDefault((s) => s.ID == id);
-
-            anim.Play(Animator);
+            anim?.Play(Animator);
         }
 
         [Serializable]

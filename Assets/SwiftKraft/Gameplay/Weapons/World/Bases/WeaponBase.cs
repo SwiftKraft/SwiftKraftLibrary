@@ -9,9 +9,31 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponBase : PetBehaviourBase
     {
+        public class WeaponAction
+        {
+            public readonly Func<bool> Function;
+            public bool Status
+            {
+                get => _status;
+                set
+                {
+                    if (_status == value)
+                        return;
+
+                    OnChanged?.Invoke(value);
+                    _status = value;
+                }
+            }
+            bool _status;
+
+            public event Action<bool> OnChanged;
+
+            public WeaponAction(Func<bool> func) => Function = func;
+        }
+
         public const string AttackAction = "Attack";
 
-        public readonly Dictionary<string, Func<bool>> Actions = new();
+        public readonly Dictionary<string, WeaponAction> Actions = new();
 
         [field: SerializeField]
         public WeaponScriptable Scriptable { get; private set; }
@@ -34,6 +56,8 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         List<WeaponAttackScriptableBase> _attackModeCache;
 
+        public virtual bool Attacking => false;
+
         public int CurrentModeIndex
         {
             get => _currentMode;
@@ -50,13 +74,13 @@ namespace SwiftKraft.Gameplay.Weapons
         public WeaponAttackScriptableBase CurrentMode => AttackModeCache.InRange(CurrentModeIndex) ? AttackModeCache[CurrentModeIndex] : null;
 
         public event Action<int> OnAttackModeUpdated;
-        public event Action OnAttack;
         public event Action<string> OnStartAction;
+        public event Action OnAttack;
 
         protected virtual void Awake()
         {
             Owner = transform.root.GetComponentInChildren<IPawn>();
-            Actions.Add(AttackAction, Attack);
+            AddAction(AttackAction, Attack);
         }
 
         protected virtual void OnDestroy()
@@ -65,10 +89,31 @@ namespace SwiftKraft.Gameplay.Weapons
             Actions.Remove(AttackAction);
         }
 
+        public WeaponAction AddAction(string id, Func<bool> func)
+        {
+            if (Actions.ContainsKey(id))
+                return null;
+            WeaponAction action = new(func);
+            Actions.Add(id, action);
+            return action;
+        }
+
+        public bool TryAddAction(string id, Func<bool> func, out WeaponAction action)
+        {
+            action = AddAction(id, func);
+            return action != null;
+        }
+
+        public void UpdateAction(string id, bool status)
+        {
+            if (Actions.ContainsKey(id))
+                Actions[id].Status = status;
+        }
+
         public bool StartAction(string id)
         {
-            bool status = Actions.ContainsKey(id) && Actions[id].Invoke();
-            
+            bool status = Actions.ContainsKey(id) && Actions[id].Function.Invoke();
+
             if (status)
                 OnStartAction?.Invoke(id);
 
@@ -116,7 +161,6 @@ namespace SwiftKraft.Gameplay.Weapons
 
             if (CurrentMode != null)
             {
-                print("Attacking");
                 CurrentMode.Attack(origin);
                 return true;
             }

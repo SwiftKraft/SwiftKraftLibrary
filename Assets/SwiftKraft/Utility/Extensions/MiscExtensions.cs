@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Utils
@@ -43,6 +45,14 @@ namespace SwiftKraft.Utils
         {
             if (animator.HasParameter(paramName))
                 animator.SetBool(paramName, value);
+        }
+
+        public static bool CheckName(this AnimatorStateInfo info, ICollection<string> stateNames)
+        {
+            foreach (string str in stateNames)
+                if (info.IsName(str))
+                    return true;
+            return false;
         }
     }
 }

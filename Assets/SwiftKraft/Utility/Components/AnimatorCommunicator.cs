@@ -10,12 +10,12 @@ namespace SwiftKraft.Utils
         {
             get
             {
-                if (_component == null)
-                    _component = GetComponentInParent<T>();
+                if (_parentComponent == null)
+                    _parentComponent = GetComponentInParent<T>();
 
-                return _component;
+                return _parentComponent;
             }
         }
-        T _component;
+        T _parentComponent;
     }
 }

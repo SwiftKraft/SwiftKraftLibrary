@@ -821,7 +821,8 @@ GameObject:
   - component: {fileID: 8175185491969983762}
   - component: {fileID: 1908633199230574078}
   - component: {fileID: 1625574590863042466}
-  - component: {fileID: 4742593255738887664}
+  - component: {fileID: 6654161302878027630}
+  - component: {fileID: 1116148344141180562}
   - component: {fileID: 1236420926987797861}
   - component: {fileID: 3348710002142049648}
   m_Layer: 6
@@ -879,10 +880,10 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
   Cooldown:
-    <MaxValue>k__BackingField: 0.1
+    <MaxValue>k__BackingField: 0.15
     StartEnded: 0
   CancelPrefire: 0
---- !u!114 &4742593255738887664
+--- !u!114 &6654161302878027630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -891,13 +892,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243808998322166224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc303c003fb5d84b9447b0a42b7bb7b, type: 3}
+  m_Script: {fileID: 11500000, guid: a8cdb522966b6034486b3e777952a288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxAmmo>k__BackingField: 30
-  ReloadTimer:
-    <MaxValue>k__BackingField: 3.1
-    StartEnded: 0
+  <MaxAmmo>k__BackingField: 17
+--- !u!114 &1116148344141180562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5055a958032926240b7768842f5b0f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimBlend: Ads
+  AdsWhileReload: 1
+  aimInterpolater:
+    <MaxValue>k__BackingField: 0
+    <SmoothTime>k__BackingField: 0.05
+    SnapRange: 0.00001
 --- !u!114 &1236420926987797861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,10 +929,22 @@ MonoBehaviour:
   Actions:
   - ID: Attack
     Key: 323
-    AllowHeld: 0
+    Style: 0
+    Linger:
+      <MaxValue>k__BackingField: 0.1
+      StartEnded: 0
   - ID: Reload
     Key: 114
-    AllowHeld: 0
+    Style: 0
+    Linger:
+      <MaxValue>k__BackingField: 0.05
+      StartEnded: 0
+  - ID: Aim
+    Key: 324
+    Style: 1
+    Linger:
+      <MaxValue>k__BackingField: 0.05
+      StartEnded: 0
 --- !u!114 &3348710002142049648
 MonoBehaviour:
   m_ObjectHideFlags: 0

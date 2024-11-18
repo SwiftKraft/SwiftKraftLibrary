@@ -5,6 +5,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponDelay : WeaponBase
     {
+        public override bool Attacking => !Prefire.Ended || !Cooldown.Ended;
+
         public Timer Prefire;
         public Timer Cooldown;
 
