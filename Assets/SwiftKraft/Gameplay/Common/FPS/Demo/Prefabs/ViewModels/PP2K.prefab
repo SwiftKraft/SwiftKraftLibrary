@@ -32,6 +32,37 @@ Transform:
   - {fileID: 1445278347702825225}
   m_Father: {fileID: 6916569813735152513}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &100832867164494304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5112406536552023852}
+  m_Layer: 6
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5112406536552023852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100832867164494304}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.000053, z: -0.001699}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 442068495597760569}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &110092305509960476
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +676,8 @@ Transform:
   m_LocalPosition: {x: -0.000008888989, y: 0.0020936413, z: 0.00051781203}
   m_LocalScale: {x: 1, y: 1, z: 0.99999994}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5112406536552023852}
   m_Father: {fileID: 6483497771490359905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899185205571567698
@@ -758,6 +790,7 @@ GameObject:
   - component: {fileID: 1236420926987797861}
   - component: {fileID: 3348710002142049648}
   - component: {fileID: 1927972123273631365}
+  - component: {fileID: 8966830538624750669}
   m_Layer: 6
   m_Name: PP2K
   m_TagString: Untagged
@@ -794,7 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FOV: 55
-  ViewModelCameraTarget: {fileID: 4666830881271739252}
+  CameraTarget: {fileID: 4666830881271739252}
 --- !u!114 &1625574590863042466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,6 +940,19 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.15
     SnapRange: 0
+--- !u!114 &8966830538624750669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272b0cd528f0cd14494cc4165782a55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VisualOrigin: {fileID: 5112406536552023852}
 --- !u!1 &2364434559208955608
 GameObject:
   m_ObjectHideFlags: 0

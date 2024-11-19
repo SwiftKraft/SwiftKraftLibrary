@@ -9,7 +9,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         public float FOV = 60f;
 
-        public Transform ViewModelCameraTarget;
+        public Transform CameraTarget;
 
         public readonly BooleanLock CanUnequip = new();
 
@@ -24,7 +24,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public void Initialize()
         {
             Parent.SetFOV(FOV);
-            Parent.CameraAnimations.TargetTransform = ViewModelCameraTarget;
+            Parent.CameraAnimations.TargetTransform = CameraTarget;
         }
     }
 }

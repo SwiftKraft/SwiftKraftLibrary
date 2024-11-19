@@ -17,6 +17,8 @@ namespace SwiftKraft.Gameplay.Projectiles
             if (Projectile == null)
                 return;
 
+            VisualOrigin = transform.position;
+
             Tracer = GetComponentInChildren<LineRenderer>();
 
             Lifetime.Reset();
