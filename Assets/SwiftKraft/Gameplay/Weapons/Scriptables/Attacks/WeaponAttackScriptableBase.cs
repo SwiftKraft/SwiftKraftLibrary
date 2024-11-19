@@ -11,12 +11,14 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public GameObject Prefab;
 
+        public float Spread;
+
         public virtual void Attack(Transform origin)
         {
             if (!Parent.CanAttack)
                 return;
 
-            GameObject go = Instantiate(Prefab, origin.position, origin.rotation);
+            GameObject go = Instantiate(Prefab, origin.position, origin.rotation * Quaternion.Euler(Random.insideUnitCircle * Spread));
             if (go.TryGetComponent(out IPet pet))
                 pet.Owner = Parent.GetRootOwner();
 

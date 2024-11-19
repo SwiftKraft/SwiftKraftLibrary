@@ -1,7 +1,6 @@
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
-using static UnityEngine.EventSystems.StandaloneInputModule;
 
 namespace SwiftKraft.Gameplay.Common.FPS
 {
@@ -82,9 +81,9 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
             Vector2 inputMove = GetInputMove();
 
-            IsSprinting = Input.GetKey(KeyCode.LeftShift) && IsGrounded && inputMove.y > 0f;
+            IsSprinting = Input.GetKey(KeyCode.LeftShift) && inputMove.y > 0f;
 
-            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting ? 1 : 0) : 0;
+            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting && IsGrounded ? 1 : 0) : 0;
 
             WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y);
         }
@@ -100,6 +99,10 @@ namespace SwiftKraft.Gameplay.Common.FPS
             LookPoint.localRotation = Quaternion.Euler(-euler.x, 0f, 0f);
         }
 
-        public override void Move(Vector3 direction) => Component.Move(direction * (Time.fixedDeltaTime * (IsSprinting ? SprintSpeed : MoveSpeed)));
+        public override void Move(Vector3 direction)
+        {
+            Vector3 vel = direction * (Time.fixedDeltaTime * (IsSprinting ? SprintSpeed : MoveSpeed));
+            Component.Move(vel);
+        }
     }
 }
