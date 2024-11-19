@@ -824,9 +824,9 @@ GameObject:
   - component: {fileID: 6654161302878027630}
   - component: {fileID: 1116148344141180562}
   - component: {fileID: 4498251446266001856}
+  - component: {fileID: 1927972123273631365}
   - component: {fileID: 1236420926987797861}
   - component: {fileID: 3348710002142049648}
-  - component: {fileID: 1927972123273631365}
   m_Layer: 6
   m_Name: SR9
   m_TagString: Untagged
@@ -882,7 +882,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
   Cooldown:
-    <MaxValue>k__BackingField: 0.15
+    <MaxValue>k__BackingField: 0.125
     StartEnded: 0
   CancelPrefire: 0
 --- !u!114 &6654161302878027630
@@ -914,7 +914,7 @@ MonoBehaviour:
   AdsWhileReload: 1
   aimInterpolater:
     <MaxValue>k__BackingField: 0
-    <SmoothTime>k__BackingField: 0.05
+    <SmoothTime>k__BackingField: 0.075
     SnapRange: 0.00001
 --- !u!114 &4498251446266001856
 MonoBehaviour:
@@ -929,6 +929,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VisualOrigin: {fileID: 5022839921829110841}
+--- !u!114 &1927972123273631365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993194bd30f2a0344997d1a3ca21805d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackBlockStates: 02000000
+  MovementInterpolater:
+    <MaxValue>k__BackingField: 0
+    <SmoothTime>k__BackingField: 0.1
+    SnapRange: 0
 --- !u!114 &1236420926987797861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,23 +989,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b90369659df0144a359601bdd6ab7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1927972123273631365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808998322166224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 993194bd30f2a0344997d1a3ca21805d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackBlockStates: 02000000
-  MovementInterpolater:
-    <MaxValue>k__BackingField: 0
-    <SmoothTime>k__BackingField: 0.1
-    SnapRange: 0
 --- !u!1 &2498492752883993721
 GameObject:
   m_ObjectHideFlags: 0

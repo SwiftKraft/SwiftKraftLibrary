@@ -40,14 +40,7 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         protected virtual void OnHit()
         {
-            int addition = Projectile.HitCount < Projectile.Pierce ? 1 : 0;
-            Vector3[] positions = new Vector3[Projectile.HitCount + addition + 1];
-            positions[0] = VisualOrigin;
-            for (int i = 0; i < Projectile.HitCount + addition; i++)
-                positions[i + 1] = i < Projectile.HitCount
-                    ? Projectile.Hits[i].point
-                    : Projectile.transform.position + Projectile.transform.forward * Projectile.Range;
-
+            Vector3[] positions = { VisualOrigin, Projectile.Hits.Length > 0 ? Projectile.Hits[^1].point : transform.position + transform.forward * Projectile.Range };
             Tracer.SetPositions(positions);
         }
 
