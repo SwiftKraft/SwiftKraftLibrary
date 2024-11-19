@@ -1,3 +1,4 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
@@ -6,6 +7,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
     {
         public Camera Camera;
         public Transform Workspace;
+        public CopyRotation CameraAnimations;
 
         public void SetFOV(float fov)
         {
