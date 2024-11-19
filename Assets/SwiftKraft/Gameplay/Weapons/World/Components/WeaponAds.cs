@@ -7,8 +7,6 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public const string AimAction = "Aim";
 
-        public string AimBlend = "Aim";
-
         public bool AdsWhileReload;
 
         public float Aiming { get; protected set; }

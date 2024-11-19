@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 1908633199230574078}
   - component: {fileID: 1625574590863042466}
   - component: {fileID: 6654161302878027630}
-  - component: {fileID: 1116148344141180562}
+  - component: {fileID: 2310563020169899741}
   - component: {fileID: 1236420926987797861}
   - component: {fileID: 3348710002142049648}
   - component: {fileID: 1927972123273631365}
@@ -829,8 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cdb522966b6034486b3e777952a288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxAmmo>k__BackingField: 20
---- !u!114 &1116148344141180562
+  <MaxAmmo>k__BackingField: 15
+--- !u!114 &2310563020169899741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -839,15 +839,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243808998322166224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5055a958032926240b7768842f5b0f7a, type: 3}
+  m_Script: {fileID: 11500000, guid: ec0f23c06472329428453f3b9d7d1947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimBlend: Ads
   AdsWhileReload: 1
   aimInterpolater:
     <MaxValue>k__BackingField: 0
-    <SmoothTime>k__BackingField: 0.2
-    SnapRange: 0.00001
+    <LerpValue>k__BackingField: 15
+    <SnapDifference>k__BackingField: 0.0001
 --- !u!114 &1236420926987797861
 MonoBehaviour:
   m_ObjectHideFlags: 0
