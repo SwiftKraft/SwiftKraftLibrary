@@ -1,4 +1,3 @@
-using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -41,7 +40,8 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            ReloadCommunicator.EndReload -= EndReload;
+            if (ReloadCommunicator != null)
+                ReloadCommunicator.EndReload -= EndReload;
         }
 
         protected override void Reload()

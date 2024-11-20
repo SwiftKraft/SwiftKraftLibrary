@@ -1,4 +1,5 @@
 using SwiftKraft.Utils;
+using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
@@ -10,8 +11,6 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public float FOV = 60f;
 
         public Transform CameraTarget;
-
-        public readonly BooleanLock CanUnequip = new();
 
         private void Awake()
         {

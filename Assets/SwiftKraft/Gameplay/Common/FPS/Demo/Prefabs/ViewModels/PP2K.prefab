@@ -785,6 +785,7 @@ GameObject:
   - component: {fileID: 8175185491969983762}
   - component: {fileID: 1908633199230574078}
   - component: {fileID: 1625574590863042466}
+  - component: {fileID: 4655089555376283451}
   - component: {fileID: 6654161302878027630}
   - component: {fileID: 2310563020169899741}
   - component: {fileID: 1236420926987797861}
@@ -850,6 +851,21 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0.1
     StartEnded: 0
   CancelPrefire: 0
+--- !u!114 &4655089555376283451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e86725f4849e1c4f8f941ba09299a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipTimer:
+    <MaxValue>k__BackingField: 0.5
+    StartEnded: 0
 --- !u!114 &6654161302878027630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cdb522966b6034486b3e777952a288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxAmmo>k__BackingField: 15
+  <MaxAmmo>k__BackingField: 20
 --- !u!114 &2310563020169899741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,6 +2819,14 @@ MonoBehaviour:
     States:
     - StateName: Reload
       CrossFade: 0.05
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+  - ID: Equip
+    States:
+    - StateName: Equip
+      CrossFade: 0
       Weight: 1
       OnPlay:
         m_PersistentCalls:
