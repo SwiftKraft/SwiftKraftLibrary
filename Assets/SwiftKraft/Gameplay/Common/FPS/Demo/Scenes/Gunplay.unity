@@ -1265,7 +1265,7 @@ PrefabInstance:
     - target: {fileID: 2243808998322166224, guid: cec9f1ce20e9ef9418d2d6f5448e85dc,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8175185491969983762, guid: cec9f1ce20e9ef9418d2d6f5448e85dc,
         type: 3}
@@ -1619,8 +1619,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 574853558}
   ViewModelCamera: {fileID: 969201702}
-  Workspace: {fileID: 2106665127}
+  ViewModelWorkspace: {fileID: 2106665127}
   CameraAnimations: {fileID: 978924891}
+  ZoomTime: 0.1
+  ViewModelFOV:
+    Original: 90
+  MainCameraFOV:
+    Original: 90
 --- !u!1 &2113630107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,7 +1710,7 @@ PrefabInstance:
     - target: {fileID: 2243808998322166224, guid: 56a65e49fc4e71f46bf91020ce015d19,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8175185491969983762, guid: 56a65e49fc4e71f46bf91020ce015d19,
         type: 3}

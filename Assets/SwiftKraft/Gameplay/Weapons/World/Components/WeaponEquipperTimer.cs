@@ -19,7 +19,11 @@ namespace SwiftKraft.Gameplay.Weapons
             EquipTimer.OnTimerEnd -= EndEquip;
         }
 
-        protected virtual void FixedUpdate() => EquipTimer.Tick(Time.fixedDeltaTime);
+        protected virtual void FixedUpdate()
+        {
+            EquipTimer.Tick(Time.fixedDeltaTime);
+            AttackDisabler.Active = !EquipTimer.Ended;
+        }
 
         public override bool StartEquip()
         {

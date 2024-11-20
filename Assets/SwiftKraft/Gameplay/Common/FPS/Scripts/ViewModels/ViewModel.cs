@@ -6,7 +6,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
     public class ViewModel : MonoBehaviour
     {
-        public ViewModelManager Parent { get; private set; }
+        public CameraManager Parent { get; private set; }
 
         public float FOV = 60f;
 
@@ -14,7 +14,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         private void Awake()
         {
-            Parent = GetComponentInParent<ViewModelManager>();
+            Parent = GetComponentInParent<CameraManager>();
             Initialize();
         }
 
@@ -22,7 +22,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         public void Initialize()
         {
-            Parent.SetFOV(FOV);
+            Parent.SetViewModelFOV(FOV, true);
             Parent.CameraAnimations.TargetTransform = CameraTarget;
         }
     }

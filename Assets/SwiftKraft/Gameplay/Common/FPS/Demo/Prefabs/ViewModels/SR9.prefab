@@ -519,38 +519,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 513330735831040954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1413602015999403747
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3169686915327134002}
-  m_Layer: 6
-  m_Name: CameraTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3169686915327134002
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413602015999403747}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000029802322, y: -0.000000021073426, z: -0.000000021073422,
-    w: -1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.042105295, y: 0.0421053, z: 0.0421053}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5837249382396631117}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1478879687244166395
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +823,8 @@ GameObject:
   - component: {fileID: 1625574590863042466}
   - component: {fileID: 6654161302878027630}
   - component: {fileID: 1116148344141180562}
+  - component: {fileID: 2437987067042957468}
+  - component: {fileID: 8699032933459824843}
   - component: {fileID: 4498251446266001856}
   - component: {fileID: 1927972123273631365}
   - component: {fileID: 1236420926987797861}
@@ -895,6 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FOV: 55
+  CameraTarget: {fileID: 0}
 --- !u!114 &1625574590863042466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,12 +913,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5055a958032926240b7768842f5b0f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimBlend: Ads
   AdsWhileReload: 1
   aimInterpolater:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.075
     SnapRange: 0.00001
+--- !u!114 &2437987067042957468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1cc2a07f70c6741a0a17880fb9a80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimViewModelFOV: 50
+  AimCameraFOV: 80
+--- !u!114 &8699032933459824843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e86725f4849e1c4f8f941ba09299a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipTimer:
+    <MaxValue>k__BackingField: 0.4
+    StartEnded: 0
 --- !u!114 &4498251446266001856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,8 +1253,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0.0008804512}
   m_LocalScale: {x: 0.23749983, y: 0.23749983, z: 0.23749983}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 3169686915327134002}
+  m_Children: []
   m_Father: {fileID: 6548237910482034523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2852777647910292049
@@ -2853,6 +2851,7 @@ GameObject:
   - component: {fileID: 4867886208895681561}
   - component: {fileID: 8091149919175374234}
   - component: {fileID: 2958165398768322846}
+  - component: {fileID: 6262652241789900095}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -2943,6 +2942,14 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
+  - ID: Equip
+    States:
+    - StateName: Equip
+      CrossFade: 0
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!114 &6482029906544610366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2995,6 +3002,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParameterName: Ads
+--- !u!114 &6262652241789900095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6382368516374574951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f45484fdbb17e64c832f8425a346c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateID: Equip
 --- !u!1 &6577380579606919543
 GameObject:
   m_ObjectHideFlags: 0

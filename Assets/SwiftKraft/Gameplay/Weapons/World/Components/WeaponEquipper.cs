@@ -13,8 +13,9 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.Awake();
             Parent.AddAction(EquipAction, StartEquip);
-            Initialize();
         }
+
+        protected virtual void Start() => Initialize();
 
         protected virtual void OnEnable() => Initialize();
 

@@ -15,7 +15,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public readonly BooleanLock CanAim = new();
 
-        protected bool Aim { get; set; }
+        public bool Aim { get; protected set; }
 
         protected WeaponBase.WeaponAction aimAction;
 
