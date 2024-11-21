@@ -36,7 +36,6 @@ namespace SwiftKraft.Gameplay.Weapons
             base.Awake();
 
             ReloadCommunicator.EndReload += EndReload;
-            ReloadCommunicator.MidReload += MidReload;
         }
 
         protected override void OnDestroy()
@@ -44,10 +43,7 @@ namespace SwiftKraft.Gameplay.Weapons
             base.OnDestroy();
 
             if (ReloadCommunicator != null)
-            {
                 ReloadCommunicator.EndReload -= EndReload;
-                ReloadCommunicator.MidReload -= MidReload;
-            }
         }
 
         protected override void Reload()
