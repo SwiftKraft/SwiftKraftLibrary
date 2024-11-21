@@ -86,6 +86,8 @@ namespace SwiftKraft.Gameplay.Weapons
             return false;
         }
 
+        public virtual void MidReload() { }
+
         public virtual void EndReload()
         {
             if (CanReload)

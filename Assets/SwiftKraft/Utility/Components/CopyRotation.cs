@@ -6,6 +6,8 @@ namespace SwiftKraft.Utils
     {
         public Transform TargetTransform;
 
+        public Vector3 Offset;
+
         [field: SerializeField]
         public bool Local { get; private set; }
 
@@ -30,9 +32,9 @@ namespace SwiftKraft.Utils
         public void SetRotation(Quaternion rot)
         {
             if (!Local)
-                transform.rotation = rot;
+                transform.rotation = rot * Quaternion.Euler(Offset);
             else
-                transform.localRotation = rot;
+                transform.localRotation = rot * Quaternion.Euler(Offset);
         }
     }
 }
