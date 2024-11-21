@@ -1,29 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public abstract class WeaponUnequipper : WeaponComponentBlocker
+    public abstract class WeaponUnequipper : WeaponComponentBlocker // rework this to use items
     {
-        public const string UnequipAction = "Equip";
-
-        public bool AlwaysUnequip;
+        public const string UnequipAction = "Unequip";
 
         protected override void Awake()
         {
             base.Awake();
             Parent.AddAction(UnequipAction, StartUnequip);
-        }
-
-        protected virtual void OnDisable()
-        {
-            if (AlwaysUnequip)
-            {
-                gameObject.SetActive(true);
-                Parent.StartAction(UnequipAction);
-            }
         }
 
         protected override void OnDestroy()

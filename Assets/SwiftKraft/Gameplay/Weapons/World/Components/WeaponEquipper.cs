@@ -2,7 +2,7 @@ using System;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public abstract class WeaponEquipper : WeaponComponentBlocker
+    public abstract class WeaponEquipper : WeaponComponentBlocker // rework this to use items
     {
         public const string EquipAction = "Equip";
 

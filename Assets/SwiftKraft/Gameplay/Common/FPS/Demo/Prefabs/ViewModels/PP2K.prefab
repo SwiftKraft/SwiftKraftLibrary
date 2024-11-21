@@ -786,6 +786,7 @@ GameObject:
   - component: {fileID: 1908633199230574078}
   - component: {fileID: 1625574590863042466}
   - component: {fileID: 4655089555376283451}
+  - component: {fileID: 5696322597524866608}
   - component: {fileID: 6654161302878027630}
   - component: {fileID: 2310563020169899741}
   - component: {fileID: 1751766258399497974}
@@ -867,6 +868,21 @@ MonoBehaviour:
   EquipTimer:
     <MaxValue>k__BackingField: 0.5
     StartEnded: 0
+--- !u!114 &5696322597524866608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0e259b3730ada43ac69b6e4dcbffc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnequipTimer:
+    <MaxValue>k__BackingField: 0.5
+    StartEnded: 0
 --- !u!114 &6654161302878027630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,6 +955,12 @@ MonoBehaviour:
   - ID: Aim
     Key: 324
     Style: 1
+    Linger:
+      <MaxValue>k__BackingField: 0.05
+      StartEnded: 0
+  - ID: Unequip
+    Key: 103
+    Style: 0
     Linger:
       <MaxValue>k__BackingField: 0.05
       StartEnded: 0
@@ -2841,6 +2863,14 @@ MonoBehaviour:
   - ID: Equip
     States:
     - StateName: Equip
+      CrossFade: 0
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+  - ID: Unequip
+    States:
+    - StateName: Unequip
       CrossFade: 0
       Weight: 1
       OnPlay:

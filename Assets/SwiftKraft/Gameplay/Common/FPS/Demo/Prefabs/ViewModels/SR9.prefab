@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 1116148344141180562}
   - component: {fileID: 2437987067042957468}
   - component: {fileID: 8699032933459824843}
+  - component: {fileID: 2449021304951186053}
   - component: {fileID: 4498251446266001856}
   - component: {fileID: 1927972123273631365}
   - component: {fileID: 1236420926987797861}
@@ -947,6 +948,21 @@ MonoBehaviour:
   EquipTimer:
     <MaxValue>k__BackingField: 0.4
     StartEnded: 0
+--- !u!114 &2449021304951186053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0e259b3730ada43ac69b6e4dcbffc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnequipTimer:
+    <MaxValue>k__BackingField: 0.5
+    StartEnded: 0
 --- !u!114 &4498251446266001856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,6 +1021,12 @@ MonoBehaviour:
   - ID: Aim
     Key: 324
     Style: 1
+    Linger:
+      <MaxValue>k__BackingField: 0.05
+      StartEnded: 0
+  - ID: Unequip
+    Key: 103
+    Style: 0
     Linger:
       <MaxValue>k__BackingField: 0.05
       StartEnded: 0
@@ -2851,7 +2873,6 @@ GameObject:
   - component: {fileID: 4867886208895681561}
   - component: {fileID: 8091149919175374234}
   - component: {fileID: 2958165398768322846}
-  - component: {fileID: 6262652241789900095}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -2950,6 +2971,14 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
+  - ID: Unequip
+    States:
+    - StateName: Unequip
+      CrossFade: 0
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!114 &6482029906544610366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3002,19 +3031,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParameterName: Ads
---- !u!114 &6262652241789900095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6382368516374574951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f45484fdbb17e64c832f8425a346c01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StateID: Equip
 --- !u!1 &6577380579606919543
 GameObject:
   m_ObjectHideFlags: 0
