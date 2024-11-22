@@ -2197,7 +2197,7 @@ MonoBehaviour:
   Actions:
   - ID: Attack
     Key: 323
-    Style: 1
+    Style: 0
     Linger:
       <MaxValue>k__BackingField: 0
       StartEnded: 0
@@ -2504,7 +2504,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
   Cooldown:
-    <MaxValue>k__BackingField: 0.1
+    <MaxValue>k__BackingField: 0.8
     StartEnded: 0
   CancelPrefire: 0
 --- !u!114 &1674803703847206814
@@ -2788,7 +2788,7 @@ GameObject:
   - component: {fileID: 4655089554435006820}
   - component: {fileID: 5696322596592646255}
   - component: {fileID: 2310563021372395650}
-  - component: {fileID: 8966830537682790931}
+  - component: {fileID: 8966830537682790933}
   - component: {fileID: 1751766257184911529}
   - component: {fileID: 1236420926042078010}
   - component: {fileID: 3348710003343493935}
@@ -2814,7 +2814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0f23c06472329428453f3b9d7d1947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AdsWhileReload: 1
+  AdsWhileReload: 0
   aimInterpolater:
     <MaxValue>k__BackingField: 0
     <LerpValue>k__BackingField: 15
@@ -3393,7 +3393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a3d1f70227b7346a087ed789e8a933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParameterName: Ammo
+  ParameterNameAmmo: Ammo
+  ParameterNameReloading: Reloading
 --- !u!1 &4016328158393568002
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,23 +4979,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VisualOrigin: {fileID: 1801578436}
---- !u!114 &8966830537682790931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808997381384079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccd407270bd8bb409786e5b884d28f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <MaxAmmo>k__BackingField: 5
-  Amount: 1
-  LoadDelay:
-    <MaxValue>k__BackingField: 2
-    StartEnded: 0
 --- !u!114 &8966830537682790932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5008,6 +4992,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationID: ReloadLoop
+--- !u!114 &8966830537682790933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808997381384079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51577a9df2f786a4fb8e262337cea230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxAmmo>k__BackingField: 8
+  Amount: 1
 --- !u!4 &8989129250581612818
 Transform:
   m_ObjectHideFlags: 0

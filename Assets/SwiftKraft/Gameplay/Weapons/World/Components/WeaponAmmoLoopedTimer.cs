@@ -13,6 +13,7 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void Reload()
         {
             base.Reload();
+            CanShoot.Active = true;
             reloading = true;
             LoadDelay.Reset();
             OnStartLoadEvent();
@@ -37,7 +38,10 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.AddAmmo();
             if (CurrentAmmo >= MaxAmmo)
+            {
+                CanShoot.Active = false;
                 reloading = false;
+            }
         }
     }
 }

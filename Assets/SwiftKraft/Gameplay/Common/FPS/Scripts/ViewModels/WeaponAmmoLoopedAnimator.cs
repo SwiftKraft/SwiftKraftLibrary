@@ -1,10 +1,9 @@
-using SwiftKraft.Gameplay.Common.FPS.ViewModels;
+using SwiftKraft.Gameplay.Weapons;
 using SwiftKraft.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay.Weapons {
+namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
+{
 
     [RequireComponent(typeof(WeaponAnimator))]
     public class WeaponAmmoLoopedAnimator : RequiredDependencyComponent<WeaponAmmoLooped>
