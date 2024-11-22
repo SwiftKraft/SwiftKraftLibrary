@@ -2787,13 +2787,14 @@ GameObject:
   - component: {fileID: 1625574589652638205}
   - component: {fileID: 4655089554435006820}
   - component: {fileID: 5696322596592646255}
-  - component: {fileID: 6654161304088903985}
   - component: {fileID: 2310563021372395650}
+  - component: {fileID: 8966830537682790931}
   - component: {fileID: 1751766257184911529}
   - component: {fileID: 1236420926042078010}
   - component: {fileID: 3348710003343493935}
   - component: {fileID: 1927972122072443098}
   - component: {fileID: 8966830537682790930}
+  - component: {fileID: 8966830537682790932}
   m_Layer: 6
   m_Name: Mossberg
   m_TagString: Untagged
@@ -4001,7 +4002,7 @@ MonoBehaviour:
             m_CallState: 2
   - ID: Reload
     States:
-    - StateName: ReloadStart
+    - StateName: Reload
       CrossFade: 0.05
       Weight: 1
       OnPlay:
@@ -4018,6 +4019,14 @@ MonoBehaviour:
   - ID: Unequip
     States:
     - StateName: Unequip
+      CrossFade: 0
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+  - ID: ReloadLoop
+    States:
+    - StateName: Reload
       CrossFade: 0
       Weight: 1
       OnPlay:
@@ -4377,6 +4386,7 @@ GameObject:
   - component: {fileID: 5649300380467057960}
   - component: {fileID: 5612685566327163708}
   - component: {fileID: 3995412551412661877}
+  - component: {fileID: 6595727442289421315}
   - component: {fileID: 2011391524738270804}
   - component: {fileID: 3636669034452791234}
   - component: {fileID: 1674803703847206814}
@@ -4387,19 +4397,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6654161304088903985
+--- !u!114 &6595727442289421315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808997381384079}
+  m_GameObject: {fileID: 6595727442289421314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cdb522966b6034486b3e777952a288, type: 3}
+  m_Script: {fileID: 11500000, guid: c16c20de68a673042a4056506576630f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxAmmo>k__BackingField: 8
+  ParameterName: LoopedAmmo
 --- !u!1 &6732781340966979250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4968,6 +4978,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VisualOrigin: {fileID: 1801578436}
+--- !u!114 &8966830537682790931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808997381384079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bccd407270bd8bb409786e5b884d28f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxAmmo>k__BackingField: 5
+  Amount: 1
+  LoadDelay:
+    <MaxValue>k__BackingField: 2
+    StartEnded: 0
+--- !u!114 &8966830537682790932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808997381384079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249f9d393dd1dbd4da8eaa19f7ecc8c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimationID: ReloadLoop
 --- !u!4 &8989129250581612818
 Transform:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -6,7 +7,24 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public int Amount;
 
-        public int LoadedAmmo { get; private set; }
+        public int LoadedAmmo
+        {
+            get => _loadedAmmo;
+            private set
+            {
+                if (_loadedAmmo == value)
+                    return;
+
+                OnLoopedAmmoChanged?.Invoke(value);
+                _loadedAmmo = value;
+            }
+        }
+        int _loadedAmmo;
+
+        public event Action OnStartLoad;
+        public event Action<int> OnLoopedAmmoChanged;
+
+        protected void OnStartLoadEvent() => OnStartLoad?.Invoke();
 
         protected override void Reload() => LoadedAmmo = 0;
 
