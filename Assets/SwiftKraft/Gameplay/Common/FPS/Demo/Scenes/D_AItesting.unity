@@ -1703,7 +1703,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1475683516}
-  - component: {fileID: 1475683517}
   - component: {fileID: 1475683518}
   m_Layer: 3
   m_Name: LookRoot
@@ -1729,23 +1728,6 @@ Transform:
   - {fileID: 2106665127}
   m_Father: {fileID: 1040886787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1475683517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475683515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82ee1ba3b46487249869b981018713a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableCamInput: 0
-  rotationSpeed: 100
-  tiltAngle: 15
-  tiltAngleCam: 0
-  tiltSpeed: 5
 --- !u!114 &1475683518
 MonoBehaviour:
   m_ObjectHideFlags: 0
