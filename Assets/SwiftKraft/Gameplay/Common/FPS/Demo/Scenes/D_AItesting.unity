@@ -1704,6 +1704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1475683516}
   - component: {fileID: 1475683517}
+  - component: {fileID: 1475683518}
   m_Layer: 3
   m_Name: LookRoot
   m_TagString: Untagged
@@ -1745,6 +1746,23 @@ MonoBehaviour:
   tiltAngle: 15
   tiltAngleCam: 0
   tiltSpeed: 5
+--- !u!114 &1475683518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475683515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e19915ee39d8047b4d1586f8e2b325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobFrequency: 15
+  bobFrequencySprint: 21
+  bobFrequencyWalk: 15
+  bobAmplitude: 0.05
+  returnSpeed: 5
 --- !u!1 &1753038180
 GameObject:
   m_ObjectHideFlags: 0
