@@ -764,6 +764,7 @@ GameObject:
   - component: {fileID: 574853558}
   - component: {fileID: 574853557}
   - component: {fileID: 574853560}
+  - component: {fileID: 574853561}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -891,6 +892,23 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &574853561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574853556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ee1ba3b46487249869b981018713a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableCamInput: 1
+  rotationSpeed: 100
+  tiltAngle: -2
+  tiltAngleCam: -1
+  tiltSpeed: 5
 --- !u!1 &723931093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,9 +1740,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ee1ba3b46487249869b981018713a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiltAmount: -2
-  smoothSpeed: 5
-  cameraTransform: {fileID: 574853559}
+  enableCamInput: 0
+  rotationSpeed: 100
+  tiltAngle: 15
+  tiltAngleCam: 0
+  tiltSpeed: 5
 --- !u!1 &1753038180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,9 +2129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ee1ba3b46487249869b981018713a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiltAmount: -3
-  smoothSpeed: 5
-  cameraTransform: {fileID: 969201699}
+  enableCamInput: 1
+  rotationSpeed: 100
+  tiltAngle: -5
+  tiltAngleCam: -2
+  tiltSpeed: 5
 --- !u!1 &2113630107
 GameObject:
   m_ObjectHideFlags: 0
