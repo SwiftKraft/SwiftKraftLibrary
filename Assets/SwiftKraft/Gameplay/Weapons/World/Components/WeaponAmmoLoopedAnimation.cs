@@ -30,9 +30,6 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         WeaponReloadAnimator _reloadCommunicator;
 
-        public override bool Reloading => reloading;
-        bool reloading;
-
         protected override void Awake()
         {
             base.Awake();
@@ -57,27 +54,6 @@ namespace SwiftKraft.Gameplay.Weapons
             AddAmmo();
             if (Reloading)
                 OnStartLoadEvent();
-        }
-
-        protected override void Reload()
-        {
-            base.Reload();
-            CanShoot.Active = true;
-            reloading = true;
-        }
-
-        public override void EndReload()
-        {
-            base.EndReload();
-            CanShoot.Active = false;
-            reloading = false;
-        }
-
-        public override void AddAmmo()
-        {
-            base.AddAmmo();
-            if (CurrentAmmo >= MaxAmmo)
-                reloading = false;
         }
     }
 }

@@ -49,6 +49,7 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void Reload()
         {
             CanShoot.Active = true;
+            OnReloadUpdatedEvent(true);
             reloading = true;
         }
 
@@ -56,6 +57,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.EndReload();
             CanShoot.Active = false;
+            OnReloadUpdatedEvent(false);
             reloading = false;
         }
     }

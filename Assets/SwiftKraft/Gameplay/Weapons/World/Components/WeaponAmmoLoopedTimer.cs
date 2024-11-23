@@ -7,14 +7,9 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public Timer LoadDelay;
 
-        public override bool Reloading => reloading;
-        bool reloading;
-
         protected override void Reload()
         {
             base.Reload();
-            CanShoot.Active = true;
-            reloading = true;
             LoadDelay.Reset();
             OnStartLoadEvent();
         }
@@ -31,16 +26,6 @@ namespace SwiftKraft.Gameplay.Weapons
                     LoadDelay.Reset();
                     OnStartLoadEvent();
                 }
-            }
-        }
-
-        public override void AddAmmo()
-        {
-            base.AddAmmo();
-            if (CurrentAmmo >= MaxAmmo)
-            {
-                CanShoot.Active = false;
-                reloading = false;
             }
         }
     }
