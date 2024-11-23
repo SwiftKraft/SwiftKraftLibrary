@@ -10,7 +10,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public string[] ReloadStateNames = { "Reload" };
         public string[] MidReloadStateNames;
 
-        public event Action EndReload;
+        public event Action<bool> EndReload;
         public event Action MidReload;
 
         bool midReloaded;
@@ -18,7 +18,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             if (stateInfo.CheckName(ReloadStateNames))
-                EndReload?.Invoke();
+                EndReload?.Invoke(stateInfo.normalizedTime >= 1f);
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

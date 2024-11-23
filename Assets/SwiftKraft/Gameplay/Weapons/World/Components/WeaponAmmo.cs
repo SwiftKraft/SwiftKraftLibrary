@@ -52,6 +52,8 @@ namespace SwiftKraft.Gameplay.Weapons
             Parent.CanAttack.RemoveLock(CanShoot);
         }
 
+        protected virtual void OnDisable() => CanShoot.Active = false;
+
         protected virtual void OnAttack(GameObject go) => TryUseAmmo();
 
         public bool HasAmmo(int ammo = 1) => CurrentAmmo >= ammo;
@@ -75,7 +77,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public bool TryUseAmmo(int ammo = 1) => TryUseAmmo(ammo, out _);
 
-        protected virtual void Reload() { EndReload(); }
+        protected virtual void Reload() { EndReload(true); }
 
         public virtual bool StartReload()
         {
@@ -88,7 +90,7 @@ namespace SwiftKraft.Gameplay.Weapons
             return false;
         }
 
-        public virtual void EndReload()
+        public virtual void EndReload(bool fullEnd)
         {
             if (CanReload)
                 CurrentAmmo = MaxAmmo;
