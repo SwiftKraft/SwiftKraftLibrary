@@ -53,9 +53,9 @@ namespace SwiftKraft.Gameplay.Weapons
             reloading = true;
         }
 
-        public override void EndReload()
+        public override void EndReload(bool fullEnd)
         {
-            base.EndReload();
+            base.EndReload(fullEnd);
             CanShoot.Active = false;
             OnReloadUpdatedEvent(false);
             reloading = false;

@@ -12,13 +12,13 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void Awake()
         {
             base.Awake();
-            ReloadTimer.OnTimerEnd += EndReload;
+            ReloadTimer.OnTimerEnd += End;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            ReloadTimer.OnTimerEnd -= EndReload;
+            ReloadTimer.OnTimerEnd -= End;
         }
 
         public virtual void FixedUpdate()
@@ -26,6 +26,8 @@ namespace SwiftKraft.Gameplay.Weapons
             ReloadTimer.Tick(Time.fixedDeltaTime);
             CanShoot.Active = !ReloadTimer.Ended;
         }
+
+        private void End() => EndReload(true);
 
         protected override void Reload() => ReloadTimer.Reset();
     }
