@@ -55,9 +55,7 @@ public class CameraSwayModule : MonoBehaviour
 
                 );
 
-            if (!enableCamInput)
-                targetTilt = targetTilt;
-            else
+            if (enableCamInput)
                 targetTilt += targetRot;
         }
 
