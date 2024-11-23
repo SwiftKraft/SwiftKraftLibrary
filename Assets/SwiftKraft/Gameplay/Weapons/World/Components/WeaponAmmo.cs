@@ -30,6 +30,8 @@ namespace SwiftKraft.Gameplay.Weapons
         public readonly BooleanLock CanReload = new();
 
         public event Action<int> OnAmmoUpdated;
+        public event Action<bool> OnReloadUpdated;
+        protected void OnReloadUpdatedEvent(bool reload) => OnReloadUpdated?.Invoke(reload);
 
         protected BooleanLock.Lock CanShoot;
 
@@ -85,8 +87,6 @@ namespace SwiftKraft.Gameplay.Weapons
 
             return false;
         }
-
-        public virtual void MidReload() { }
 
         public virtual void EndReload()
         {

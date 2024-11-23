@@ -36,7 +36,6 @@ namespace SwiftKraft.Gameplay.Weapons
             base.Awake();
 
             ReloadCommunicator.EndReload += EndReload;
-            ReloadCommunicator.MidReload += MidReload;
         }
 
         protected override void OnDestroy()
@@ -44,15 +43,13 @@ namespace SwiftKraft.Gameplay.Weapons
             base.OnDestroy();
 
             if (ReloadCommunicator != null)
-            {
                 ReloadCommunicator.EndReload -= EndReload;
-                ReloadCommunicator.MidReload -= MidReload;
-            }
         }
 
         protected override void Reload()
         {
             CanShoot.Active = true;
+            OnReloadUpdatedEvent(true);
             reloading = true;
         }
 
@@ -60,6 +57,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.EndReload();
             CanShoot.Active = false;
+            OnReloadUpdatedEvent(false);
             reloading = false;
         }
     }

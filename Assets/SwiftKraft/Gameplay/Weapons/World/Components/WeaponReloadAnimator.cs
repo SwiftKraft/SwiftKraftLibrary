@@ -6,13 +6,14 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponReloadAnimator : StateMachineBehaviour
     {
-        public string[] ReloadStateNames;
-        public string[] LoopReloadStateNames;
+        public string[] IdleStateNames = { "Idle" };
+        public string[] ReloadStateNames = { "Reload" };
+        public string[] MidReloadStateNames;
 
         public event Action EndReload;
         public event Action MidReload;
 
-        float prevNormalizedTime;
+        bool midReloaded;
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -22,11 +23,15 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (stateInfo.CheckName(LoopReloadStateNames))
+            if (stateInfo.CheckName(MidReloadStateNames))
             {
-                if (stateInfo.normalizedTime % 1f < prevNormalizedTime)
+                if (midReloaded && stateInfo.normalizedTime < 1f)
+                    midReloaded = false;
+                else if (!midReloaded && stateInfo.normalizedTime >= 1f)
+                {
+                    midReloaded = true;
                     MidReload?.Invoke();
-                prevNormalizedTime = stateInfo.normalizedTime % 1f;
+                }
             }
         }
     }

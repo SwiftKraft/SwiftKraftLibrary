@@ -5,12 +5,23 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
     public class WeaponAmmoCommunicator : AnimatorCommunicator<WeaponAmmo>
     {
-        public string ParameterName = "Ammo";
+        public string ParameterNameAmmo = "Ammo";
+        public string ParameterNameReloading = "Reloading";
 
-        private void Awake() => ParentComponent.OnAmmoUpdated += OnAmmoUpdated;
+        private void Awake()
+        {
+            ParentComponent.OnAmmoUpdated += OnAmmoUpdated;
+            ParentComponent.OnReloadUpdated += OnReloadUpdated;
+        }
 
-        private void OnDestroy() => ParentComponent.OnAmmoUpdated -= OnAmmoUpdated;
+        private void OnDestroy()
+        {
+            ParentComponent.OnAmmoUpdated -= OnAmmoUpdated;
+            ParentComponent.OnReloadUpdated -= OnReloadUpdated;
+        }
 
-        private void OnAmmoUpdated(int ammo) => Animator.SetFloatSafe(ParameterName, ammo);
+        private void OnReloadUpdated(bool obj) => Animator.SetBoolSafe(ParameterNameReloading, obj);
+
+        private void OnAmmoUpdated(int ammo) => Animator.SetFloatSafe(ParameterNameAmmo, ammo);
     }
 }

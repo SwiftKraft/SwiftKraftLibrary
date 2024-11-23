@@ -75,6 +75,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public event Action<int> OnAttackModeUpdated;
         public event Action<string> OnStartAction;
+        public event Action<string> OnAttemptAction;
         public event Action<GameObject> OnAttack;
 
         protected virtual void Awake()
@@ -114,6 +115,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             bool status = Actions.ContainsKey(id) && Actions[id].Function.Invoke();
 
+            OnAttemptAction?.Invoke(id);
             if (status)
                 OnStartAction?.Invoke(id);
 
