@@ -61,15 +61,12 @@ namespace SwiftKraft.Gameplay.Weapons
             reloading = true;
         }
 
-        public override void EndReload(bool fullEnd)
+        public override void EndReload()
         {
             LoadedAmmo = 0;
-            if (fullEnd)
-            {
-                CanShoot.Active = false;
-                OnReloadUpdatedEvent(false);
-                reloading = false;
-            }
+            CanShoot.Active = false;
+            OnReloadUpdatedEvent(false);
+            reloading = false;
         }
 
         public virtual void AddAmmo()
