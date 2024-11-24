@@ -783,6 +783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8175185491969983762}
+  - component: {fileID: 6297137570541806700}
   - component: {fileID: 1908633199230574078}
   - component: {fileID: 1625574590863042466}
   - component: {fileID: 4655089555376283451}
@@ -817,6 +818,18 @@ Transform:
   - {fileID: 5819613362772494567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6297137570541806700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27981a052d893e542b04c28f91d564a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1908633199230574078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2888,7 +2901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a3d1f70227b7346a087ed789e8a933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParameterName: Ammo
+  ParameterNameAmmo: Ammo
+  ParameterNameReloading: Reloading
 --- !u!114 &2011391523529095179
 MonoBehaviour:
   m_ObjectHideFlags: 0

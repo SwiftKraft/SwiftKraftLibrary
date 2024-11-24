@@ -23,6 +23,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         private readonly string typeId;
 
         public event Action OnDestroy;
+        public event Action<ItemInstance, InventoryInstance> OnSwitchInventory;
 
         [JsonConstructor]
         public ItemInstance(string typeId)
@@ -32,6 +33,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         }
 
         public ItemInstance(ItemType type) : this(type.ID) => _type = type;
+
+        public void SwitchInventoryEvent(InventoryInstance inv) => OnSwitchInventory?.Invoke(this, inv);
 
         public void Despawn()
         {

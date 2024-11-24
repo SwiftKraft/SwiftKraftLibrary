@@ -9,7 +9,6 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
     {
         public Camera MainCamera;
         public Camera ViewModelCamera;
-        public Transform ViewModelWorkspace;
         public CopyRotation CameraAnimations;
 
         public float ZoomTime = 0.1f;
