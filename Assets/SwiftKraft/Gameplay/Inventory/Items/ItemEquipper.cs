@@ -32,6 +32,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
                 }
             }
         }
+        [SerializeField]
         EquippableItemType _wishEquip;
 
         bool unequipping;
@@ -55,15 +56,19 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             return false;
         }
 
-        public bool AddEquippedItem(GameObject prefab, out EquippedItem it)
+        public bool AddEquippedItem(EquippableItemType prefab, out EquippedItem it)
         {
-            if (!prefab.TryGetComponent(out EquippedItem item))
+            if (!prefab.EquippedPrefab.TryGetComponent(out EquippedItem item))
             {
                 it = null;
                 return false;
             }
+
             it = Instantiate(item, Workspace);
+            it.Init(prefab, this);
+
             EquippedItemCache.Add(it);
+
             return true;
         }
 
@@ -86,9 +91,10 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public void Equip()
         {
             EquippedItem eq = null;
+
             if (Current != null)
                 Current.gameObject.SetActive(false);
-            else if (WishEquip != null && (HasEquippedItem(WishEquip, out EquippedItem it) || AddEquippedItem(WishEquip.EquippedPrefab, out it)))
+            else if (WishEquip != null && (HasEquippedItem(WishEquip, out EquippedItem it) || AddEquippedItem(WishEquip, out it)))
                 eq = it;
 
             if (eq != null)

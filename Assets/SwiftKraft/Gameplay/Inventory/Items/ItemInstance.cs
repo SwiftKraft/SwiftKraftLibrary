@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class ItemInstance : Object
+    public class ItemInstance
     {
         public ItemType Type
         {
@@ -40,7 +40,6 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         {
             OnDestroy?.Invoke();
             this.RemoveInstance();
-            Destroy(this);
         }
     }
 }

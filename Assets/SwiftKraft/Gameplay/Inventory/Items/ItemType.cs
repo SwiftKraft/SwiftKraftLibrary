@@ -1,8 +1,8 @@
-using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
+    [CreateAssetMenu(menuName = "SwiftKraft/Gameplay/Inventory/Item/Basic", fileName = "Basic", order = 0)]
     public class ItemType : ScriptableObject
     {
         public string ID;
