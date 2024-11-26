@@ -16,19 +16,18 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             Item = type;
         }
 
-        public event Action OnFailedUnequip;
+        public event Action OnUnequip;
 
         public readonly BooleanLock CanUnequip = new();
 
         public void Unequip()
         {
-            if (!CanUnequip)
-            {
-                OnFailedUnequip?.Invoke();
-                return;
-            }
+            OnUnequip?.Invoke();
 
-            Parent.Equip();
+            if (!CanUnequip)
+                return;
+
+            Parent.ForceUnequip();
         }
     }
 }

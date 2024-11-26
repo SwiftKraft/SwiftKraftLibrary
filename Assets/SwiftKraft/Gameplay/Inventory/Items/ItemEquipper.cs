@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
@@ -13,35 +14,21 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public event Action<EquippedItem> OnEquip;
 
         public EquippedItem Current { get; private set; }
-        public EquippableItemType WishEquip
-        {
-            get => _wishEquip;
-            set
-            {
-                if (_wishEquip == value)
-                    return;
-
-                _wishEquip = value;
-
-                if (!unequipping)
-                {
-                    if (Current == null)
-                        Equip();
-                    else
-                        Unequip();
-                }
-            }
-        }
-        [SerializeField]
-        EquippableItemType _wishEquip;
-
-        bool unequipping;
+        EquippableItemType tryEquip;
 
         private void Awake()
         {
             EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItem>());
 
             ResetAll();
+        }
+
+        public bool TryEquip(EquippableItemType type, out EquippedItem it)
+        {
+            if (!HasEquippedItem(type, out it) && !AddEquippedItem(type, out it))
+                return false;
+            it.gameObject.SetActive(true);
+            return true;
         }
 
         public bool HasEquippedItem(EquippableItemType type, out EquippedItem it)
@@ -76,32 +63,37 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         {
             foreach (EquippedItem item in EquippedItemCache)
                 item.gameObject.SetActive(false);
-            unequipping = false;
         }
 
-        public void Unequip()
+        public void ForceUnequip()
+        {
+            ResetAll();
+            Current = null;
+            UpdateEquip();
+        }
+
+        public void Equip(EquippableItemType item)
+        {
+            tryEquip = item;
+            UpdateEquip();
+        }
+
+        protected void UpdateEquip()
         {
             if (Current != null)
             {
-                Current.Unequip();
-                unequipping = true;
+                if (Current.CanUnequip)
+                    ForceUnequip();
+                else
+                    Current.Unequip();
             }
-        }
+            else if (TryEquip(tryEquip, out EquippedItem eq))
+            {
+                if (eq != null)
+                    OnEquip?.Invoke(eq);
 
-        public void Equip()
-        {
-            EquippedItem eq = null;
-
-            if (Current != null)
-                Current.gameObject.SetActive(false);
-            else if (WishEquip != null && (HasEquippedItem(WishEquip, out EquippedItem it) || AddEquippedItem(WishEquip, out it)))
-                eq = it;
-
-            if (eq != null)
-                OnEquip?.Invoke(eq);
-
-            Current = eq;
-            unequipping = false;
+                Current = eq;
+            }
         }
     }
 }

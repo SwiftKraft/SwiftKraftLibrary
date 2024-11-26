@@ -19,12 +19,7 @@ namespace SwiftKraft.Gameplay.Weapons
             UnequipTimer.OnTimerEnd -= EndUnequip;
         }
 
-        protected virtual void FixedUpdate()
-        {
-            UnequipTimer.Tick(Time.fixedDeltaTime);
-            AttackDisabler.Active = !UnequipTimer.Ended;
-            CanUnequip.Active = !UnequipTimer.Ended;
-        }
+        protected virtual void FixedUpdate() => UnequipTimer.Tick(Time.fixedDeltaTime);
 
         public override bool StartUnequip()
         {

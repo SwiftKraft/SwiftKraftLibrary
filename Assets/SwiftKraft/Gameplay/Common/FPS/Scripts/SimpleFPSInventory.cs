@@ -25,7 +25,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
         {
             foreach (SlotSelector sel in Selectors)
                 if (Input.GetKeyDown(sel.Key) && Data.Items.Count > sel.Slot && Data.Items[sel.Slot] != null && Data.Items[sel.Slot].Type is EquippableItemType ty)
-                    Equipper.WishEquip = ty;
+                    Equipper.Equip(ty);
         }
 
         [Serializable]

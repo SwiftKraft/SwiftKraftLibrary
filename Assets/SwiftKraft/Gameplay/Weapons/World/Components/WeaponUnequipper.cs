@@ -17,6 +17,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.Awake();
             Item = GetComponent<EquippedItem>();
+            Item.OnUnequip += OnUnequip;
             CanUnequip = Item.CanUnequip.AddLock();
             Parent.AddAction(UnequipAction, StartUnequip);
         }
@@ -24,13 +25,12 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            Item.OnUnequip -= OnUnequip;
             Item.CanUnequip.RemoveLock(CanUnequip);
             Parent.Actions.Remove(UnequipAction);
         }
 
-        protected virtual void OnEnable() => CanUnequip.Active = true;
-
-        protected virtual void OnDisable() => CanUnequip.Active = false;
+        protected virtual void OnUnequip() => StartUnequip();
 
         public virtual bool StartUnequip()
         {
