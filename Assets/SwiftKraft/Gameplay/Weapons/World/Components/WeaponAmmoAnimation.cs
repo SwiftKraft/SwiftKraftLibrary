@@ -34,8 +34,20 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void Awake()
         {
             base.Awake();
-
             ReloadCommunicator.EndReload += EndReload;
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            ReloadCommunicator.EndReload += EndReload;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            if (ReloadCommunicator != null)
+                ReloadCommunicator.EndReload -= EndReload;
         }
 
         protected override void OnDestroy()

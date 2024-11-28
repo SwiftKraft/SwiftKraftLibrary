@@ -36,6 +36,12 @@ namespace SwiftKraft.Gameplay.Weapons
             Parent.OnAttemptAction += OnAttemptAction;
         }
 
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            EndReload(true);
+        }
+
         protected override void OnDestroy()
         {
             base.OnDestroy();

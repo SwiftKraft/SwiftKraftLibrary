@@ -34,5 +34,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 }
             }
         }
+
+        private void OnDisable() => midReloaded = false;
     }
 }

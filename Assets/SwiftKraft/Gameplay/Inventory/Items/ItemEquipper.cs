@@ -1,7 +1,7 @@
+using SwiftKraft.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
@@ -16,6 +16,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public EquippedItem Current { get; private set; }
         EquippableItemType tryEquip;
 
+        readonly Trigger freshWeapon = new();
+
         private void Awake()
         {
             EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItem>());
@@ -28,6 +30,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             if (!HasEquippedItem(type, out it) && !AddEquippedItem(type, out it))
                 return false;
             it.gameObject.SetActive(true);
+            it.Equip();
             return true;
         }
 
@@ -74,6 +77,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void Equip(EquippableItemType item)
         {
+            if (Current != null && Current.Item == item)
+                return;
+
             tryEquip = item;
             UpdateEquip();
         }
@@ -81,12 +87,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         protected void UpdateEquip()
         {
             if (Current != null)
-            {
-                if (Current.CanUnequip)
-                    ForceUnequip();
-                else
-                    Current.Unequip();
-            }
+                Current.Unequip();
             else if (TryEquip(tryEquip, out EquippedItem eq))
             {
                 if (eq != null)

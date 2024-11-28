@@ -17,8 +17,11 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         }
 
         public event Action OnUnequip;
+        public event Action OnEquip;
 
         public readonly BooleanLock CanUnequip = new();
+
+        public void Equip() => OnEquip?.Invoke();
 
         public void Unequip()
         {
@@ -27,7 +30,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             if (!CanUnequip)
                 return;
 
-            Parent.ForceUnequip();
+            FinishUnequip();
         }
+
+        public void FinishUnequip() => Parent.ForceUnequip();
     }
 }

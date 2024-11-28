@@ -1,6 +1,7 @@
 using SwiftKraft.Utils;
 using System;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
@@ -43,6 +44,8 @@ namespace SwiftKraft.Gameplay.Weapons
             Parent.AddAction(ReloadAction, StartReload);
             CanShoot = Parent.CanAttack.AddLock();
         }
+
+        protected virtual void OnEnable() => OnAmmoUpdated?.Invoke(CurrentAmmo);
 
         protected override void OnDestroy()
         {

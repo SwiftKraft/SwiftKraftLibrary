@@ -30,7 +30,11 @@ namespace SwiftKraft.Gameplay.Weapons
             Parent.Actions.Remove(UnequipAction);
         }
 
-        protected virtual void OnUnequip() => StartUnequip();
+        protected virtual void OnUnequip()
+        {
+            if (!CanUnequip.Active && Item.CanUnequip)
+                Parent.StartAction(UnequipAction);
+        }
 
         public virtual bool StartUnequip()
         {
@@ -43,7 +47,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             AttackDisabler.Active = false;
             CanUnequip.Active = false;
-            Item.Unequip();
+            Item.FinishUnequip();
         }
     }
 }
