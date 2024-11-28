@@ -1,8 +1,8 @@
-using SwiftKraft.Gameplay.Common.FPS.ViewModels;
+using SwiftKraft.Gameplay.Weapons;
 using SwiftKraft.Gameplay.Weapons.Interfaces;
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay.Weapons
+namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
     public class WeaponTracer : WeaponComponent
     {
