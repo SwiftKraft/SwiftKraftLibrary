@@ -31,6 +31,12 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
             mainCam = ViewModel.Parent.MainCameraFOV.AddOverride(AimCameraFOV, 1);
         }
 
+        private void OnDisable()
+        {
+            viewModel.Active = false;
+            mainCam.Active = false;
+        }
+
         private void OnDestroy()
         {
             ViewModel.Parent.ViewModelFOV.RemoveOverride(viewModel);
