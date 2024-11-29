@@ -38,6 +38,8 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void OnEnable()
         {
             base.OnEnable();
+            ReloadCommunicator.MidReload -= FinishCycle;
+            ReloadCommunicator.EndReload -= EndReload;
             ReloadCommunicator.MidReload += FinishCycle;
             ReloadCommunicator.EndReload += EndReload;
         }

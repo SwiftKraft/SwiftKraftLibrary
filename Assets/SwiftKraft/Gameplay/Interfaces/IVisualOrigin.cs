@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay.Weapons.Interfaces
+namespace SwiftKraft.Gameplay.Interfaces
 {
     public interface IVisualOrigin
     {

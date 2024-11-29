@@ -23,7 +23,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (stateInfo.CheckName(MidReloadStateNames))
+            if (stateInfo.CheckName(MidReloadStateNames) && !animator.IsInTransition(layerIndex))
             {
                 if (midReloaded && stateInfo.normalizedTime < 1f)
                     midReloaded = false;

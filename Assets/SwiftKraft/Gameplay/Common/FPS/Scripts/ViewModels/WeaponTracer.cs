@@ -1,5 +1,5 @@
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Weapons;
-using SwiftKraft.Gameplay.Weapons.Interfaces;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.ViewModels

@@ -1,4 +1,4 @@
-using SwiftKraft.Gameplay.Weapons.Interfaces;
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using UnityEngine;
 

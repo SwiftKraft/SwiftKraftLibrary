@@ -20,7 +20,7 @@ namespace SwiftKraft.Utils
         /// <summary>
         /// The current value that is being interpolated.
         /// </summary>
-        public float CurrentValue { get; protected set; }
+        public float CurrentValue { get; set; }
 
         /// <summary>
         /// Called when the value stops interpolating.
