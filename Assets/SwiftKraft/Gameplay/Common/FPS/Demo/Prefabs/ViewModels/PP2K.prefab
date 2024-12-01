@@ -845,6 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FOV: 55
+  CamMultiplier: -1
   CameraTarget: {fileID: 4666830881271739252}
 --- !u!114 &1625574590863042466
 MonoBehaviour:
@@ -1161,8 +1162,26 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 1.3156661
+      value: 0.08018449
+      inSlope: 0.0064424304
+      outSlope: 0.0064424304
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3.1363592
+      value: -0.028754093
+      inSlope: -0.011893143
+      outSlope: -0.011893143
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 6.7691975
-      value: 0.03112793
+      value: 0.037231445
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1170,10 +1189,10 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 12.470055
-      value: 0.43134218
-      inSlope: 0.0016860813
-      outSlope: 0.0016860813
+      time: 11.137413
+      value: 0.47247988
+      inSlope: 0.021856992
+      outSlope: 0.021856992
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1181,8 +1200,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 15.53225
       value: 0.2266947
-      inSlope: -0.06683031
-      outSlope: -0.06683031
+      inSlope: -0.055925887
+      outSlope: -0.055925887
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

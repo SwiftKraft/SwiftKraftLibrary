@@ -8,6 +8,8 @@ namespace SwiftKraft.Utils
 
         public Vector3 Offset;
 
+        public float Multiplier = 1f;
+
         [field: SerializeField]
         public bool Local { get; private set; }
 
@@ -31,10 +33,12 @@ namespace SwiftKraft.Utils
 
         public void SetRotation(Quaternion rot)
         {
+            Quaternion quat = Quaternion.SlerpUnclamped(OriginalRotation, rot * Quaternion.Euler(Offset), Multiplier);
+
             if (!Local)
-                transform.rotation = rot * Quaternion.Euler(Offset);
+                transform.rotation = quat;
             else
-                transform.localRotation = rot * Quaternion.Euler(Offset);
+                transform.localRotation = quat;
         }
     }
 }
