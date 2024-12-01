@@ -17,10 +17,10 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
 
             GameObject go = Instantiate(Prefab, origin.position, origin.rotation);
+            Parent.AttackEvent(go);
+
             if (go.TryGetComponent(out IPet pet))
                 pet.Owner = Parent.GetRootOwner();
-
-            Parent.AttackEvent(go);
         }
 
         public virtual void Tick() { }
