@@ -6,6 +6,9 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public abstract class WeaponRecoil : WeaponComponent
     {
+        public Transform GetRecoilTransform() => RecoilTransformOverride != null ? RecoilTransformOverride : ((Object)RecoilTransform != null ? RecoilTransform.Transform : null);
+
+        public Transform RecoilTransformOverride;
         public IRecoilTransform RecoilTransform { get; private set; }
 
         public float RecoilMultiplier = 1f;
@@ -26,17 +29,18 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             Heat.CanDecay = !Component.Attacking;
             Heat.Tick(DecayRate.Evaluate(Heat.CurrentValue) * DecayMultiplier * Time.fixedDeltaTime);
-            if (RecoilTransform != null)
-                DecayRecoil();
+            Transform tr = GetRecoilTransform();
+            if (tr != null)
+                DecayRecoil(tr);
         }
 
-        protected abstract void DecayRecoil();
-        protected abstract void ApplyRecoil();
+        protected abstract void DecayRecoil(Transform trans);
+        protected abstract void ApplyRecoil(Transform trans);
 
         protected virtual void OnAttack(GameObject go)
         {
             Heat.Increment(1f);
-            ApplyRecoil();
+            ApplyRecoil(GetRecoilTransform());
         }
     }
 }
