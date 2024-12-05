@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8385894493193487719}
   - component: {fileID: 1463693275915306393}
   - component: {fileID: 932972797607531699}
+  - component: {fileID: 8621457915137267846}
   m_Layer: 0
   m_Name: RemingtonHitscan
   m_TagString: Untagged
@@ -70,6 +71,22 @@ MonoBehaviour:
   Lifetime:
     <MaxValue>k__BackingField: 0.05
     StartEnded: 0
+--- !u!114 &8621457915137267846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161029702014116550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d579c979d47b424b8ee8eeef11a4de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawners:
+  - <Weight>k__BackingField: 1
+    Spawnees:
+    - {fileID: 6779281746574858155, guid: 8e852d5d2f166564eb386dda8c1f727e, type: 3}
 --- !u!1 &2948527090044799934
 GameObject:
   m_ObjectHideFlags: 0

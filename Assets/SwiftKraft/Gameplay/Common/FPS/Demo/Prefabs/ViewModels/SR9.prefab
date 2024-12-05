@@ -964,44 +964,53 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 0.35000002
-      outSlope: 0.35000002
+      inSlope: 0.50394595
+      outSlope: 0.50394595
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 2
-      value: 1.2
-      inSlope: 0.011001825
-      outSlope: 0.011001825
+      value: 1.5078919
+      inSlope: 0.17589273
+      outSlope: 0.17589273
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 3.187515
-      value: 0.8104994
-      inSlope: -0.14650556
-      outSlope: -0.14650556
+      time: 3.3967435
+      value: 1.2953627
+      inSlope: -0.0980432
+      outSlope: -0.0980432
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 4.612406
-      value: 0.8603496
-      inSlope: 0.015448757
-      outSlope: 0.015448757
+      time: 4.5997105
+      value: 1.2425213
+      inSlope: -0.076114245
+      outSlope: -0.076114245
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 7.7736206
-      value: 0.84742737
-      inSlope: -0.004087741
-      outSlope: -0.004087741
+      time: 6.707687
+      value: 1.014222
+      inSlope: -0.03164649
+      outSlope: -0.03164649
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 7.437561
+      value: 1.0470734
+      inSlope: 0.045009594
+      outSlope: 0.045009594
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1164,15 +1173,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1.3937571
       value: 1.0140735
-      inSlope: 0.16260016
-      outSlope: 0.16260016
+      inSlope: 0.18769556
+      outSlope: 0.18769556
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 7.360962
-      value: 0.7536659
+      time: 6.1354785
+      value: 1.0451367
       inSlope: -0.027257178
       outSlope: -0.027257178
       tangentMode: 0
@@ -1379,9 +1388,9 @@ MonoBehaviour:
   Actions:
   - ID: Attack
     Key: 323
-    Style: 0
+    Style: 1
     Linger:
-      <MaxValue>k__BackingField: 0.1
+      <MaxValue>k__BackingField: 0
       StartEnded: 0
   - ID: Reload
     Key: 114
