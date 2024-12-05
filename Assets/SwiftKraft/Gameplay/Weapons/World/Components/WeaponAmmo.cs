@@ -94,7 +94,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public virtual void EndReload(bool fullEnd)
         {
-            if (CanReload)
+            if (CanReload && fullEnd)
                 CurrentAmmo = MaxAmmo;
         }
     }
