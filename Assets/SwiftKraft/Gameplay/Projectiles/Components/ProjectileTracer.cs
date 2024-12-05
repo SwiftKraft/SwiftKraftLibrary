@@ -40,7 +40,7 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         protected virtual void Update() => Lifetime.Tick(Time.deltaTime);
 
-        protected virtual void OnHit()
+        protected virtual void OnHit(ProjectileBase.HitInfo info)
         {
             Vector3[] positions = { VisualOrigin, Projectile.Hits.Length > 0 ? Projectile.Hits[^1].point : transform.position + transform.forward * Projectile.Range };
             Tracer.SetPositions(positions);

@@ -1,5 +1,6 @@
 using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Utils;
+using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Projectiles
@@ -11,6 +12,9 @@ namespace SwiftKraft.Gameplay.Projectiles
         public bool Despawned { get; private set; }
 
         public ProjectileComponent[] Addons { get; private set; }
+
+        public event Action<HitInfo> OnHit;
+        protected void HitEvent(HitInfo info) => OnHit?.Invoke(info);
 
         protected virtual void Awake()
         {
@@ -34,5 +38,12 @@ namespace SwiftKraft.Gameplay.Projectiles
         }
 
         public virtual void Despawn() => Destroy(gameObject);
+
+        public struct HitInfo
+        {
+            public Vector3 Position;
+            public Vector3 Normal;
+            public GameObject Object;
+        }
     }
 }

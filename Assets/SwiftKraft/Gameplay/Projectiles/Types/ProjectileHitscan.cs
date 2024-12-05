@@ -16,8 +16,6 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         public RaycastHit[] Hits { get; private set; }
 
-        public event Action OnHit;
-
         protected virtual void Start()
         {
             Hits = Cast();
@@ -25,7 +23,6 @@ namespace SwiftKraft.Gameplay.Projectiles
             List<RaycastHit> hitList = Hits.ToList();
             hitList.RemoveAll((h) => h.transform.TryGetComponent(out IPawn pawn) && pawn == Owner);
             Hits = hitList.ToArray();
-            OnHit?.Invoke();
             Hit(Hits);
 
 #if UNITY_EDITOR
