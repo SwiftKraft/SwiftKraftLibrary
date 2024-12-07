@@ -19,7 +19,7 @@ namespace SwiftKraft.Gameplay.Projectiles
         protected virtual void Start()
         {
             Hits = Cast();
-            Hits.OrderBy((h) => h.distance);
+            Array.Sort(Hits, (p1, p2) => p1.distance > p2.distance ? 1 : -1);
             List<RaycastHit> hitList = Hits.ToList();
             hitList.RemoveAll((h) => h.transform.TryGetComponent(out IPawn pawn) && pawn == Owner);
             Hits = hitList.ToArray();
