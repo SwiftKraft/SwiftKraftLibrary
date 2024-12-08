@@ -58,6 +58,6 @@ namespace SwiftKraft.Utils
             return CurrentValue;
         }
 
-        protected virtual float Calculate(float deltaTime) => Mathf.Lerp(CurrentValue, MaxValue, LerpValue * deltaTime);
+        protected virtual float Calculate(float deltaTime) => Mathf.Lerp(CurrentValue, MaxValue, Mathf.Pow(0.5f, LerpValue * deltaTime));
     }
 }

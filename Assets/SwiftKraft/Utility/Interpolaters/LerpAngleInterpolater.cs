@@ -9,6 +9,6 @@ namespace SwiftKraft.Utils
     [Serializable]
     public class LerpAngleInterpolater : LerpInterpolater
     {
-        protected override float Calculate(float deltaTime) => Mathf.LerpAngle(CurrentValue, MaxValue, LerpValue * deltaTime);
+        protected override float Calculate(float deltaTime) => Mathf.LerpAngle(CurrentValue, MaxValue, Mathf.Pow(0.5f, LerpValue * deltaTime));
     }
 }
