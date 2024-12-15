@@ -2700,6 +2700,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FOV: 58
+  CamMultiplier: 1
+  Local: 1
+  Offset: {x: 0, y: 0, z: 0}
   CameraTarget: {fileID: 0}
 --- !u!114 &296943689661018471
 MonoBehaviour:
@@ -2735,6 +2738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786ab638222158b40a456ed5b4765fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RecoilTransformOverride: {fileID: 0}
   RecoilMultiplier: 1
   DecayMultiplier: 1
   DecayRate:

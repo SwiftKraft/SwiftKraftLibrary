@@ -11,7 +11,7 @@ namespace SwiftKraft.Utils
         public float Multiplier = 1f;
 
         [field: SerializeField]
-        public bool Local { get; private set; }
+        public bool Local { get; set; }
 
         public Quaternion OriginalRotation { get; set; }
 

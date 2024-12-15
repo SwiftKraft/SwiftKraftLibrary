@@ -12,6 +12,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         {
             ParentComponent.OnAmmoUpdated += OnAmmoUpdated;
             ParentComponent.OnReloadUpdated += OnReloadUpdated;
+            OnAmmoUpdated(ParentComponent.CurrentAmmo);
         }
 
         private void OnDestroy()

@@ -16,10 +16,11 @@ namespace SwiftKraft.Gameplay.Weapons
         public event Action MidReload;
 
         bool midReloaded;
+        bool endReloaded;
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (stateInfo.CheckName(ReloadStateNames))
+            if (stateInfo.CheckName(ReloadStateNames) && !endReloaded)
                 EndReload?.Invoke(stateInfo.normalizedTime >= FullEndReloadThreshold);
         }
 
@@ -33,6 +34,17 @@ namespace SwiftKraft.Gameplay.Weapons
                 {
                     midReloaded = true;
                     MidReload?.Invoke();
+                }
+            }
+
+            if (stateInfo.CheckName(ReloadStateNames) && !animator.IsInTransition(layerIndex))
+            {
+                if (endReloaded && stateInfo.normalizedTime < 1f)
+                    endReloaded = false;
+                else if (!endReloaded && stateInfo.normalizedTime >= 1f)
+                {
+                    endReloaded = true;
+                    EndReload?.Invoke(stateInfo.normalizedTime >= FullEndReloadThreshold);
                 }
             }
         }
