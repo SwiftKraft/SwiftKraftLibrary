@@ -10,6 +10,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         public float FOV = 60f;
         public float CamMultiplier = 1f;
+        public Vector3 Offset;
 
         public Transform CameraTarget;
 
@@ -26,6 +27,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
             Parent.SetViewModelFOV(FOV, true);
             Parent.CameraAnimations.TargetTransform = CameraTarget;
             Parent.CameraAnimations.Multiplier = CamMultiplier;
+            Parent.CameraAnimations.Offset = Offset;
         }
     }
 }

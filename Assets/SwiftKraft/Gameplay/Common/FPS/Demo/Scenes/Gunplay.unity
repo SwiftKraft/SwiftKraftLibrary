@@ -1090,7 +1090,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 5
-  field of view: 55
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1271,6 +1271,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7227b293b6f22234592e21d1f0c1d721, type: 2}
   - {fileID: 11400000, guid: e40c3452db676b14ebae5cf57a6acbab, type: 2}
   - {fileID: 11400000, guid: c8c1850835dd31f4497d782c609d4ddb, type: 2}
+  - {fileID: 11400000, guid: 0b987ad9ae1721f4ca7696aa91b571e6, type: 2}
   Selectors:
   - Key: 49
     Slot: 0
@@ -1278,6 +1279,8 @@ MonoBehaviour:
     Slot: 1
   - Key: 51
     Slot: 2
+  - Key: 52
+    Slot: 3
 --- !u!1 &1185203897
 GameObject:
   m_ObjectHideFlags: 0

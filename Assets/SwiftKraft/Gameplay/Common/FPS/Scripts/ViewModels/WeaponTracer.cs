@@ -19,6 +19,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         private void OnAttack(GameObject obj)
         {
+            if (VisualOrigin == null)
+                return;
+
             if (obj.TryGetComponent(out IVisualOrigin origin))
                 origin.VisualOrigin = ViewModel == null ? VisualOrigin.position : ViewModel.Parent.MainCamera.ScreenToWorldPoint(ViewModel.Parent.ViewModelCamera.WorldToScreenPoint(VisualOrigin.position));
         }
