@@ -14,6 +14,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public Vector3 Offset;
 
         public Transform CameraTarget;
+        public Transform ReferenceTarget;
 
         private void Awake()
         {
@@ -27,6 +28,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         {
             Parent.SetViewModelFOV(FOV, true);
             Parent.CameraAnimations.TargetTransform = CameraTarget;
+            Parent.CameraAnimations.ReferenceTransform = ReferenceTarget;
             Parent.CameraAnimations.Multiplier = CamMultiplier;
             Parent.CameraAnimations.Offset = Offset;
             Parent.CameraAnimations.Local = Local;

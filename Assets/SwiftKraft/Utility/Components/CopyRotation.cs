@@ -4,6 +4,7 @@ namespace SwiftKraft.Utils
 {
     public class CopyRotation : MonoBehaviour
     {
+        public Transform ReferenceTransform;
         public Transform TargetTransform;
 
         public Vector3 Offset;
@@ -28,8 +29,13 @@ namespace SwiftKraft.Utils
         private void FixedUpdate() => UpdateRotation();
 
         public void UpdateRotation() => SetRotation(TargetTransform == null ?
-    OriginalRotation :
-    (Local ? TargetTransform.localRotation : TargetTransform.rotation));
+            OriginalRotation :
+            (Local ? 
+            TargetTransform.localRotation : 
+            (ReferenceTransform != null ? 
+            Quaternion.Inverse(ReferenceTransform.rotation) : 
+            Quaternion.identity) *
+            TargetTransform.rotation));
 
         public void SetRotation(Quaternion rot)
         {
