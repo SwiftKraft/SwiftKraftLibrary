@@ -30,11 +30,10 @@ namespace SwiftKraft.Utils
 
         public void UpdateRotation() => SetRotation(TargetTransform == null ?
             OriginalRotation :
-            (Local ? 
-            TargetTransform.localRotation : 
-            (ReferenceTransform != null ? 
-            Quaternion.Inverse(ReferenceTransform.rotation) : 
-            Quaternion.identity) *
+            (Local ?
+            (ReferenceTransform != null ?
+            Quaternion.Inverse(ReferenceTransform.rotation) * TargetTransform.rotation :
+            TargetTransform.localRotation) : 
             TargetTransform.rotation));
 
         public void SetRotation(Quaternion rot)
