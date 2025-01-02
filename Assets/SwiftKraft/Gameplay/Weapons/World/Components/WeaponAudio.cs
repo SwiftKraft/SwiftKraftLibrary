@@ -70,13 +70,12 @@ namespace SwiftKraft.Gameplay.Weapons
 
                 public void Play(AudioSource source)
                 {
-                    source.clip = Sound;
                     source.priority = Priority;
                     source.pitch = Pitch;
                     source.volume = Volume;
                     source.panStereo = StereoPan;
                     source.spatialBlend = SpatialBlend;
-                    source.Play();
+                    source.PlayOneShot(Sound);
                 }
             }
         }
