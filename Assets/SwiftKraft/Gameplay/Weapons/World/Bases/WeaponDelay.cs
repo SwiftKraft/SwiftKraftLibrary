@@ -45,18 +45,16 @@ namespace SwiftKraft.Gameplay.Weapons
             if (Prefire.Ended || CancelPrefire)
                 return PerformAttack(origin);
 
-            return true;
+            return false;
         }
 
         public virtual bool PerformAttack(Transform origin)
         {
             bool status = base.Attack(origin);
+            triggered = false;
 
             if (status)
-            {
-                triggered = false;
                 Cooldown.Reset();
-            }
 
             return status;
         }

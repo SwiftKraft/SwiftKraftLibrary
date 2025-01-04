@@ -947,38 +947,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8175185491969983762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2234065665544844919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6415156482305966155}
-  m_Layer: 6
-  m_Name: Sounds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6415156482305966155
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2234065665544844919}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 591655802465179580}
-  m_Father: {fileID: 8175185491969983762}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2243808998322166224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,7 +992,7 @@ Transform:
   m_Children:
   - {fileID: 6041977976375274973}
   - {fileID: 3608207479672408995}
-  - {fileID: 6415156482305966155}
+  - {fileID: 591655802465179580}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6297137570541806700
@@ -1052,7 +1020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FOV: 55
-  CamMultiplier: 1.5
+  CamMultiplier: 1
   Local: 1
   Offset: {x: 0, y: 180, z: 0}
   CameraTarget: {fileID: 4559479819889157728}
@@ -1076,7 +1044,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
   Cooldown:
-    <MaxValue>k__BackingField: 0.1
+    <MaxValue>k__BackingField: 0.2
     StartEnded: 0
   CancelPrefire: 0
 --- !u!114 &610497832379667108
@@ -1147,29 +1115,29 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.63230896
       value: 1.1754181
-      inSlope: 0.4060666
-      outSlope: 0.4060666
+      inSlope: 0.5372154
+      outSlope: 0.5372154
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 2.7245083
-      value: 0.6397228
-      inSlope: 0.26531512
-      outSlope: 0.26531512
+      time: 2.7383962
+      value: 1.1885885
+      inSlope: 0.034641527
+      outSlope: 0.034641527
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.32548657
+      outWeight: 0.09702628
     - serializedVersion: 3
-      time: 7.437561
-      value: 1.0470734
-      inSlope: 0.0864303
-      outSlope: 0.0864303
-      tangentMode: 34
+      time: 7.3261414
+      value: 1.3143556
+      inSlope: 0.0051371427
+      outSlope: 0.0051371427
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.21406978
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1273,7 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786ab638222158b40a456ed5b4765fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RecoilTransformOverride: {fileID: 3608207479672408995}
+  RecoilTransformOverride: {fileID: 8175185491969983762}
   RecoilMultiplier: 1
   DecayMultiplier: 1
   DecayRate:
@@ -1299,7 +1267,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 10
-      value: 3
+      value: 1.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1311,7 +1279,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   Heat:
     <MaxValue>k__BackingField: Infinity
-    <DecayRate>k__BackingField: 7
+    <DecayRate>k__BackingField: 6
     <CanDecay>k__BackingField: 1
   RecoverMultiplier: 3
   Vertical:
@@ -1320,15 +1288,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 0.30853692
-      outSlope: 0.30853692
+      inSlope: 0.18682802
+      outSlope: 0.18682802
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.3801157
-      value: 0.92581666
+      time: 1.0957315
+      value: 0.70471334
       inSlope: 0.15357496
       outSlope: 0.15357496
       tangentMode: 0
@@ -1336,8 +1304,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.09919716
     - serializedVersion: 3
-      time: 5.585059
-      value: 1.0940809
+      time: 5.9995427
+      value: 0.8566532
       inSlope: 0.0038539558
       outSlope: 0.0038539558
       tangentMode: 0
@@ -1462,7 +1430,7 @@ MonoBehaviour:
     Key: 323
     Style: 0
     Linger:
-      <MaxValue>k__BackingField: 0.1
+      <MaxValue>k__BackingField: 0.21
       StartEnded: 0
   - ID: Reload
     Key: 114
@@ -3247,6 +3215,12 @@ MonoBehaviour:
     States:
     - StateName: Reload
       CrossFade: 0.05
+      Weight: 4
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+    - StateName: SecretReload
+      CrossFade: 0.05
       Weight: 1
       OnPlay:
         m_PersistentCalls:
@@ -3572,12 +3546,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6945657878429202103}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6415156482305966155}
+  m_Father: {fileID: 8175185491969983762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2895807444976228756
 AudioSource:
