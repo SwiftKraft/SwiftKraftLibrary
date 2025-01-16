@@ -12,6 +12,8 @@ namespace SwiftKraft.Gameplay.Common.FPS
         public float dodgeDuration = 0.2f;
         private bool isDodging = false;
 
+
+        
         private void Awake()
         {
             motor = GetComponent<FPSCharacterControllerMotor>();
@@ -41,7 +43,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
         private System.Collections.IEnumerator DodgeCoroutine(Vector2 inputMove)
         {
             isDodging = true;
-            motor.enabled = false;
+            motor.MoveSpeed = 2;
 
             // Calculate the dodge direction
             Vector3 dodgeDirection = new Vector3(inputMove.x, 0f, inputMove.y).normalized;
@@ -67,7 +69,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
                 yield return null; // Wait for the next frame
             }
 
-            motor.enabled = true;
+            motor.MoveSpeed = 5;
             isDodging = false; // End the dodge
         }
     }
