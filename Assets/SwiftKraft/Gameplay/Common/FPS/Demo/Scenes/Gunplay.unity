@@ -1328,6 +1328,7 @@ GameObject:
   - component: {fileID: 574853558}
   - component: {fileID: 574853557}
   - component: {fileID: 574853560}
+  - component: {fileID: 574853561}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1455,6 +1456,23 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &574853561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574853556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ee1ba3b46487249869b981018713a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableCamInput: 0
+  rotationSpeed: 100
+  tiltAngle: -1.5
+  tiltAngleCam: 0
+  tiltSpeed: 5
 --- !u!1 &957920438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,7 +1906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2bb8b0c73775649a0fa9335aca48db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeDistance: 3
+  dodgeDistance: 3.5
   dodgeDuration: 0.34
 --- !u!1 &1185203897
 GameObject:
