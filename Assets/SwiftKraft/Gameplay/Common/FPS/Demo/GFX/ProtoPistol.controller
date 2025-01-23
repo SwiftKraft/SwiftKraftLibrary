@@ -486,10 +486,28 @@ BlendTree:
     m_DirectBlendParameter: Ads
     m_Mirror: 0
   - serializedVersion: 2
+    m_Motion: {fileID: 4298807583385619688, guid: 384f8faa6b87553429a38b543c2a4468,
+      type: 3}
+    m_Threshold: 0.071428575
+    m_Position: {x: 1, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Ammo
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 4298807583385619688, guid: 384f8faa6b87553429a38b543c2a4468,
+      type: 3}
+    m_Threshold: 0.14285715
+    m_Position: {x: 8, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Ammo
+    m_Mirror: 0
+  - serializedVersion: 2
     m_Motion: {fileID: 2971146141758270868, guid: 384f8faa6b87553429a38b543c2a4468,
       type: 3}
-    m_Threshold: 0.16666667
-    m_Position: {x: 1, y: 0}
+    m_Threshold: 0.21428572
+    m_Position: {x: 9, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Ads
@@ -497,8 +515,26 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -843062872154862648, guid: 384f8faa6b87553429a38b543c2a4468,
       type: 3}
-    m_Threshold: 0.33333334
+    m_Threshold: 0.2857143
     m_Position: {x: 0, y: 1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Ammo
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -2193987365980645794, guid: 384f8faa6b87553429a38b543c2a4468,
+      type: 3}
+    m_Threshold: 0.35714287
+    m_Position: {x: 1, y: 1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Ammo
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -2193987365980645794, guid: 384f8faa6b87553429a38b543c2a4468,
+      type: 3}
+    m_Threshold: 0.42857143
+    m_Position: {x: 8, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Ammo
@@ -507,7 +543,7 @@ BlendTree:
     m_Motion: {fileID: -2237880809335247304, guid: 384f8faa6b87553429a38b543c2a4468,
       type: 3}
     m_Threshold: 0.5
-    m_Position: {x: 1, y: 1}
+    m_Position: {x: 9, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Ammo
