@@ -40,6 +40,16 @@ namespace SwiftKraft.Gameplay.Motors
         [field: SerializeField]
         public bool LookInUpdate { get; set; } = true;
 
+        /// <summary>
+        /// The the amount of time spent moving before stopping. 
+        /// </summary>
+        public float TimeMoving { get; protected set; }
+
+        /// <summary>
+        /// Whether or not the motor is currently moving.
+        /// </summary>
+        public bool Moving { get; protected set; }
+
         protected virtual void Update()
         {
             if (!Enabled)
@@ -59,6 +69,9 @@ namespace SwiftKraft.Gameplay.Motors
 
             CurrentLookRotation = LookInterpolation();
             CurrentMoveDirection = MoveInterpolation();
+
+            Moving = CurrentMoveDirection != Vector3.zero;
+            TimeMoving = Moving ? TimeMoving + Time.fixedDeltaTime : 0f;
 
             Look(CurrentLookRotation);
             Move(CurrentMoveDirection);
