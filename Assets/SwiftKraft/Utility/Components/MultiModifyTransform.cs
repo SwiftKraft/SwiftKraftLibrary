@@ -45,6 +45,12 @@ namespace SwiftKraft.Utils
 
         public readonly List<Modifier> Modifiers = new();
 
+        private void Awake()
+        {
+            OriginalPosition = transform.localPosition;
+            OriginalRotation = transform.localRotation;
+        }
+
         public void UpdateTransform()
         {
             transform.SetLocalPositionAndRotation(OriginalPosition, OriginalRotation);
