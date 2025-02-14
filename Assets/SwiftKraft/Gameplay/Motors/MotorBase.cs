@@ -80,7 +80,15 @@ namespace SwiftKraft.Gameplay.Motors
         public virtual Quaternion LookInterpolation() => WishLookRotation;
         public virtual Vector3 MoveInterpolation() => WishMoveDirection;
 
+        /// <summary>
+        /// Changes the look rotation of the motor. Runs every FixedUpdate.
+        /// </summary>
+        /// <param name="rotation">Global rotation.</param>
         public abstract void Look(Quaternion rotation);
+        /// <summary>
+        /// Move the motor. Runs every FixedUpdate.
+        /// </summary>
+        /// <param name="direction">Global direction of the movement.</param>
         public abstract void Move(Vector3 direction);
     }
 
