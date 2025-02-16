@@ -65,8 +65,17 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
         public override void Move(Vector3 direction)
         {
-            if (Component.velocity.sqrMagnitude < MaxVelocity * MaxVelocity)
-                Component.velocity += direction * ((IsGrounded ? Acceleration : AirAcceleration) * Time.fixedDeltaTime);
+            Vector3 horizontalVelocity = Component.velocity;
+            horizontalVelocity.y = 0f;
+
+            // float maxVelocityFactor = Mathf.InverseLerp(MaxVelocity * MaxVelocity, 0f, horizontalVelocity.sqrMagnitude);
+            float perpendicularity = 1f - Mathf.Abs(Vector3.Dot(horizontalVelocity.normalized, direction.normalized));
+            float acceleration = IsGrounded ? Acceleration : AirAcceleration;
+
+            Component.velocity += direction
+                * (acceleration
+                * (MaxVelocity * MaxVelocity <= horizontalVelocity.sqrMagnitude ? perpendicularity : 1f)
+                * Time.fixedDeltaTime);
         }
     }
 }
