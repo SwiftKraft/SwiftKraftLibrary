@@ -1256,9 +1256,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   GroundRadius: 0.1
+  JumpVelocity: 5
   MaxVelocity: 6
   Acceleration: 30
-  AirAcceleration: 1
+  AirAcceleration: 10
   GroundDrag: 5
   AirDrag: 0
 --- !u!54 &1040886793

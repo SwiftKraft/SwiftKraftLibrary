@@ -12,11 +12,14 @@ namespace SwiftKraft.Gameplay.Common.FPS
         public LayerMask GroundLayers;
         public float GroundRadius = 0.1f;
 
+        public float JumpVelocity = 5f;
         public float MaxVelocity = 6f;
         public float Acceleration = 30f;
         public float AirAcceleration = 2f;
         public float GroundDrag = 4f;
         public float AirDrag = 0f;
+
+        readonly Trigger jumpInput = new();
 
         protected virtual void Awake()
         {
@@ -31,6 +34,9 @@ namespace SwiftKraft.Gameplay.Common.FPS
             if (!Enabled)
                 return;
 
+            if (Input.GetKeyDown(KeyCode.Space))
+                jumpInput.SetTrigger();
+
             Vector2 inputLook = GetInputLook();
             Vector3 wishLookEulers = WishLookRotation.eulerAngles;
 
@@ -42,6 +48,14 @@ namespace SwiftKraft.Gameplay.Common.FPS
             base.FixedUpdate();
 
             IsGrounded = Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+
+            if (jumpInput.GetTrigger() && IsGrounded)
+            {
+                Vector3 temp = Component.velocity;
+                temp.y = JumpVelocity;
+                Component.velocity = temp;
+                IsGrounded = false;
+            }
 
             Component.drag = IsGrounded ? GroundDrag : AirDrag;
 
