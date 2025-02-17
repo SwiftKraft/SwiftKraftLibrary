@@ -1258,9 +1258,9 @@ MonoBehaviour:
   GroundRadius: 0.1
   JumpVelocity: 5
   MaxVelocity: 6
-  Acceleration: 30
-  AirAcceleration: 10
-  GroundDrag: 5
+  Acceleration: 50
+  AirAcceleration: 20
+  GroundDrag: 6
   AirDrag: 0
 --- !u!54 &1040886793
 Rigidbody:
