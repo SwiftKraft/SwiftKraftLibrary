@@ -1171,6 +1171,8 @@ GameObject:
   - component: {fileID: 1040886791}
   - component: {fileID: 1040886793}
   - component: {fileID: 1040886792}
+  - component: {fileID: 1040886795}
+  - component: {fileID: 1040886794}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1282,6 +1284,54 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1040886794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040886786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270909a8cf455b64a91b942fe1e168b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultState: {fileID: 0}
+  RecentJumpTimer:
+    <MaxValue>k__BackingField: 0
+    StartEnded: 0
+  TargetCameraHeight: 0
+  slideBoostTimer: 0
+  OriginalCameraHeight: 1.7
+  CameraSmoothTime: 0.1
+  CameraRoot: {fileID: 1475683516}
+  GroundPoint: {fileID: 1040886787}
+  GroundRadius: 0.25
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  Audio: []
+  Particles: []
+--- !u!114 &1040886795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040886786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d31f9ceb2e6714fad5c810e3716e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldUITurnTime: 0.2
+  cameraRoot: {fileID: 1475683516}
+  vCam: {fileID: 1534335263}
+  playerCamera: {fileID: 0}
+  ViewModelCamera: {fileID: 0}
+  TargetTilt: 0
+  TiltSmoothTime: 0.05
+  xClamp: 85
 --- !u!1 &1185203897
 GameObject:
   m_ObjectHideFlags: 0

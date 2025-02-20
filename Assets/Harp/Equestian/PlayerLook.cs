@@ -15,7 +15,7 @@ namespace Player.Movement
 
         public float worldUITurnTime = 0.2f;
 
-        public static float Sensitivity => SettingsManager.Current.TrySetting(SensKey, out SingleSetting<float> setting) ? setting.Value : 1f;
+        //public static float Sensitivity => SettingsManager.Current.TrySetting(SensKey, out SingleSetting<float> setting) ? setting.Value : 1f;
 
         public Transform cameraRoot;
         public Transform vCam;
@@ -36,6 +36,9 @@ namespace Player.Movement
         [HideInInspector]
         public float TargetTilt;
         public float TiltSmoothTime = 0.05f;
+
+        [SerializeField]
+        private float Sensitivity = 12f;
 
         float currSens;
 

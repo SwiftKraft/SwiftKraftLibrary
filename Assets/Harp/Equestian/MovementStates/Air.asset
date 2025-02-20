@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7598d7adcc8b643429fdfc0563dc0317, type: 3}
+  m_Name: Air
+  m_EditorClassIdentifier: 
+  CameraHeight: 1.8
+  BodyHeight: 2
+  Gravity: -30
+  ControlThreshold: 10
+  Speed: 0.9
+  Drag: 14
+  JumpSpeed: 18
+  JumpBuffer: 0.1
+  GroundState: {fileID: 11400000, guid: 0c0f45316779dac40af3102b1e4d2975, type: 2}
+  WallrunState: {fileID: 11400000, guid: edf43e07fcfd91847951b87214f2a1db, type: 2}
+  WallKickRaycastIterations: 32
+  WallKickMax: 3
+  RequiredAirTimeForLandingSound: 1
+  WallKickVerticalSpeed: 16
+  WallKickHorizontalSpeed: 9
+  WallKickDistance: 1
+  DoubleJumpSpeedHorizontal: 5
+  CoyoteTime: 0.3
