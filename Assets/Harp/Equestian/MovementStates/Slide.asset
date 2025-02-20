@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76cc29b0ec0ec49459e23890b1b38cca, type: 3}
   m_Name: Slide
   m_EditorClassIdentifier: 
-  CameraHeight: 1.8
-  BodyHeight: 2
-  Gravity: -30
-  ControlThreshold: 10
-  Speed: 0.9
-  Drag: 14
-  JumpSpeed: 18
+  CameraHeight: 0.5
+  BodyHeight: 0.8
+  Gravity: -50
+  ControlThreshold: 5
+  Speed: 0.05
+  Drag: 1
+  JumpSpeed: 10
   JumpBuffer: 0.1
-  ExitState: {fileID: 11400000, guid: 0c0f45316779dac40af3102b1e4d2975, type: 2}
+  ExitState: {fileID: 11400000, guid: 354a082a6bc46c241b2557133353c573, type: 2}
   CrouchState: {fileID: 11400000, guid: 5b243ef2319bfd54982049046df9249e, type: 2}
   SlideSoundVolumeControl:
     serializedVersion: 2
@@ -29,9 +29,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   RequiredVelocity: 3
-  SlideBoostTimer: 2.5
-  SlideBoostMultiplier: 1.5
+  SlideBoostTimer: 3
+  SlideBoostMultiplier: 1.25
   BoosterMultiplier: 1.5
-  BoosterCap: 35
+  BoosterCap: 30
   BoosterStickSpeed: 2
   CoyoteTime: 0.3

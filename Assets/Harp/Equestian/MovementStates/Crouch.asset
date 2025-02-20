@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79554b52645d5044181b1a58f52ff1e8, type: 3}
   m_Name: Crouch
   m_EditorClassIdentifier: 
-  CameraHeight: 1.8
+  CameraHeight: 0.8
   BodyHeight: 2
   Gravity: -30
   ControlThreshold: 10
-  Speed: 0.9
+  Speed: 0.4
   Drag: 14
   JumpSpeed: 18
   JumpBuffer: 0.1
