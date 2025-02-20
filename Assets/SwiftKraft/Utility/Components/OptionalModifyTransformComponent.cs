@@ -11,25 +11,25 @@ namespace SwiftKraft.Utils
 
         public Vector3 Position
         {
-            get => Modifier != null ? Modifier.Position : ModifyTarget.position;
+            get => Modifier != null ? Modifier.Position : ModifyTarget.localPosition;
             protected set
             {
                 if (Modifier != null)
                     Modifier.Position = value;
                 else
-                    ModifyTarget.position = value;
+                    ModifyTarget.localPosition = value;
             }
         }
 
         public Quaternion Rotation
         {
-            get => Modifier != null ? Modifier.Rotation : ModifyTarget.rotation;
+            get => Modifier != null ? Modifier.Rotation : ModifyTarget.localRotation;
             protected set
             {
                 if (Modifier != null)
                     Modifier.Rotation = value;
                 else 
-                    ModifyTarget.rotation = value;
+                    ModifyTarget.localRotation = value;
             }
         }
 

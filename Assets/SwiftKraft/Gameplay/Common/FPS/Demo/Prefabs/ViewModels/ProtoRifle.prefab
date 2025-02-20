@@ -970,6 +970,7 @@ GameObject:
   - component: {fileID: 1236420926987797861}
   - component: {fileID: 3348710002142049648}
   - component: {fileID: 2755448397234144751}
+  - component: {fileID: 5258936121302501699}
   - component: {fileID: 7339521871737301241}
   - component: {fileID: 4179961927550141969}
   m_Layer: 6
@@ -1477,7 +1478,7 @@ MonoBehaviour:
     Key: 323
     Style: 1
     Linger:
-      <MaxValue>k__BackingField: 0.21
+      <MaxValue>k__BackingField: 0.05
       StartEnded: 0
   - ID: Reload
     Key: 114
@@ -1526,6 +1527,19 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.1
     SnapRange: 0.00001
+--- !u!114 &5258936121302501699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4ecf08617e2f644bdc170368d13d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModifyTarget: {fileID: 6041977976375274973}
 --- !u!114 &7339521871737301241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2360,6 +2374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1640906062811428720}
   - component: {fileID: 4967222815850344691}
+  - component: {fileID: 3504132119641034365}
   m_Layer: 6
   m_Name: HoloSight
   m_TagString: Untagged
@@ -2508,6 +2523,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0007477477, y: -0.02261407, z: -0.03770514}
     m_Extent: {x: 0.0018892663, y: 0.002263723, z: 0.0022384115}
   m_DirtyAABB: 0
+--- !u!114 &3504132119641034365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3876919651725329513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119e8090756c7eb45b3f9f9fddbd47d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetOffset: {x: 0, y: -0.0055, z: 0}
 --- !u!1 &4188797405681656713
 GameObject:
   m_ObjectHideFlags: 0

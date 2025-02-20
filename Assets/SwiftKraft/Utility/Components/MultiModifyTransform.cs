@@ -14,8 +14,8 @@ namespace SwiftKraft.Utils
 
             public Modifier(MultiModifyTransform parent) => Parent = parent;
 
-            private Vector3 position;
-            private Quaternion rotation;
+            private Vector3 position = Vector3.zero;
+            private Quaternion rotation = new(0f, 0f, 0f, 1f);
 
             public Vector3 Position
             {
