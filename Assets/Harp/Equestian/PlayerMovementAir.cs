@@ -44,7 +44,7 @@ namespace Player.Movement
 
             airTime = 0f;
             currentCoyote = 0f;
-            doubleJumpBuffer = 0f;
+            doubleJumpBuffer = 0.0f;
 
             
 
@@ -84,8 +84,9 @@ namespace Player.Movement
         {
             base.InputUpdate(parent);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+           if (Input.GetKeyDown(KeyCode.Space))
                 doubleJumpBuffer = JumpBuffer;
+           
         }
 
         public override void TickUpdate(PlayerMotor parent)
@@ -106,6 +107,7 @@ namespace Player.Movement
                 if (currentCoyote > 0f)
                 {
                     TryJump(parent, coyoteJumpSpeed);
+                    Debug.Log("Jumpedcoyote");
                     currentCoyote = 0f;
                     doubleJumpBuffer = 0f;
                 }
@@ -120,8 +122,9 @@ namespace Player.Movement
             if (doubleJumpBuffer > 0f)
             {
                 doubleJumpBuffer -= Time.fixedDeltaTime;
-                if (currentCoyote <= 0f)
-                    TryDoubleJump(parent);
+              /*  if (currentCoyote <= 0f)
+                    TryDoubleJump(parent); 
+              */
             }
             else if (doubleJumpBuffer < 0f)
                 doubleJumpBuffer = 0f;
@@ -144,24 +147,27 @@ namespace Player.Movement
 
         public override void TryJump(PlayerMotor parent, float speed = -1f)
         {
+            Debug.Log("Jumped");
             base.TryJump(parent);
             parent.PlayMotorSound(1);
         }
 
+        
         public void TryDoubleJump(PlayerMotor parent)
         {
             if (doubleJump)
                 return;
-
+            Debug.Log("DoubleJumped");
             parent.PlayMotorSound(2);
 
             onDoubleJump?.Invoke();
 
             doubleJumpBuffer = 0f;
-            doubleJump = true;
+            doubleJump = false;
             SetGravity(parent, JumpSpeed);
             parent.Rigidbody.AddForce(DoubleJumpSpeedHorizontal * parent.GetWishDir(), ForceMode.VelocityChange);
         }
+        
 
         public bool TryWallKick(PlayerMotor parent)
         {
