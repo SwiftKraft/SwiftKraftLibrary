@@ -16,17 +16,17 @@ MonoBehaviour:
   BodyHeight: 2
   Gravity: -30
   ControlThreshold: 5
-  Speed: 0.9
+  Speed: 0.15
   Drag: 0
-  JumpSpeed: 18
+  JumpSpeed: 14
   JumpBuffer: 0.1
   GroundState: {fileID: 11400000, guid: 0c0f45316779dac40af3102b1e4d2975, type: 2}
   WallrunState: {fileID: 11400000, guid: edf43e07fcfd91847951b87214f2a1db, type: 2}
-  WallKickRaycastIterations: 32
+  WallKickRaycastIterations: 16
   WallKickMax: 3
-  RequiredAirTimeForLandingSound: 1
+  RequiredAirTimeForLandingSound: 0.8
   WallKickVerticalSpeed: 16
   WallKickHorizontalSpeed: 9
   WallKickDistance: 1
-  DoubleJumpSpeedHorizontal: 5
+  DoubleJumpSpeedHorizontal: 0
   CoyoteTime: 0.3
