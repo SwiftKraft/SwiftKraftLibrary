@@ -42,7 +42,7 @@ namespace SwiftKraft.Gameplay.Factions
 
         public bool FriendlyFire { get; set; }
 
-        public Faction(string id, string name)
+        public Faction(string id, string name) : base()
         {
             ID = id;
             this.name = name;
