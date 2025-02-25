@@ -9,7 +9,7 @@ namespace SwiftKraft.Gameplay.Motors
         public Vector3 WishMovePosition
         {
             get => transform.position + WishMoveDirection;
-            set => WishLookDirection = (value - transform.position).normalized;
+            set => WishMoveDirection = (value - transform.position).normalized;
         }
 
         public Vector3 CurrentMoveDirection { get; protected set; }
