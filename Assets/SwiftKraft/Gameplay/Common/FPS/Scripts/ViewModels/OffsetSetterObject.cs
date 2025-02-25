@@ -1,6 +1,3 @@
-using SwiftKraft.Gameplay.Weapons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
@@ -8,6 +5,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
     public class OffsetSetterObject : MonoBehaviour
     {
         public Vector3 TargetOffset;
+        public Vector3 TargetEulerOffset;
 
         public WeaponAdsOffset Component
         {
@@ -23,22 +21,26 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         private void Start()
         {
-            Component.TargetLocation = TargetOffset;
+            Component.TargetPosition = TargetOffset;
+            Component.TargetRotation = Quaternion.Euler(TargetEulerOffset);
         }
 
         private void OnDestroy()
         {
-            Component.TargetLocation = Component.OriginalLocation;
+            Component.TargetPosition = Component.OriginalPosition;
+            Component.TargetRotation = Component.OriginalRotation;
         }
 
         private void OnEnable()
         {
-            Component.TargetLocation = TargetOffset;
+            Component.TargetPosition = TargetOffset;
+            Component.TargetRotation = Quaternion.Euler(TargetEulerOffset);
         }
 
         private void OnDisable()
         {
-            Component.TargetLocation = Component.OriginalLocation;
+            Component.TargetPosition = Component.OriginalPosition;
+            Component.TargetRotation = Component.OriginalRotation;
         }
     }
 }

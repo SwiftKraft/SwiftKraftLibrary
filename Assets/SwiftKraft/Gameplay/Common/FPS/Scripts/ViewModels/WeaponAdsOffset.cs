@@ -18,18 +18,24 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         }
         WeaponAds _component;
 
-        public Vector3 TargetLocation { get; set; }
-        public Vector3 OriginalLocation { get; private set; }
+        public Vector3 TargetPosition { get; set; }
+        public Vector3 OriginalPosition { get; private set; }
+        public Quaternion TargetRotation { get; set; } = new(0f, 0f, 0f, 1f);
+        public Quaternion OriginalRotation { get; private set; }
 
         protected override void Awake()
         {
             base.Awake();
-            OriginalLocation = ModifyTarget.localPosition;
+            TargetPosition = Position;
+            OriginalPosition = Position;
+            TargetRotation = Rotation;
+            OriginalRotation = Rotation;
         }
 
         private void Update()
         {
-            Position = Vector3.Lerp(OriginalLocation, TargetLocation, Component.Aiming);
+            Position = Vector3.Lerp(OriginalPosition, TargetPosition, Component.Aiming);
+            Rotation = Quaternion.Lerp(OriginalRotation, TargetRotation, Component.Aiming);
         }
     }
 }
