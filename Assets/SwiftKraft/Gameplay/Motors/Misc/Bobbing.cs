@@ -1,7 +1,7 @@
 using SwiftKraft.Utils;
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay.Motors
+namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 {
     public class Bobbing : OptionalModifyTransformComponent
     {
