@@ -16,10 +16,13 @@ MonoBehaviour:
   BodyHeight: 2
   Gravity: -30
   ControlThreshold: 10
-  Speed: 0.9
+  Speed: 0.8
+  WalkSpeed: 0.5
   Drag: 14
-  JumpSpeed: 18
+  JumpSpeed: 16.1
   JumpBuffer: 0.1
-  StepHeight: 1
+  StepHeight: 0.7
   AirState: {fileID: 11400000, guid: 354a082a6bc46c241b2557133353c573, type: 2}
   SlideState: {fileID: 11400000, guid: de9cd6cbdb0acac47825a08e9b6a07d0, type: 2}
+  CrouchState: {fileID: 11400000, guid: 5b243ef2319bfd54982049046df9249e, type: 2}
+  Dash: {fileID: 11400000, guid: c367dc943097de54b8b1ac9c47f8e580, type: 2}

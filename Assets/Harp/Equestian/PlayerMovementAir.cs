@@ -13,6 +13,7 @@ namespace Player.Movement
         public static event Action onDoubleJump;
 
         public PlayerMovementGround GroundState;
+        public PlayerMovementDash Dash;
         public PlayerMovementWallrun WallrunState;
 
         public int WallKickRaycastIterations = 32;
@@ -84,9 +85,12 @@ namespace Player.Movement
         {
             base.InputUpdate(parent);
 
-           if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 doubleJumpBuffer = JumpBuffer;
-           
+                
+            }
+
         }
 
         public override void TickUpdate(PlayerMotor parent)

@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79554b52645d5044181b1a58f52ff1e8, type: 3}
   m_Name: Crouch
   m_EditorClassIdentifier: 
-  CameraHeight: 0.8
-  BodyHeight: 2
+  CameraHeight: 0.63
+  BodyHeight: 0.8
   Gravity: -30
   ControlThreshold: 10
-  Speed: 0.4
+  Speed: 0.3
+  WalkSpeed: 0.3
   Drag: 14
   JumpSpeed: 18
   JumpBuffer: 0.1
   StepHeight: 0.6
   AirState: {fileID: 11400000, guid: 354a082a6bc46c241b2557133353c573, type: 2}
   SlideState: {fileID: 11400000, guid: de9cd6cbdb0acac47825a08e9b6a07d0, type: 2}
+  CrouchState: {fileID: 0}
   ExitState: {fileID: 11400000, guid: 0c0f45316779dac40af3102b1e4d2975, type: 2}

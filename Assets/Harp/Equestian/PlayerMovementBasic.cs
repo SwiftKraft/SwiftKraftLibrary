@@ -9,7 +9,8 @@ namespace Player.Movement
         public float BodyHeight = 2f;
         public float Gravity = -30f;
         public float ControlThreshold = 10f;
-        public float Speed = 0.9f;
+        public float Speed = 0.8f;
+        public float WalkSpeed = 0.4f;
         public float Drag = 14f;
         public float JumpSpeed = 18f;
         public float JumpBuffer = 0.1f;
@@ -42,7 +43,15 @@ namespace Player.Movement
         {
             parent.Rigidbody.AddForce(Vector3.up * Gravity);
 
-            Movement(parent, Speed, ControlThreshold);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                Movement(parent, WalkSpeed, ControlThreshold);
+            }
+            else
+            {
+                Movement(parent, Speed, ControlThreshold);
+            }
+            
 
             if (CurrentJumpBuffer > 0f)
             {

@@ -12,6 +12,8 @@ namespace Player.Movement
 
         public PlayerMovementAir AirState;
         public PlayerMovementStateBase SlideState;
+        public PlayerMovementCrouch CrouchState;
+        public PlayerMovementDash Dash;
 
         public override void StateStarted(PlayerMotor parent)
         {
@@ -21,12 +23,7 @@ namespace Player.Movement
                 return;
             }
 
-            if (Input.GetKey(KeyCode.LeftControl))
-            {
-                parent.CurrentState = SlideState;
-                return;
-            }
-
+           
             BaseStateStarted(parent);
         }
 
@@ -56,9 +53,24 @@ namespace Player.Movement
 
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                parent.CurrentState = SlideState;
-                return;
+                if (Input.GetKeyUp(KeyCode.LeftShift))
+                {
+                    
+                    return;
+                }
+                else
+                {
+                    parent.CurrentState = SlideState;
+                    return;
+                }
             }
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                parent.CurrentState = Dash;
+            }
+           
+            
         }
 
         public override void TryJump(PlayerMotor parent, float speed = -1f)

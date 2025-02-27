@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024919a98b937b942a4681c9c6627e79, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  CameraHeight: 1.8
+  CameraHeight: 1.5
   BodyHeight: 2
   Gravity: -30
-  ControlThreshold: 10
-  Speed: 0.9
-  Drag: 14
+  ControlThreshold: 11.93
+  Speed: 19.63
+  WalkSpeed: 2
+  Drag: 2.41
   JumpSpeed: 18
   JumpBuffer: 0.1
-  ExitState: {fileID: 11400000, guid: 354a082a6bc46c241b2557133353c573, type: 2}
+  ExitState: {fileID: 11400000, guid: 5b243ef2319bfd54982049046df9249e, type: 2}
   JumpCost: 20
-  Duration: 0.3
+  Duration: 0.23
   DashEndMultiplier: 0.3
