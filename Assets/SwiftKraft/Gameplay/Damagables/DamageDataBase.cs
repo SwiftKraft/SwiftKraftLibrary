@@ -2,17 +2,16 @@ using SwiftKraft.Gameplay.Interfaces;
 
 namespace SwiftKraft.Gameplay.Damagables
 {
-    public abstract class DamageDataBase
+    public class DamageDataBase
     {
-        public readonly IFaction Attacker;
-        public readonly IDamagable Target;
+        public readonly IPawn Attacker;
 
-        public DamageDataBase(IFaction attacker, IDamagable target)
+        public readonly float Damage;
+
+        public DamageDataBase(float damage, IPawn attacker)
         {
             Attacker = attacker;
-            Target = target;
+            Damage = damage;
         }
-
-        public virtual void ApplyDamage() => Target.Damage(this);
     }
 }
