@@ -1060,8 +1060,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RecoilTransformOverride: {fileID: 0}
-  RecoilMultiplier: 1
-  DecayMultiplier: 1
+  RecoilMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  DecayMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   DecayRate:
     serializedVersion: 2
     m_Curve:
@@ -1084,8 +1088,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 10
-      value: 3
+      time: 10.185181
+      value: 2.3018875
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1099,7 +1103,12 @@ MonoBehaviour:
     <MaxValue>k__BackingField: Infinity
     <DecayRate>k__BackingField: 7
     <CanDecay>k__BackingField: 1
-  RecoverMultiplier: 5
+  RecoverMultiplier:
+    <BaseValue>k__BackingField: 5
+    <Values>k__BackingField: []
+  VerticalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Vertical:
     serializedVersion: 2
     m_Curve:
@@ -1131,8 +1140,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.09702628
     - serializedVersion: 3
-      time: 7.3261414
-      value: 1.3143556
+      time: 7.286255
+      value: 1.4552476
       inSlope: 0.0051371427
       outSlope: 0.0051371427
       tangentMode: 0
@@ -1142,6 +1151,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  HorizontalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Horizontal:
     serializedVersion: 2
     m_Curve:
@@ -1242,8 +1254,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RecoilTransformOverride: {fileID: 8175185491969983762}
-  RecoilMultiplier: 1
-  DecayMultiplier: 1
+  RecoilMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  DecayMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   DecayRate:
     serializedVersion: 2
     m_Curve:
@@ -1266,8 +1282,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 10
-      value: 1.5
+      time: 10.132996
+      value: 1.230648
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1281,22 +1297,27 @@ MonoBehaviour:
     <MaxValue>k__BackingField: Infinity
     <DecayRate>k__BackingField: 6
     <CanDecay>k__BackingField: 1
-  RecoverMultiplier: 3
+  RecoverMultiplier:
+    <BaseValue>k__BackingField: 6
+    <Values>k__BackingField: []
+  VerticalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Vertical:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 0.18682802
-      outSlope: 0.18682802
+      inSlope: 0.25720763
+      outSlope: 0.25720763
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.0957315
-      value: 0.70471334
+      time: 1.0534952
+      value: 0.770967
       inSlope: 0.15357496
       outSlope: 0.15357496
       tangentMode: 0
@@ -1304,17 +1325,20 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.09919716
     - serializedVersion: 3
-      time: 5.9995427
-      value: 0.8566532
-      inSlope: 0.0038539558
-      outSlope: 0.0038539558
+      time: 5.773574
+      value: 1.0823175
+      inSlope: 0.0040691127
+      outSlope: 0.0040691127
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.15272579
+      inWeight: 0.5096446
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  HorizontalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Horizontal:
     serializedVersion: 2
     m_Curve:
@@ -1330,17 +1354,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 4
       value: 0
-      inSlope: 0.27624694
-      outSlope: 0.27624694
+      inSlope: 0.52075255
+      outSlope: 0.52075255
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.14678907
+      inWeight: 0.09932107
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 5.173712
-      value: 0.5284938
-      inSlope: 0.18642762
-      outSlope: 0.18642762
+      value: 0.67987627
+      inSlope: 0.23982821
+      outSlope: 0.23982821
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

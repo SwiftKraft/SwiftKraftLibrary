@@ -11,11 +11,13 @@ namespace SwiftKraft.Gameplay.Weapons
         public Transform RecoilTransformOverride;
         public IRecoilTransform RecoilTransform { get; private set; }
 
-        public float RecoilMultiplier = 1f;
-        public float DecayMultiplier = 1f;
+        public ModifiableStatistic RecoilMultiplier = new();
+        public ModifiableStatistic DecayMultiplier = new();
 
         public AnimationCurve DecayRate;
         public Accumulator Heat = new(Mathf.Infinity);
+
+        public bool Smooth = false;
 
         protected virtual void Awake()
         {
@@ -31,7 +33,11 @@ namespace SwiftKraft.Gameplay.Weapons
             Heat.Tick(DecayRate.Evaluate(Heat.CurrentValue) * DecayMultiplier * Time.fixedDeltaTime);
             Transform tr = GetRecoilTransform();
             if (tr != null)
+            {
+                if (Smooth && !Heat.CanDecay)
+                    ApplyRecoil(tr);
                 DecayRecoil(tr);
+            }
         }
 
         protected abstract void DecayRecoil(Transform trans);
@@ -40,7 +46,8 @@ namespace SwiftKraft.Gameplay.Weapons
         protected virtual void OnAttack(GameObject go)
         {
             Heat.Increment(1f);
-            ApplyRecoil(GetRecoilTransform());
+            if (!Smooth)
+                ApplyRecoil(GetRecoilTransform());
         }
     }
 }

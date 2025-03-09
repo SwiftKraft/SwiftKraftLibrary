@@ -942,12 +942,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2188737123759806702}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0109, z: -0.1214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8175185491969983762}
+  m_Father: {fileID: 5815484644316226888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2243808998322166224
 GameObject:
@@ -993,9 +993,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6041977976375274973}
-  - {fileID: 3608207479672408995}
-  - {fileID: 591655802465179580}
+  - {fileID: 5815484644316226888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6297137570541806700
@@ -1063,8 +1061,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RecoilTransformOverride: {fileID: 0}
-  RecoilMultiplier: 1
-  DecayMultiplier: 1
+  RecoilMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  DecayMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   DecayRate:
     serializedVersion: 2
     m_Curve:
@@ -1102,7 +1104,13 @@ MonoBehaviour:
     <MaxValue>k__BackingField: Infinity
     <DecayRate>k__BackingField: 7
     <CanDecay>k__BackingField: 1
-  RecoverMultiplier: 3
+  Smooth: 0
+  RecoverMultiplier:
+    <BaseValue>k__BackingField: 3
+    <Values>k__BackingField: []
+  VerticalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Vertical:
     serializedVersion: 2
     m_Curve:
@@ -1118,24 +1126,24 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.9656185
       value: 0.8930644
-      inSlope: 0.20147061
-      outSlope: 0.20147061
+      inSlope: 0.22074474
+      outSlope: 0.22074474
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 3.6345491
-      value: 0.88207245
-      inSlope: 0.04405232
-      outSlope: 0.04405232
+      time: 3.773923
+      value: 0.9897537
+      inSlope: 0.047632962
+      outSlope: 0.047632962
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 5.726975
-      value: 1.0750425
+      time: 5.5607457
+      value: 1.0984571
       inSlope: 0.034641527
       outSlope: 0.034641527
       tangentMode: 0
@@ -1143,8 +1151,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.09702628
     - serializedVersion: 3
-      time: 8.374084
-      value: 1.1117952
+      time: 8.2178955
+      value: 1.096689
       inSlope: 0.0051371427
       outSlope: 0.0051371427
       tangentMode: 0
@@ -1154,6 +1162,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  HorizontalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Horizontal:
     serializedVersion: 2
     m_Curve:
@@ -1178,15 +1189,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 8.525909
       value: 0.12450564
-      inSlope: -0.45713854
-      outSlope: -0.45713854
+      inSlope: -0.21606928
+      outSlope: -0.21606928
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 9.242882
-      value: -0.56766623
+      time: 9.279839
+      value: -0.23984641
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1194,8 +1205,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 12.023682
-      value: -0.34471488
+      time: 11.801941
+      value: -0.05919242
       inSlope: 0.012738124
       outSlope: 0.012738124
       tangentMode: 0
@@ -1203,8 +1214,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.9087607
     - serializedVersion: 3
-      time: 14.303164
-      value: -0.33254862
+      time: 14.081423
+      value: -0.057615757
       inSlope: 0.00724188
       outSlope: 0.00724188
       tangentMode: 0
@@ -1212,8 +1223,8 @@ MonoBehaviour:
       inWeight: 0.92907906
       outWeight: 0
     - serializedVersion: 3
-      time: 17.758423
-      value: 0.9268987
+      time: 17.68451
+      value: 0.6519544
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1221,8 +1232,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 21.834215
-      value: 0.56940204
+      time: 21.871141
+      value: 0.32970172
       inSlope: -0.007128542
       outSlope: -0.007128542
       tangentMode: 0
@@ -1231,7 +1242,7 @@ MonoBehaviour:
       outWeight: 0.98250514
     - serializedVersion: 3
       time: 23.946545
-      value: 0.5542044
+      value: 0.448461
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1253,9 +1264,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786ab638222158b40a456ed5b4765fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RecoilTransformOverride: {fileID: 8175185491969983762}
-  RecoilMultiplier: 1
-  DecayMultiplier: 1
+  RecoilTransformOverride: {fileID: 5815484644316226888}
+  RecoilMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  DecayMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   DecayRate:
     serializedVersion: 2
     m_Curve:
@@ -1278,8 +1293,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 10
-      value: 1.6077696
+      time: 10.077146
+      value: 1.5525359
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1293,31 +1308,40 @@ MonoBehaviour:
     <MaxValue>k__BackingField: Infinity
     <DecayRate>k__BackingField: 6
     <CanDecay>k__BackingField: 1
-  RecoverMultiplier: 2.5
+  Smooth: 0
+  RecoverMultiplier:
+    <BaseValue>k__BackingField: 2.5
+    <Values>k__BackingField: []
+  VerticalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Vertical:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0.20101503
-      inSlope: 0.01875
-      outSlope: 0.01875
+      inSlope: 0.0052983584
+      outSlope: 0.0052983584
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 8
-      value: 0.35101503
-      inSlope: 0.0038539558
-      outSlope: 0.0038539558
+      time: 8.038084
+      value: 0.24360368
+      inSlope: 0.0030426763
+      outSlope: 0.0030426763
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.15272579
+      inWeight: 0.080335796
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  HorizontalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Horizontal:
     serializedVersion: 2
     m_Curve:
@@ -1340,17 +1364,26 @@ MonoBehaviour:
       inWeight: 0.22685188
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 8.599818
-      value: 0.17943305
-      inSlope: -0.2675879
-      outSlope: -0.2675879
+      time: 8.562953
+      value: 0.46545905
+      inSlope: -0.20545876
+      outSlope: -0.20545876
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 9.661351
-      value: -0.46804386
+      time: 9.993138
+      value: -0.4233356
+      inSlope: -0.032073814
+      outSlope: -0.032073814
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.553546
+    - serializedVersion: 3
+      time: 14.0940485
+      value: -0.42684636
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1358,26 +1391,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 11.927512
-      value: -0.10692033
-      inSlope: 0.012738124
-      outSlope: 0.012738124
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.9087607
-    - serializedVersion: 3
-      time: 14.206994
-      value: -0.09475407
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 17.676888
-      value: 0.6430345
+      time: 17.179909
+      value: 0.55461746
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3047,8 +3062,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6382368516374574951}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0109, z: -0.1214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3059,7 +3074,7 @@ Transform:
   - {fileID: 1640906062811428720}
   - {fileID: 6320197154012818977}
   - {fileID: 3905512582682095929}
-  m_Father: {fileID: 8175185491969983762}
+  m_Father: {fileID: 5815484644316226888}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4135481554721097038
 MonoBehaviour:
@@ -3517,11 +3532,11 @@ Transform:
   m_GameObject: {fileID: 6945657878429202103}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0109, z: -0.1214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8175185491969983762}
+  m_Father: {fileID: 5815484644316226888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2895807444976228756
 AudioSource:
@@ -3967,6 +3982,40 @@ Transform:
   m_Children:
   - {fileID: 4729584080160121501}
   m_Father: {fileID: 4686873896396251278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8475394594618764928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5815484644316226888}
+  m_Layer: 6
+  m_Name: Recoil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5815484644316226888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475394594618764928}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0109, z: 0.1214}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 6041977976375274973}
+  - {fileID: 3608207479672408995}
+  - {fileID: 591655802465179580}
+  m_Father: {fileID: 8175185491969983762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8488331807436290598
 GameObject:

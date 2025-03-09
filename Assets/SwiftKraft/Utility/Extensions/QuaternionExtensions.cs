@@ -19,8 +19,6 @@ namespace SwiftKraft.Utils
             );
         }
 
-
-
         public static float NormalizeAngle(this float a) => a > 180f ? a - 360f : a;
 
         public static bool IsNaN(this Quaternion q) => float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z) || float.IsNaN(q.w);
