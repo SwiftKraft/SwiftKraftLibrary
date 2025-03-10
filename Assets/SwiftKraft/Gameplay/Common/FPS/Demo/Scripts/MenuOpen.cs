@@ -21,5 +21,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             Cursor.visible = active;
             FindObjectOfType<FPSCharacterControllerMotor>().Enabled = !active;
         }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }
