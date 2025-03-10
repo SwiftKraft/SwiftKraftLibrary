@@ -402,7 +402,7 @@ Transform:
   m_GameObject: {fileID: 296672088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 1.5, z: 0.5}
+  m_LocalPosition: {x: 20, y: 1.5, z: 0.5}
   m_LocalScale: {x: 5, y: 3, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -507,7 +507,7 @@ Transform:
   m_GameObject: {fileID: 325593643}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -6.5}
+  m_LocalPosition: {x: -9, y: 0.5, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -612,7 +612,7 @@ Transform:
   m_GameObject: {fileID: 331365599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 1, z: 6}
+  m_LocalPosition: {x: 6, y: 1, z: 17}
   m_LocalScale: {x: 10, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1168,10 +1168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1040886787}
   - component: {fileID: 1040886793}
-  - component: {fileID: 1040886794}
-  - component: {fileID: 1040886792}
   - component: {fileID: 1040886790}
   - component: {fileID: 1040886791}
+  - component: {fileID: 1040886792}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1236,67 +1235,14 @@ MonoBehaviour:
     Slot: 3
   - Key: 53
     Slot: 4
---- !u!114 &1040886792
-MonoBehaviour:
+--- !u!143 &1040886792
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040886786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc07ecffe1c6ca84ea07e111447da0cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <LookPoint>k__BackingField: {fileID: 1475683516}
-  <Enabled>k__BackingField: 1
-  <LookInUpdate>k__BackingField: 1
-  GroundPoint: {fileID: 1040886787}
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 1
-  GroundRadius: 0.1
-  JumpVelocity: 5
-  MaxVelocity: 6
-  Acceleration: 50
-  AirAcceleration: 20
-  GroundDrag: 6
-  AirDrag: 0
---- !u!54 &1040886793
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040886786}
-  serializedVersion: 4
-  m_Mass: 70
-  m_Drag: 0
-  m_AngularDrag: 999
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 80
-  m_CollisionDetection: 2
---- !u!136 &1040886794
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040886786}
-  m_Material: {fileID: 13400000, guid: 770ad671ff726fb4da00a35037b456f6, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1307,11 +1253,38 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
+  serializedVersion: 3
   m_Height: 2
-  m_Direction: 1
+  m_Radius: 0.4
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1040886793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040886786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b3097424fc9f249889bdbaa4c1cbe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <LookPoint>k__BackingField: {fileID: 1475683516}
+  <Enabled>k__BackingField: 1
+  <LookInUpdate>k__BackingField: 1
+  GroundPoint: {fileID: 1040886787}
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  GroundRadius: 0.1
+  JumpSpeed: 5
+  MoveSpeed: 5
+  SprintSpeed: 8
+  Gravity: 9.81
 --- !u!1 &1185203897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,7 +1534,7 @@ Transform:
   m_GameObject: {fileID: 1433124000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -14, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1819,7 +1792,7 @@ Transform:
   m_GameObject: {fileID: 1783083873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 1, z: -8}
+  m_LocalPosition: {x: 6, y: 1, z: -17}
   m_LocalScale: {x: 2, y: 2, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
