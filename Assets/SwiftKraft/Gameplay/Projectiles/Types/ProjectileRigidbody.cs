@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Projectiles
@@ -81,6 +82,12 @@ namespace SwiftKraft.Gameplay.Projectiles
             Destroy(gameObject);
         }
 
-        public virtual void Hit(Collision collision) { }
+        public virtual void Hit(Collision collision)
+        {
+            HitInfo info = new(collision.GetContact(0));
+            HitEvent(info);
+            if (info.Object.TryGetComponent(out IDamagable dmg))
+                dmg.Damage(GetDamageData(info));
+        }
     }
 }

@@ -42,13 +42,18 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         public virtual void Despawn() => Destroy(gameObject);
 
-        public virtual DamageDataBase GetDamageData() => new(BaseDamage, Owner);
+        public virtual DamageDataBase GetDamageData(HitInfo hitInfo) => new(BaseDamage, hitInfo.Position, Owner);
 
         public struct HitInfo
         {
             public Vector3 Position;
             public Vector3 Normal;
             public GameObject Object;
+
+            public HitInfo(ContactPoint point) { Position = point.point; Normal = point.normal; Object = point.otherCollider.gameObject; }
+            public HitInfo(ContactPoint2D point) { Position = point.point; Normal = point.normal; Object = point.otherCollider.gameObject; }
+            public HitInfo(RaycastHit point) { Position = point.point; Normal = point.normal; Object = point.transform.gameObject; }
+            public HitInfo(RaycastHit2D point) { Position = point.point; Normal = point.normal; Object = point.transform.gameObject; }
         }
     }
 }
