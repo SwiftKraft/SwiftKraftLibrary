@@ -19,6 +19,8 @@ namespace SwiftKraft.Gameplay.Projectiles
                 HitEvent(info);
                 if (info.Object.TryGetComponent(out IDamagable dmg))
                     dmg.Damage(GetDamageData(info));
+                if (info.Object.TryGetComponent(out Rigidbody rb))
+                    rb.AddForceAtPosition(transform.forward * BaseDamage, info.Position, ForceMode.Impulse);
                 cur++;
             }
         }
