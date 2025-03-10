@@ -1,4 +1,5 @@
 using SwiftKraft.Gameplay.Motors;
+using SwiftKraft.Saving.Settings;
 using SwiftKraft.Utils;
 using UnityEngine;
 
@@ -40,7 +41,8 @@ namespace SwiftKraft.Gameplay.Common.FPS
             if (Input.GetKeyDown(KeyCode.Space))
                 jumpInput.SetTrigger();
 
-            Vector2 inputLook = GetInputLook();
+            SettingsManager.Current.TrySetting("Sensitivity", out SingleSetting<float> setting);
+            Vector2 inputLook = GetInputLook() * setting.Value;
             Vector3 wishLookEulers = WishLookRotation.eulerAngles;
 
             WishLookRotation = Quaternion.Euler(Mathf.Clamp(wishLookEulers.x.NormalizeAngle() + inputLook.y, -90f, 90f), wishLookEulers.y + inputLook.x, wishLookEulers.z);

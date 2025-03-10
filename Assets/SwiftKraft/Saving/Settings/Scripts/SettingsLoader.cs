@@ -17,7 +17,12 @@ namespace SwiftKraft.Saving.Settings
             get
             {
                 if (_instance == null)
+                {
                     _instance = FindFirstObjectByType<SettingsLoader>();
+
+                    if (_instance == null)
+                        Debug.LogError("Settings Loader not found! ");
+                }
 
                 return _instance;
             }
