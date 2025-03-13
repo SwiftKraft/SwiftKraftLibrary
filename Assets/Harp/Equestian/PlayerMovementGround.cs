@@ -14,7 +14,6 @@ namespace Player.Movement
         public PlayerMovementStateBase SlideState;
         public PlayerMovementCrouch CrouchState;
         public PlayerMovementDash Dash;
-
         public override void StateStarted(PlayerMotor parent)
         {
             if (!parent.IsGrounded)
@@ -69,8 +68,9 @@ namespace Player.Movement
             {
                 parent.CurrentState = Dash;
             }
-           
+
             
+
         }
 
         public override void TryJump(PlayerMotor parent, float speed = -1f)
