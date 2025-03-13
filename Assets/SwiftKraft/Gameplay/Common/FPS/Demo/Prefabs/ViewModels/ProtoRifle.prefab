@@ -4653,6 +4653,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5815484644316226888}
+  - component: {fileID: 1623477736976801841}
   m_Layer: 6
   m_Name: Recoil
   m_TagString: Untagged
@@ -4677,6 +4678,18 @@ Transform:
   - {fileID: 6041977976375274973}
   m_Father: {fileID: 8175185491969983762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1623477736976801841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475394594618764928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10905300e5220d94488e076131f6cebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8488331807436290598
 GameObject:
   m_ObjectHideFlags: 0
