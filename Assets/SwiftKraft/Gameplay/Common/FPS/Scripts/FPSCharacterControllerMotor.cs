@@ -42,7 +42,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
                 jumpInput.SetTrigger();
 
             SettingsManager.Current.TrySetting("Sensitivity", out SingleSetting<float> setting);
-            Vector2 inputLook = GetInputLook() * setting.Value;
+            Vector2 inputLook = GetInputLook() * (setting == null ? 1f : setting.Value);
             Vector3 wishLookEulers = WishLookRotation.eulerAngles;
 
             WishLookRotation = Quaternion.Euler(Mathf.Clamp(wishLookEulers.x.NormalizeAngle() + inputLook.y, -90f, 90f), wishLookEulers.y + inputLook.x, wishLookEulers.z);

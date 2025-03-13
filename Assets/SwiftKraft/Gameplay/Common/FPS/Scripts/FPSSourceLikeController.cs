@@ -1,9 +1,11 @@
 using SwiftKraft.Gameplay.Motors;
+using SwiftKraft.Saving.Settings;
 using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class FPSSourceLikeController : PlayerMotorBase<Rigidbody>
     {
         public bool IsGrounded { get; private set; }
@@ -19,12 +21,25 @@ namespace SwiftKraft.Gameplay.Common.FPS
         public float GroundDrag = 4f;
         public float AirDrag = 0f;
 
+        public float Height
+        {
+            get => capsule.height;
+            set
+            {
+                capsule.height = value;
+                capsule.center = Vector3.up * (value / 2f);
+            }
+        }
+
         readonly Trigger jumpInput = new();
+
+        CapsuleCollider capsule;
 
         protected virtual void Awake()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            capsule = GetComponent<CapsuleCollider>();
         }
 
         protected override void Update()
@@ -37,7 +52,8 @@ namespace SwiftKraft.Gameplay.Common.FPS
             if (Input.GetKeyDown(KeyCode.Space))
                 jumpInput.SetTrigger();
 
-            Vector2 inputLook = GetInputLook();
+            SettingsManager.Current.TrySetting("Sensitivity", out SingleSetting<float> setting);
+            Vector2 inputLook = GetInputLook() * (setting == null ? 1f : setting.Value);
             Vector3 wishLookEulers = WishLookRotation.eulerAngles;
 
             WishLookRotation = Quaternion.Euler(Mathf.Clamp(wishLookEulers.x.NormalizeAngle() + inputLook.y, -90f, 90f), wishLookEulers.y + inputLook.x, wishLookEulers.z);
@@ -82,7 +98,6 @@ namespace SwiftKraft.Gameplay.Common.FPS
             Vector3 horizontalVelocity = Component.velocity;
             horizontalVelocity.y = 0f;
 
-            // float maxVelocityFactor = Mathf.InverseLerp(MaxVelocity * MaxVelocity, 0f, horizontalVelocity.sqrMagnitude);
             float perpendicularity = 1f - Mathf.Abs(Vector3.Dot(horizontalVelocity.normalized, direction.normalized));
             float acceleration = IsGrounded ? Acceleration : AirAcceleration;
 

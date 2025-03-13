@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Motors;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.Demo
@@ -19,7 +20,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             MenuObject.SetActive(active);
             Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = active;
-            FindObjectOfType<FPSCharacterControllerMotor>().Enabled = !active;
+            GameObject.Find("Player").GetComponent<MotorBase>().Enabled = !active;
         }
 
         public void QuitGame()
