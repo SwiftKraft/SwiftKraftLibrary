@@ -2278,10 +2278,16 @@ MonoBehaviour:
   GroundRadius: 0.1
   JumpVelocity: 5
   MaxVelocity: 6
+  CrouchMaxVelocity: 3
   Acceleration: 50
-  AirAcceleration: 2
+  AirAcceleration: 10
   GroundDrag: 4
   AirDrag: 0
+  CrouchHeight: 1.2
+  CrouchCameraHeight: 1.05
+  CrouchInterp:
+    <MaxValue>k__BackingField: 0
+    <Speed>k__BackingField: 5
 --- !u!54 &1040886793
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,11 +14,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         Vector3 curVel;
 
-        protected override void DecayRecoil()
-        {
-            Rotation = Rotation.SmoothDamp(Quaternion.Euler(Vector3.zero), ref curVel, 1f / (DecayRate.Evaluate(Heat.CurrentValue) * DecayMultiplier * RecoverMultiplier));
-            Debug.Log(Rotation, GetRecoilTransform());
-        }
+        protected override void DecayRecoil() => Rotation = Rotation.SmoothDamp(Quaternion.Euler(Vector3.zero), ref curVel, 1f / (DecayRate.Evaluate(Heat.CurrentValue) * DecayMultiplier * RecoverMultiplier));
 
         protected override void ApplyRecoil()
         {

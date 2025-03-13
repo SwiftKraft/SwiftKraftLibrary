@@ -20,6 +20,18 @@ namespace SwiftKraft.Gameplay.Common.FPS
         public float AirAcceleration = 2f;
         public float GroundDrag = 4f;
         public float AirDrag = 0f;
+        public float CrouchHeight = 1f;
+        public float CrouchCameraHeight = 0.8f;
+        public float CrouchMaxVelocity = 3f;
+
+        public float CurrentMaxVelocity => WishCrouch && IsGrounded ? CrouchMaxVelocity : MaxVelocity;
+
+        public MoveTowardsInterpolater CrouchInterp;
+
+        float originalHeight;
+        float originalCameraHeight;
+
+        public bool WishCrouch { get; private set; }
 
         public float Height
         {
@@ -31,6 +43,12 @@ namespace SwiftKraft.Gameplay.Common.FPS
             }
         }
 
+        public float CameraHeight
+        {
+            get => LookPoint.localPosition.y;
+            set => LookPoint.localPosition = Vector3.up * value;
+        }
+
         readonly Trigger jumpInput = new();
 
         CapsuleCollider capsule;
@@ -40,6 +58,8 @@ namespace SwiftKraft.Gameplay.Common.FPS
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             capsule = GetComponent<CapsuleCollider>();
+            originalCameraHeight = CameraHeight;
+            originalHeight = Height;
         }
 
         protected override void Update()
@@ -48,6 +68,8 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
             if (!Enabled)
                 return;
+
+            WishCrouch = Input.GetKey(KeyCode.LeftControl);
 
             if (Input.GetKeyDown(KeyCode.Space))
                 jumpInput.SetTrigger();
@@ -65,6 +87,14 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
             IsGrounded = Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
+            Component.drag = IsGrounded ? GroundDrag : AirDrag;
+
+            CrouchInterp.Tick(Time.fixedDeltaTime);
+            CrouchInterp.MaxValue = WishCrouch ? 1f : 0f;
+
+            if (!Enabled)
+                return;
+
             if (jumpInput.GetTrigger() && IsGrounded)
             {
                 Vector3 temp = Component.velocity;
@@ -73,10 +103,8 @@ namespace SwiftKraft.Gameplay.Common.FPS
                 IsGrounded = false;
             }
 
-            Component.drag = IsGrounded ? GroundDrag : AirDrag;
-
-            if (!Enabled)
-                return;
+            Height = Mathf.Lerp(originalHeight, CrouchHeight, CrouchInterp.CurrentValue);
+            CameraHeight = Mathf.Lerp(originalCameraHeight, CrouchCameraHeight, CrouchInterp.CurrentValue);
 
             Vector2 inputMove = GetInputMove();
             WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y);
@@ -103,7 +131,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
             Component.velocity += direction
                 * (acceleration
-                * (MaxVelocity * MaxVelocity <= horizontalVelocity.sqrMagnitude ? perpendicularity : 1f)
+                * (CurrentMaxVelocity * CurrentMaxVelocity <= horizontalVelocity.sqrMagnitude ? perpendicularity : 1f)
                 * Time.fixedDeltaTime);
         }
     }
