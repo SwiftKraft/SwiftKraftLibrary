@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FOV: 55
-  CamMultiplier: 1
+  CamMultiplier: 2
   Local: 1
   Offset: {x: 0, y: 180, z: 0}
   CameraTarget: {fileID: 4559479819889157728}
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RecoilTransformOverride: {fileID: 0}
   RecoilMultiplier:
-    <BaseValue>k__BackingField: 10
+    <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   DecayMultiplier:
     <BaseValue>k__BackingField: 1
@@ -1136,7 +1136,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: Infinity
     <DecayRate>k__BackingField: 7
     <CanDecay>k__BackingField: 1
-  Smooth: 1
+  Smooth: 0
   RecoverMultiplier:
     <BaseValue>k__BackingField: 5
     <Values>k__BackingField: []
