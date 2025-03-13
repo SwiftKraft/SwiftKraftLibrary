@@ -1,18 +1,20 @@
 using SwiftKraft.Gameplay.Interfaces;
+using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Damagables
 {
-    public abstract class DamageDataBase
+    public class DamageDataBase
     {
-        public readonly IFaction Attacker;
-        public readonly IDamagable Target;
+        public readonly IPawn Attacker;
 
-        public DamageDataBase(IFaction attacker, IDamagable target)
+        public readonly float Damage;
+        public readonly Vector3 HitPoint;
+
+        public DamageDataBase(float damage, Vector3 hitPoint, IPawn attacker)
         {
             Attacker = attacker;
-            Target = target;
+            Damage = damage;
+            HitPoint = hitPoint;
         }
-
-        public virtual void ApplyDamage() => Target.Damage(this);
     }
 }

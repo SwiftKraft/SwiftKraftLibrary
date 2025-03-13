@@ -1,4 +1,5 @@
 using SwiftKraft.Gameplay.Bases;
+using SwiftKraft.Gameplay.Damagables;
 using SwiftKraft.Utils;
 using System;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace SwiftKraft.Gameplay.Projectiles
         public Timer Lifetime;
 
         public bool Despawned { get; private set; }
+
+        public float BaseDamage;
 
         public ProjectileComponent[] Addons { get; private set; }
 
@@ -39,11 +42,18 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         public virtual void Despawn() => Destroy(gameObject);
 
+        public virtual DamageDataBase GetDamageData(HitInfo hitInfo) => new(BaseDamage, hitInfo.Position, Owner);
+
         public struct HitInfo
         {
             public Vector3 Position;
             public Vector3 Normal;
             public GameObject Object;
+
+            public HitInfo(ContactPoint point) { Position = point.point; Normal = point.normal; Object = point.otherCollider.gameObject; }
+            public HitInfo(ContactPoint2D point) { Position = point.point; Normal = point.normal; Object = point.otherCollider.gameObject; }
+            public HitInfo(RaycastHit point) { Position = point.point; Normal = point.normal; Object = point.transform.gameObject; }
+            public HitInfo(RaycastHit2D point) { Position = point.point; Normal = point.normal; Object = point.transform.gameObject; }
         }
     }
 }

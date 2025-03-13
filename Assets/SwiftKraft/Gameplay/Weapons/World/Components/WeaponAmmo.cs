@@ -1,7 +1,6 @@
 using SwiftKraft.Utils;
 using System;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace SwiftKraft.Gameplay.Weapons
 {

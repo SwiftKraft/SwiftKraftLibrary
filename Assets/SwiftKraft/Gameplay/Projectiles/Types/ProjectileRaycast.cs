@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Projectiles
@@ -14,7 +15,12 @@ namespace SwiftKraft.Gameplay.Projectiles
                 if (cur > Pierce)
                     return;
 
-                HitEvent(new HitInfo() { Normal = hit.normal, Position = hit.point, Object = hit.collider.gameObject });
+                HitInfo info = new(hit);
+                HitEvent(info);
+                if (info.Object.TryGetComponent(out IDamagable dmg))
+                    dmg.Damage(GetDamageData(info));
+                if (info.Object.TryGetComponent(out Rigidbody rb))
+                    rb.AddForceAtPosition(transform.forward * BaseDamage, info.Position, ForceMode.Impulse);
                 cur++;
             }
         }

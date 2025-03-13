@@ -15,7 +15,7 @@ namespace SwiftKraft.Utils
 
         private void Awake() => Audio = GetComponent<AudioSource>();
 
-        public void Play(float chanceOverride = -1f)
+        public void PlayAudio(float chanceOverride = -1f)
         {
             if (chanceOverride < 0f)
                 chanceOverride = Chance;

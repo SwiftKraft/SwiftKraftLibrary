@@ -1,9 +1,10 @@
+using SwiftKraft.Gameplay.Damagables;
 using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Projectiles
 {
-    public class ProjectileCollider : ProjectileBase, ICollider
+    public abstract class ProjectileCollider : ProjectileBase, ICollider
     {
         public Collider[] Colliders
         {

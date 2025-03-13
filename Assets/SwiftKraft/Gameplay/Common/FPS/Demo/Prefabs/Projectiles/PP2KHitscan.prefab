@@ -50,6 +50,7 @@ MonoBehaviour:
   Lifetime:
     <MaxValue>k__BackingField: 1
     StartEnded: 0
+  BaseDamage: 20
   Range: 100
   Layers:
     serializedVersion: 2
@@ -87,6 +88,7 @@ MonoBehaviour:
   - <Weight>k__BackingField: 1
     Spawnees:
     - {fileID: 6779281746574858155, guid: 8e852d5d2f166564eb386dda8c1f727e, type: 3}
+  InHierarchy: 1
 --- !u!1 &5563794704417213645
 GameObject:
   m_ObjectHideFlags: 0

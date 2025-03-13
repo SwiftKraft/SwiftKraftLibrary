@@ -849,6 +849,7 @@ MonoBehaviour:
   Local: 1
   Offset: {x: 0, y: 0, z: 0}
   CameraTarget: {fileID: 4666830881271739252}
+  ReferenceTarget: {fileID: 0}
 --- !u!114 &1625574590863042466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,8 +885,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RecoilTransformOverride: {fileID: 0}
-  RecoilMultiplier: 1
-  DecayMultiplier: 1
+  RecoilMultiplier:
+    <BaseValue>k__BackingField: 10
+    <Values>k__BackingField: []
+  DecayMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   DecayRate:
     serializedVersion: 2
     m_Curve:
@@ -923,7 +928,13 @@ MonoBehaviour:
     <MaxValue>k__BackingField: Infinity
     <DecayRate>k__BackingField: 9
     <CanDecay>k__BackingField: 1
-  RecoverMultiplier: 5
+  Smooth: 1
+  RecoverMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  VerticalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Vertical:
     serializedVersion: 2
     m_Curve:
@@ -957,6 +968,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  HorizontalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Horizontal:
     serializedVersion: 2
     m_Curve:
@@ -1093,8 +1107,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RecoilTransformOverride: {fileID: 8175185491969983762}
-  RecoilMultiplier: 1
-  DecayMultiplier: 1
+  RecoilMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  DecayMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   DecayRate:
     serializedVersion: 2
     m_Curve:
@@ -1132,7 +1150,13 @@ MonoBehaviour:
     <MaxValue>k__BackingField: Infinity
     <DecayRate>k__BackingField: 9
     <CanDecay>k__BackingField: 1
-  RecoverMultiplier: 3
+  Smooth: 0
+  RecoverMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  VerticalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Vertical:
     serializedVersion: 2
     m_Curve:
@@ -1166,6 +1190,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  HorizontalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Horizontal:
     serializedVersion: 2
     m_Curve:
@@ -1285,7 +1312,7 @@ MonoBehaviour:
   aimInterpolater:
     <MaxValue>k__BackingField: 0
     <LerpValue>k__BackingField: 15
-    <SnapDifference>k__BackingField: 0.0001
+    <SnapDifference>k__BackingField: 0.001
 --- !u!114 &1751766258399497974
 MonoBehaviour:
   m_ObjectHideFlags: 0
