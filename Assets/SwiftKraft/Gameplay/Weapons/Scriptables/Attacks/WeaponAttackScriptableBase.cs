@@ -16,6 +16,7 @@ namespace SwiftKraft.Gameplay.Weapons
             if (!Parent.CanAttack)
                 return;
 
+            Parent.PreAttackEvent();
             GameObject go = Instantiate(Prefab, origin.position, origin.rotation);
             Parent.AttackEvent(go);
 

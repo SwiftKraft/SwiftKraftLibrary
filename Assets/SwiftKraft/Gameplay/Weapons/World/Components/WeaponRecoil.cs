@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using UnityEngine;
 
@@ -6,10 +5,10 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public abstract class WeaponRecoil : WeaponComponent
     {
-        public Transform GetRecoilTransform() => RecoilTransformOverride != null ? RecoilTransformOverride : ((Object)RecoilTransform != null ? RecoilTransform.Transform : null);
+        public Transform CurrentRecoilTransform => RecoilTransformOverride != null ? RecoilTransformOverride : (RecoilTransform != null ? RecoilTransform.transform : null);
 
         public Transform RecoilTransformOverride;
-        public IRecoilTransform RecoilTransform { get; private set; }
+        public RecoilTransform RecoilTransform { get; private set; }
 
         public ModifiableStatistic RecoilMultiplier = new();
         public ModifiableStatistic DecayMultiplier = new();
@@ -19,25 +18,25 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public Vector3 Position
         {
-            get => modifier == null ? GetRecoilTransform().localPosition : modifier.Position;
+            get => modifier == null ? CurrentRecoilTransform.localPosition : modifier.Position;
             protected set
             {
                 if (modifier != null)
                     modifier.Position = value;
                 else
-                    GetRecoilTransform().localPosition = value;
+                    CurrentRecoilTransform.localPosition = value;
             }
         }
 
         public Quaternion Rotation
         {
-            get => modifier == null ? GetRecoilTransform().localRotation : modifier.Rotation;
+            get => modifier == null ? CurrentRecoilTransform.localRotation : modifier.Rotation;
             protected set
             {
                 if (modifier != null)
                     modifier.Rotation = value;
                 else
-                    GetRecoilTransform().localRotation = value;
+                    CurrentRecoilTransform.localRotation = value;
             }
         }
 
@@ -47,10 +46,10 @@ namespace SwiftKraft.Gameplay.Weapons
 
         protected virtual void Awake()
         {
-            RecoilTransform = transform.root.GetComponentInChildren<IRecoilTransform>();
+            RecoilTransform = transform.root.GetComponentInChildren<RecoilTransform>();
             Component.OnAttack += OnAttack;
 
-            if (GetRecoilTransform().TryGetComponent(out MultiModifyTransform tr))
+            if (CurrentRecoilTransform.TryGetComponent(out MultiModifyTransform tr))
                 modifier = tr.AddModifier();
         }
 
