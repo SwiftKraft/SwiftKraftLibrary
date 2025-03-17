@@ -1017,6 +1017,7 @@ GameObject:
   - component: {fileID: 7339521871737301241}
   - component: {fileID: 4179961927550141969}
   - component: {fileID: 6375449963085982268}
+  - component: {fileID: 1404826608180302344}
   m_Layer: 6
   m_Name: ProtoPistol
   m_TagString: Untagged
@@ -1504,6 +1505,12 @@ MonoBehaviour:
     Linger:
       <MaxValue>k__BackingField: 0
       StartEnded: 0
+  - ID: Inspect
+    Key: 105
+    Style: 0
+    Linger:
+      <MaxValue>k__BackingField: 0
+      StartEnded: 0
 --- !u!114 &3348710002142049648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1596,6 +1603,18 @@ MonoBehaviour:
   Particles:
   - Action: Attack
     ParticleSystem: {fileID: 4959659516246844126}
+--- !u!114 &1404826608180302344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47d3e87ff3d8d764587380faeee78ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2325606755727237087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3335,6 +3354,14 @@ MonoBehaviour:
     States:
     - StateName: Unequip
       CrossFade: 0
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+  - ID: Inspect
+    States:
+    - StateName: Inspect
+      CrossFade: 0.2
       Weight: 1
       OnPlay:
         m_PersistentCalls:
