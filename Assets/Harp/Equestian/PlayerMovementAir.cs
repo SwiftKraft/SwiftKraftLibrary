@@ -45,7 +45,7 @@ namespace Player.Movement
 
             airTime = 0f;
             currentCoyote = 0f;
-            doubleJumpBuffer = 0.0f;
+            doubleJumpBuffer = 1.0f;
 
             
 
@@ -111,7 +111,6 @@ namespace Player.Movement
                 if (currentCoyote > 0f)
                 {
                     TryJump(parent, coyoteJumpSpeed);
-                    Debug.Log("Jumpedcoyote");
                     currentCoyote = 0f;
                     doubleJumpBuffer = 0f;
                 }
@@ -126,9 +125,8 @@ namespace Player.Movement
             if (doubleJumpBuffer > 0f)
             {
                 doubleJumpBuffer -= Time.fixedDeltaTime;
-              /*  if (currentCoyote <= 0f)
-                    TryDoubleJump(parent); 
-              */
+                if (currentCoyote <= 0f)
+                    TryDoubleJump(parent);
             }
             else if (doubleJumpBuffer < 0f)
                 doubleJumpBuffer = 0f;
@@ -140,6 +138,7 @@ namespace Player.Movement
                 parent.CurrentState = WallrunState;
             }
         }
+
 
         public override void ReceiveData<T>(T obj)
         {
@@ -156,22 +155,22 @@ namespace Player.Movement
             parent.PlayMotorSound(1);
         }
 
-        
+
         public void TryDoubleJump(PlayerMotor parent)
         {
             if (doubleJump)
                 return;
-            Debug.Log("DoubleJumped");
+
             parent.PlayMotorSound(2);
 
             onDoubleJump?.Invoke();
 
             doubleJumpBuffer = 0f;
-            doubleJump = false;
+            doubleJump = true;
             SetGravity(parent, JumpSpeed);
             parent.Rigidbody.AddForce(DoubleJumpSpeedHorizontal * parent.GetWishDir(), ForceMode.VelocityChange);
         }
-        
+
 
         public bool TryWallKick(PlayerMotor parent)
         {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraHeight: 1.8
   BodyHeight: 2
-  Gravity: -43
+  Gravity: -36.6
   ControlThreshold: 5
   Speed: 0.15
   WalkSpeed: 0.4
@@ -25,10 +25,10 @@ MonoBehaviour:
   Dash: {fileID: 11400000, guid: c367dc943097de54b8b1ac9c47f8e580, type: 2}
   WallrunState: {fileID: 11400000, guid: edf43e07fcfd91847951b87214f2a1db, type: 2}
   WallKickRaycastIterations: 16
-  WallKickMax: 1
+  WallKickMax: 2
   RequiredAirTimeForLandingSound: 0.8
   WallKickVerticalSpeed: 16
   WallKickHorizontalSpeed: 8
   WallKickDistance: 1.37
-  DoubleJumpSpeedHorizontal: 0
+  DoubleJumpSpeedHorizontal: 4
   CoyoteTime: 0

@@ -24,5 +24,6 @@ MonoBehaviour:
   StepHeight: 0.6
   AirState: {fileID: 11400000, guid: 354a082a6bc46c241b2557133353c573, type: 2}
   SlideState: {fileID: 11400000, guid: de9cd6cbdb0acac47825a08e9b6a07d0, type: 2}
-  CrouchState: {fileID: 0}
+  CrouchState: {fileID: 11400000}
+  Dash: {fileID: 11400000, guid: c367dc943097de54b8b1ac9c47f8e580, type: 2}
   ExitState: {fileID: 11400000, guid: 0c0f45316779dac40af3102b1e4d2975, type: 2}
