@@ -64,7 +64,7 @@ namespace Player.Movement
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
             {
                 parent.CurrentState = Dash;
             }

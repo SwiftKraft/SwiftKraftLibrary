@@ -10,6 +10,7 @@ namespace Player.Movement
         public float Gravity = -30f;
         public float ControlThreshold = 10f;
         public float Speed = 0.8f;
+        public float GasSpeed = 0.8f;
         public float WalkSpeed = 0.4f;
         public float Drag = 14f;
         public float JumpSpeed = 18f;
@@ -45,7 +46,7 @@ namespace Player.Movement
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                Movement(parent, WalkSpeed, ControlThreshold);
+                Movement(parent, GasSpeed, ControlThreshold);
             }
             else
             {

@@ -17,6 +17,7 @@ MonoBehaviour:
   Gravity: -36.6
   ControlThreshold: 5
   Speed: 0.15
+  GasSpeed: 2.48
   WalkSpeed: 0.4
   Drag: 0
   JumpSpeed: 14
@@ -31,4 +32,4 @@ MonoBehaviour:
   WallKickHorizontalSpeed: 8
   WallKickDistance: 1.37
   DoubleJumpSpeedHorizontal: 4
-  CoyoteTime: 0
+  CoyoteTime: 1.24
