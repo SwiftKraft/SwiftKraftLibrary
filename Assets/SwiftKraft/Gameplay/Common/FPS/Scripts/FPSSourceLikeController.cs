@@ -126,6 +126,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
             Vector3 horizontalVelocity = Component.velocity;
             horizontalVelocity.y = 0f;
 
+            // float maxVelocityFactor = Mathf.InverseLerp(MaxVelocity * MaxVelocity, 0f, horizontalVelocity.sqrMagnitude);
             float perpendicularity = 1f - Mathf.Abs(Vector3.Dot(horizontalVelocity.normalized, direction.normalized));
             float acceleration = IsGrounded ? Acceleration : AirAcceleration;
 
