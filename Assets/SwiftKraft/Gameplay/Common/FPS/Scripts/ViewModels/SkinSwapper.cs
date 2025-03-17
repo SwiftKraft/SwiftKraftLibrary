@@ -5,22 +5,22 @@ using Random = UnityEngine.Random;
 
 namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
-    public class HandSwapper : MeshSwapper
+    public class SkinSwapper : MeshSwapper
     {
-        public static int CurrentHand 
+        public static int CurrentSkin 
         {
-            get => _currentHand;
+            get => _currentSkin;
             set
             {
-                _currentHand = value;
-                HandSwapped?.Invoke(_currentHand);
+                _currentSkin = value;
+                SkinSwapped?.Invoke(_currentSkin);
             }
         }
-        static int _currentHand;
+        static int _currentSkin;
 
-        protected static event Action<int> HandSwapped;
+        protected static event Action<int> SkinSwapped;
 
-        public HandSwapperPackage SwapperPackage;
+        public SkinSwapperPackage SwapperPackage;
 
         public Package[] Packages => SwapperPackage.Packages;
 
@@ -34,11 +34,11 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
                 return;
             }
 
-            SwapHand(CurrentHand);
-            HandSwapped += SwapHand;
+            SwapHand(CurrentSkin);
+            SkinSwapped += SwapHand;
         }
 
-        protected virtual void OnDestroy() => HandSwapped -= SwapHand;
+        protected virtual void OnDestroy() => SkinSwapped -= SwapHand;
 
         protected virtual void SwapHand(int index) => SwapMesh(Packages[index % Packages.Length]);
 
@@ -48,6 +48,6 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
                 Test();
         }
 
-        public void Test() => CurrentHand = (CurrentHand + 1) % Packages.Length;
+        public void Test() => CurrentSkin = (CurrentSkin + 1) % Packages.Length;
     }
 }

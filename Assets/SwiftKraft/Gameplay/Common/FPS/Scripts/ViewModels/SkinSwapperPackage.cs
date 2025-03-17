@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
-    [CreateAssetMenu(menuName = "SwiftKraft/Gameplay/Common/FPS/ViewModels/HandSwapper Package")]
-    public class HandSwapperPackage : ScriptableObject
+    [CreateAssetMenu(menuName = "SwiftKraft/Gameplay/Common/FPS/ViewModels/SkinSwapper Package")]
+    public class SkinSwapperPackage : ScriptableObject
     {
         public MeshSwapper.Package[] Packages;
     }
