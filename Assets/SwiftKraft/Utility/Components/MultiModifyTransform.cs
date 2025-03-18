@@ -22,24 +22,25 @@ namespace SwiftKraft.Utils
                 get => position;
                 set
                 {
-                    if (position == value)
-                        return;
-
                     position = value;
                     Parent.UpdateTransform();
                 }
             }
+
             public Quaternion Rotation
             {
                 get => rotation;
                 set
                 {
-                    if (rotation == value)
-                        return;
-
                     rotation = value;
                     Parent.UpdateTransform();
                 }
+            }
+
+            public void Remove()
+            {
+                if (Parent != null)
+                    Parent.RemoveModifier(this);
             }
         }
 
@@ -55,7 +56,7 @@ namespace SwiftKraft.Utils
         {
             transform.SetLocalPositionAndRotation(OriginalPosition, OriginalRotation);
             foreach (Modifier modifier in Modifiers)
-                transform.SetLocalPositionAndRotation(transform.localPosition + modifier.Position, 
+                transform.SetLocalPositionAndRotation(transform.localPosition + modifier.Position,
                     transform.localRotation * modifier.Rotation);
         }
 
