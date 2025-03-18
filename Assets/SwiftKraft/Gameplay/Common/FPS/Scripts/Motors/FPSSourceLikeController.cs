@@ -3,7 +3,7 @@ using SwiftKraft.Saving.Settings;
 using SwiftKraft.Utils;
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay.Common.FPS
+namespace SwiftKraft.Gameplay.Common.FPS.Motors
 {
     [RequireComponent(typeof(Rigidbody))]
     public class FPSSourceLikeController : PlayerMotorBase<Rigidbody>
@@ -43,12 +43,6 @@ namespace SwiftKraft.Gameplay.Common.FPS
             }
         }
 
-        public float CameraHeight
-        {
-            get => LookPoint.localPosition.y;
-            set => LookPoint.localPosition = Vector3.up * value;
-        }
-
         readonly Trigger jumpInput = new();
 
         CapsuleCollider capsule;
@@ -58,7 +52,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             capsule = GetComponent<CapsuleCollider>();
-            originalCameraHeight = CameraHeight;
+            originalCameraHeight = LookPointHeight;
             originalHeight = Height;
         }
 
@@ -104,7 +98,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
             }
 
             Height = Mathf.Lerp(originalHeight, CrouchHeight, CrouchInterp.CurrentValue);
-            CameraHeight = Mathf.Lerp(originalCameraHeight, CrouchCameraHeight, CrouchInterp.CurrentValue);
+            LookPointHeight = Mathf.Lerp(originalCameraHeight, CrouchCameraHeight, CrouchInterp.CurrentValue);
 
             Vector2 inputMove = GetInputMove();
             WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y);

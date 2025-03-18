@@ -3,10 +3,10 @@ using SwiftKraft.Saving.Settings;
 using SwiftKraft.Utils;
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay.Common.FPS
+namespace SwiftKraft.Gameplay.Common.FPS.Motors
 {
     [RequireComponent(typeof(CharacterController))]
-    public class FPSCharacterControllerMotor : PlayerMotorBase<CharacterController>
+    public class FPSPlayerCharacterControllerMotor : PlayerMotorBase<CharacterController>
     {
         public bool IsGrounded { get; private set; }
         public bool IsSprinting { get; private set; }
@@ -24,6 +24,16 @@ namespace SwiftKraft.Gameplay.Common.FPS
         readonly Timer coyoteTime = new(0.2f, false);
         readonly Trigger jumpInput = new();
         float currentGravity;
+
+        public float Height
+        {
+            get => Component.height;
+            set
+            {
+                Component.height = value;
+                Component.center = Vector3.up * (value / 2f);
+            }
+        }
 
         protected virtual void Awake()
         {

@@ -28,6 +28,12 @@ namespace SwiftKraft.Gameplay.Motors
             set => WishLookDirection = value - LookPoint.position;
         }
 
+        public virtual float LookPointHeight
+        {
+            get => LookPoint.localPosition.y;
+            set => LookPoint.localPosition = Vector3.up * value;
+        }
+
         public Quaternion CurrentLookRotation { get; protected set; }
 
         public int State { get; protected set; }
