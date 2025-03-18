@@ -91,6 +91,11 @@ namespace Player.Movement
                 
             }
 
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                parent.CurrentState = Dash;
+            }
+
         }
 
         public override void TickUpdate(PlayerMotor parent)
