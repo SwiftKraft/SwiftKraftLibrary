@@ -94,6 +94,7 @@ namespace Player.Movement
             if (Input.GetKeyDown(KeyCode.LeftAlt))
             {
                 parent.CurrentState = Dash;
+                Debug.Log("PlayerMovementAirDash");
             }
 
         }
