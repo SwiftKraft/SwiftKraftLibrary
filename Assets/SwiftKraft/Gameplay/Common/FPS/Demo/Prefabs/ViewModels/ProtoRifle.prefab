@@ -990,6 +990,7 @@ GameObject:
   - component: {fileID: 7339521871737301241}
   - component: {fileID: 4179961927550141969}
   - component: {fileID: 509385651155450324}
+  - component: {fileID: 6399840945172612297}
   m_Layer: 6
   m_Name: ProtoRifle
   m_TagString: Untagged
@@ -1041,9 +1042,9 @@ MonoBehaviour:
   FOV: 55
   CamMultiplier: 2
   Local: 1
-  Offset: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 180, z: 0}
   CameraTarget: {fileID: 9059648127273929988}
-  ReferenceTarget: {fileID: 6041977976375274973}
+  ReferenceTarget: {fileID: 5815484644316226888}
 --- !u!114 &1625574590863042466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1623,6 +1624,12 @@ MonoBehaviour:
     Linger:
       <MaxValue>k__BackingField: 0
       StartEnded: 0
+  - ID: Inspect
+    Key: 105
+    Style: 0
+    Linger:
+      <MaxValue>k__BackingField: 0
+      StartEnded: 0
 --- !u!114 &3348710002142049648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1728,6 +1735,18 @@ MonoBehaviour:
   Particles:
   - Action: Attack
     ParticleSystem: {fileID: 56711355422907227}
+--- !u!114 &6399840945172612297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47d3e87ff3d8d764587380faeee78ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2244465191708029533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3678,6 +3697,14 @@ MonoBehaviour:
     States:
     - StateName: Unequip
       CrossFade: 0
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+  - ID: Inspect
+    States:
+    - StateName: Inspect
+      CrossFade: 0.2
       Weight: 1
       OnPlay:
         m_PersistentCalls:
