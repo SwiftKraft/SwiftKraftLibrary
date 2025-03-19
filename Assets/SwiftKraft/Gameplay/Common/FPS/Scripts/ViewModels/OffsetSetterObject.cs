@@ -4,6 +4,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
     public class OffsetSetterObject : MonoBehaviour
     {
+#if UNITY_EDITOR
+        public bool DebugMode;
+#endif
+
         public Vector3 TargetOffset;
         public Vector3 TargetEulerOffset;
 
@@ -42,5 +46,15 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
             Component.TargetPosition = Component.OriginalPosition;
             Component.TargetRotation = Component.OriginalRotation;
         }
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if (DebugMode)
+            {
+                Component.TargetPosition = TargetOffset;
+                Component.TargetRotation = Quaternion.Euler(TargetEulerOffset);
+            }
+        }
+#endif
     }
 }

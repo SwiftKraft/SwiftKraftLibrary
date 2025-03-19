@@ -9,6 +9,7 @@ namespace SwiftKraft.Utils
 
         public Vector3 Offset;
 
+        public Vector4 AxisMultiplier = Vector4.one;
         public float Multiplier = 1f;
 
         [field: SerializeField]
@@ -38,7 +39,12 @@ namespace SwiftKraft.Utils
 
         public void SetRotation(Quaternion rot)
         {
-            Quaternion quat = Quaternion.SlerpUnclamped(OriginalRotation, rot * Quaternion.Euler(Offset), Multiplier);
+            rot *= Quaternion.Euler(Offset);
+            rot.w *= AxisMultiplier.w;
+            rot.x *= AxisMultiplier.x;
+            rot.y *= AxisMultiplier.y;
+            rot.z *= AxisMultiplier.z;
+            Quaternion quat = Quaternion.SlerpUnclamped(OriginalRotation, rot, Multiplier);
 
             if (!Local)
                 transform.rotation = quat;
