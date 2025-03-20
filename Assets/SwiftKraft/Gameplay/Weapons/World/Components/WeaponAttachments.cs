@@ -4,9 +4,6 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public WeaponAttachmentSlot[] Slots { get; private set; }
 
-        protected virtual void Awake()
-        {
-            Slots = GetComponentsInChildren<WeaponAttachmentSlot>();
-        }
+        protected virtual void Awake() => Slots = GetComponentsInChildren<WeaponAttachmentSlot>();
     }
 }
