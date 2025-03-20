@@ -312,6 +312,7 @@ public class PL_ODM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             HandleDash(4);
+
         }
         
 
@@ -413,6 +414,7 @@ public class PL_ODM : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && hookJoints[0])
         {
             ReelInHook(0);
+
           
         }
         if (Input.GetKey(KeyCode.Space) && hookJoints[1])
@@ -429,8 +431,8 @@ public class PL_ODM : MonoBehaviour
 
         float distanceFromPoint = Vector3.Distance(transform.position, hookSwingPoints[hookIndex]);
         float targetMaxDistance = Mathf.Max(0.1f, distanceFromPoint * 0.7f);
+       
 
-        
 
 
         if (distanceFromPoint > 5.0f)
@@ -440,7 +442,7 @@ public class PL_ODM : MonoBehaviour
             Vector3 reelForceBasedOnDistance = (hookSwingPoints[hookIndex] - transform.position).normalized * (hookReelInForce * divider);
             movementScript.Rigidbody.AddForce(negateMovementForce / 4, ForceMode.Acceleration);
             movementScript.Rigidbody.AddForce(reelForceBasedOnDistance, ForceMode.Acceleration);
-            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.08f, ForceMode.VelocityChange);
+            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.1f, ForceMode.VelocityChange);
 
 
         }
