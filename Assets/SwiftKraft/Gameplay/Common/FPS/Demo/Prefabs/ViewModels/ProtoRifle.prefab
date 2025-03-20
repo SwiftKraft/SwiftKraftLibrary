@@ -991,6 +991,7 @@ GameObject:
   - component: {fileID: 4179961927550141969}
   - component: {fileID: 509385651155450324}
   - component: {fileID: 6399840945172612297}
+  - component: {fileID: 3861869158581378852}
   m_Layer: 6
   m_Name: ProtoRifle
   m_TagString: Untagged
@@ -1746,6 +1747,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47d3e87ff3d8d764587380faeee78ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3861869158581378852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c86202d33d9db44baa125f6c954db9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2244465191708029533
