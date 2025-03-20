@@ -26,7 +26,6 @@ namespace SwiftKraft.UI
 
             if (!go.TryGetComponent(out MenuBase menu))
             {
-                DestroyImmediate(go, false);
                 Debug.LogError("Prefab \"" + prefab + "\" doesn't have a MenuBase component on it!");
                 return null;
             }
