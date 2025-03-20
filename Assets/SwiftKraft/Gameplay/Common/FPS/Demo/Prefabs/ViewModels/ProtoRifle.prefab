@@ -1530,7 +1530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AimViewModelFOV: 45
-  AimCameraFOV: 75
+  AimCameraFOV: 70
 --- !u!114 &4179961927550141969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2588,7 +2588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editor: 0
+  SlotName: 
   Attachments:
   - name: Iron Sights
     package:
