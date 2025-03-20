@@ -11,7 +11,6 @@ namespace SwiftKraft.Gameplay.Damagables
 
         public void Damage(DamageDataBase data)
         {
-            Debug.Log("hit!");
             OnDamage?.Invoke(data.Damage);
             OnHit?.Invoke(data.HitPoint);
         }
