@@ -19,11 +19,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         private void OnDestroy() => Component.OnStartAction -= OnStartAction;
 
-        private void OnStartAction(string obj)
-        {
-            PlayAnimation(obj);
-            Debug.Log(obj);
-        }
+        private void OnStartAction(string obj) => PlayAnimation(obj);
 
         public void PlayAnimation(string id) => Animator.PlayAnimation(id);
     }
