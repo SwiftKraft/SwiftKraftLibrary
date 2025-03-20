@@ -67,6 +67,8 @@ public class PL_ODM : MonoBehaviour
     public List<Transform> hookStartTransforms = new List<Transform>(new Transform[] { null, null });
     public List<SpringJoint> hookJoints = new List<SpringJoint>(new SpringJoint[] { null, null });
 
+    
+
     [Header("Hook Fire Visual")]
     public List<LineRenderer> hookWireRenderers = new List<LineRenderer>(new LineRenderer[] { null, null });
 
@@ -92,6 +94,7 @@ public class PL_ODM : MonoBehaviour
         UpdateSpringSettings(1);
         CheckInputUpdate();
         ReelingSounds(0);
+
         ReelingSounds(1);
     }
 
@@ -103,6 +106,7 @@ public class PL_ODM : MonoBehaviour
     void FixedUpdate()
     {
         PredictGrappleSpot(0);
+       
         PredictGrappleSpot(1);
         CheckInputFixed();
         UpdateGasUI();
@@ -198,24 +202,63 @@ public class PL_ODM : MonoBehaviour
         hookStaticCrosshairs[1].rectTransform.position = playerCameraTransform.gameObject.GetComponent<Camera>().WorldToScreenPoint(playerCameraTransform.position + rightDirection);
     }
 
+    public static float MapToRange(float value, float minInput, float maxInput, float minOutput, float maxOutput)
+    {
+        Debug.Log("CONVERTING");
+        // Ensure the value is clamped within the input range
+        value = Mathf.Clamp(value, minInput, maxInput);
+
+        // Calculate the ratio of the value's position within the input range
+        float ratio = (value - minInput) / (maxInput - minInput);
+
+        // Map the ratio to the output range
+        float mappedValue = minOutput + ratio * (maxOutput - minOutput);
+
+        // Return the mapped value
+        return mappedValue;
+    }
+
     void UpdateSpringSettings(int hookIndex)
     {
-        if (hooksReady[hookIndex] || !hookJoints[hookIndex]) return;
+        if (hooksReady[hookIndex] || !hookJoints[hookIndex])//this has been disabled. add a ! in front of "hooksready" to reenable logic
+        {
+           
+            return;
+        }
+            
+            
 
         if (Vector3.Distance(movementScript.Rigidbody.transform.position, hookSwingPoints[hookIndex]) >= 5f)
         {
+            Debug.Log("CONVERTING");
+            
             hookJoints[hookIndex].tolerance = 0.025f;
-            hookJoints[hookIndex].spring = PL_ResourceManagement.MapToRange(movementScript.Rigidbody.velocity.sqrMagnitude, 1, 300, 7.5f, 20f);
-            hookJoints[hookIndex].damper = PL_ResourceManagement.MapToRange(movementScript.Rigidbody.velocity.sqrMagnitude, 1, 50, 2.5f, 10f);
-            hookJoints[hookIndex].massScale = PL_ResourceManagement.MapToRange(movementScript.Rigidbody.velocity.sqrMagnitude, 1, 50, 4.5f, 2f);
+            hookJoints[hookIndex].spring = MapToRange(movementScript.Rigidbody.velocity.sqrMagnitude, 1, 300, 7.5f, 20f);
+            hookJoints[hookIndex].damper = MapToRange(movementScript.Rigidbody.velocity.sqrMagnitude, 1, 50, 2.5f, 10f);
+            hookJoints[hookIndex].massScale = MapToRange(movementScript.Rigidbody.velocity.sqrMagnitude, 1, 50, 4.5f, 2f);
+            
         }
         else
         {
+            
+            Debug.Log("1");
+            /*
             hookJoints[hookIndex].tolerance = 0.025f;
             hookJoints[hookIndex].spring = 20;
             hookJoints[hookIndex].damper = 10;
             hookJoints[hookIndex].massScale = 4.5f;
+            */
+            hookJoints[hookIndex].tolerance = 0f;
+            hookJoints[hookIndex].spring = 0;
+            hookJoints[hookIndex].damper = 0;
+            hookJoints[hookIndex].massScale = 0f;
+
+
         }
+
+       
+
+      
     }
 
     void CheckInputUpdate()
@@ -250,7 +293,7 @@ public class PL_ODM : MonoBehaviour
         }
 
         // Dashing
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) )
         {
             HandleDash(0);
         }
@@ -258,7 +301,7 @@ public class PL_ODM : MonoBehaviour
         {
             HandleDash(1);
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) )
         {
             HandleDash(2);
         }
@@ -270,6 +313,7 @@ public class PL_ODM : MonoBehaviour
         {
             HandleDash(4);
         }
+        
 
         // Adjust separation
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -308,11 +352,16 @@ public class PL_ODM : MonoBehaviour
             return;
         }
 
-        if (Time.time - lastTapTime[buttonIndex] < doubleTapThreshold)
-        {
-            PerformDash(buttonIndex);
-            dashTimer = dashCooldown;
-        }
+        
+            if (Time.time - lastTapTime[buttonIndex] < doubleTapThreshold)
+            {
+                PerformDash(buttonIndex);
+                dashTimer = dashCooldown;
+            }
+        
+        
+        
+
         lastTapTime[buttonIndex] = Time.time;
     }
 
@@ -335,8 +384,9 @@ public class PL_ODM : MonoBehaviour
                 movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.forward * gasDashForce, ForceMode.VelocityChange);
                 break;
             case 4: // Up Dash
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
                 break;
+            
         }
 
         currentGasAmount -= gasDashForce;
@@ -351,6 +401,7 @@ public class PL_ODM : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             UseGas(gasForce);
+            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.03f, ForceMode.VelocityChange);
         }
         else if (isUsingGas)
         {
@@ -362,20 +413,25 @@ public class PL_ODM : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && hookJoints[0])
         {
             ReelInHook(0);
+          
         }
         if (Input.GetKey(KeyCode.Space) && hookJoints[1])
         {
             ReelInHook(1);
+
         }
     }
 
     void ReelInHook(int hookIndex)
     {
+       
         if (currentGasAmount <= 0) return;
 
         float distanceFromPoint = Vector3.Distance(transform.position, hookSwingPoints[hookIndex]);
         float targetMaxDistance = Mathf.Max(0.1f, distanceFromPoint * 0.7f);
-        hookJoints[hookIndex].maxDistance = Mathf.Lerp(hookJoints[hookIndex].maxDistance, targetMaxDistance, Time.deltaTime * 5f);
+
+        
+
 
         if (distanceFromPoint > 5.0f)
         {
@@ -384,6 +440,9 @@ public class PL_ODM : MonoBehaviour
             Vector3 reelForceBasedOnDistance = (hookSwingPoints[hookIndex] - transform.position).normalized * (hookReelInForce * divider);
             movementScript.Rigidbody.AddForce(negateMovementForce / 4, ForceMode.Acceleration);
             movementScript.Rigidbody.AddForce(reelForceBasedOnDistance, ForceMode.Acceleration);
+            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.08f, ForceMode.VelocityChange);
+
+
         }
 
         currentGasAmount -= 0.1f;
@@ -423,6 +482,7 @@ public class PL_ODM : MonoBehaviour
     void UseGas(float force)
     {
         if (currentGasAmount < 0) return;
+
 
         isUsingGas = true;
         gasAudioSource.volume = Mathf.Lerp(gasAudioSource.volume, 0.3f, Time.deltaTime * 8f);
@@ -493,6 +553,8 @@ public class PL_ODM : MonoBehaviour
         source.pitch = UnityEngine.Random.Range(0.85f, 1.25f);
         source.Play();
     }
+
+   
 
     IEnumerator LaunchAndAttachHook(int hookIndex, float distanceToPoint)
     {
