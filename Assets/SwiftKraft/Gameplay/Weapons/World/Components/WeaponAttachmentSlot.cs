@@ -1,5 +1,6 @@
 using SwiftKraft.Utils;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -55,13 +56,23 @@ namespace SwiftKraft.Gameplay.Weapons
         }
 
         [Serializable]
-        public struct Attachment
+        public struct Attachment : IEquatable<Attachment>
         {
             public string name;
             public Package package;
 
             public Vector3 targetOffset;
             public Vector3 targetEulerOffset;
+
+            public override readonly bool Equals(object obj) => obj is Attachment att && Equals(att);
+
+            public readonly bool Equals(Attachment other) => other.GetHashCode().Equals(GetHashCode());
+
+            public override readonly int GetHashCode() => HashCode.Combine(name, package, targetOffset, targetEulerOffset);
+
+            public static bool operator ==(Attachment left, Attachment right) => left.Equals(right);
+
+            public static bool operator !=(Attachment left, Attachment right) => !(left == right);
         }
     }
 }

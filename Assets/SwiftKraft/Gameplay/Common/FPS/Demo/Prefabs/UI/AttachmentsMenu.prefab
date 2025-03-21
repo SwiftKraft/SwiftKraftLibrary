@@ -1271,6 +1271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4622021c9942b6c4dadda18767cc835e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotList: {fileID: 0}
+  attachmentList: {fileID: 0}
+  slotPrefab: {fileID: 0}
+  attachmentPrefab: {fileID: 0}
 --- !u!1 &6037661303448892875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,7 +1900,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 777, y: 0}
+  m_SizeDelta: {x: 961, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &3395022701629976167
 MonoBehaviour:
