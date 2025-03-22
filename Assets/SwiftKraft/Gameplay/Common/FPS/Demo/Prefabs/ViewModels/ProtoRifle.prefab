@@ -1565,6 +1565,43 @@ MonoBehaviour:
       Volume: 0.5
       StereoPan: 0
       SpatialBlend: 1
+    VolumeMultiplier:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: -0.6
+        outSlope: -0.6
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.4
+        inSlope: -0.114793345
+        outSlope: -0.114793345
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.18048292
+      - serializedVersion: 3
+        time: 5
+        value: 0.2
+        inSlope: -0.0073254053
+        outSlope: -0.0073254053
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.20574331
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    PlayedTimes:
+      <MaxValue>k__BackingField: 5
+      <DecayRate>k__BackingField: 7
+      <CanDecay>k__BackingField: 1
 --- !u!114 &509385651155450324
 MonoBehaviour:
   m_ObjectHideFlags: 0

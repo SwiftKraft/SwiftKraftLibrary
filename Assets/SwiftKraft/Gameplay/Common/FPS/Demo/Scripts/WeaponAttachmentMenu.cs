@@ -14,6 +14,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             {
                 _target = value;
                 UpdateSlots();
+                UpdateAttachments(null);
             }
         }
         WeaponAttachments _target;
@@ -45,14 +46,14 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             Cursor.lockState = CursorLockMode.Locked;
         }
 
+        public event Action<WeaponAttachmentSlot.Attachment> OnSelectAttachment;
+
         public void SelectSlot(WeaponAttachmentSlot slot)
         {
             CurrentSlot = slot;
             OnSelectSlot?.Invoke(CurrentSlot);
             UpdateAttachments(CurrentSlot);
         }
-
-        public event Action<WeaponAttachmentSlot.Attachment> OnSelectAttachment;
 
         public void SelectAttachment(WeaponAttachmentSlot.Attachment att)
         {
@@ -69,6 +70,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                 if (tr != slotList)
                     Destroy(tr.gameObject);
 
+            if (Target == null)
+                return;
+
             foreach (WeaponAttachmentSlot slot in Target.Slots)
                 Instantiate(slotPrefab, slotList).GetComponent<AttachmentSlotUI>().Init(this, slot);
 
@@ -80,6 +84,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             foreach (Transform tr in attachmentList)
                 if (tr != attachmentList)
                     Destroy(tr.gameObject);
+
+            if (slot == null)
+                return;
 
             foreach (WeaponAttachmentSlot.Attachment att in slot.Attachments)
                 Instantiate(attachmentPrefab, attachmentList).GetComponent<AttachmentUI>().Init(this, att, slot);

@@ -20,6 +20,12 @@ namespace SwiftKraft.Gameplay.Weapons
                 au.Destroy();
         }
 
+        protected virtual void Update()
+        {
+            foreach (Audio au in Sounds)
+                au.Update();
+        }
+
         [Serializable]
         public class Audio
         {
@@ -29,6 +35,10 @@ namespace SwiftKraft.Gameplay.Weapons
             public AudioSource Source;
             public Clip[] Clips;
 
+            public AnimationCurve VolumeMultiplier;
+
+            public Accumulator PlayedTimes = new();
+
             public void Initialize(WeaponAudio audio)
             {
                 Parent = audio;
@@ -37,6 +47,8 @@ namespace SwiftKraft.Gameplay.Weapons
             }
 
             public void Destroy() => Parent.Parent.OnStartAction -= Play;
+
+            public void Update() => PlayedTimes.Tick(Time.deltaTime);
 
             public void Play(string state)
             {
@@ -50,7 +62,8 @@ namespace SwiftKraft.Gameplay.Weapons
                     return;
 
                 Clip cl = Clips.GetRandom();
-                cl?.Play(Source);
+                cl?.Play(Source, VolumeMultiplier.Evaluate(PlayedTimes.CurrentValue));
+                PlayedTimes.Increment(1f);
             }
 
             [Serializable]
@@ -68,11 +81,11 @@ namespace SwiftKraft.Gameplay.Weapons
                 [Range(0f, 1f)]
                 public float SpatialBlend = 1f;
 
-                public void Play(AudioSource source)
+                public void Play(AudioSource source, float volumeMultiplier = 1f)
                 {
                     source.priority = Priority;
                     source.pitch = Pitch;
-                    source.volume = Volume;
+                    source.volume = Volume * volumeMultiplier;
                     source.panStereo = StereoPan;
                     source.spatialBlend = SpatialBlend;
                     source.PlayOneShot(Sound);
