@@ -33,6 +33,17 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         GameObject attachmentPrefab;
 
         public event Action<WeaponAttachmentSlot> OnSelectSlot;
+        public event Action<WeaponAttachmentSlot.Attachment> OnSelectAttachment;
+
+        private void Awake() => MenuOpen.UpdateOpen += MenuOpen_UpdateOpen;
+
+        private void OnDestroy() => MenuOpen.UpdateOpen -= MenuOpen_UpdateOpen;
+
+        private void MenuOpen_UpdateOpen(bool obj)
+        {
+            if (obj)
+                Active = false;
+        }
 
         private void OnEnable()
         {
@@ -45,8 +56,6 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
-
-        public event Action<WeaponAttachmentSlot.Attachment> OnSelectAttachment;
 
         public void SelectSlot(WeaponAttachmentSlot slot)
         {

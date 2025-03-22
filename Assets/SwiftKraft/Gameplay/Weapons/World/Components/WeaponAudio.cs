@@ -62,7 +62,7 @@ namespace SwiftKraft.Gameplay.Weapons
                     return;
 
                 Clip cl = Clips.GetRandom();
-                cl?.Play(Source, VolumeMultiplier.Evaluate(PlayedTimes.CurrentValue));
+                cl?.Play(Source, VolumeMultiplier.keys.Length > 0 ? VolumeMultiplier.Evaluate(PlayedTimes.CurrentValue) : 1f);
                 PlayedTimes.Increment(1f);
             }
 
