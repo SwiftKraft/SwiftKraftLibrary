@@ -20,11 +20,20 @@ namespace SwiftKraft.UI
                 Destroy(gameObject);
         }
 
-        public MenuBase AddMenu(string id, GameObject prefab)
+        public bool TryAddMenu<T>(string id, GameObject prefab, out T menu) where T : MenuBase
         {
+            menu = AddMenu<T>(id, prefab);
+            return menu != null;
+        }
+
+        public T AddMenu<T>(string id, GameObject prefab) where T : MenuBase
+        {
+            if (Menus.ContainsKey(id))
+                return null;
+
             GameObject go = Instantiate(prefab, Workspace);
 
-            if (!go.TryGetComponent(out MenuBase menu))
+            if (!go.TryGetComponent(out T menu))
             {
                 Debug.LogError("Prefab \"" + prefab + "\" doesn't have a MenuBase component on it!");
                 return null;
@@ -32,6 +41,23 @@ namespace SwiftKraft.UI
 
             Menus.Add(id, menu);
             return menu;
+        }
+
+        public void RemoveMenu(string id)
+        {
+            if (!Menus.ContainsKey(id))
+                return;
+
+            Destroy(Menus[id].gameObject);
+            Menus.Remove(id);
+        }
+
+        public void SetMenu(string id, bool active)
+        {
+            if (!Menus.ContainsKey(id))
+                return;
+
+            Menus[id].Active = active;
         }
     }
 }

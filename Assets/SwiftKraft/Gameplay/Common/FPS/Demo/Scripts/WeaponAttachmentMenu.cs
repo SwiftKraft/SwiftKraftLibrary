@@ -1,9 +1,7 @@
 using SwiftKraft.Gameplay.Weapons;
 using SwiftKraft.UI;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace SwiftKraft.Gameplay.Common.FPS.Demo
 {
@@ -35,11 +33,35 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         public event Action<WeaponAttachmentSlot> OnSelectSlot;
 
-        public void SelectSlot(WeaponAttachmentSlot slot) => OnSelectSlot?.Invoke(slot);
+        private void OnEnable()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
+        private void OnDisable()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        public void SelectSlot(WeaponAttachmentSlot slot)
+        {
+            CurrentSlot = slot;
+            OnSelectSlot?.Invoke(CurrentSlot);
+            UpdateAttachments(CurrentSlot);
+        }
 
         public event Action<WeaponAttachmentSlot.Attachment> OnSelectAttachment;
 
-        public void SelectAttachment(WeaponAttachmentSlot.Attachment index) => OnSelectAttachment?.Invoke(index);
+        public void SelectAttachment(WeaponAttachmentSlot.Attachment att)
+        {
+            if (CurrentSlot != null)
+            {
+                CurrentSlot.AttachmentIndex = Array.IndexOf(CurrentSlot.Attachments, att);
+                OnSelectAttachment?.Invoke(att);
+            }
+        }
 
         public void UpdateSlots()
         {
@@ -49,6 +71,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
             foreach (WeaponAttachmentSlot slot in Target.Slots)
                 Instantiate(slotPrefab, slotList).GetComponent<AttachmentSlotUI>().Init(this, slot);
+
+            CurrentSlot = null;
         }
 
         public void UpdateAttachments(WeaponAttachmentSlot slot)
@@ -58,7 +82,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                     Destroy(tr.gameObject);
 
             foreach (WeaponAttachmentSlot.Attachment att in slot.Attachments)
-                Instantiate(attachmentPrefab, attachmentList);
+                Instantiate(attachmentPrefab, attachmentList).GetComponent<AttachmentUI>().Init(this, att, slot);
+
+            SelectAttachment(slot.Attachments[slot.AttachmentIndex]);
         }
     }
 }
