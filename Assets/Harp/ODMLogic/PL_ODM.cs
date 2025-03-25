@@ -232,7 +232,7 @@ public class PL_ODM : MonoBehaviour
             
             
 
-        if (Vector3.Distance(movementScript.Rigidbody.transform.position, hookSwingPoints[hookIndex]) >= 5f)
+        if (Vector3.Distance(movementScript.Rigidbody.transform.position, hookSwingPoints[hookIndex]) >= 5f && !isReeling)
         {
             Debug.Log("CONVERTING");
             
@@ -315,8 +315,8 @@ public class PL_ODM : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           // HandleDash(4);
-           //Big Jump Temp Disabled
+            HandleDash(4);
+           //Big Jump 
 
         }
         
@@ -448,11 +448,11 @@ public class PL_ODM : MonoBehaviour
 
         float distanceFromPoint = Vector3.Distance(transform.position, hookSwingPoints[hookIndex]);
         float targetMaxDistance = Mathf.Max(0.1f, distanceFromPoint * 0.7f);
-       
 
 
 
-        if (distanceFromPoint > 5.0f)
+
+        if (distanceFromPoint > 0.0f)
         {
             divider = Mathf.Lerp(divider, PL_ResourceManagement.MapToRange(distanceFromPoint, 0, hookMaxDistance, 0.1f, 0.01f), Time.deltaTime * 4f);
 
@@ -464,6 +464,8 @@ public class PL_ODM : MonoBehaviour
 
 
         }
+        else
+            Debug.Log("hooktooshort");
         
 
         currentGasAmount -= 0.1f;
