@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class PL_ODM : MonoBehaviour
 {
+    [SerializeField]
+    private bool isReeling = false;
+    private Vector3 velocityDamping = Vector3.zero;
+
     Vector3 leftDirection;
     Vector3 rightDirection;
 
@@ -110,6 +114,8 @@ public class PL_ODM : MonoBehaviour
         PredictGrappleSpot(1);
         CheckInputFixed();
         UpdateGasUI();
+
+
     }
 
     void UpdateCooldownTimers()
@@ -411,16 +417,21 @@ public class PL_ODM : MonoBehaviour
         }
 
         // Hook reeling
-        if (Input.GetKey(KeyCode.Space) && hookJoints[0])
+        if (Input.GetKey(KeyCode.Space))
         {
-            ReelInHook(0);
-
-          
+            if (hookJoints[0])
+            {
+                ReelInHook(0);
+            }
+            if (hookJoints[1])
+            {
+                ReelInHook(1);
+            }
+           
         }
-        if (Input.GetKey(KeyCode.Space) && hookJoints[1])
+        else
         {
-            ReelInHook(1);
-
+            isReeling = false; // Reset when key is released
         }
     }
 
@@ -428,6 +439,14 @@ public class PL_ODM : MonoBehaviour
     {
        
         if (currentGasAmount <= 0) return;
+
+
+        // Reset velocity only when reeling starts
+        if (!isReeling)
+        {
+            isReeling = true;
+            velocityDamping = movementScript.Rigidbody.velocity; // Store initial velocity for smooth damping
+        }
 
         float distanceFromPoint = Vector3.Distance(transform.position, hookSwingPoints[hookIndex]);
         float targetMaxDistance = Mathf.Max(0.1f, distanceFromPoint * 0.7f);
@@ -446,9 +465,11 @@ public class PL_ODM : MonoBehaviour
 
 
         }
+        
 
         currentGasAmount -= 0.1f;
     }
+
 
     void ReelingSounds(int hookIndex)
     {
