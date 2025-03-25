@@ -437,10 +437,11 @@ public class PL_ODM : MonoBehaviour
        
         if (currentGasAmount <= 0) return;
 
+        Vector3 previousVelocity = movementScript.Rigidbody.velocity; // Store current velocity
         if (!isReeling)
         {
             isReeling = true;
-            movementScript.Rigidbody.velocity = Vector3.zero;
+           
         }
 
 
@@ -453,10 +454,11 @@ public class PL_ODM : MonoBehaviour
         if (distanceFromPoint > 5.0f)
         {
             divider = Mathf.Lerp(divider, PL_ResourceManagement.MapToRange(distanceFromPoint, 0, hookMaxDistance, 0.1f, 0.01f), Time.deltaTime * 4f);
-            Vector3 negateMovementForce = movementScript.Rigidbody.velocity.normalized / 4;
+
             Vector3 reelForceBasedOnDistance = (hookSwingPoints[hookIndex] - transform.position).normalized * (hookReelInForce * divider);
-            movementScript.Rigidbody.AddForce(negateMovementForce / 4, ForceMode.Acceleration);
-            movementScript.Rigidbody.AddForce(reelForceBasedOnDistance, ForceMode.Acceleration);
+            Vector3 newVelocity = Vector3.Lerp(previousVelocity, reelForceBasedOnDistance, Time.deltaTime * 4f); // Smoothly transition
+
+            movementScript.Rigidbody.velocity = newVelocity; // Apply smooth transition
             movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.1f, ForceMode.VelocityChange);
 
 
