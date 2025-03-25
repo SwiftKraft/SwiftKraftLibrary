@@ -1,5 +1,6 @@
 using SwiftKraft.Utils;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -55,7 +56,7 @@ namespace SwiftKraft.Gameplay.Weapons
         }
 
         [Serializable]
-        public struct Attachment
+        public class Attachment
         {
             public string name;
             public Package package;

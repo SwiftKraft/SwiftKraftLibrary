@@ -111,8 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4333cb385eb8ca34ea4ddc598d1911d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IdleStateNames:
+  - Idle
   ReloadStateNames:
   - Reload
+  MidReloadStateNames: []
+  FullEndReloadThreshold: 0.9
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

@@ -27,11 +27,11 @@ namespace QFSW.QC.Extras
         [Command("current-resolution", "current resolution of the application or window.")]
         private static Resolution GetCurrentResolution()
         {
-            Resolution resolution = new Resolution
+            Resolution resolution = new()
             {
                 width = Screen.width,
                 height = Screen.height,
-                refreshRate = Screen.currentResolution.refreshRate
+                refreshRateRatio = Screen.currentResolution.refreshRateRatio
             };
 
             return resolution;

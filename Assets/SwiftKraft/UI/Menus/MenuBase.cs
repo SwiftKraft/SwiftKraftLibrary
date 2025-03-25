@@ -18,7 +18,7 @@ namespace SwiftKraft.UI
                 OnActiveChanged?.Invoke();
             }
         }
-        bool _active;
+        bool _active = true;
 
         public event Action OnActiveChanged;
     }
