@@ -8,7 +8,6 @@ public class PL_ODM : MonoBehaviour
 {
     [SerializeField]
     private bool isReeling = false;
-    private Vector3 velocityDamping = Vector3.zero;
 
     Vector3 leftDirection;
     Vector3 rightDirection;
@@ -114,8 +113,6 @@ public class PL_ODM : MonoBehaviour
         PredictGrappleSpot(1);
         CheckInputFixed();
         UpdateGasUI();
-
-
     }
 
     void UpdateCooldownTimers()
@@ -317,7 +314,8 @@ public class PL_ODM : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            HandleDash(4);
+           // HandleDash(4);
+           //Big Jump Temp Disabled
 
         }
         
@@ -418,20 +416,19 @@ public class PL_ODM : MonoBehaviour
 
         // Hook reeling
         if (Input.GetKey(KeyCode.Space))
+    {
+        if (hookJoints[0])
         {
-            if (hookJoints[0])
-            {
-                ReelInHook(0);
-            }
-            if (hookJoints[1])
-            {
-                ReelInHook(1);
-            }
-           
+            ReelInHook(0);
         }
+        if (hookJoints[1])
+        {
+            ReelInHook(1);
+        }
+    }
         else
         {
-            isReeling = false; // Reset when key is released
+            isReeling = false;
         }
     }
 
@@ -440,13 +437,12 @@ public class PL_ODM : MonoBehaviour
        
         if (currentGasAmount <= 0) return;
 
-
-        // Reset velocity only when reeling starts
         if (!isReeling)
         {
             isReeling = true;
-            velocityDamping = movementScript.Rigidbody.velocity; // Store initial velocity for smooth damping
+            movementScript.Rigidbody.velocity = Vector3.zero;
         }
+
 
         float distanceFromPoint = Vector3.Distance(transform.position, hookSwingPoints[hookIndex]);
         float targetMaxDistance = Mathf.Max(0.1f, distanceFromPoint * 0.7f);
@@ -469,7 +465,6 @@ public class PL_ODM : MonoBehaviour
 
         currentGasAmount -= 0.1f;
     }
-
 
     void ReelingSounds(int hookIndex)
     {

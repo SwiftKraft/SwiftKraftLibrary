@@ -152,7 +152,7 @@ namespace Player.Movement
 
         public override void TryJump(PlayerMotor parent, float speed = -1f)
         {
-            Debug.Log("Jumped");
+            
             base.TryJump(parent);
             parent.PlayMotorSound(1);
         }
