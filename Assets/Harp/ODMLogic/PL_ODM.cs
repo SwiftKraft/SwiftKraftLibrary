@@ -319,7 +319,31 @@ public class PL_ODM : MonoBehaviour
            //Big Jump 
 
         }
+
+        //Orbiting
+        if (movementScript.IsGrounded == false) //Player distance from point is too long  )
+        {
+            if (Input.GetKey(KeyCode.W) && isReeling)
+            {
+                HandleDashNoDoubleTap(5);
+            }
+            if (Input.GetKey(KeyCode.S) && isReeling)
+            {
+                HandleDashNoDoubleTap(6);
+            }
+            if (Input.GetKey(KeyCode.A) && isReeling)
+            {
+                HandleDashNoDoubleTap(7);
+            }
+            if (Input.GetKey(KeyCode.D) && isReeling)
+            {
+                HandleDashNoDoubleTap(8);
+            }
+        }
+        else
+            return;
         
+
 
         // Adjust separation
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -370,6 +394,21 @@ public class PL_ODM : MonoBehaviour
 
         lastTapTime[buttonIndex] = Time.time;
     }
+    void HandleDashNoDoubleTap(int buttonIndex)
+    {
+       
+
+
+        
+            PerformDash(buttonIndex);
+            dashTimer = dashCooldown;
+        
+
+
+
+
+        
+    }
 
     void PerformDash(int buttonIndex)
     {
@@ -392,9 +431,23 @@ public class PL_ODM : MonoBehaviour
             case 4: // Up Dash
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
                 break; ///Up Down Left Right Forces for when hooked, gas enabled, and holding WASD keys need to be created.
-            
+            case 5: // Up Orbit
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 22f, ForceMode.VelocityChange);
+                break;
+            case 6: // Down Orbit
+                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 22f, ForceMode.VelocityChange);
+                break;
+            case 7: // Left Orbit
+                movementScript.Rigidbody.AddForce(-playerCameraTransform.right * gasDashForce / 22f, ForceMode.VelocityChange);
+                break;
+            case 8: // Right Orbit
+                movementScript.Rigidbody.AddForce(playerCameraTransform.right * gasDashForce / 22f, ForceMode.VelocityChange);
+                break;
         }
+        
+        
 
+        
         currentGasAmount -= gasDashForce;
         gasDashParticles.Emit(120);
         gasDashParticles.Play();
