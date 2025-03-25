@@ -8,6 +8,8 @@ public class PL_ODM : MonoBehaviour
 {
     [SerializeField]
     private bool isReeling = false;
+    PlayerMovementSlide slide;
+    PlayerMovementGround ground;
 
     Vector3 leftDirection;
     Vector3 rightDirection;
@@ -229,8 +231,9 @@ public class PL_ODM : MonoBehaviour
            
             return;
         }
-            
-            
+
+        
+
 
         if (Vector3.Distance(movementScript.Rigidbody.transform.position, hookSwingPoints[hookIndex]) >= 5f && !isReeling)
         {
@@ -300,6 +303,7 @@ public class PL_ODM : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A) )
         {
             HandleDash(0);
+
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -315,7 +319,7 @@ public class PL_ODM : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            HandleDash(4);
+            //HandleDash(4);
            //Big Jump 
 
         }
@@ -402,7 +406,7 @@ public class PL_ODM : MonoBehaviour
         
             PerformDash(buttonIndex);
             dashTimer = dashCooldown;
-        
+       
 
 
 
@@ -432,16 +436,18 @@ public class PL_ODM : MonoBehaviour
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
                 break; ///Up Down Left Right Forces for when hooked, gas enabled, and holding WASD keys need to be created.
             case 5: // Up Orbit
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 22f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 25f, ForceMode.VelocityChange);
                 break;
             case 6: // Down Orbit
-                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 22f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 25f, ForceMode.VelocityChange);
                 break;
             case 7: // Left Orbit
                 movementScript.Rigidbody.AddForce(-playerCameraTransform.right * gasDashForce / 22f, ForceMode.VelocityChange);
                 break;
             case 8: // Right Orbit
                 movementScript.Rigidbody.AddForce(playerCameraTransform.right * gasDashForce / 22f, ForceMode.VelocityChange);
+
+                
                 break;
         }
         
@@ -451,7 +457,7 @@ public class PL_ODM : MonoBehaviour
         currentGasAmount -= gasDashForce;
         gasDashParticles.Emit(120);
         gasDashParticles.Play();
-        gasDashAudioSource.Play();
+        //gasDashAudioSource.Play();
     }
 
     void CheckInputFixed()
@@ -460,7 +466,8 @@ public class PL_ODM : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             UseGas(gasForce);
-            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.03f, ForceMode.VelocityChange);
+            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.09f, ForceMode.VelocityChange);
+            movementScript.Rigidbody.AddForce(playerCameraTransform.transform.forward* 0.03f, ForceMode.VelocityChange);
         }
         else if (isUsingGas)
         {
@@ -682,6 +689,8 @@ public class PL_ODM : MonoBehaviour
             hookJoints[hookIndex].massScale = PL_ResourceManagement.MapToRange(movementScript.Rigidbody.velocity.sqrMagnitude, 1, 50, 4.5f, 2f);
 
             hookSwingPoints[hookIndex] = hookSwingPoints[hookIndex];
+            
+
         }
     }
 
