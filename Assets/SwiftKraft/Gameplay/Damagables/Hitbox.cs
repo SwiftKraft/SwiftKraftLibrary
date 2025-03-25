@@ -9,7 +9,7 @@ namespace SwiftKraft.Gameplay.Damagables
 
         protected virtual void Awake()
         {
-            Parent = transform.root.GetComponent<IDamagable>();
+            Parent = transform.parent.GetComponentInParent<IDamagable>();
 
             if ((Object)Parent == this)
                 Parent = null;

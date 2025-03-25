@@ -76,6 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 682911739140861939}
   - component: {fileID: 609099804317251974}
+  - component: {fileID: 6458779792178021028}
   m_Layer: 6
   m_Name: Recoil
   m_TagString: Untagged
@@ -112,6 +113,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10905300e5220d94488e076131f6cebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6458779792178021028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494483808487335652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35f9fae976f21c4588318334327fef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModifyTarget: {fileID: 682911739140861939}
+  Multiplier: 1
+  Maximum: 0.75
+  SmoothTime: 0.1
 --- !u!1 &631380733960251861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,11 +1084,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FOV: 55
+  CamAxisMultiplier: {x: 1, y: -1, z: -1, w: -1}
   CamMultiplier: 2
   Local: 1
-  Offset: {x: 0, y: 180, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
   CameraTarget: {fileID: 4559479819889157728}
-  ReferenceTarget: {fileID: 8175185491969983762}
+  ReferenceTarget: {fileID: 6041977976375274973}
 --- !u!114 &1625574590863042466
 MonoBehaviour:
   m_ObjectHideFlags: 0

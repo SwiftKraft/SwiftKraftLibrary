@@ -1,8 +1,7 @@
-using SwiftKraft.Gameplay.Weapons;
 using SwiftKraft.Utils;
 using UnityEngine;
 
-namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
+namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAdsOffset : OptionalModifyTransformComponent
     {

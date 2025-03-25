@@ -1,10 +1,15 @@
 using SwiftKraft.Gameplay.Motors;
+using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.Demo
 {
     public class MenuOpen : MonoBehaviour
     {
+        public static bool IsOpen { get; private set; }
+
+        public static event Action<bool> UpdateOpen;
+
         public GameObject MenuObject;
 
         private void Update()
@@ -21,6 +26,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = active;
             GameObject.Find("Player").GetComponent<MotorBase>().Enabled = !active;
+            IsOpen = active;
+            UpdateOpen?.Invoke(IsOpen);
         }
 
         public void QuitGame()
