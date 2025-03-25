@@ -456,7 +456,7 @@ public class PL_ODM : MonoBehaviour
             divider = Mathf.Lerp(divider, PL_ResourceManagement.MapToRange(distanceFromPoint, 0, hookMaxDistance, 0.1f, 0.01f), Time.deltaTime * 4f);
 
             Vector3 reelForceBasedOnDistance = (hookSwingPoints[hookIndex] - transform.position).normalized * (hookReelInForce * divider);
-            Vector3 newVelocity = Vector3.Lerp(previousVelocity, reelForceBasedOnDistance, Time.deltaTime * 4f); // Smoothly transition
+            Vector3 newVelocity = Vector3.Lerp(previousVelocity, reelForceBasedOnDistance, Time.deltaTime * 2f); // Smoothly transition[The greater the f value the stronger the lerp]
 
             movementScript.Rigidbody.velocity = newVelocity; // Apply smooth transition
             movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.1f, ForceMode.VelocityChange);
