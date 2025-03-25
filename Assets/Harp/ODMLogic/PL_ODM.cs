@@ -391,7 +391,7 @@ public class PL_ODM : MonoBehaviour
                 break;
             case 4: // Up Dash
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
-                break;
+                break; ///Up Down Left Right Forces for when hooked, gas enabled, and holding WASD keys need to be created.
             
         }
 
