@@ -13,6 +13,7 @@ public class PL_ODM : MonoBehaviour
     Vector3 rightDirection;
 
     [Header("Main")]
+
     public float hookEjectForce = 2;
     public float hookReelInForce = 2;
     public float hookMaxDistance = 100;
@@ -441,7 +442,7 @@ public class PL_ODM : MonoBehaviour
         if (!isReeling)
         {
             isReeling = true;
-           
+            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.1f, ForceMode.Impulse);
         }
 
 
