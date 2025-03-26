@@ -1,8 +1,6 @@
 using SwiftKraft.Utils;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
@@ -14,6 +12,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public string SlotName;
 
         public WeaponAdsOffset AdsOffset { get; private set; }
+        public WeaponShootPoint ShootPoint { get; private set; }
         public WeaponAttachments Parent { get; private set; }
 
         public int AttachmentIndex
@@ -32,14 +31,19 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public Attachment[] Attachments;
 
-        WeaponAdsOffset.Override offset;
+        WeaponAdsOffset.Override offsetAds;
+        WeaponShootPoint.Override offsetShootPoint;
 
         protected override void Awake()
         {
             base.Awake();
             Parent = GetComponentInParent<WeaponAttachments>();
             AdsOffset = GetComponentInParent<WeaponAdsOffset>();
-            offset = AdsOffset.AddOverride();
+            ShootPoint = GetComponentInParent<WeaponShootPoint>();
+            if (AdsOffset != null)
+                offsetAds = AdsOffset.AddOverride();
+            if (ShootPoint != null)
+                offsetShootPoint = ShootPoint.AddOverride();
 
             if (Attachments.Length == 0)
             {
@@ -47,16 +51,10 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
             }
 
-            foreach (Attachment attachment in Attachments)
-            {
-                attachment.parent = this;
-                attachment.Awake();
-            }
-
             UpdateAttachment();
         }
 
-        private void OnDestroy() => offset.Dispose();
+        private void OnDestroy() => offsetAds.Dispose();
 
 #if UNITY_EDITOR
         private void Update()
@@ -71,53 +69,28 @@ namespace SwiftKraft.Gameplay.Weapons
             Attachment att = Attachments[AttachmentIndex];
             SwapMesh(att.package);
 
-            att.Update();
+            if (offsetShootPoint != null)
+                offsetShootPoint.OverridePosition = att.shootPointOffset;
 
-            if (offset != null)
+            if (offsetAds != null)
             {
-                offset.TargetPosition = att.targetOffset;
-                offset.TargetRotation = Quaternion.Euler(att.targetEulerOffset);
+                offsetAds.TargetPosition = att.targetOffset;
+                offsetAds.TargetRotation = Quaternion.Euler(att.targetEulerOffset);
             }
         }
 
         [Serializable]
         public class Attachment
         {
-            [HideInInspector]
-            public WeaponAttachmentSlot parent;
-
             public string name;
             public Package package;
 
-            public readonly List<AttachmentPropertyBase> properties = new();
+            [Header("Shoot Point Offset")]
+            public Vector3 shootPointOffset;
 
-            public void Awake()
-            {
-                foreach (AttachmentPropertyBase prop in properties)
-                {
-                    prop.parent = parent;
-                    prop.Awake();
-                }
-            }
-
-            public void Update()
-            {
-                foreach (AttachmentPropertyBase prop in properties)
-                    prop.Update();
-            }
-
+            [Header("Aim Offset")]
             public Vector3 targetOffset;
             public Vector3 targetEulerOffset;
-        }
-
-        [Serializable]
-        public abstract class AttachmentPropertyBase
-        {
-            [HideInInspector]
-            public WeaponAttachmentSlot parent;
-
-            public abstract void Awake();
-            public abstract void Update();
         }
     }
 }
