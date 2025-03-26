@@ -7,6 +7,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAttachmentSlot : MeshSwapper
     {
+        public bool DebugMode = false;
+
         public string SlotName;
 
         public WeaponAdsOffset AdsOffset { get; private set; }
@@ -42,6 +44,13 @@ namespace SwiftKraft.Gameplay.Weapons
 
             UpdateAttachment();
         }
+
+        private void Update()
+        {
+            if (DebugMode)
+                UpdateAttachment();
+        }
+
 
         public void UpdateAttachment()
         {
