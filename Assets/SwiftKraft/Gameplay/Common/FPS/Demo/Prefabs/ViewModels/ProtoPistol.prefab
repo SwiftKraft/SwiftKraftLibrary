@@ -865,6 +865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 0
   SlotName: Underbarrel
   Attachments:
   - name: None
@@ -882,7 +883,7 @@ MonoBehaviour:
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
     targetOffset: {x: 0, y: -0.0035, z: 0}
-    targetEulerOffset: {x: 0.03, y: 0, z: 0}
+    targetEulerOffset: {x: -0.34, y: 0, z: 0}
 --- !u!1 &1667363172519472068
 GameObject:
   m_ObjectHideFlags: 0
