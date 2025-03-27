@@ -51,6 +51,9 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
             }
 
+            foreach (Attachment att in Attachments)
+                att.Init(this);
+
             UpdateAttachment();
         }
 
@@ -69,6 +72,8 @@ namespace SwiftKraft.Gameplay.Weapons
             Attachment att = Attachments[AttachmentIndex];
             SwapMesh(att.package);
 
+            att.Update();
+
             if (offsetShootPoint != null)
                 offsetShootPoint.OverridePosition = att.shootPointOffset;
 
@@ -82,8 +87,27 @@ namespace SwiftKraft.Gameplay.Weapons
         [Serializable]
         public class Attachment
         {
+            [HideInInspector]
+            public WeaponAttachmentSlot parent;
+
             public string name;
             public Package package;
+
+            [SerializeReference, Subclass]
+            public AttachmentProperty[] properties;
+
+            public void Init(WeaponAttachmentSlot parent)
+            {
+                this.parent = parent;
+                foreach (AttachmentProperty prop in properties)
+                    prop.Init(this);
+            }
+
+            public void Update()
+            {
+                foreach (AttachmentProperty prop in properties)
+                    prop.Update();
+            }
 
             [Header("Shoot Point Offset")]
             public Vector3 shootPointOffset;
@@ -91,6 +115,17 @@ namespace SwiftKraft.Gameplay.Weapons
             [Header("Aim Offset")]
             public Vector3 targetOffset;
             public Vector3 targetEulerOffset;
+        }
+
+        [Serializable]
+        public abstract class AttachmentProperty
+        {
+            [HideInInspector]
+            public Attachment parent;
+
+            public virtual void Init(Attachment parent) => this.parent = parent;
+
+            public abstract void Update();
         }
     }
 }
