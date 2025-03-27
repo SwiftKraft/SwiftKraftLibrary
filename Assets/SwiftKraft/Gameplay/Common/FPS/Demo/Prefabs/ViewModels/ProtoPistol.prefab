@@ -868,7 +868,8 @@ MonoBehaviour:
   DebugMode: 0
   SlotName: Underbarrel
   Attachments:
-  - name: None
+  - parent: {fileID: 0}
+    name: None
     package:
       mesh: {fileID: 0}
       materials: []
@@ -876,7 +877,8 @@ MonoBehaviour:
     shootPointOffset: {x: 0, y: 0, z: 0}
     targetOffset: {x: 0, y: 0, z: 0}
     targetEulerOffset: {x: 0, y: 0, z: 0}
-  - name: Holographic Sight
+  - parent: {fileID: 0}
+    name: Holographic Sight
     package:
       mesh: {fileID: -7429937956110996719, guid: 384f8faa6b87553429a38b543c2a4468,
         type: 3}
@@ -3958,7 +3960,8 @@ MonoBehaviour:
   DebugMode: 0
   SlotName: Barrel
   Attachments:
-  - name: None
+  - parent: {fileID: 0}
+    name: None
     package:
       mesh: {fileID: 0}
       materials: []
@@ -3966,9 +3969,23 @@ MonoBehaviour:
     shootPointOffset: {x: 0, y: 0, z: 0}
     targetOffset: {x: 0, y: 0, z: 0}
     targetEulerOffset: {x: 0, y: 0, z: 0}
-  - name: Suppressor
+  - parent: {fileID: 0}
+    name: Suppressor
     package:
-      mesh: {fileID: 8108563764783910780, guid: 384f8faa6b87553429a38b543c2a4468,
+      mesh: {fileID: -7062360709606581966, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties: []
+    shootPointOffset: {x: 0, y: 0, z: -0.00833}
+    targetOffset: {x: 0, y: 0, z: 0}
+    targetEulerOffset: {x: 0, y: 0, z: 0}
+  - parent: {fileID: 0}
+    name: Oil Can
+    package:
+      mesh: {fileID: -1507717837821073057, guid: 384f8faa6b87553429a38b543c2a4468,
         type: 3}
       materials:
       - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
