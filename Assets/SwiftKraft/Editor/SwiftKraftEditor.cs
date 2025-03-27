@@ -25,5 +25,23 @@ namespace SwiftKraft.Editors
 
             serializedObject.ApplyModifiedProperties();
         }
+
+        public void DrawDefaultInspectorOf(SerializedObject obj)
+        {
+            EditorGUI.BeginChangeCheck();
+            SerializedProperty iterator = obj.GetIterator();
+            bool enterChildren = true;
+            while (iterator.NextVisible(enterChildren))
+            {
+                using (new EditorGUI.DisabledScope("m_Script" == iterator.propertyPath))
+                {
+                    EditorGUILayout.PropertyField(iterator, true);
+                }
+
+                enterChildren = false;
+            }
+
+            obj.ApplyModifiedProperties();
+        }
     }
 }

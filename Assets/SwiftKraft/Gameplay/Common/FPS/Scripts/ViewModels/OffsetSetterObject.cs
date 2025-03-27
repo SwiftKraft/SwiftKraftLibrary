@@ -8,52 +8,40 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 #if UNITY_EDITOR
         public bool DebugMode;
 #endif
-
         public Vector3 TargetOffset;
         public Vector3 TargetEulerOffset;
 
-        public WeaponAdsOffset Component
-        {
-            get
-            {
-                if (_component == null)
-                    _component = GetComponentInParent<WeaponAdsOffset>();
+        WeaponAdsOffset.Override offset;
 
-                return _component;
-            }
-        }
-        WeaponAdsOffset _component;
+        private void Awake() => offset = GetComponentInParent<WeaponAdsOffset>().AddOverride();
 
         private void Start()
         {
-            Component.TargetPosition = TargetOffset;
-            Component.TargetRotation = Quaternion.Euler(TargetEulerOffset);
+            offset.TargetPosition = TargetOffset;
+            offset.TargetRotation = Quaternion.Euler(TargetEulerOffset);
         }
 
-        private void OnDestroy()
-        {
-            Component.TargetPosition = Component.OriginalPosition;
-            Component.TargetRotation = Component.OriginalRotation;
-        }
+        private void OnDestroy() => offset.Dispose();
 
         private void OnEnable()
         {
-            Component.TargetPosition = TargetOffset;
-            Component.TargetRotation = Quaternion.Euler(TargetEulerOffset);
+            offset.TargetPosition = TargetOffset;
+            offset.TargetRotation = Quaternion.Euler(TargetEulerOffset);
         }
 
         private void OnDisable()
         {
-            Component.TargetPosition = Component.OriginalPosition;
-            Component.TargetRotation = Component.OriginalRotation;
+            offset.TargetPosition = default;
+            offset.TargetRotation = new(0f, 0f, 0f, 1f);
         }
+
 #if UNITY_EDITOR
         private void Update()
         {
             if (DebugMode)
             {
-                Component.TargetPosition = TargetOffset;
-                Component.TargetRotation = Quaternion.Euler(TargetEulerOffset);
+                offset.TargetPosition = TargetOffset;
+                offset.TargetRotation = Quaternion.Euler(TargetEulerOffset);
             }
         }
 #endif
