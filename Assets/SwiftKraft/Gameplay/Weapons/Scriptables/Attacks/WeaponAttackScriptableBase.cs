@@ -1,4 +1,5 @@
 using SwiftKraft.Gameplay.Interfaces;
+using SwiftKraft.Gameplay.Projectiles;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -19,6 +20,8 @@ namespace SwiftKraft.Gameplay.Weapons
             Parent.PreAttackEvent();
             GameObject go = Instantiate(Prefab, origin.position, origin.rotation);
             Parent.AttackEvent(go);
+            if (go.TryGetComponent(out ProjectileBase projectile))
+                projectile.BaseDamage = Parent.Damage;
 
             if (go.TryGetComponent(out IPet pet))
                 pet.Owner = Parent.GetRootOwner();

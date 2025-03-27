@@ -906,6 +906,9 @@ MonoBehaviour:
   <Scriptable>k__BackingField: {fileID: 11400000, guid: 7264d4b325d14ba43a7ba197903536f5,
     type: 2}
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
+  Damage:
+    <BaseValue>k__BackingField: 25
+    <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
@@ -4629,7 +4632,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 5815484644316226888}
   Multiplier: 1
-  Maximum: 1.6
+  TiltMultiplier: -3
+  Maximum: 1.2
+  TiltMaximum: 2
   SmoothTime: 0.15
 --- !u!1 &8488331807436290598
 GameObject:

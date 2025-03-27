@@ -41,6 +41,8 @@ namespace SwiftKraft.Gameplay.Weapons
         [field: SerializeField]
         public Transform AttackOrigin { get; private set; }
 
+        public ModifiableStatistic Damage;
+
         public List<WeaponAttackScriptableBase> AttackModeCache
         {
             get

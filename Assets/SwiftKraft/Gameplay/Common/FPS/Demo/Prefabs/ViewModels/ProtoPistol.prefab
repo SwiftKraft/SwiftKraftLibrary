@@ -127,7 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 682911739140861939}
   Multiplier: 1
+  TiltMultiplier: -2
   Maximum: 1
+  TiltMaximum: 1.25
   SmoothTime: 0.1
 --- !u!1 &631380733960251861
 GameObject:
@@ -1318,6 +1320,9 @@ MonoBehaviour:
   <Scriptable>k__BackingField: {fileID: 11400000, guid: 65ee1a21c4352e94a8492fa1b58c9533,
     type: 2}
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
+  Damage:
+    <BaseValue>k__BackingField: 20
+    <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
@@ -1875,7 +1880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1cc2a07f70c6741a0a17880fb9a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimViewModelFOV: 50
+  AimViewModelFOV: 45
   AimCameraFOV: 75
 --- !u!114 &8238681385561808684
 MonoBehaviour:
