@@ -20,6 +20,12 @@ namespace SwiftKraft.Gameplay.Weapons
                 target.OverridePosition = TargetOffset;
         }
 
+        public override void Uninstall()
+        {
+            base.Uninstall();
+            target.OverridePosition = Vector3.zero;
+        }
+
         public override void Destroy()
         {
             base.Destroy();

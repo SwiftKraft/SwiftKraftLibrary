@@ -21,6 +21,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (value % Attachments.Length == _attachmentIndex)
                     return;
 
+                Uninstall(_attachmentIndex);
                 _attachmentIndex = value % Attachments.Length;
                 UpdateAttachment();
             }
@@ -68,6 +69,8 @@ namespace SwiftKraft.Gameplay.Weapons
             att.Update();
         }
 
+        public void Uninstall(int index) => Attachments[AttachmentIndex].Uninstall();
+
         [Serializable]
         public class Attachment
         {
@@ -93,6 +96,12 @@ namespace SwiftKraft.Gameplay.Weapons
                     prop.Update();
             }
 
+            public void Uninstall()
+            {
+                foreach (AttachmentProperty prop in properties)
+                    prop.Uninstall();
+            }
+
             public void Destroy()
             {
                 foreach (AttachmentProperty prop in properties)
@@ -109,6 +118,8 @@ namespace SwiftKraft.Gameplay.Weapons
             public virtual void Init(Attachment parent) => this.parent = parent;
 
             public abstract void Update();
+
+            public virtual void Uninstall() { }
 
             public virtual void Destroy() { }
         }

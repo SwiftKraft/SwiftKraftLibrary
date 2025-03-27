@@ -97,7 +97,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting && IsGrounded ? 1 : 0) : 0;
 
-            WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y);
+            WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y).normalized;
         }
 
         public override Vector2 GetInputLook() => new(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
