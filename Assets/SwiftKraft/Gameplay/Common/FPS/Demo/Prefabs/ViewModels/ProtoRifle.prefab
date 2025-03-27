@@ -2643,18 +2643,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 0
   SlotName: Top Rail
   Attachments:
-  - name: Iron Sights
+  - parent: {fileID: 0}
+    name: Iron Sights
     package:
       mesh: {fileID: 2183720242721537697, guid: 5149efcf6938e4049989526f85b4fb8d,
         type: 3}
       materials:
       - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
       - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+    properties: []
+    shootPointOffset: {x: 0, y: 0, z: 0}
     targetOffset: {x: 0, y: 0, z: 0}
     targetEulerOffset: {x: 0, y: 0, z: 0}
-  - name: Holographic Sight
+  - parent: {fileID: 0}
+    name: Holographic Sight
     package:
       mesh: {fileID: 2594999250697716090, guid: 5149efcf6938e4049989526f85b4fb8d,
         type: 3}
@@ -2662,8 +2667,30 @@ MonoBehaviour:
       - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
       - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
       - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
+    properties:
+    - rid: 1968381529576439813
+    shootPointOffset: {x: 0, y: 0, z: 0}
     targetOffset: {x: 0, y: -0.0055, z: 0}
     targetEulerOffset: {x: -0.227, y: 0, z: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1968381529576439813
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+          shootPointOffset: {x: 0, y: 0, z: 0}
+          targetOffset: {x: 0, y: 0, z: 0}
+          targetEulerOffset: {x: 0, y: 0, z: 0}
+        TargetOffset: {x: 0, y: -0.0055, z: 0}
+        TargetEulerOffset: {x: -0.227, y: 0, z: 0}
 --- !u!1 &4188797405681656713
 GameObject:
   m_ObjectHideFlags: 0
