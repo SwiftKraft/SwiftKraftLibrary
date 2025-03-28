@@ -7,7 +7,12 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public override bool Attacking => !Prefire.Ended || !Cooldown.Ended;
 
+        public ModifiableStatistic PrefireDelay = new(0f);
+        public ModifiableStatistic CooldownDelay = new(0.1f);
+
+        [HideInInspector]
         public Timer Prefire;
+        [HideInInspector]
         public Timer Cooldown;
 
         [HideInInspector]
@@ -16,6 +21,13 @@ namespace SwiftKraft.Gameplay.Weapons
         Transform attackOrigin;
 
         bool triggered;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Prefire.MaxValue = PrefireDelay;
+            Cooldown.MaxValue = CooldownDelay;
+        }
 
         protected override void FixedUpdate()
         {

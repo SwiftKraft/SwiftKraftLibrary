@@ -9,6 +9,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public bool AdsWhileReload;
 
+        public ModifiableStatistic AimSpeedMultiplier = new(1f);
+
         public float Aiming { get; protected set; }
 
         public WeaponAmmo Reloader { get; protected set; }
@@ -41,7 +43,7 @@ namespace SwiftKraft.Gameplay.Weapons
         protected virtual void Update()
         {
             aimInterpolater.MaxValue = Aim ? 1f : 0f;
-            Aiming = aimInterpolater.Tick(Time.deltaTime);
+            Aiming = aimInterpolater.Tick(Time.deltaTime * AimSpeedMultiplier);
         }
     }
 }

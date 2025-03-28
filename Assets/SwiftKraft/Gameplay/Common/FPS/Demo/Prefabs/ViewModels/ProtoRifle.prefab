@@ -465,6 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3905512582682095929}
   - component: {fileID: 4970428713039369811}
+  - component: {fileID: 2982277513206117307}
   m_Layer: 6
   m_Name: Barrel
   m_TagString: Untagged
@@ -534,7 +535,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 8108563764783910780, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  m_Mesh: {fileID: 3828601404574971821, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
   m_Bones:
   - {fileID: 8108505491139896930}
   - {fileID: 4686873896396251278}
@@ -613,6 +614,72 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0023975954, y: -0.03252766, z: -0.047943085}
     m_Extent: {x: 0.004019986, y: 0.006776713, z: 0.008959763}
   m_DirtyAABB: 0
+--- !u!114 &2982277513206117307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460940311319302204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  SlotName: Barrel
+  Attachments:
+  - parent: {fileID: 0}
+    name: None
+    package:
+      mesh: {fileID: 8108563764783910780, guid: 5149efcf6938e4049989526f85b4fb8d,
+        type: 3}
+      materials:
+      - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+    properties: []
+  - parent: {fileID: 0}
+    name: Extended Barrel
+    package:
+      mesh: {fileID: 3828601404574971821, guid: 5149efcf6938e4049989526f85b4fb8d,
+        type: 3}
+      materials:
+      - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+    properties:
+    - rid: 4744941982812995599
+    - rid: 4744941982812995601
+  references:
+    version: 2
+    RefIds:
+    - rid: 4744941982812995599
+      type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: 0, z: -0.00889}
+    - rid: 4744941982812995601
+      type: {class: AttachmentRecoilProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        recoilValue: 2
+        recoilType: 3
+        decayValue: 1
+        decayType: 2
 --- !u!1 &1631567766052296593
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +903,7 @@ GameObject:
   - component: {fileID: 509385651155450324}
   - component: {fileID: 6399840945172612297}
   - component: {fileID: 3861869158581378852}
+  - component: {fileID: 798410578431796580}
   m_Layer: 6
   m_Name: ProtoRifle
   m_TagString: Untagged
@@ -909,6 +977,12 @@ MonoBehaviour:
   Damage:
     <BaseValue>k__BackingField: 25
     <Values>k__BackingField: []
+  PrefireDelay:
+    <BaseValue>k__BackingField: 0
+    <Values>k__BackingField: []
+  CooldownDelay:
+    <BaseValue>k__BackingField: 0.1
+    <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
@@ -929,6 +1003,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpreadTransform: {fileID: 3608207479672408995}
+  Multiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Spread: 0
   SpreadAim: 0
   SpreadRecoil:
@@ -1521,6 +1598,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AdsWhileReload: 1
+  AimSpeedMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   aimInterpolater:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.1
@@ -1550,8 +1630,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1cc2a07f70c6741a0a17880fb9a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimViewModelFOV: 45
-  AimCameraFOV: 70
+  AimViewModelFOV:
+    <BaseValue>k__BackingField: 45
+    <Values>k__BackingField: []
+  AimCameraFOV:
+    <BaseValue>k__BackingField: 75
+    <Values>k__BackingField: []
 --- !u!114 &4179961927550141969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,6 +1746,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c86202d33d9db44baa125f6c954db9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &798410578431796580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539ef50ed785b6747bfe68b9ac82db28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootPoint: {fileID: 406053053416329889}
 --- !u!1 &2244465191708029533
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,7 +2584,7 @@ GameObject:
   - component: {fileID: 4967222815850344691}
   - component: {fileID: 6593263191331745236}
   m_Layer: 6
-  m_Name: HoloSight
+  m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2669,6 +2766,18 @@ MonoBehaviour:
       - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
     properties:
     - rid: 1968381529576439813
+  - parent: {fileID: 0}
+    name: 2x Scope
+    package:
+      mesh: {fileID: 6101988875147511788, guid: 5149efcf6938e4049989526f85b4fb8d,
+        type: 3}
+      materials:
+      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
+    properties:
+    - rid: 1968381529576439813
+    - rid: 4744941982812995603
   references:
     version: 2
     RefIds:
@@ -2685,6 +2794,18 @@ MonoBehaviour:
           properties: []
         TargetOffset: {x: 0, y: -0.0055, z: 0}
         TargetEulerOffset: {x: -0.227, y: 0, z: 0}
+    - rid: 4744941982812995603
+      type: {class: AttachmentSpreadProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.25
+        type: 3
 --- !u!1 &4188797405681656713
 GameObject:
   m_ObjectHideFlags: 0

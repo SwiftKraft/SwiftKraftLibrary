@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SwiftKraft.Utils
 {
     [Serializable]
-    public class ModifiableStatistic
+    public class ModifiableStatistic : IOverrideParent
     {
         [field: SerializeField]
         public float BaseValue { get; private set; } = 1f;
@@ -25,15 +25,26 @@ namespace SwiftKraft.Utils
             return value;
         }
 
+        public Modifier AddModifier()
+        {
+            Modifier modifier = new(this);
+            Values.Add(modifier);
+            return modifier;
+        }
+
+        public void RemoveOverride(object target) => Values.Remove((Modifier)target);
+
         public static implicit operator float(ModifiableStatistic stat) => stat.GetValue();
 
         [Serializable]
-        public class Modifier
+        public class Modifier : OverrideBase<ModifiableStatistic>
         {
             [field: SerializeField]
             public float Value { get; set; }
             [field: SerializeField]
             public ModifierType Type { get; set; }
+
+            public Modifier(ModifiableStatistic parent) : base(parent) { }
 
             public float Modify(float value) => Type switch
             {

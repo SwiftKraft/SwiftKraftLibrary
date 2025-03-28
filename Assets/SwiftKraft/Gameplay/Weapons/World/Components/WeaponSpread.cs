@@ -7,6 +7,8 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public Transform SpreadTransform;
 
+        public ModifiableStatistic Multiplier = new(1f);
+
         public float Spread;
         public float SpreadAim;
         public AnimationCurve SpreadRecoil;
@@ -56,12 +58,12 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual float GetSpread()
         {
             if (Aim != null && Recoil != null)
-                return Mathf.Lerp(SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue), SpreadAimRecoil.Evaluate(Recoil.Heat.CurrentValue), Aim.Aiming);
+                return Mathf.Lerp(SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue), SpreadAimRecoil.Evaluate(Recoil.Heat.CurrentValue), Aim.Aiming) * Multiplier;
             else if (Aim != null)
-                return Mathf.Lerp(Spread, SpreadAim, Aim.Aiming);
+                return Mathf.Lerp(Spread, SpreadAim, Aim.Aiming) * Multiplier;
             else if (Recoil != null)
-                return SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue);
-            return Spread;
+                return SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue) * Multiplier;
+            return Spread * Multiplier;
         }
 
         public abstract void ApplySpread();

@@ -29,10 +29,10 @@ namespace SwiftKraft.Utils
             SmoothTime = smoothTime;
         }
 
-        public override float Tick(float deltaTime = 0f)
+        public override float Tick(float deltaTime)
         {
             if (SmoothTime > 0f && Mathf.Abs(CurrentValue - MaxValue) > SnapRange)
-                CurrentValue = Mathf.SmoothDamp(CurrentValue, MaxValue, ref vel, SmoothTime);
+                CurrentValue = Mathf.SmoothDamp(CurrentValue, MaxValue, ref vel, SmoothTime, Mathf.Infinity, deltaTime);
             else
                 CurrentValue = MaxValue;
 
