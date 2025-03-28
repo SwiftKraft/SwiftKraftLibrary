@@ -24,6 +24,16 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
+        public override void Uninstall()
+        {
+            base.Uninstall();
+            if (target != null)
+            {
+                target.TargetPosition = Vector3.zero;
+                target.TargetRotation = new(0f, 0f, 0f, 1f);
+            }
+        }
+
         public override void Destroy()
         {
             base.Destroy();

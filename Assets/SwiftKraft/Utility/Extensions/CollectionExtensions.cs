@@ -8,12 +8,15 @@ namespace SwiftKraft.Utils
 {
     public static class CollectionExtensions
     {
-        public static T GetRandom<T>(this T[] values) => values[Random.Range(0, values.Length)];
+        public static T GetRandom<T>(this T[] values) => values.Length > 0 ? values[Random.Range(0, values.Length)] : default;
 
-        public static T GetRandom<T>(this List<T> values) => values[Random.Range(0, values.Count)];
+        public static T GetRandom<T>(this List<T> values) => values.Count > 0 ? values[Random.Range(0, values.Count)] : default;
 
         public static T GetRandom<T>(this T[] values, ref int lastRandom)
         {
+            if (values.Length <= 0)
+                return default;
+
             int choice = Random.Range(0, values.Length);
             if (lastRandom == choice)
                 choice = values.WrapIndex(choice + (Random.Range(0, 2) == 0 ? -1 : 1));
@@ -23,6 +26,9 @@ namespace SwiftKraft.Utils
 
         public static T GetRandom<T>(this List<T> values, ref int lastRandom)
         {
+            if (values.Count <= 0)
+                return default;
+
             int choice = Random.Range(0, values.Count);
             if (lastRandom == choice)
                 choice = values.WrapIndex(choice + (Random.Range(0, 2) == 0 ? -1 : 1));

@@ -12,7 +12,7 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         public bool Despawned { get; private set; }
 
-        public float BaseDamage;
+        public float BaseDamage { get; set; }
 
         public ProjectileComponent[] Addons { get; private set; }
 

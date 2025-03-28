@@ -127,7 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 682911739140861939}
   Multiplier: 1
-  Maximum: 0.75
+  TiltMultiplier: -2
+  Maximum: 1
+  TiltMaximum: 1.25
   SmoothTime: 0.1
 --- !u!1 &631380733960251861
 GameObject:
@@ -1233,6 +1235,7 @@ GameObject:
   - component: {fileID: 610497832379667108}
   - component: {fileID: 8029738550120293392}
   - component: {fileID: 6654161302878027630}
+  - component: {fileID: 7074702899465627531}
   - component: {fileID: 8699032933459824843}
   - component: {fileID: 2449021304951186053}
   - component: {fileID: 4498251446266001856}
@@ -1317,6 +1320,9 @@ MonoBehaviour:
   <Scriptable>k__BackingField: {fileID: 11400000, guid: 65ee1a21c4352e94a8492fa1b58c9533,
     type: 2}
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
+  Damage:
+    <BaseValue>k__BackingField: 20
+    <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
@@ -1655,6 +1661,98 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxAmmo>k__BackingField: 18
+--- !u!114 &7074702899465627531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb84162e023429146b0e12d50530bc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpreadTransform: {fileID: 3608207479672408995}
+  Spread: 0
+  SpreadAim: 0
+  SpreadRecoil:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.6
+      inSlope: 0.042637493
+      outSlope: 0.042637493
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.17221482
+    - serializedVersion: 3
+      time: 4.2665796
+      value: 1.3887541
+      inSlope: 0.24082792
+      outSlope: 0.24082792
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 7
+      value: 2.2
+      inSlope: 0.15686147
+      outSlope: 0.15686147
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10.127015
+      value: 2.2529564
+      inSlope: 0.01693511
+      outSlope: 0.01693511
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  SpreadAimRecoil:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.03921413
+      outSlope: 0.03921413
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.1663525
+    - serializedVersion: 3
+      time: 7
+      value: 0.2685272
+      inSlope: 0.022074804
+      outSlope: 0.022074804
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 12
+      value: 0.2974701
+      inSlope: -0.007099533
+      outSlope: -0.007099533
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.32001573
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Aim: {fileID: 2755448397234144751}
+  Recoil: {fileID: 610497832379667108}
 --- !u!114 &8699032933459824843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1782,12 +1880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1cc2a07f70c6741a0a17880fb9a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimViewModelFOV:
-    <BaseValue>k__BackingField: 45
-    <Values>k__BackingField: []
-  AimCameraFOV:
-    <BaseValue>k__BackingField: 75
-    <Values>k__BackingField: []
+  AimViewModelFOV: 45
+  AimCameraFOV: 75
 --- !u!114 &8238681385561808684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3989,6 +4083,7 @@ MonoBehaviour:
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
     properties:
     - rid: 1968381529576439810
+    - rid: 4744941960533901313
   - parent: {fileID: 0}
     name: Oil Can
     package:
@@ -4000,6 +4095,7 @@ MonoBehaviour:
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
     properties:
     - rid: 1968381529576439812
+    - rid: 4744941960533901315
   references:
     version: 2
     RefIds:
@@ -4027,6 +4123,68 @@ MonoBehaviour:
             materials: []
           properties: []
         TargetOffset: {x: 0, y: 0, z: -0.008}
+    - rid: 4744941960533901313
+      type: {class: AttachmentSoundChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Action: Attack
+        Clips:
+        - Sound: {fileID: 8300000, guid: 6147dfaf4b338074cbb3eeeab9177524, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: 51c67bd23bf4d5949a4496177b945e33, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: d266b3adade13444d9f52366f4e970fe, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+    - rid: 4744941960533901315
+      type: {class: AttachmentSoundChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Action: Attack
+        Clips:
+        - Sound: {fileID: 8300000, guid: 7ad9c84bde6432f4bb095ea3bfa62100, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: 39ee9a39494973240a2b6c241153215a, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: a5a72ce3372159546a7ed07150009a60, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
 --- !u!1 &6488371857859692678
 GameObject:
   m_ObjectHideFlags: 0

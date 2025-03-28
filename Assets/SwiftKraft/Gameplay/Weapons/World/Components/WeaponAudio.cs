@@ -1,5 +1,7 @@
 using SwiftKraft.Utils;
 using System;
+using System.Collections.Generic;
+using Unity.Properties;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -33,6 +35,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public string Action;
             public AudioSource Source;
+            public List<Clip> Override { get; set; }
             public Clip[] Clips;
 
             public AnimationCurve VolumeMultiplier;
@@ -61,7 +64,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (state != Action)
                     return;
 
-                Clip cl = Clips.GetRandom();
+                Clip cl = Override != null ? Override.GetRandom() : Clips.GetRandom();
                 cl?.Play(Source, VolumeMultiplier.keys.Length > 0 ? VolumeMultiplier.Evaluate(PlayedTimes.CurrentValue) : 1f);
                 PlayedTimes.Increment(1f);
             }

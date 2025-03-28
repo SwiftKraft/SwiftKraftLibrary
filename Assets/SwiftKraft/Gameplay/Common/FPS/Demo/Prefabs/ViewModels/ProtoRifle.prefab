@@ -906,6 +906,9 @@ MonoBehaviour:
   <Scriptable>k__BackingField: {fileID: 11400000, guid: 7264d4b325d14ba43a7ba197903536f5,
     type: 2}
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
+  Damage:
+    <BaseValue>k__BackingField: 25
+    <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
@@ -933,7 +936,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.25
+      value: 0.5580102
       inSlope: 0.1
       outSlope: 0.1
       tangentMode: 34
@@ -942,7 +945,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 5
-      value: 0.75
+      value: 1.0580102
       inSlope: 0.0625
       outSlope: 0.0625
       tangentMode: 34
@@ -951,7 +954,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 15
-      value: 1
+      value: 1.3080102
       inSlope: 0.00037922597
       outSlope: 0.00037922597
       tangentMode: 0
@@ -2655,9 +2658,6 @@ MonoBehaviour:
       - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
       - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
     properties: []
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
   - parent: {fileID: 0}
     name: Holographic Sight
     package:
@@ -2669,9 +2669,6 @@ MonoBehaviour:
       - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
     properties:
     - rid: 1968381529576439813
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: -0.0055, z: 0}
-    targetEulerOffset: {x: -0.227, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -2686,9 +2683,6 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-          shootPointOffset: {x: 0, y: 0, z: 0}
-          targetOffset: {x: 0, y: 0, z: 0}
-          targetEulerOffset: {x: 0, y: 0, z: 0}
         TargetOffset: {x: 0, y: -0.0055, z: 0}
         TargetEulerOffset: {x: -0.227, y: 0, z: 0}
 --- !u!1 &4188797405681656713
@@ -4638,7 +4632,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 5815484644316226888}
   Multiplier: 1
-  Maximum: 1.5
+  TiltMultiplier: -3
+  Maximum: 1.2
+  TiltMaximum: 2
   SmoothTime: 0.15
 --- !u!1 &8488331807436290598
 GameObject:
