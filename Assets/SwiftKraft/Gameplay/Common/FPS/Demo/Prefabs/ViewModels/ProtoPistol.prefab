@@ -873,9 +873,6 @@ MonoBehaviour:
       mesh: {fileID: 0}
       materials: []
     properties: []
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
   - parent: {fileID: 0}
     name: Holographic Sight
     package:
@@ -887,9 +884,6 @@ MonoBehaviour:
       - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
     properties:
     - rid: 1968381529576439808
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: -0.0042, z: 0}
-    targetEulerOffset: {x: -0.34, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -904,9 +898,6 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-          shootPointOffset: {x: 0, y: 0, z: 0}
-          targetOffset: {x: 0, y: 0, z: 0}
-          targetEulerOffset: {x: 0, y: 0, z: 0}
         TargetOffset: {x: 0, y: -0.0042, z: 0}
         TargetEulerOffset: {x: -0.34, y: 0, z: 0}
 --- !u!1 &1667363172519472068
@@ -1791,8 +1782,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1cc2a07f70c6741a0a17880fb9a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimViewModelFOV: 50
-  AimCameraFOV: 75
+  AimViewModelFOV:
+    <BaseValue>k__BackingField: 45
+    <Values>k__BackingField: []
+  AimCameraFOV:
+    <BaseValue>k__BackingField: 75
+    <Values>k__BackingField: []
 --- !u!114 &8238681385561808684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3983,9 +3978,6 @@ MonoBehaviour:
       mesh: {fileID: 0}
       materials: []
     properties: []
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
   - parent: {fileID: 0}
     name: Suppressor
     package:
@@ -3997,9 +3989,6 @@ MonoBehaviour:
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
     properties:
     - rid: 1968381529576439810
-    shootPointOffset: {x: 0, y: 0, z: -0.00833}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
   - parent: {fileID: 0}
     name: Oil Can
     package:
@@ -4011,9 +4000,6 @@ MonoBehaviour:
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
     properties:
     - rid: 1968381529576439812
-    shootPointOffset: {x: 0, y: 0, z: -0.00833}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -4028,9 +4014,6 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-          shootPointOffset: {x: 0, y: 0, z: 0}
-          targetOffset: {x: 0, y: 0, z: 0}
-          targetEulerOffset: {x: 0, y: 0, z: 0}
         TargetOffset: {x: 0, y: 0, z: -0.00833}
     - rid: 1968381529576439812
       type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
@@ -4043,9 +4026,6 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-          shootPointOffset: {x: 0, y: 0, z: 0}
-          targetOffset: {x: 0, y: 0, z: 0}
-          targetEulerOffset: {x: 0, y: 0, z: 0}
         TargetOffset: {x: 0, y: 0, z: -0.008}
 --- !u!1 &6488371857859692678
 GameObject:
@@ -4592,9 +4572,6 @@ MonoBehaviour:
       - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
     properties: []
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
   - parent: {fileID: 0}
     name: Stabilizer
     package:
@@ -4606,9 +4583,6 @@ MonoBehaviour:
       - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
     properties: []
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds: []

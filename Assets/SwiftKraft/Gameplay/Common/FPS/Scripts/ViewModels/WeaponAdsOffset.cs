@@ -4,17 +4,14 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class WeaponAdsOffset : OptionalModifyTransformComponent
+    public class WeaponAdsOffset : OptionalModifyTransformComponent, IOverrideParent
     {
-        public class Override
+        public class Override : OverrideBase<WeaponAdsOffset>
         {
-            public readonly WeaponAdsOffset Parent;
             public Vector3 TargetPosition { get; set; }
             public Quaternion TargetRotation { get; set; } = new(0f, 0f, 0f, 1f);
 
-            public void Dispose() => Parent.RemoveOverride(this);
-
-            public Override(WeaponAdsOffset parent) => Parent = parent;
+            public Override(WeaponAdsOffset parent) : base(parent) { }
         }
 
         public struct OverrideData
@@ -85,6 +82,6 @@ namespace SwiftKraft.Gameplay.Weapons
             return ov;
         }
 
-        public void RemoveOverride(Override ov) => Overrides.Remove(ov);
+        public void RemoveOverride(object ov) => Overrides.Remove((Override)ov);
     }
 }

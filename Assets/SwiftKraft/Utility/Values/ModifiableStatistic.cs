@@ -13,6 +13,10 @@ namespace SwiftKraft.Utils
         [field: SerializeField]
         public List<Modifier> Values { get; private set; } = new();
 
+        public ModifiableStatistic() { }
+
+        public ModifiableStatistic(float baseValue) { BaseValue = baseValue; }
+
         public float GetValue()
         {
             float value = BaseValue;

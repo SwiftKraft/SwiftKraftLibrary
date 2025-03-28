@@ -1,19 +1,16 @@
 using SwiftKraft.Utils;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class WeaponShootPoint : WeaponComponent
+    public class WeaponShootPoint : WeaponComponent, IOverrideParent
     {
-        public class Override
+        public class Override : OverrideBase<WeaponShootPoint>
         {
-            public readonly WeaponShootPoint Parent;
-
             private Vector3 overridePosition;
 
-            public Override(WeaponShootPoint parent) => Parent = parent;
+            public Override(WeaponShootPoint parent) : base(parent) { }
 
             public Vector3 OverridePosition
             {
@@ -24,8 +21,6 @@ namespace SwiftKraft.Gameplay.Weapons
                     Parent.UpdatePosition();
                 }
             }
-
-            public void Dispose() => Parent.RemoveOverride(this);
         }
 
         public readonly List<Override> Overrides = new();
@@ -51,6 +46,6 @@ namespace SwiftKraft.Gameplay.Weapons
             return ov;
         }
 
-        public void RemoveOverride(Override ov) => Overrides.Remove(ov);
+        public void RemoveOverride(object ov) => Overrides.Remove((Override)ov);
     }
 }
