@@ -127,7 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 682911739140861939}
   Multiplier: 1
-  Maximum: 0.75
+  TiltMultiplier: -2
+  Maximum: 1
+  TiltMaximum: 1.25
   SmoothTime: 0.1
 --- !u!1 &631380733960251861
 GameObject:
@@ -418,7 +420,6 @@ SkinnedMeshRenderer:
   - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   - {fileID: -582673536581082055, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-  - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   - {fileID: -7098565394360792512, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   m_StaticBatchInfo:
@@ -704,7 +705,7 @@ GameObject:
   - component: {fileID: 3344465767183560383}
   - component: {fileID: 3962959225809897350}
   m_Layer: 6
-  m_Name: Sight
+  m_Name: Underbarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -868,14 +869,14 @@ MonoBehaviour:
   DebugMode: 0
   SlotName: Underbarrel
   Attachments:
-  - name: None
+  - parent: {fileID: 0}
+    name: None
     package:
       mesh: {fileID: 0}
       materials: []
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
-  - name: Holographic Sight
+    properties: []
+  - parent: {fileID: 0}
+    name: Holographic Sight
     package:
       mesh: {fileID: -7429937956110996719, guid: 384f8faa6b87553429a38b543c2a4468,
         type: 3}
@@ -883,9 +884,24 @@ MonoBehaviour:
       - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: -0.0035, z: 0}
-    targetEulerOffset: {x: -0.34, y: 0, z: 0}
+    properties:
+    - rid: 1968381529576439808
+  references:
+    version: 2
+    RefIds:
+    - rid: 1968381529576439808
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: -0.0042, z: 0}
+        TargetEulerOffset: {x: -0.34, y: 0, z: 0}
 --- !u!1 &1667363172519472068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1235,7 @@ GameObject:
   - component: {fileID: 610497832379667108}
   - component: {fileID: 8029738550120293392}
   - component: {fileID: 6654161302878027630}
+  - component: {fileID: 7074702899465627531}
   - component: {fileID: 8699032933459824843}
   - component: {fileID: 2449021304951186053}
   - component: {fileID: 4498251446266001856}
@@ -1303,6 +1320,9 @@ MonoBehaviour:
   <Scriptable>k__BackingField: {fileID: 11400000, guid: 65ee1a21c4352e94a8492fa1b58c9533,
     type: 2}
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
+  Damage:
+    <BaseValue>k__BackingField: 20
+    <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
@@ -1641,6 +1661,98 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxAmmo>k__BackingField: 18
+--- !u!114 &7074702899465627531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb84162e023429146b0e12d50530bc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpreadTransform: {fileID: 3608207479672408995}
+  Spread: 0
+  SpreadAim: 0
+  SpreadRecoil:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.6
+      inSlope: 0.042637493
+      outSlope: 0.042637493
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.17221482
+    - serializedVersion: 3
+      time: 4.2665796
+      value: 1.3887541
+      inSlope: 0.24082792
+      outSlope: 0.24082792
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 7
+      value: 2.2
+      inSlope: 0.15686147
+      outSlope: 0.15686147
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10.127015
+      value: 2.2529564
+      inSlope: 0.01693511
+      outSlope: 0.01693511
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  SpreadAimRecoil:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.03921413
+      outSlope: 0.03921413
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.1663525
+    - serializedVersion: 3
+      time: 7
+      value: 0.2685272
+      inSlope: 0.022074804
+      outSlope: 0.022074804
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 12
+      value: 0.2974701
+      inSlope: -0.007099533
+      outSlope: -0.007099533
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.32001573
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Aim: {fileID: 2755448397234144751}
+  Recoil: {fileID: 610497832379667108}
 --- !u!114 &8699032933459824843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1768,7 +1880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1cc2a07f70c6741a0a17880fb9a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimViewModelFOV: 50
+  AimViewModelFOV: 45
   AimCameraFOV: 75
 --- !u!114 &8238681385561808684
 MonoBehaviour:
@@ -3539,6 +3651,7 @@ Transform:
   m_Children:
   - {fileID: 7004824918824025216}
   - {fileID: 8292492007045750322}
+  - {fileID: 1766594775606709479}
   - {fileID: 2862482359590744088}
   - {fileID: 7004902041970175260}
   - {fileID: 3643813323892068471}
@@ -3857,7 +3970,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 8108563764783910780, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+  m_Mesh: {fileID: -7062360709606581966, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   m_Bones:
   - {fileID: 5430360364767187470}
   - {fileID: 8849766548144018658}
@@ -3953,24 +4066,125 @@ MonoBehaviour:
   DebugMode: 0
   SlotName: Barrel
   Attachments:
-  - name: None
+  - parent: {fileID: 0}
+    name: None
     package:
       mesh: {fileID: 0}
       materials: []
-    shootPointOffset: {x: 0, y: 0, z: 0}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
-  - name: Suppressor
+    properties: []
+  - parent: {fileID: 0}
+    name: Suppressor
     package:
-      mesh: {fileID: 8108563764783910780, guid: 384f8faa6b87553429a38b543c2a4468,
+      mesh: {fileID: -7062360709606581966, guid: 384f8faa6b87553429a38b543c2a4468,
         type: 3}
       materials:
       - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-    shootPointOffset: {x: 0, y: 0, z: -0.00833}
-    targetOffset: {x: 0, y: 0, z: 0}
-    targetEulerOffset: {x: 0, y: 0, z: 0}
+    properties:
+    - rid: 1968381529576439810
+    - rid: 4744941960533901313
+  - parent: {fileID: 0}
+    name: Oil Can
+    package:
+      mesh: {fileID: -1507717837821073057, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties:
+    - rid: 1968381529576439812
+    - rid: 4744941960533901315
+  references:
+    version: 2
+    RefIds:
+    - rid: 1968381529576439810
+      type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: 0, z: -0.00833}
+    - rid: 1968381529576439812
+      type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: 0, z: -0.008}
+    - rid: 4744941960533901313
+      type: {class: AttachmentSoundChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Action: Attack
+        Clips:
+        - Sound: {fileID: 8300000, guid: 6147dfaf4b338074cbb3eeeab9177524, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: 51c67bd23bf4d5949a4496177b945e33, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: d266b3adade13444d9f52366f4e970fe, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+    - rid: 4744941960533901315
+      type: {class: AttachmentSoundChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Action: Attack
+        Clips:
+        - Sound: {fileID: 8300000, guid: 7ad9c84bde6432f4bb095ea3bfa62100, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: 39ee9a39494973240a2b6c241153215a, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: a5a72ce3372159546a7ed07150009a60, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
 --- !u!1 &6488371857859692678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,6 +4542,208 @@ Transform:
   - {fileID: 2500648244253604273}
   m_Father: {fileID: 8689529658615436370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7407717480261082935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1766594775606709479}
+  - component: {fileID: 2569151818346432211}
+  - component: {fileID: 5598316508859396261}
+  m_Layer: 6
+  m_Name: Slide
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1766594775606709479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407717480261082935}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
+  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6041977976375274973}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &2569151818346432211
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407717480261082935}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+  - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+  - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+  - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 1
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 2885756083127718827, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+  m_Bones:
+  - {fileID: 5430360364767187470}
+  - {fileID: 8849766548144018658}
+  - {fileID: 5663569182481300257}
+  - {fileID: 8825202154663106289}
+  - {fileID: 5676462741171833796}
+  - {fileID: 3630575568063495}
+  - {fileID: 1311000432912207993}
+  - {fileID: 3728268399459856014}
+  - {fileID: 5579666995812083}
+  - {fileID: 5527616907566827625}
+  - {fileID: 7712368676221151524}
+  - {fileID: 5763823226809373343}
+  - {fileID: 4787777867763537841}
+  - {fileID: 8299198681701501210}
+  - {fileID: 3707552082559582347}
+  - {fileID: 6902051600374078860}
+  - {fileID: 9005619709349307602}
+  - {fileID: 6028520627037271125}
+  - {fileID: 8492326487558820147}
+  - {fileID: 881593207758977071}
+  - {fileID: 4698254708241443040}
+  - {fileID: 8693528053103188029}
+  - {fileID: 1235790747200152315}
+  - {fileID: 823112230026522744}
+  - {fileID: 1880719873340445614}
+  - {fileID: 8723573953477538162}
+  - {fileID: 5242792213932601133}
+  - {fileID: 2242679556752934288}
+  - {fileID: 6901410033783451625}
+  - {fileID: 224809403931992135}
+  - {fileID: 7197204990468856504}
+  - {fileID: 720248641543712060}
+  - {fileID: 8166512162059541411}
+  - {fileID: 6985214077652215211}
+  - {fileID: 5382885064191861312}
+  - {fileID: 9178004130114516280}
+  - {fileID: 4725351021608735216}
+  - {fileID: 5144596178995757942}
+  - {fileID: 8351873752691396579}
+  - {fileID: 2583111408607474496}
+  - {fileID: 1833937481198713180}
+  - {fileID: 4352936817009074105}
+  - {fileID: 6034592535478540409}
+  - {fileID: 4011923914129897671}
+  - {fileID: 2684514442862450968}
+  - {fileID: 8689529658615436370}
+  - {fileID: 9143810389022084673}
+  - {fileID: 2500648244253604273}
+  - {fileID: 6561951562939020572}
+  - {fileID: 354192955283702452}
+  - {fileID: 7247650879082096525}
+  - {fileID: 5682943065945481017}
+  - {fileID: 1884165855131048882}
+  - {fileID: 8498448027381583021}
+  - {fileID: 2689701928649175380}
+  - {fileID: 3654905101087586021}
+  - {fileID: 6640145528578293447}
+  - {fileID: 2139767046822915135}
+  - {fileID: 6598801157243213421}
+  - {fileID: 6922130591234364079}
+  - {fileID: 964825457797422317}
+  - {fileID: 7811915741101540834}
+  - {fileID: 7317722989354735629}
+  - {fileID: 4370366832086592182}
+  - {fileID: 9158242514963812210}
+  - {fileID: 221727822836421174}
+  - {fileID: 56616880665054147}
+  - {fileID: 4559479819889157728}
+  - {fileID: 5071586217314728296}
+  - {fileID: 6389369616487220384}
+  - {fileID: 5018285822893095421}
+  - {fileID: 6650059749872082840}
+  - {fileID: 6502610239338472235}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 5430360364767187470}
+  m_AABB:
+    m_Center: {x: -0.0064846138, y: -0.015404956, z: 0.0028943452}
+    m_Extent: {x: 0.0016711559, y: 0.01969161, z: 0.017934022}
+  m_DirtyAABB: 0
+--- !u!114 &5598316508859396261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407717480261082935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  SlotName: Slide
+  Attachments:
+  - parent: {fileID: 0}
+    name: None
+    package:
+      mesh: {fileID: 2885756083127718827, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties: []
+  - parent: {fileID: 0}
+    name: Stabilizer
+    package:
+      mesh: {fileID: -1254449539291404797, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &7468425733863355008
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,8 @@ namespace SwiftKraft.Gameplay.Weapons
                     Parent.UpdatePosition();
                 }
             }
+
+            public void Dispose() => Parent.RemoveOverride(this);
         }
 
         public readonly List<Override> Overrides = new();
