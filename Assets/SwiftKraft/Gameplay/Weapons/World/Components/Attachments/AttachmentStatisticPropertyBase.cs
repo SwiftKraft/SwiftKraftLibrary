@@ -17,8 +17,8 @@ namespace SwiftKraft.Gameplay.Weapons
         public override void Uninstall()
         {
             base.Uninstall();
-            overrider.Value = 1f;
-            overrider.Type = ModifiableStatistic.ModifierType.Multiplication;
+            overrider.Value = 0f;
+            overrider.Type = ModifiableStatistic.ModifierType.Addition;
         }
     }
 }

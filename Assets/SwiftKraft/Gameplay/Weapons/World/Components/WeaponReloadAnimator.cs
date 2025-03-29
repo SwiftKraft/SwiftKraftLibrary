@@ -11,6 +11,8 @@ namespace SwiftKraft.Gameplay.Weapons
         public string[] MidReloadStateNames;
 
         public float FullEndReloadThreshold = 0.9f;
+        [HideInInspector]
+        public float ReloadSpeed = 1f;
 
         public event Action<bool> EndReload;
         public event Action MidReload;
@@ -20,8 +22,18 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (stateInfo.CheckName(ReloadStateNames) && !endReloaded)
-                EndReload?.Invoke(stateInfo.normalizedTime >= FullEndReloadThreshold);
+            if (stateInfo.CheckName(ReloadStateNames))
+            {
+                if (!endReloaded)
+                    EndReload?.Invoke(stateInfo.normalizedTime >= FullEndReloadThreshold);
+                animator.speed = 1f;
+            }
+        }
+
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            if (stateInfo.CheckName(ReloadStateNames))
+                animator.speed = ReloadSpeed;
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

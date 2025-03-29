@@ -1695,7 +1695,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cdb522966b6034486b3e777952a288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxAmmo>k__BackingField: 18
+  <MaxAmmo>k__BackingField:
+    <BaseValue>k__BackingField: 18
+    <Values>k__BackingField: []
 --- !u!114 &7074702899465627531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1880,6 +1882,7 @@ MonoBehaviour:
     Linger:
       <MaxValue>k__BackingField: 0
       StartEnded: 0
+  Enabled: 1
 --- !u!114 &3348710002142049648
 MonoBehaviour:
   m_ObjectHideFlags: 0

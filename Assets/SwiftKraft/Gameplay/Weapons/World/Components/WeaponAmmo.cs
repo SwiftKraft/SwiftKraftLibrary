@@ -9,7 +9,9 @@ namespace SwiftKraft.Gameplay.Weapons
         public const string ReloadAction = "Reload";
 
         [field: SerializeField]
-        public int MaxAmmo { get; set; }
+        public ModifiableStatistic MaxAmmo { get; set; }
+        [field: SerializeField]
+        public ModifiableStatistic ReloadSpeedMultiplier { get; set; }
         public int CurrentAmmo
         {
             get => _currentAmmo;
@@ -38,10 +40,11 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void Awake()
         {
             base.Awake();
-            CurrentAmmo = MaxAmmo;
+            CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
             Parent.OnAttack += OnAttack;
             Parent.AddAction(ReloadAction, StartReload);
             CanShoot = Parent.CanAttack.AddLock();
+            MaxAmmo.OnUpdate += OnMaxAmmoUpdated;
         }
 
         protected virtual void OnEnable() => OnAmmoUpdated?.Invoke(CurrentAmmo);
@@ -52,9 +55,12 @@ namespace SwiftKraft.Gameplay.Weapons
             Parent.OnAttack -= OnAttack;
             Parent.Actions.Remove(ReloadAction);
             Parent.CanAttack.RemoveLock(CanShoot);
+            MaxAmmo.OnUpdate -= OnMaxAmmoUpdated;
         }
 
         protected virtual void OnDisable() => CanShoot.Active = false;
+
+        protected virtual void OnMaxAmmoUpdated(float max) => CurrentAmmo = Mathf.Min(Mathf.RoundToInt(max), CurrentAmmo);
 
         protected virtual void OnAttack(GameObject go) => TryUseAmmo();
 
@@ -95,7 +101,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual void EndReload(bool fullEnd)
         {
             if (CanReload && fullEnd)
-                CurrentAmmo = MaxAmmo;
+                CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
         }
     }
 }

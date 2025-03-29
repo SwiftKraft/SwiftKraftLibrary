@@ -13,6 +13,9 @@ namespace SwiftKraft.Utils
         [field: SerializeField]
         public List<Modifier> Values { get; private set; } = new();
 
+        public event Action<float> OnUpdate;
+        public void UpdateValue() => OnUpdate?.Invoke(GetValue());
+
         public ModifiableStatistic() { }
 
         public ModifiableStatistic(float baseValue) { BaseValue = baseValue; }
@@ -39,8 +42,21 @@ namespace SwiftKraft.Utils
         [Serializable]
         public class Modifier : OverrideBase<ModifiableStatistic>
         {
-            [field: SerializeField]
-            public float Value { get; set; }
+
+
+            
+            public float Value
+            {
+                get => value; 
+                set
+                {
+                    this.value = value;
+                    Parent.UpdateValue();
+                }
+            }
+            [SerializeField]
+            float value;
+
             [field: SerializeField]
             public ModifierType Type { get; set; }
 

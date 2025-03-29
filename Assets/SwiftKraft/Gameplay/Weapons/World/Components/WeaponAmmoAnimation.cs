@@ -63,6 +63,7 @@ namespace SwiftKraft.Gameplay.Weapons
             CanShoot.Active = true;
             OnReloadUpdatedEvent(true);
             reloading = true;
+            ReloadCommunicator.ReloadSpeed = ReloadSpeedMultiplier;
         }
 
         public override void EndReload(bool fullEnd)

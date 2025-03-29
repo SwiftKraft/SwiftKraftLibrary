@@ -23,7 +23,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public virtual void FixedUpdate()
         {
-            ReloadTimer.Tick(Time.fixedDeltaTime);
+            ReloadTimer.Tick(Time.fixedDeltaTime * ReloadSpeedMultiplier);
             CanShoot.Active = !ReloadTimer.Ended;
         }
 
