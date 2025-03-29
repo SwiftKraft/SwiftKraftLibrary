@@ -60,7 +60,11 @@ namespace SwiftKraft.Gameplay.Weapons
 
         protected virtual void OnDisable() => CanShoot.Active = false;
 
-        protected virtual void OnMaxAmmoUpdated(float max) => CurrentAmmo = Mathf.Min(Mathf.RoundToInt(max), CurrentAmmo);
+        protected virtual void OnMaxAmmoUpdated(float max)
+        {
+            CurrentAmmo = Mathf.Min(Mathf.RoundToInt(max), CurrentAmmo);
+            OnAmmoUpdated?.Invoke(CurrentAmmo);
+        }
 
         protected virtual void OnAttack(GameObject go) => TryUseAmmo();
 
