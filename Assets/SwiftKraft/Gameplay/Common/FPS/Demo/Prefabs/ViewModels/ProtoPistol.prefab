@@ -883,7 +883,7 @@ MonoBehaviour:
       materials:
       - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2100000, guid: 002524d0c193d1a4fad5df8152d09e39, type: 2}
+      - {fileID: 2100000, guid: ca2fbd3850cbe2649bf14de90869e86d, type: 2}
     properties:
     - rid: 1968381529576439808
     - rid: 4744941982812995593
@@ -1709,7 +1709,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpreadTransform: {fileID: 3608207479672408995}
-  Multiplier:
+  HipMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  AimMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   Spread: 0
@@ -4129,7 +4132,6 @@ MonoBehaviour:
     properties:
     - rid: 1968381529576439810
     - rid: 4744941960533901313
-    - rid: 4744941982812995585
     - rid: 4744941982812995597
   - parent: {fileID: 0}
     name: Oil Can
@@ -4143,7 +4145,6 @@ MonoBehaviour:
     properties:
     - rid: 1968381529576439812
     - rid: 4744941960533901315
-    - rid: 4744941982812995587
     - rid: 4744941982812995595
   references:
     version: 2
@@ -4234,30 +4235,6 @@ MonoBehaviour:
           Volume: 0.5
           StereoPan: 0
           SpatialBlend: 1
-    - rid: 4744941982812995585
-      type: {class: AttachmentSpreadProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 1.65
-        type: 3
-    - rid: 4744941982812995587
-      type: {class: AttachmentSpreadProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 1.35
-        type: 3
     - rid: 4744941982812995595
       type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
@@ -4838,23 +4815,11 @@ MonoBehaviour:
       - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
     properties:
-    - rid: 4744941982812995589
+    - rid: 4744941997983793154
     - rid: 4744941982812995591
   references:
     version: 2
     RefIds:
-    - rid: 4744941982812995589
-      type: {class: AttachmentSpreadProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 2
-        type: 3
     - rid: 4744941982812995591
       type: {class: AttachmentRecoilProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
@@ -4865,10 +4830,21 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        recoilValue: 2
-        recoilType: 3
-        decayValue: 1.25
-        decayType: 3
+        value: 2
+        type: 3
+    - rid: 4744941997983793154
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: 0, z: 0}
+        TargetEulerOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &7468425733863355008
 GameObject:
   m_ObjectHideFlags: 0

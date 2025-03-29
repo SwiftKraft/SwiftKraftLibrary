@@ -21,6 +21,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public float SprintSpeed = 8f;
         public float Gravity = 9.81f;
 
+        public Camera MainCamera;
+        public float ReferenceFOV;
+        public float FOVSensitivityMultiplier = 1f;
+
         readonly Timer coyoteTime = new(0.2f, false);
         readonly Trigger jumpInput = new();
         float currentGravity;
@@ -35,10 +39,14 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             }
         }
 
+        SingleSetting<float> sensitivity;
+
         protected virtual void Awake()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            SettingsManager.Current.TrySetting("Sensitivity", out sensitivity);
         }
 
         protected override void Update()
@@ -51,8 +59,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             if (Input.GetKeyDown(KeyCode.Space))
                 jumpInput.SetTrigger();
 
-            SettingsManager.Current.TrySetting("Sensitivity", out SingleSetting<float> setting);
-            Vector2 inputLook = GetInputLook() * (setting == null ? 1f : setting.Value);
+            float fovSensMult = MainCamera.fieldOfView / ReferenceFOV;
+
+            Vector2 inputLook = (sensitivity == null ? 1f : sensitivity.Value) * Mathf.LerpUnclamped(1f, fovSensMult, FOVSensitivityMultiplier) * GetInputLook();
             Vector3 wishLookEulers = WishLookRotation.eulerAngles;
 
             WishLookRotation = Quaternion.Euler(Mathf.Clamp(wishLookEulers.x.NormalizeAngle() + inputLook.y, -90f, 90f), wishLookEulers.y + inputLook.x, wishLookEulers.z);

@@ -87,25 +87,25 @@ namespace SwiftKraft.Gameplay.Weapons
             {
                 this.parent = parent;
                 foreach (AttachmentProperty prop in properties)
-                    prop.Init(this);
+                    prop?.Init(this);
             }
 
             public void Update()
             {
                 foreach (AttachmentProperty prop in properties)
-                    prop.Update();
+                    prop?.Update();
             }
 
             public void Uninstall()
             {
                 foreach (AttachmentProperty prop in properties)
-                    prop.Uninstall();
+                    prop?.Uninstall();
             }
 
             public void Destroy()
             {
                 foreach (AttachmentProperty prop in properties)
-                    prop.Destroy();
+                    prop?.Destroy();
             }
         }
 

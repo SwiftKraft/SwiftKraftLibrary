@@ -2,34 +2,12 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class AttachmentShootPointOffsetProperty : AttachmentComponentPropertyBase<WeaponShootPoint>
+    public class AttachmentShootPointOffsetProperty : AttachmentOverridePropertyBase<WeaponShootPoint, WeaponShootPoint.Override>
     {
         public Vector3 TargetOffset;
 
-        WeaponShootPoint.Override target;
+        public override void ApplyOverrides() => overrider.OverridePosition = TargetOffset;
 
-        public override void Init(WeaponAttachmentSlot.Attachment parent)
-        {
-            base.Init(parent);
-            target = Component.AddOverride();
-        }
-
-        public override void Update()
-        {
-            if (target != null)
-                target.OverridePosition = TargetOffset;
-        }
-
-        public override void Uninstall()
-        {
-            base.Uninstall();
-            target.OverridePosition = Vector3.zero;
-        }
-
-        public override void Destroy()
-        {
-            base.Destroy();
-            target.Dispose();
-        }
+        public override WeaponShootPoint.Override CreateOverrider() => Component.AddOverride();
     }
 }

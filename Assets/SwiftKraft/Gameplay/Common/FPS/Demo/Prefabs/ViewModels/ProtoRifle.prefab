@@ -676,10 +676,8 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        recoilValue: 2
-        recoilType: 3
-        decayValue: 1
-        decayType: 2
+        value: 1.2
+        type: 3
 --- !u!1 &1631567766052296593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpreadTransform: {fileID: 3608207479672408995}
-  Multiplier:
+  HipMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   Spread: 0
@@ -2777,7 +2775,7 @@ MonoBehaviour:
       - {fileID: 2100000, guid: 1d2250bcbff0b1345a4da461eac1a048, type: 2}
     properties:
     - rid: 1968381529576439813
-    - rid: 4744941982812995603
+    - rid: 4744941997983793157
     - rid: 4744941987405496321
   references:
     version: 2
@@ -2795,18 +2793,6 @@ MonoBehaviour:
           properties: []
         TargetOffset: {x: 0, y: -0.0055, z: 0}
         TargetEulerOffset: {x: -0.227, y: 0, z: 0}
-    - rid: 4744941982812995603
-      type: {class: AttachmentSpreadProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 1.25
-        type: 3
     - rid: 4744941987405496321
       type: {class: AttachmentAimFOVProperty, ns: SwiftKraft.Gameplay.Common.FPS.ViewModels,
         asm: Assembly-CSharp}
@@ -2822,6 +2808,19 @@ MonoBehaviour:
         viewType: 3
         modelFOV: 1.5
         modelType: 3
+    - rid: 4744941997983793157
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: 0, z: 0}
+        TargetEulerOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &4188797405681656713
 GameObject:
   m_ObjectHideFlags: 0
