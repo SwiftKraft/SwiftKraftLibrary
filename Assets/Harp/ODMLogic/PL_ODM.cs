@@ -442,10 +442,10 @@ public class PL_ODM : MonoBehaviour
                 movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 25f, ForceMode.VelocityChange);
                 break;
             case 7: // Left Orbit
-                movementScript.Rigidbody.AddForce(-playerCameraTransform.right * gasDashForce / 22f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 22f, ForceMode.VelocityChange);
                 break;
             case 8: // Right Orbit
-                movementScript.Rigidbody.AddForce(playerCameraTransform.right * gasDashForce / 22f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 22f, ForceMode.VelocityChange);
 
                 
                 break;
