@@ -390,8 +390,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002765370927871205}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -719,8 +719,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630422664060633000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -748,7 +748,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-  - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
+  - {fileID: 2100000, guid: ca2fbd3850cbe2649bf14de90869e86d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -883,10 +883,11 @@ MonoBehaviour:
       materials:
       - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
+      - {fileID: 2100000, guid: 002524d0c193d1a4fad5df8152d09e39, type: 2}
     properties:
     - rid: 1968381529576439808
     - rid: 4744941982812995593
+    - rid: 4744941987405496323
   references:
     version: 2
     RefIds:
@@ -915,6 +916,21 @@ MonoBehaviour:
           properties: []
         value: 1.1
         type: 3
+    - rid: 4744941987405496323
+      type: {class: AttachmentAimFOVProperty, ns: SwiftKraft.Gameplay.Common.FPS.ViewModels,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        viewFOV: 1
+        viewType: 3
+        modelFOV: 1.3
+        modelType: 3
 --- !u!1 &1667363172519472068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,7 +2438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3456308081696584053}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
@@ -3945,8 +3961,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6479512912137159680}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4649,8 +4665,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7407717480261082935}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []

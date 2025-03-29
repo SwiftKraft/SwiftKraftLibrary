@@ -45,6 +45,11 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         private void FixedUpdate()
         {
+            if (viewModel.FOV != AimViewModelFOV)
+                viewModel.FOV = AimViewModelFOV;
+            if (mainCam.FOV != AimCameraFOV)
+                mainCam.FOV = AimCameraFOV;
+
             viewModel.Active = Component.Aim;
             mainCam.Active = Component.Aim;
         }
