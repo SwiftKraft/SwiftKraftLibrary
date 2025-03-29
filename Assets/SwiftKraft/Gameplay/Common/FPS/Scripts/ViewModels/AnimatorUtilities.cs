@@ -15,5 +15,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public void SetVariant(int value) => Component.SetFloatSafe(VariantID, value);
 
         public void SetRandomVariant(int variants) => SetVariant(Random.Range(0, variants));
+
+        public void SetBoolTrue(string value) => Component.SetBoolSafe(value, true);
+        public void SetBoolFalse(string value) => Component.SetBoolSafe(value, false);
     }
 }

@@ -883,7 +883,7 @@ MonoBehaviour:
       materials:
       - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2100000, guid: ca2fbd3850cbe2649bf14de90869e86d, type: 2}
+      - {fileID: 2100000, guid: 002524d0c193d1a4fad5df8152d09e39, type: 2}
     properties:
     - rid: 1968381529576439808
     - rid: 4744941982812995593
@@ -1905,6 +1905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AdsWhileReload: 1
+  AdsMovementBan: 02000000
   AimSpeedMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []

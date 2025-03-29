@@ -9,14 +9,22 @@ namespace SwiftKraft.Gameplay.Weapons.Triggers
     {
         public Action[] Actions;
 
+        public bool Enabled = true;
+
         private void Update()
         {
+            if (!Enabled || InputBlocker.Blocked)
+                return;
+
             foreach (Action a in Actions)
                 a.Update();
         }
 
         private void FixedUpdate()
         {
+            if (!Enabled || InputBlocker.Blocked)
+                return;
+
             foreach (Action a in Actions)
             {
                 bool input = a.GetInput();

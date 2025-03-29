@@ -9,5 +9,11 @@ namespace SwiftKraft.Gameplay.Weapons
         public override void ApplyOverrides() => overrider.OverridePosition = TargetOffset;
 
         public override WeaponShootPoint.Override CreateOverrider() => Component.AddOverride();
+
+        public override void Uninstall()
+        {
+            base.Uninstall();
+            overrider.OverridePosition = default;
+        }
     }
 }

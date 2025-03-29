@@ -69,7 +69,7 @@ namespace SwiftKraft.Gameplay.Weapons
             att.Update();
         }
 
-        public void Uninstall(int index) => Attachments[AttachmentIndex].Uninstall();
+        public void Uninstall(int index) => Attachments[index].Uninstall();
 
         [Serializable]
         public class Attachment

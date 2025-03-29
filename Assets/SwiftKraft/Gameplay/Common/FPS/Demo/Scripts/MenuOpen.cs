@@ -25,7 +25,6 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             MenuObject.SetActive(active);
             Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = active;
-            GameObject.Find("Player").GetComponent<MotorBase>().Enabled = !active;
             IsOpen = active;
             UpdateOpen?.Invoke(IsOpen);
         }

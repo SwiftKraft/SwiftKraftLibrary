@@ -9,11 +9,18 @@ namespace SwiftKraft.Utils
 
         public AudioClip[] Clips;
 
+        public bool PlayOnAwake;
+
         public float Chance = 1f;
 
         int lastRandom = -1;
 
-        private void Awake() => Audio = GetComponent<AudioSource>();
+        private void Awake()
+        {
+            Audio = GetComponent<AudioSource>();
+            if (PlayOnAwake)
+                PlayAudio();
+        }
 
         public void PlayAudio(float chanceOverride = -1f)
         {

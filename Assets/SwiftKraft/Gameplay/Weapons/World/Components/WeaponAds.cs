@@ -1,4 +1,6 @@
+using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
+using System.Linq;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -8,12 +10,14 @@ namespace SwiftKraft.Gameplay.Weapons
         public const string AimAction = "Aim";
 
         public bool AdsWhileReload;
+        public int[] AdsMovementBan;
 
         public ModifiableStatistic AimSpeedMultiplier = new(1f);
 
         public float Aiming { get; protected set; }
 
         public WeaponAmmo Reloader { get; protected set; }
+        public MotorBase Motor { get; protected set; }
 
         public readonly BooleanLock CanAim = new();
 
@@ -24,10 +28,11 @@ namespace SwiftKraft.Gameplay.Weapons
         protected virtual void Awake()
         {
             Reloader = GetComponent<WeaponAmmo>();
+            Motor = GetComponentInParent<MotorBase>();
             aimAction = Parent.AddAction(AimAction, () => true);
         }
 
-        protected virtual void FixedUpdate() => Aim = (AdsWhileReload || Reloader == null || !Reloader.Reloading) && CanAim && aimAction.Status;
+        protected virtual void FixedUpdate() => Aim = (AdsWhileReload || Reloader == null || !Reloader.Reloading) && (Motor == null || !AdsMovementBan.Contains(Motor.State)) && CanAim && aimAction.Status;
 
         protected virtual void OnDestroy()
         {

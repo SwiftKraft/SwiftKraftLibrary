@@ -14,5 +14,12 @@ namespace SwiftKraft.Gameplay.Weapons
             overrider.TargetPosition = TargetOffset;
             overrider.TargetRotation = Quaternion.Euler(TargetEulerOffset);
         }
+
+        public override void Uninstall()
+        {
+            base.Uninstall();
+            overrider.TargetPosition = default;
+            overrider.TargetRotation = new(0f, 0f, 0f, 1f);
+        }
     }
 }

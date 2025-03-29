@@ -8,6 +8,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
     [RequireComponent(typeof(CharacterController))]
     public class FPSPlayerCharacterControllerMotor : PlayerMotorBase<CharacterController>
     {
+        public float CeilingHeight => Physics.Raycast(GroundPoint.position, Vector3.up, out RaycastHit hit, Mathf.Infinity, GroundLayers, QueryTriggerInteraction.Ignore) ? hit.distance : Mathf.Infinity;
+
         public bool IsGrounded { get; private set; }
         public bool IsSprinting { get; private set; }
 
@@ -18,16 +20,22 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public float GroundRadius = 0.1f;
         public float JumpSpeed = 5f;
         public float MoveSpeed = 5f;
+        public float CrouchSpeed = 3f;
         public float SprintSpeed = 8f;
         public float Gravity = 9.81f;
+        public float CrouchHeight = 1f;
+        public float CrouchCameraHeight = 0.8f;
 
         public Camera MainCamera;
         public float ReferenceFOV;
-        public float FOVSensitivityMultiplier = 1f;
 
         readonly Timer coyoteTime = new(0.2f, false);
         readonly Trigger jumpInput = new();
         float currentGravity;
+
+        public MoveTowardsInterpolater CrouchInterp;
+
+        public bool WishCrouch { get; private set; }
 
         public float Height
         {
@@ -40,20 +48,28 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         }
 
         SingleSetting<float> sensitivity;
+        SingleSetting<float> aimSensitivity;
+
+        float originalHeight;
+        float originalCameraHeight;
 
         protected virtual void Awake()
         {
+            originalCameraHeight = LookPointHeight;
+            originalHeight = Height;
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
             SettingsManager.Current.TrySetting("Sensitivity", out sensitivity);
+            SettingsManager.Current.TrySetting("AimSensitivity", out aimSensitivity);
         }
 
         protected override void Update()
         {
             base.Update();
 
-            if (!Enabled)
+            if (!Enabled || InputBlocker.Blocked)
                 return;
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -61,7 +77,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             float fovSensMult = MainCamera.fieldOfView / ReferenceFOV;
 
-            Vector2 inputLook = (sensitivity == null ? 1f : sensitivity.Value) * Mathf.LerpUnclamped(1f, fovSensMult, FOVSensitivityMultiplier) * GetInputLook();
+            Vector2 inputLook = (sensitivity == null ? 1f : sensitivity.Value) * Mathf.LerpUnclamped(1f, fovSensMult, aimSensitivity != null ? aimSensitivity.Value : 1f) * GetInputLook();
             Vector3 wishLookEulers = WishLookRotation.eulerAngles;
 
             WishLookRotation = Quaternion.Euler(Mathf.Clamp(wishLookEulers.x.NormalizeAngle() + inputLook.y, -90f, 90f), wishLookEulers.y + inputLook.x, wishLookEulers.z);
@@ -70,6 +86,12 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         protected override void FixedUpdate()
         {
             IsGrounded = Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+
+            CrouchInterp.Tick(Time.fixedDeltaTime);
+            CrouchInterp.MaxValue = WishCrouch ? 1f : 0f;
+
+            Height = Mathf.Lerp(originalHeight, CrouchHeight, CrouchInterp.CurrentValue);
+            LookPointHeight = Mathf.Lerp(originalCameraHeight, CrouchCameraHeight, CrouchInterp.CurrentValue);
 
             if (!IsGrounded)
             {
@@ -93,7 +115,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             base.FixedUpdate();
 
-            if (!Enabled)
+            if (!Enabled || InputBlocker.Blocked)
             {
                 IsSprinting = false;
                 State = 0;
@@ -102,7 +124,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             Vector2 inputMove = GetInputMove();
 
-            IsSprinting = Input.GetKey(KeyCode.LeftShift) && inputMove.y > 0f;
+            WishCrouch = Input.GetKey(KeyCode.LeftControl) || CeilingHeight < originalHeight;
+            IsSprinting = !WishCrouch && Input.GetKey(KeyCode.LeftShift) && inputMove.y > 0f;
 
             State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting && IsGrounded ? 1 : 0) : 0;
 
@@ -122,7 +145,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public override void Move(Vector3 direction)
         {
-            Vector3 vel = direction * (Time.fixedDeltaTime * (IsSprinting ? SprintSpeed : MoveSpeed));
+            Vector3 vel = direction * (Time.fixedDeltaTime * (IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed)));
             Component.Move(vel);
         }
     }

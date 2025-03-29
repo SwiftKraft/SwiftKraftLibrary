@@ -354,6 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1287022079756437638}
   - component: {fileID: 5179816214278975759}
+  - component: {fileID: 5328796162837811306}
   m_Layer: 5
   m_Name: AttachmentsMenu
   m_TagString: Untagged
@@ -402,6 +403,19 @@ MonoBehaviour:
     type: 3}
   attachmentPrefab: {fileID: 4059920965331966945, guid: 08419bf9d8eae4942a7dc89f3bbb704b,
     type: 3}
+--- !u!114 &5328796162837811306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905877022027120186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da94e17ca8058d4409c59673325bf242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivenessBlocking: 1
 --- !u!1 &6888472243965187535
 GameObject:
   m_ObjectHideFlags: 0
