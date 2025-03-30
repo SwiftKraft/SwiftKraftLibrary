@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Wallrun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6170875730499279618
 Transform:
@@ -8058,25 +8058,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 7763
   m_IsSelectable: 1
-  m_SelectedFaces: 690000006c000000
-  m_SelectedEdges:
-  - a: 432
-    b: 433
-  - a: 434
-    b: 432
-  - a: 433
-    b: 435
-  - a: 435
-    b: 434
-  - a: 444
-    b: 445
-  - a: 446
-    b: 444
-  - a: 445
-    b: 447
-  - a: 447
-    b: 446
-  m_SelectedVertices: b0010000b1010000b2010000b3010000bc010000bd010000be010000bf010000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &8076988033593219545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8116,7 +8100,7 @@ MeshRenderer:
   m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
