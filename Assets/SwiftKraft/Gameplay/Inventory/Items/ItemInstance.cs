@@ -47,15 +47,42 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             Disposed = true;
             this.RemoveInstance();
         }
+
+        public T AddData<T>(string id) where T : ItemDataBase, new()
+        {
+            if (Data.ContainsKey(id))
+                return null;
+
+            T t = new();
+            t.Init(this);
+            Data.Add(id, t);
+            return t;
+        }
+
+        public bool TryAddData<T>(string id, out T dat) where T : ItemDataBase, new()
+        {
+            dat = AddData<T>(id);
+            return dat != null;
+        }
+
+        public T GetData<T>(string id) where T : ItemDataBase => Data.ContainsKey(id) && Data[id] is T t ? t : null;
+
+        public bool TryGetData<T>(string id, out T dat) where T : ItemDataBase
+        {
+            dat = GetData<T>(id);
+            return dat != null;
+        }
+
+        public bool TryData<T>(string id, out T dat) where T : ItemDataBase, new() => TryGetData(id, out dat) || TryAddData(id, out dat);
     }
 
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public abstract class ItemDataBase
     {
-        public readonly ItemInstance Parent;
+        public ItemInstance Parent { get; private set; }
 
         public bool Disposed => Parent.Disposed;
 
-        public ItemDataBase(ItemInstance parent) => Parent = parent;
+        public void Init(ItemInstance parent) => Parent = parent;
     }
 }

@@ -12,18 +12,18 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public EquippableItemType Item => Instance.Type is EquippableItemType eq ? eq : null;
 
-        public void Init(ItemInstance inst, ItemEquipper parent)
-        {
-            Parent = parent;
-            Instance = inst;
-        }
+        public void Init(ItemEquipper parent) => Parent = parent;
 
         public event Action OnUnequip;
         public event Action OnEquip;
 
         public readonly BooleanLock CanUnequip = new();
 
-        public void Equip() => OnEquip?.Invoke();
+        public void Equip(ItemInstance inst)
+        {
+            Instance = inst;
+            OnEquip?.Invoke();
+        }
 
         public void Unequip(bool resetWishEquip = false)
         {

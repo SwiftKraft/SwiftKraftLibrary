@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using SwiftKraft.Gameplay.Inventory.Items;
 using SwiftKraft.Utils;
 using System;
 using UnityEngine;
@@ -6,26 +8,42 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAmmo : WeaponComponentBlocker
     {
+        public class Data : ItemDataBase
+        {
+            [JsonProperty]
+            public int CurrentAmmo;
+        }
+
         public const string ReloadAction = "Reload";
+        public const string AmmoSaveID = "Ammo";
+
+        public EquippedItem Item { get; private set; }
 
         [field: SerializeField]
         public ModifiableStatistic MaxAmmo { get; set; }
         [field: SerializeField]
         public ModifiableStatistic ReloadSpeedMultiplier { get; set; }
+
         public int CurrentAmmo
         {
-            get => _currentAmmo;
+            get
+            {
+                if (data == null || data.Disposed)
+                    Item.Instance.TryData(AmmoSaveID, out data);
+
+                return data.CurrentAmmo;
+            }
+
             set
             {
-                if (_currentAmmo == value)
+                if (CurrentAmmo == value)
                     return;
 
                 OnAmmoUpdated?.Invoke(value);
-                _currentAmmo = value;
-                AttackDisabler.Active = _currentAmmo <= 0;
+                data.CurrentAmmo = value;
+                AttackDisabler.Active = data.CurrentAmmo <= 0;
             }
         }
-        private int _currentAmmo;
 
         public virtual bool Reloading => false;
 
@@ -37,21 +55,25 @@ namespace SwiftKraft.Gameplay.Weapons
 
         protected BooleanLock.Lock CanShoot;
 
+        protected Data data;
+
         protected override void Awake()
         {
             base.Awake();
-            CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
+            Item = GetComponent<EquippedItem>();
+            Item.OnEquip += OnEquip;
             Parent.OnAttack += OnAttack;
             Parent.AddAction(ReloadAction, StartReload);
             CanShoot = Parent.CanAttack.AddLock();
             MaxAmmo.OnUpdate += OnMaxAmmoUpdated;
         }
 
-        protected virtual void OnEnable() => OnAmmoUpdated?.Invoke(CurrentAmmo);
+        protected virtual void OnEnable() { }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            Item.OnEquip -= OnEquip;
             Parent.OnAttack -= OnAttack;
             Parent.Actions.Remove(ReloadAction);
             Parent.CanAttack.RemoveLock(CanShoot);
@@ -63,6 +85,13 @@ namespace SwiftKraft.Gameplay.Weapons
             CanShoot.Active = false;
             if (Reloading)
                 EndReload(false);
+        }
+
+        protected virtual void OnEquip()
+        {
+            data = null;
+            OnAmmoUpdated?.Invoke(CurrentAmmo);
+            Debug.Log(CurrentAmmo);
         }
 
         protected virtual void OnMaxAmmoUpdated(float max)

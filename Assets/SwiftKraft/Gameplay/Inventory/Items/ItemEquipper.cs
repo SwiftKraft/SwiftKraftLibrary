@@ -24,17 +24,18 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public bool TryEquip(ItemInstance inst, out EquippedItem it)
         {
-            if (!HasEquippedItem(inst, out it) && !AddEquippedItem(inst, out it))
+            it = null;
+            if (inst == null || inst.Type is not EquippableItemType ty || (!HasEquippedItem(ty, out it) && !AddEquippedItem(ty, out it)))
                 return false;
             it.gameObject.SetActive(true);
-            it.Equip();
+            it.Equip(inst);
             return true;
         }
 
-        public bool HasEquippedItem(ItemInstance inst, out EquippedItem it)
+        public bool HasEquippedItem(EquippableItemType inst, out EquippedItem it)
         {
             foreach (EquippedItem item in EquippedItemCache)
-                if (item.Instance == inst)
+                if (item.Item == inst)
                 {
                     it = item;
                     return true;
@@ -43,16 +44,16 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             return false;
         }
 
-        public bool AddEquippedItem(ItemInstance inst, out EquippedItem it)
+        public bool AddEquippedItem(EquippableItemType ty, out EquippedItem it)
         {
-            if (inst == null || inst.Type is not EquippableItemType ty || !ty.EquippedPrefab.TryGetComponent(out EquippedItem item))
+            if (ty == null || !ty.EquippedPrefab.TryGetComponent(out EquippedItem item))
             {
                 it = null;
                 return false;
             }
 
             it = Instantiate(item, Workspace);
-            it.Init(inst, this);
+            it.Init(this);
 
             EquippedItemCache.Add(it);
 
