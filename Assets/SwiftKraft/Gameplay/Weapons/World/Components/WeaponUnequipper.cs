@@ -7,13 +7,20 @@ namespace SwiftKraft.Gameplay.Weapons
     [RequireComponent(typeof(EquippedItem))]
     public abstract class WeaponUnequipper : WeaponComponentBlocker
     {
+        public enum UnequipState
+        {
+            None,
+            ItemSwitch,
+            Manual
+        }
+
         public const string UnequipAction = "Unequip";
 
         public EquippedItem Item { get; private set; }
 
-        public bool Unequipping { get; private set; }
-
         protected BooleanLock.Lock CanUnequip;
+
+        protected UnequipState State { get; set; }
 
         protected override void Awake()
         {
@@ -21,7 +28,7 @@ namespace SwiftKraft.Gameplay.Weapons
             Item = GetComponent<EquippedItem>();
             Item.OnUnequip += OnUnequip;
             CanUnequip = Item.CanUnequip.AddLock();
-            Parent.AddAction(UnequipAction, ManualUnequip);
+            Parent.AddAction(UnequipAction, StartUnequip);
         }
 
         protected override void OnDestroy()
@@ -35,23 +42,19 @@ namespace SwiftKraft.Gameplay.Weapons
         protected virtual void OnUnequip()
         {
             if (!CanUnequip.Active && Item.CanUnequip)
-                StartUnequip();
-        }
-
-        public virtual bool ManualUnequip()
-        {
-            if (Unequipping)
-                return false;
-
-            Item.Parent.Equip(null);
-            return true;
+            {
+                State = UnequipState.ItemSwitch;
+                Parent.StartAction(UnequipAction);
+            }
         }
 
         public virtual bool StartUnequip()
         {
+            if (State != UnequipState.ItemSwitch)
+                State = UnequipState.Manual;
+
             AttackDisabler.Active = true;
             CanUnequip.Active = true;
-            Unequipping = true;
             return true;
         }
 
@@ -59,8 +62,8 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             AttackDisabler.Active = false;
             CanUnequip.Active = false;
-            Item.FinishUnequip();
-            Unequipping = false;
+            Item.FinishUnequip(State == UnequipState.Manual);
+            State = UnequipState.None;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items.Editors
         {
             WorldItemBase component = (WorldItemBase)target;
 
-            bool isInScene = PrefabUtility.GetPrefabInstanceStatus(component) != PrefabInstanceStatus.NotAPrefab;
+            bool isInScene = !PrefabUtility.IsPartOfPrefabAsset(component);
 
             DrawDefaultInspectorExcluding(nameof(WorldItemBase.StartType));
 

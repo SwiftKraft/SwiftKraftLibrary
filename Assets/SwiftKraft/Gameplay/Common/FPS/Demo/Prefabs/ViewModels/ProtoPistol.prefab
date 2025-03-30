@@ -1698,6 +1698,9 @@ MonoBehaviour:
   <MaxAmmo>k__BackingField:
     <BaseValue>k__BackingField: 18
     <Values>k__BackingField: []
+  <ReloadSpeedMultiplier>k__BackingField:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
 --- !u!114 &7074702899465627531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3801,7 +3804,7 @@ MonoBehaviour:
   - ID: Unequip
     States:
     - StateName: Unequip
-      CrossFade: 0
+      CrossFade: 0.05
       Weight: 1
       OnPlay:
         m_PersistentCalls:
