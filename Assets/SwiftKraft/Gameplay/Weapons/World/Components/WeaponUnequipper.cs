@@ -5,11 +5,13 @@ using UnityEngine;
 namespace SwiftKraft.Gameplay.Weapons
 {
     [RequireComponent(typeof(EquippedItem))]
-    public abstract class WeaponUnequipper : WeaponComponentBlocker // rework this to use items
+    public abstract class WeaponUnequipper : WeaponComponentBlocker
     {
         public const string UnequipAction = "Unequip";
 
         public EquippedItem Item { get; private set; }
+
+        public bool Unequipping { get; private set; }
 
         protected BooleanLock.Lock CanUnequip;
 
@@ -19,7 +21,7 @@ namespace SwiftKraft.Gameplay.Weapons
             Item = GetComponent<EquippedItem>();
             Item.OnUnequip += OnUnequip;
             CanUnequip = Item.CanUnequip.AddLock();
-            Parent.AddAction(UnequipAction, StartUnequip);
+            Parent.AddAction(UnequipAction, ManualUnequip);
         }
 
         protected override void OnDestroy()
@@ -33,13 +35,23 @@ namespace SwiftKraft.Gameplay.Weapons
         protected virtual void OnUnequip()
         {
             if (!CanUnequip.Active && Item.CanUnequip)
-                Parent.StartAction(UnequipAction);
+                StartUnequip();
+        }
+
+        public virtual bool ManualUnequip()
+        {
+            if (Unequipping)
+                return false;
+
+            Item.Parent.Equip(null);
+            return true;
         }
 
         public virtual bool StartUnequip()
         {
             AttackDisabler.Active = true;
             CanUnequip.Active = true;
+            Unequipping = true;
             return true;
         }
 
@@ -48,6 +60,7 @@ namespace SwiftKraft.Gameplay.Weapons
             AttackDisabler.Active = false;
             CanUnequip.Active = false;
             Item.FinishUnequip();
+            Unequipping = false;
         }
     }
 }

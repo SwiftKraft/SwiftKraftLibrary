@@ -13,6 +13,8 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
         public SlotSelector[] Selectors;
 
+        public KeyCode DropKey;
+
         private void Awake()
         {
             Equipper = GetComponentInChildren<ItemEquipper>();
@@ -24,8 +26,14 @@ namespace SwiftKraft.Gameplay.Common.FPS
         private void Update()
         {
             foreach (SlotSelector sel in Selectors)
-                if (Input.GetKeyDown(sel.Key) && Data.Items.Count > sel.Slot && Data.Items[sel.Slot] != null && Data.Items[sel.Slot].Type is EquippableItemType ty)
-                    Equipper.Equip(ty);
+                if (Input.GetKeyDown(sel.Key) && Data.Items.Count > sel.Slot && Data.Items[sel.Slot] != null)
+                    Equipper.Equip(Data.Items[sel.Slot]);
+
+            if (Input.GetKeyDown(DropKey) && Equipper.Current != null)
+            {
+                DropItem(Equipper.Current.Instance, transform.position + transform.forward + transform.up, transform.rotation);
+                Equipper.ForceUnequip(true);
+            }
         }
 
         [Serializable]

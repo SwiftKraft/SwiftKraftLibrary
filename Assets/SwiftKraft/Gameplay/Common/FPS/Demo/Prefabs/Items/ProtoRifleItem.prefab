@@ -487,8 +487,9 @@ GameObject:
   - component: {fileID: 1990159545357776218}
   - component: {fileID: 84982037749152682}
   - component: {fileID: 7212945400381485980}
+  - component: {fileID: 8860835096430983414}
   m_Layer: 0
-  m_Name: ProtoRifle
+  m_Name: ProtoRifleItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,7 +504,7 @@ Transform:
   m_GameObject: {fileID: 5852272558835464859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -558,6 +559,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8860835096430983414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5852272558835464859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089a655f9ce61a045a1c8f0f387bf251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartType: {fileID: 0}
 --- !u!1 &6345738658369239539
 GameObject:
   m_ObjectHideFlags: 0

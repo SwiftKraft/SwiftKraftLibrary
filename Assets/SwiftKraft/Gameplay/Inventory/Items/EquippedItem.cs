@@ -8,12 +8,14 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     {
         public ItemEquipper Parent { get; private set; }
 
-        public EquippableItemType Item { get; private set; }
+        public ItemInstance Instance { get; private set; }
 
-        public void Init(EquippableItemType type, ItemEquipper parent)
+        public EquippableItemType Item => Instance.Type is EquippableItemType eq ? eq : null;
+
+        public void Init(ItemInstance inst, ItemEquipper parent)
         {
             Parent = parent;
-            Item = type;
+            Instance = inst;
         }
 
         public event Action OnUnequip;

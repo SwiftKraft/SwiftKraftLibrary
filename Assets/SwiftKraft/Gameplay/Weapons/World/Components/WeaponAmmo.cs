@@ -58,7 +58,12 @@ namespace SwiftKraft.Gameplay.Weapons
             MaxAmmo.OnUpdate -= OnMaxAmmoUpdated;
         }
 
-        protected virtual void OnDisable() => CanShoot.Active = false;
+        protected virtual void OnDisable()
+        {
+            CanShoot.Active = false;
+            if (Reloading)
+                EndReload(false);
+        }
 
         protected virtual void OnMaxAmmoUpdated(float max)
         {

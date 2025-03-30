@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using SwiftKraft.Gameplay.Inventory.Items;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +8,8 @@ namespace SwiftKraft.Gameplay.Inventory
     public abstract class InventoryBase : MonoBehaviour
     {
         public virtual InventoryInstance Data
-        { 
-            get 
+        {
+            get
             {
                 _data ??= new();
                 return _data;
@@ -20,7 +19,7 @@ namespace SwiftKraft.Gameplay.Inventory
 
         public virtual void AddItem(ItemInstance inst)
         {
-            if (Data.Items.Contains(inst))
+            if (inst == null || Data.Items.Contains(inst))
                 return;
 
             inst.SwitchInventoryEvent(Data);
@@ -31,9 +30,21 @@ namespace SwiftKraft.Gameplay.Inventory
 
         public virtual void RemoveItem(ItemInstance inst)
         {
+            if (inst == null || !Data.Items.Contains(inst))
+                return;
+
             inst.OnSwitchInventory -= OnItemSwitch;
             Data.Items.Remove(inst);
             Data.Items.RemoveAll((it) => it == null);
+        }
+
+        public virtual void DropItem(ItemInstance inst, Vector3 position, Quaternion rotation = default, Transform parent = null)
+        {
+            if (inst == null || !Data.Items.Contains(inst) || inst.Type == null || inst.Type.WorldPrefab == null)
+                return;
+
+            RemoveItem(inst);
+            inst.Type.SpawnItem(inst, position, rotation, parent);
         }
 
         protected virtual void OnItemSwitch(ItemInstance inst, InventoryInstance inv) => RemoveItem(inst);

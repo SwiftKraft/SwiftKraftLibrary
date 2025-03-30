@@ -523,12 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa5cbf7350a1ab4b802be64243a3f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultItems:
-  - {fileID: 11400000, guid: 840990289fa8bf44fb31c48d0525c62c, type: 2}
-  - {fileID: 11400000, guid: 0b987ad9ae1721f4ca7696aa91b571e6, type: 2}
-  - {fileID: 11400000, guid: 7227b293b6f22234592e21d1f0c1d721, type: 2}
-  - {fileID: 11400000, guid: e40c3452db676b14ebae5cf57a6acbab, type: 2}
-  - {fileID: 11400000, guid: c8c1850835dd31f4497d782c609d4ddb, type: 2}
+  DefaultItems: []
   Selectors:
   - Key: 49
     Slot: 0
@@ -540,6 +535,7 @@ MonoBehaviour:
     Slot: 3
   - Key: 53
     Slot: 4
+  DropKey: 116
 --- !u!114 &6061303147417084388
 MonoBehaviour:
   m_ObjectHideFlags: 0
