@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using System;
-using Object = UnityEngine.Object;
+using System.Collections.Generic;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
@@ -25,6 +25,11 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public event Action OnDestroy;
         public event Action<ItemInstance, InventoryInstance> OnSwitchInventory;
 
+        public bool Disposed { get; private set; }
+
+        [JsonProperty]
+        public Dictionary<string, ItemDataBase> Data { get; private set; } = new();
+
         [JsonConstructor]
         public ItemInstance(string typeId)
         {
@@ -39,7 +44,18 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public void Despawn()
         {
             OnDestroy?.Invoke();
+            Disposed = true;
             this.RemoveInstance();
         }
+    }
+
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    public abstract class ItemDataBase
+    {
+        public readonly ItemInstance Parent;
+
+        public bool Disposed => Parent.Disposed;
+
+        public ItemDataBase(ItemInstance parent) => Parent = parent;
     }
 }

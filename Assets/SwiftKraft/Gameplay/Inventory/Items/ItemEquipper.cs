@@ -16,8 +16,6 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public EquippedItem Current { get; private set; }
         EquippableItemType tryEquip;
 
-        readonly Trigger freshWeapon = new();
-
         private void Awake()
         {
             EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItem>());
