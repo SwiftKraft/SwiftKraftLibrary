@@ -19,8 +19,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         }
         ViewModel _viewModel;
 
-        public float AimViewModelFOV = 50f;
-        public float AimCameraFOV = 75f;
+        public ModifiableStatistic AimViewModelFOV = new(50f);
+        public ModifiableStatistic AimCameraFOV = new(75f);
 
         CameraManager.FOVOverride.Override viewModel;
         CameraManager.FOVOverride.Override mainCam;
@@ -45,6 +45,11 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         private void FixedUpdate()
         {
+            if (viewModel.FOV != AimViewModelFOV)
+                viewModel.FOV = AimViewModelFOV;
+            if (mainCam.FOV != AimCameraFOV)
+                mainCam.FOV = AimCameraFOV;
+
             viewModel.Active = Component.Aim;
             mainCam.Active = Component.Aim;
         }

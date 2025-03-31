@@ -16,7 +16,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         protected virtual void FixedUpdate()
         {
-            LoadDelay.Tick(Time.fixedDeltaTime);
+            LoadDelay.Tick(Time.fixedDeltaTime * ReloadSpeedMultiplier);
 
             if (Reloading && LoadDelay.Ended)
             {

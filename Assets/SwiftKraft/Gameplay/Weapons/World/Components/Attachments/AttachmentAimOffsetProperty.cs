@@ -2,42 +2,31 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class AttachmentAimOffsetProperty : WeaponAttachmentSlot.AttachmentProperty
+    public class AttachmentAimOffsetProperty : AttachmentOverridePropertyBase<WeaponAdsOffset, WeaponAdsOffset.Override>
     {
         public Vector3 TargetOffset;
         public Vector3 TargetEulerOffset;
 
-        WeaponAdsOffset.Override target;
+        public override WeaponAdsOffset.Override CreateOverrider() => Component.AddOverride();
 
-        public override void Init(WeaponAttachmentSlot.Attachment parent)
+        public override void ApplyOverrides()
         {
-            base.Init(parent);
-            target = this.parent.parent.GetComponentInParent<WeaponAdsOffset>().AddOverride();
-        }
-
-        public override void Update()
-        {
-            if (target != null)
-            {
-                target.TargetPosition = TargetOffset;
-                target.TargetRotation = Quaternion.Euler(TargetEulerOffset);
-            }
+            overrider.TargetPosition = TargetOffset;
+            overrider.TargetRotation = Quaternion.Euler(TargetEulerOffset);
         }
 
         public override void Uninstall()
         {
             base.Uninstall();
-            if (target != null)
-            {
-                target.TargetPosition = Vector3.zero;
-                target.TargetRotation = new(0f, 0f, 0f, 1f);
-            }
+            overrider.TargetPosition = default;
+            overrider.TargetRotation = new(0f, 0f, 0f, 1f);
         }
 
-        public override void Destroy()
-        {
-            base.Destroy();
-            target.Dispose();
-        }
+        public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
+            new AttachmentAimOffsetProperty()
+            {
+                TargetEulerOffset = TargetEulerOffset,
+                TargetOffset = TargetOffset
+            };
     }
 }

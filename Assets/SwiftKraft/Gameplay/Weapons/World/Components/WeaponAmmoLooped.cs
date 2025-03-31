@@ -82,7 +82,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             if (CanReload)
             {
-                CurrentAmmo = Mathf.Clamp(CurrentAmmo + Amount, 0, MaxAmmo);
+                CurrentAmmo = Mathf.Clamp(CurrentAmmo + Amount, 0, Mathf.RoundToInt(MaxAmmo));
                 LoadedAmmo += Amount;
 
                 if (CurrentAmmo >= MaxAmmo)

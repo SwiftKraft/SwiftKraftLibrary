@@ -1,9 +1,13 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAmmoAnimation : WeaponAmmo
     {
+        public string[] ReloadStates = { "Reload" };
+        public float FullEndReloadThreshold = 0.9f;
+
         public Animator Animator
         {
             get
@@ -16,46 +20,26 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         Animator _animator;
 
-        public WeaponReloadAnimator ReloadCommunicator
-        {
-            get
-            {
-                if (_reloadCommunicator == null)
-                    _reloadCommunicator = Animator.GetBehaviour<WeaponReloadAnimator>();
-
-                return _reloadCommunicator;
-            }
-        }
-        WeaponReloadAnimator _reloadCommunicator;
-
         public override bool Reloading => reloading;
         bool reloading;
+        float reloadNormalizedTime;
 
-        protected override void Awake()
+        protected virtual void Update()
         {
-            base.Awake();
-            ReloadCommunicator.EndReload += EndReload;
-        }
+            if (Animator.IsInTransition(0))
+                return;
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            ReloadCommunicator.EndReload += EndReload;
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-            if (ReloadCommunicator != null)
-                ReloadCommunicator.EndReload -= EndReload;
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            if (ReloadCommunicator != null)
-                ReloadCommunicator.EndReload -= EndReload;
+            if (Animator.GetCurrentAnimatorStateInfo(0).CheckName(ReloadStates))
+            {
+                reloadNormalizedTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                if (reloadNormalizedTime >= 1f)
+                    EndReload(true);
+            }
+            else if (reloading)
+            {
+                EndReload(reloadNormalizedTime >= FullEndReloadThreshold);
+                reloadNormalizedTime = 0f;
+            }
         }
 
         protected override void Reload()
@@ -63,6 +47,7 @@ namespace SwiftKraft.Gameplay.Weapons
             CanShoot.Active = true;
             OnReloadUpdatedEvent(true);
             reloading = true;
+            Animator.speed = ReloadSpeedMultiplier;
         }
 
         public override void EndReload(bool fullEnd)
@@ -71,6 +56,7 @@ namespace SwiftKraft.Gameplay.Weapons
             CanShoot.Active = false;
             OnReloadUpdatedEvent(false);
             reloading = false;
+            Animator.speed = 1f;
         }
     }
 }

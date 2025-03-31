@@ -1,7 +1,4 @@
 using SwiftKraft.Gameplay.Weapons;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +9,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
     public class AttachmentUI : MonoBehaviour
     {
         [HideInInspector]
-        public WeaponAttachmentSlot.Attachment Attachment;
+        public WeaponAttachmentSlotScriptable.Attachment Attachment;
         [HideInInspector]
         public WeaponAttachmentSlot ParentSlot;
         WeaponAttachmentMenu parent;
@@ -28,7 +25,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         private void OnDestroy() => parent.OnSelectAttachment -= Parent_OnSelectAttachment;
 
-        public void Init(WeaponAttachmentMenu menu, WeaponAttachmentSlot.Attachment att, WeaponAttachmentSlot slot)
+        public void Init(WeaponAttachmentMenu menu, WeaponAttachmentSlotScriptable.Attachment att, WeaponAttachmentSlot slot)
         {
             Attachment = att;
             ParentSlot = slot;
@@ -38,6 +35,6 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             button.onClick.AddListener(() => parent.SelectAttachment(Attachment));
         }
 
-        private void Parent_OnSelectAttachment(WeaponAttachmentSlot.Attachment obj) => button.interactable = obj != Attachment;
+        private void Parent_OnSelectAttachment(WeaponAttachmentSlotScriptable.Attachment obj) => button.interactable = obj != Attachment;
     }
 }

@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using SwiftKraft.Gameplay.Inventory.Items;
 using SwiftKraft.Utils;
 using System;
 using UnityEngine;
@@ -6,24 +8,53 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAmmo : WeaponComponentBlocker
     {
+        public class Data : ItemDataBase
+        {
+            [JsonProperty]
+            public int CurrentAmmo;
+        }
+
         public const string ReloadAction = "Reload";
+        public const string AmmoSaveID = "Ammo";
+
+        public EquippedItem Item { get; private set; }
 
         [field: SerializeField]
-        public int MaxAmmo { get; set; }
+        public ModifiableStatistic MaxAmmo { get; set; }
+        [field: SerializeField]
+        public ModifiableStatistic ReloadSpeedMultiplier { get; set; }
+
         public int CurrentAmmo
         {
-            get => _currentAmmo;
+            get
+            {
+                if (Item == null)
+                    return _currentAmmo;
+
+                if (data == null || data.Disposed)
+                    Item.Instance.TryData(AmmoSaveID, out data);
+
+                return data.CurrentAmmo;
+            }
             set
             {
-                if (_currentAmmo == value)
+                if (Item == null)
+                {
+                    OnAmmoUpdated?.Invoke(value);
+                    _currentAmmo = value;
+                    AttackDisabler.Active = data.CurrentAmmo <= 0;
                     return;
+                }
+
+                if (data == null || data.Disposed)
+                    Item.Instance.TryData(AmmoSaveID, out data);
 
                 OnAmmoUpdated?.Invoke(value);
-                _currentAmmo = value;
-                AttackDisabler.Active = _currentAmmo <= 0;
+                data.CurrentAmmo = value;
+                AttackDisabler.Active = data.CurrentAmmo <= 0;
             }
         }
-        private int _currentAmmo;
+        int _currentAmmo;
 
         public virtual bool Reloading => false;
 
@@ -35,26 +66,52 @@ namespace SwiftKraft.Gameplay.Weapons
 
         protected BooleanLock.Lock CanShoot;
 
+        protected Data data;
+
         protected override void Awake()
         {
             base.Awake();
-            CurrentAmmo = MaxAmmo;
+            Item = GetComponent<EquippedItem>();
+            if (Item != null)
+                Item.OnEquip += OnEquip;
             Parent.OnAttack += OnAttack;
             Parent.AddAction(ReloadAction, StartReload);
             CanShoot = Parent.CanAttack.AddLock();
+            MaxAmmo.OnUpdate += OnMaxAmmoUpdated;
         }
 
-        protected virtual void OnEnable() => OnAmmoUpdated?.Invoke(CurrentAmmo);
+        protected virtual void OnEnable() { }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            if (Item != null)
+                Item.OnEquip -= OnEquip;
             Parent.OnAttack -= OnAttack;
             Parent.Actions.Remove(ReloadAction);
             Parent.CanAttack.RemoveLock(CanShoot);
+            MaxAmmo.OnUpdate -= OnMaxAmmoUpdated;
         }
 
-        protected virtual void OnDisable() => CanShoot.Active = false;
+        protected virtual void OnDisable()
+        {
+            CanShoot.Active = false;
+            if (Reloading)
+                EndReload(false);
+        }
+
+        protected virtual void OnEquip()
+        {
+            data = null;
+            OnAmmoUpdated?.Invoke(CurrentAmmo);
+            AttackDisabler.Active = CurrentAmmo <= 0;
+        }
+
+        protected virtual void OnMaxAmmoUpdated(float max)
+        {
+            CurrentAmmo = Mathf.Min(Mathf.RoundToInt(max), CurrentAmmo);
+            OnAmmoUpdated?.Invoke(CurrentAmmo);
+        }
 
         protected virtual void OnAttack(GameObject go) => TryUseAmmo();
 
@@ -95,7 +152,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual void EndReload(bool fullEnd)
         {
             if (CanReload && fullEnd)
-                CurrentAmmo = MaxAmmo;
+                CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
         }
     }
 }

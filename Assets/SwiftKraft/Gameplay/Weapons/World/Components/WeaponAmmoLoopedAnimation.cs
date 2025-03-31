@@ -65,6 +65,12 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
+        protected override void Reload()
+        {
+            base.Reload();
+            ReloadCommunicator.ReloadSpeed = ReloadSpeedMultiplier;
+        }
+
         protected virtual void FinishCycle()
         {
             AddAmmo();

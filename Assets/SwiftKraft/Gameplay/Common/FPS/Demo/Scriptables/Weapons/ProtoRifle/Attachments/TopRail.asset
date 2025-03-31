@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2d4cf98f1b1f044b7e22a5e6f767b3, type: 3}
+  m_Name: TopRail
+  m_EditorClassIdentifier: 
+  SlotName: Top Rail
+  Attachments:
+  - parent: {fileID: 0}
+    name: Iron Sights
+    package:
+      mesh: {fileID: 2183720242721537697, guid: 5149efcf6938e4049989526f85b4fb8d,
+        type: 3}
+      materials:
+      - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+    properties: []
+  - parent: {fileID: 0}
+    name: Holographic Sight
+    package:
+      mesh: {fileID: 2594999250697716090, guid: 5149efcf6938e4049989526f85b4fb8d,
+        type: 3}
+      materials:
+      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 2100000, guid: a5b93f46de22a4b4380a95ba70465be1, type: 2}
+    properties:
+    - rid: 4744942044584345600
+  - parent: {fileID: 0}
+    name: 2x Scope
+    package:
+      mesh: {fileID: 6101988875147511788, guid: 5149efcf6938e4049989526f85b4fb8d,
+        type: 3}
+      materials:
+      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 2100000, guid: 1d2250bcbff0b1345a4da461eac1a048, type: 2}
+    properties:
+    - rid: 4744942044584345601
+    - rid: 4744942044584345612
+  references:
+    version: 2
+    RefIds:
+    - rid: 4744942044584345600
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: -0.0055, z: 0}
+        TargetEulerOffset: {x: -0.227, y: 0, z: 0}
+    - rid: 4744942044584345601
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: -0.0055, z: 0}
+        TargetEulerOffset: {x: -0.227, y: 0, z: 0}
+    - rid: 4744942044584345612
+      type: {class: AttachmentAimFOVProperty, ns: SwiftKraft.Gameplay.Common.FPS.ViewModels,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        viewFOV: 1.5
+        viewType: 3
+        modelFOV: 1.5
+        modelType: 3

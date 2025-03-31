@@ -1,23 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class AttachmentSoundChangeProperty : WeaponAttachmentSlot.AttachmentProperty
+    public class AttachmentSoundChangeProperty : AttachmentComponentPropertyBase<WeaponAudio>
     {
         public string Action;
         public List<WeaponAudio.Audio.Clip> Clips = new();
 
         WeaponAudio.Audio weaponAudio;
 
-        public override void Init(WeaponAttachmentSlot.Attachment parent)
+        public override void Init(WeaponAttachmentSlotScriptable.Attachment parent)
         {
             base.Init(parent);
-            WeaponAudio au = this.parent.parent.GetComponentInParent<WeaponAudio>();
-            if (au != null)
-                weaponAudio = au.Sounds.FirstOrDefault((a) => a.Action == Action);
+            if (Component != null)
+                weaponAudio = Component.Sounds.FirstOrDefault((a) => a.Action == Action);
         }
 
         public override void Update()
@@ -32,5 +29,12 @@ namespace SwiftKraft.Gameplay.Weapons
             if (weaponAudio != null)
                 weaponAudio.Override = null;
         }
+
+        public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
+            new AttachmentSoundChangeProperty()
+            {
+                Action = Action,
+                Clips = Clips,
+            };
     }
 }

@@ -7,6 +7,9 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public Transform SpreadTransform;
 
+        public ModifiableStatistic HipMultiplier = new(1f);
+        public ModifiableStatistic AimMultiplier = new(1f);
+
         public float Spread;
         public float SpreadAim;
         public AnimationCurve SpreadRecoil;
@@ -53,15 +56,17 @@ namespace SwiftKraft.Gameplay.Weapons
 
         protected virtual void OnPreAttack() => ApplySpread();
 
+        protected virtual float GetCurrentMultiplier() => Aim != null ? Mathf.Lerp(HipMultiplier, AimMultiplier, Aim.Aiming) : HipMultiplier;
+
         public virtual float GetSpread()
         {
             if (Aim != null && Recoil != null)
-                return Mathf.Lerp(SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue), SpreadAimRecoil.Evaluate(Recoil.Heat.CurrentValue), Aim.Aiming);
+                return Mathf.Lerp(SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue), SpreadAimRecoil.Evaluate(Recoil.Heat.CurrentValue), Aim.Aiming) * GetCurrentMultiplier();
             else if (Aim != null)
-                return Mathf.Lerp(Spread, SpreadAim, Aim.Aiming);
+                return Mathf.Lerp(Spread, SpreadAim, Aim.Aiming) * GetCurrentMultiplier();
             else if (Recoil != null)
-                return SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue);
-            return Spread;
+                return SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue) * GetCurrentMultiplier();
+            return Spread * GetCurrentMultiplier();
         }
 
         public abstract void ApplySpread();

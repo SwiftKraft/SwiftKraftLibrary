@@ -1,6 +1,6 @@
 using SwiftKraft.Utils;
-using System;
 using UnityEngine;
+using static SwiftKraft.Gameplay.Weapons.WeaponAttachmentSlotScriptable;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
@@ -9,7 +9,19 @@ namespace SwiftKraft.Gameplay.Weapons
 #if UNITY_EDITOR
         public bool DebugMode = false;
 #endif
-        public string SlotName;
+        public WeaponAttachmentSlotScriptable Scriptable;
+
+        public Attachment[] Attachments
+        {
+            get
+            {
+                if (_attachments == null)
+                    RefreshAttachments();
+
+                return _attachments;
+            }
+        }
+        Attachment[] _attachments;
 
         public WeaponAttachments Parent { get; private set; }
 
@@ -28,8 +40,6 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         int _attachmentIndex;
 
-        public Attachment[] Attachments;
-
         protected override void Awake()
         {
             base.Awake();
@@ -41,13 +51,15 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
             }
 
+            RefreshAttachments();
+
             foreach (Attachment att in Attachments)
                 att.Init(this);
-
-            UpdateAttachment();
         }
 
-        private void OnDestroy()
+        protected virtual void Start() => UpdateAttachment();
+
+        protected virtual void OnDestroy()
         {
             foreach (Attachment att in Attachments)
                 att.Destroy();
@@ -61,67 +73,22 @@ namespace SwiftKraft.Gameplay.Weapons
         }
 #endif
 
+        public void RefreshAttachments()
+        {
+            _attachments = new Attachment[Scriptable.Attachments.Length];
+            for (int i = 0; i < _attachments.Length; i++)
+                _attachments[i] = Scriptable.Attachments[i].Clone();
+        }
+
         public void UpdateAttachment()
         {
             Attachment att = Attachments[AttachmentIndex];
             SwapMesh(att.package);
 
             att.Update();
+            Parent.AttachmentsUpdated();
         }
 
-        public void Uninstall(int index) => Attachments[AttachmentIndex].Uninstall();
-
-        [Serializable]
-        public class Attachment
-        {
-            [HideInInspector]
-            public WeaponAttachmentSlot parent;
-
-            public string name;
-            public Package package;
-
-            [SerializeReference, Subclass]
-            public AttachmentProperty[] properties;
-
-            public void Init(WeaponAttachmentSlot parent)
-            {
-                this.parent = parent;
-                foreach (AttachmentProperty prop in properties)
-                    prop.Init(this);
-            }
-
-            public void Update()
-            {
-                foreach (AttachmentProperty prop in properties)
-                    prop.Update();
-            }
-
-            public void Uninstall()
-            {
-                foreach (AttachmentProperty prop in properties)
-                    prop.Uninstall();
-            }
-
-            public void Destroy()
-            {
-                foreach (AttachmentProperty prop in properties)
-                    prop.Destroy();
-            }
-        }
-
-        [Serializable]
-        public abstract class AttachmentProperty
-        {
-            [HideInInspector]
-            public Attachment parent;
-
-            public virtual void Init(Attachment parent) => this.parent = parent;
-
-            public abstract void Update();
-
-            public virtual void Uninstall() { }
-
-            public virtual void Destroy() { }
-        }
+        public void Uninstall(int index) => Attachments[index].Uninstall();
     }
 }

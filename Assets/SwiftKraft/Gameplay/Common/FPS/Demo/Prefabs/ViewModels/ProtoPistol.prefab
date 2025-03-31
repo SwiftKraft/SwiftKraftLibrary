@@ -390,8 +390,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002765370927871205}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -719,8 +719,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630422664060633000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -748,7 +748,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-  - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
+  - {fileID: 2100000, guid: ca2fbd3850cbe2649bf14de90869e86d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  SlotName: Underbarrel
+  Scriptable: {fileID: 11400000, guid: 06e78bfb5c05d54488e66ae89001e904, type: 2}
   Attachments:
   - parent: {fileID: 0}
     name: None
@@ -883,9 +883,11 @@ MonoBehaviour:
       materials:
       - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
+      - {fileID: 2100000, guid: 002524d0c193d1a4fad5df8152d09e39, type: 2}
     properties:
     - rid: 1968381529576439808
+    - rid: 4744941982812995593
+    - rid: 4744941987405496323
   references:
     version: 2
     RefIds:
@@ -902,6 +904,33 @@ MonoBehaviour:
           properties: []
         TargetOffset: {x: 0, y: -0.0042, z: 0}
         TargetEulerOffset: {x: -0.34, y: 0, z: 0}
+    - rid: 4744941982812995593
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.1
+        type: 3
+    - rid: 4744941987405496323
+      type: {class: AttachmentAimFOVProperty, ns: SwiftKraft.Gameplay.Common.FPS.ViewModels,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        viewFOV: 1
+        viewType: 3
+        modelFOV: 1.3
+        modelType: 3
 --- !u!1 &1667363172519472068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,6 +1352,12 @@ MonoBehaviour:
   Damage:
     <BaseValue>k__BackingField: 20
     <Values>k__BackingField: []
+  PrefireDelay:
+    <BaseValue>k__BackingField: 0
+    <Values>k__BackingField: []
+  CooldownDelay:
+    <BaseValue>k__BackingField: 0.2
+    <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
     StartEnded: 0
@@ -1372,7 +1407,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 10.185181
-      value: 2.3018875
+      value: 1.5979042
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1398,25 +1433,25 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.29052734
-      inSlope: 0.4284238
-      outSlope: 0.4284238
+      value: 0.37842542
+      inSlope: 0.7061984
+      outSlope: 0.7061984
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.63230896
-      value: 0.56142354
-      inSlope: 0.2761743
-      outSlope: 0.2761743
+      value: 0.824961
+      inSlope: 0.42124617
+      outSlope: 0.42124617
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 2.7738197
-      value: 0.8268099
+      value: 1.116836
       inSlope: 0.034641527
       outSlope: 0.034641527
       tangentMode: 0
@@ -1425,7 +1460,7 @@ MonoBehaviour:
       outWeight: 0.09702628
     - serializedVersion: 3
       time: 7.188843
-      value: 1.0773675
+      value: 1.3673936
       inSlope: 0.0051371427
       outSlope: 0.0051371427
       tangentMode: 0
@@ -1549,7 +1584,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 10.132996
-      value: 1.230648
+      value: 1.1566658
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1576,15 +1611,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 0.25720763
-      outSlope: 0.25720763
+      inSlope: 0.4314208
+      outSlope: 0.4314208
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1.0534952
-      value: 0.770967
+      value: 0.9544997
       inSlope: 0.15357496
       outSlope: 0.15357496
       tangentMode: 0
@@ -1593,7 +1628,7 @@ MonoBehaviour:
       outWeight: 0.09919716
     - serializedVersion: 3
       time: 5.773574
-      value: 1.0823175
+      value: 1.2658502
       inSlope: 0.0040691127
       outSlope: 0.0040691127
       tangentMode: 0
@@ -1660,7 +1695,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cdb522966b6034486b3e777952a288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxAmmo>k__BackingField: 18
+  <MaxAmmo>k__BackingField:
+    <BaseValue>k__BackingField: 18
+    <Values>k__BackingField: []
+  <ReloadSpeedMultiplier>k__BackingField:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  ReloadStates:
+  - Reload
+  FullEndReloadThreshold: 0.8
 --- !u!114 &7074702899465627531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,6 +1717,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpreadTransform: {fileID: 3608207479672408995}
+  HipMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  AimMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   Spread: 0
   SpreadAim: 0
   SpreadRecoil:
@@ -1839,6 +1888,7 @@ MonoBehaviour:
     Linger:
       <MaxValue>k__BackingField: 0
       StartEnded: 0
+  Enabled: 1
 --- !u!114 &3348710002142049648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,6 +1914,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AdsWhileReload: 1
+  AdsMovementBan: 02000000
+  AimSpeedMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
   aimInterpolater:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.1
@@ -1880,8 +1934,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1cc2a07f70c6741a0a17880fb9a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimViewModelFOV: 45
-  AimCameraFOV: 75
+  AimViewModelFOV:
+    <BaseValue>k__BackingField: 45
+    <Values>k__BackingField: []
+  AimCameraFOV:
+    <BaseValue>k__BackingField: 75
+    <Values>k__BackingField: []
 --- !u!114 &8238681385561808684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1897,7 +1955,7 @@ MonoBehaviour:
   AttackBlockStates: 02000000
   MovementInterpolater:
     <MaxValue>k__BackingField: 0
-    <SmoothTime>k__BackingField: 0.15
+    <SmoothTime>k__BackingField: 0.12
     SnapRange: 0.00001
 --- !u!114 &4179961927550141969
 MonoBehaviour:
@@ -2393,7 +2451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3456308081696584053}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
@@ -3650,11 +3708,11 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7004824918824025216}
+  - {fileID: 3643813323892068471}
   - {fileID: 8292492007045750322}
   - {fileID: 1766594775606709479}
   - {fileID: 2862482359590744088}
   - {fileID: 7004902041970175260}
-  - {fileID: 3643813323892068471}
   m_Father: {fileID: 682911739140861939}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4135481554721097038
@@ -3749,7 +3807,7 @@ MonoBehaviour:
   - ID: Unequip
     States:
     - StateName: Unequip
-      CrossFade: 0
+      CrossFade: 0.05
       Weight: 1
       OnPlay:
         m_PersistentCalls:
@@ -3916,8 +3974,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6479512912137159680}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4064,7 +4122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  SlotName: Barrel
+  Scriptable: {fileID: 11400000, guid: dda0fc0fc14c2e74598cce9a28fbec0f, type: 2}
   Attachments:
   - parent: {fileID: 0}
     name: None
@@ -4084,6 +4142,7 @@ MonoBehaviour:
     properties:
     - rid: 1968381529576439810
     - rid: 4744941960533901313
+    - rid: 4744941982812995597
   - parent: {fileID: 0}
     name: Oil Can
     package:
@@ -4096,6 +4155,7 @@ MonoBehaviour:
     properties:
     - rid: 1968381529576439812
     - rid: 4744941960533901315
+    - rid: 4744941982812995595
   references:
     version: 2
     RefIds:
@@ -4185,6 +4245,30 @@ MonoBehaviour:
           Volume: 0.5
           StereoPan: 0
           SpatialBlend: 1
+    - rid: 4744941982812995595
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.3
+        type: 3
+    - rid: 4744941982812995597
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.1
+        type: 3
 --- !u!1 &6488371857859692678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4568,8 +4652,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7407717480261082935}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: -0.49999994, z: 0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: 0, y: 0.016987324, z: -0.026379932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4717,7 +4801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  SlotName: Slide
+  Scriptable: {fileID: 11400000, guid: fecf356623bfe9e4dbe5a9093b9101cb, type: 2}
   Attachments:
   - parent: {fileID: 0}
     name: None
@@ -4740,10 +4824,37 @@ MonoBehaviour:
       - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-    properties: []
+    properties:
+    - rid: 4744941997983793154
+    - rid: 4744941982812995591
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4744941982812995591
+      type: {class: AttachmentRecoilProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 2
+        type: 3
+    - rid: 4744941997983793154
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: 0, z: 0}
+        TargetEulerOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &7468425733863355008
 GameObject:
   m_ObjectHideFlags: 0
