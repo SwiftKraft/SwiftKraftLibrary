@@ -43,11 +43,11 @@ namespace SwiftKraft.Gameplay.Weapons
 
             foreach (Attachment att in Attachments)
                 att.Init(this);
-
-            UpdateAttachment();
         }
 
-        private void OnDestroy()
+        protected virtual void Start() => UpdateAttachment();
+
+        protected virtual void OnDestroy()
         {
             foreach (Attachment att in Attachments)
                 att.Destroy();
@@ -67,6 +67,7 @@ namespace SwiftKraft.Gameplay.Weapons
             SwapMesh(att.package);
 
             att.Update();
+            Parent.AttachmentsUpdated();
         }
 
         public void Uninstall(int index) => Attachments[index].Uninstall();

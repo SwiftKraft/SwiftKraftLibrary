@@ -105,7 +105,6 @@ namespace SwiftKraft.Gameplay.Weapons
             data = null;
             OnAmmoUpdated?.Invoke(CurrentAmmo);
             AttackDisabler.Active = CurrentAmmo <= 0;
-            Debug.Log(CurrentAmmo);
         }
 
         protected virtual void OnMaxAmmoUpdated(float max)
