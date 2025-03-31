@@ -33,11 +33,10 @@ namespace SwiftKraft.Gameplay.Weapons
 
                 return data.CurrentAmmo;
             }
-
             set
             {
-                if (CurrentAmmo == value)
-                    return;
+                if (data == null || data.Disposed)
+                    Item.Instance.TryData(AmmoSaveID, out data);
 
                 OnAmmoUpdated?.Invoke(value);
                 data.CurrentAmmo = value;
@@ -91,6 +90,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             data = null;
             OnAmmoUpdated?.Invoke(CurrentAmmo);
+            AttackDisabler.Active = CurrentAmmo <= 0;
             Debug.Log(CurrentAmmo);
         }
 
@@ -140,6 +140,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             if (CanReload && fullEnd)
                 CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
+            Debug.Log("End reload");
         }
     }
 }

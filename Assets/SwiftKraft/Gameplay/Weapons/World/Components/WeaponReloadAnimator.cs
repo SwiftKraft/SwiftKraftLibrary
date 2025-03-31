@@ -56,6 +56,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 else if (!endReloaded && stateInfo.normalizedTime >= 1f)
                 {
                     endReloaded = true;
+                    Debug.Log("Ending reload!");
                     EndReload?.Invoke(stateInfo.normalizedTime >= FullEndReloadThreshold);
                 }
             }

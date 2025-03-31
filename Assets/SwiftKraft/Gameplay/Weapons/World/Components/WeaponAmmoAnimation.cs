@@ -53,9 +53,20 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void OnDestroy()
         {
             base.OnDestroy();
-
             if (ReloadCommunicator != null)
                 ReloadCommunicator.EndReload -= EndReload;
+        }
+
+        protected virtual void Update()
+        {
+            // Check reload state and do some logic refactoring to not use communicator
+        }
+
+        protected override void OnEquip()
+        {
+            base.OnEquip();
+            ReloadCommunicator.EndReload -= EndReload;
+            ReloadCommunicator.EndReload += EndReload;
         }
 
         protected override void Reload()
