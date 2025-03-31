@@ -153,7 +153,6 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             if (CanReload && fullEnd)
                 CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
-            Debug.Log("End reload");
         }
     }
 }

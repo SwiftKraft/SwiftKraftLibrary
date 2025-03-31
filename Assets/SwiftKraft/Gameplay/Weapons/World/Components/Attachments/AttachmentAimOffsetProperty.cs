@@ -21,5 +21,12 @@ namespace SwiftKraft.Gameplay.Weapons
             overrider.TargetPosition = default;
             overrider.TargetRotation = new(0f, 0f, 0f, 1f);
         }
+
+        public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
+            new AttachmentAimOffsetProperty()
+            {
+                TargetEulerOffset = TargetEulerOffset,
+                TargetOffset = TargetOffset
+            };
     }
 }

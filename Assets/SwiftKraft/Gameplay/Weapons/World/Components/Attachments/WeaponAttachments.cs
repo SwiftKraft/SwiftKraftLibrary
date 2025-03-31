@@ -1,4 +1,5 @@
 using SwiftKraft.Gameplay.Inventory.Items;
+using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
@@ -7,6 +8,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public class Data : ItemDataBase
         {
             public int[] Attachments = new int[0];
+            public bool Initialized;
         }
 
         public const string AttachmentSaveID = "Attachments";
@@ -48,6 +50,13 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual void LoadData()
         {
             Item.Instance.TryData(AttachmentSaveID, out data);
+
+            if (!data.Initialized)
+            {
+                data.Initialized = true;
+                data.Attachments = new int[Slots.Length];
+            }
+
             ApplyData(data.Attachments);
         }
 

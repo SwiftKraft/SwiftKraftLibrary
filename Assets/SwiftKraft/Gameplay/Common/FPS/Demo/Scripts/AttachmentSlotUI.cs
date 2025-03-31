@@ -1,6 +1,4 @@
 using SwiftKraft.Gameplay.Weapons;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +26,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         public void Init(WeaponAttachmentMenu menu, WeaponAttachmentSlot slot)
         {
             Slot = slot;
-            text.SetText(slot.SlotName);
+            text.SetText(slot.Scriptable.SlotName);
             parent = menu;
             parent.OnSelectSlot += Parent_OnSelectSlot;
             button.onClick.AddListener(() => parent.SelectSlot(Slot));

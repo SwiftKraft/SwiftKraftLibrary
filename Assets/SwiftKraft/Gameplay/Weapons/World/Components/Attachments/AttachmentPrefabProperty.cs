@@ -2,21 +2,21 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class AttachmentPrefabProperty : WeaponAttachmentSlot.AttachmentProperty
+    public class AttachmentPrefabProperty : WeaponAttachmentSlotScriptable.AttachmentProperty
     {
         public Vector3 OffsetPosition;
         public Vector3 OffsetRotation;
         public GameObject Prefab;
-        public Transform Workspace;
+        public string WorkspaceName;
 
         protected GameObject Instance;
+        protected Transform Workspace;
 
-        public override void Init(WeaponAttachmentSlot.Attachment parent)
+        public override void Init(WeaponAttachmentSlotScriptable.Attachment parent)
         {
             base.Init(parent);
 
-            if (Workspace == null)
-                Workspace = this.parent.parent.transform;
+            Workspace = string.IsNullOrEmpty(WorkspaceName) ? this.parent.parent.transform : this.parent.parent.Parent.transform.Find(WorkspaceName);
         }
 
         public override void Update()
@@ -45,5 +45,15 @@ namespace SwiftKraft.Gameplay.Weapons
             if (Instance != null)
                 Object.Destroy(Instance);
         }
+
+        public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
+            new AttachmentPrefabProperty()
+            {
+                OffsetPosition = OffsetPosition,
+                OffsetRotation = OffsetRotation,
+                Prefab = Prefab,
+                Workspace = Workspace,
+                WorkspaceName = WorkspaceName,
+            };
     }
 }

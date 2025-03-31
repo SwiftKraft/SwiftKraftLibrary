@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2d4cf98f1b1f044b7e22a5e6f767b3, type: 3}
+  m_Name: Siderail
+  m_EditorClassIdentifier: 
+  SlotName: Siderail
+  Attachments:
+  - parent: {fileID: 0}
+    name: None
+    package:
+      mesh: {fileID: 0}
+      materials: []
+    properties: []
+  references:
+    version: 2
+    RefIds: []

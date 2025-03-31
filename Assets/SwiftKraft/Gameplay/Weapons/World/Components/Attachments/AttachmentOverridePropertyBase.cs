@@ -7,7 +7,7 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         protected O overrider;
 
-        public override void Init(WeaponAttachmentSlot.Attachment parent)
+        public override void Init(WeaponAttachmentSlotScriptable.Attachment parent)
         {
             base.Init(parent);
             overrider = CreateOverrider();

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2d4cf98f1b1f044b7e22a5e6f767b3, type: 3}
+  m_Name: Slide
+  m_EditorClassIdentifier: 
+  SlotName: Slide
+  Attachments:
+  - parent: {fileID: 0}
+    name: None
+    package:
+      mesh: {fileID: 2885756083127718827, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties: []
+  - parent: {fileID: 0}
+    name: Stabilizer
+    package:
+      mesh: {fileID: -1254449539291404797, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties:
+    - rid: 4744942044584345626
+    - rid: 4744942044584345627
+  references:
+    version: 2
+    RefIds:
+    - rid: 4744942044584345626
+      type: {class: AttachmentAimSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.4
+        type: 3
+    - rid: 4744942044584345627
+      type: {class: AttachmentRecoilProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 2
+        type: 3

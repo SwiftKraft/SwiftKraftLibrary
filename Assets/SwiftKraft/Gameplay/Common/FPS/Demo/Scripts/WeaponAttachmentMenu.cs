@@ -33,7 +33,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         GameObject attachmentPrefab;
 
         public event Action<WeaponAttachmentSlot> OnSelectSlot;
-        public event Action<WeaponAttachmentSlot.Attachment> OnSelectAttachment;
+        public event Action<WeaponAttachmentSlotScriptable.Attachment> OnSelectAttachment;
 
         private void Awake() => MenuOpen.UpdateOpen += MenuOpen_UpdateOpen;
 
@@ -64,7 +64,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             UpdateAttachments(CurrentSlot);
         }
 
-        public void SelectAttachment(WeaponAttachmentSlot.Attachment att)
+        public void SelectAttachment(WeaponAttachmentSlotScriptable.Attachment att)
         {
             if (CurrentSlot != null)
             {
@@ -97,7 +97,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             if (slot == null)
                 return;
 
-            foreach (WeaponAttachmentSlot.Attachment att in slot.Attachments)
+            foreach (WeaponAttachmentSlotScriptable.Attachment att in slot.Attachments)
                 Instantiate(attachmentPrefab, attachmentList).GetComponent<AttachmentUI>().Init(this, att, slot);
 
             SelectAttachment(slot.Attachments[slot.AttachmentIndex]);

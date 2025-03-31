@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2d4cf98f1b1f044b7e22a5e6f767b3, type: 3}
+  m_Name: Barrel
+  m_EditorClassIdentifier: 
+  SlotName: Barrel
+  Attachments:
+  - parent: {fileID: 0}
+    name: None
+    package:
+      mesh: {fileID: 0}
+      materials: []
+    properties: []
+  - parent: {fileID: 0}
+    name: Suppressor
+    package:
+      mesh: {fileID: -7062360709606581966, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties:
+    - rid: 4744942044584345620
+    - rid: 4744942044584345622
+    - rid: 4744942044584345625
+  - parent: {fileID: 0}
+    name: Oil Can
+    package:
+      mesh: {fileID: -1507717837821073057, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties:
+    - rid: 4744942044584345621
+    - rid: 4744942044584345623
+    - rid: 4744942044584345624
+  references:
+    version: 2
+    RefIds:
+    - rid: 4744942044584345620
+      type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: 0, z: -0.00833}
+    - rid: 4744942044584345621
+      type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: 0, z: -0.008}
+    - rid: 4744942044584345622
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.05
+        type: 3
+    - rid: 4744942044584345623
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.1
+        type: 3
+    - rid: 4744942044584345624
+      type: {class: AttachmentSoundChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Action: Attack
+        Clips:
+        - Sound: {fileID: 8300000, guid: 7ad9c84bde6432f4bb095ea3bfa62100, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: 39ee9a39494973240a2b6c241153215a, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: a5a72ce3372159546a7ed07150009a60, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+    - rid: 4744942044584345625
+      type: {class: AttachmentSoundChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Action: Attack
+        Clips:
+        - Sound: {fileID: 8300000, guid: 6147dfaf4b338074cbb3eeeab9177524, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: 51c67bd23bf4d5949a4496177b945e33, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1
+        - Sound: {fileID: 8300000, guid: d266b3adade13444d9f52366f4e970fe, type: 3}
+          Priority: 128
+          Pitch: 1
+          Volume: 0.5
+          StereoPan: 0
+          SpatialBlend: 1

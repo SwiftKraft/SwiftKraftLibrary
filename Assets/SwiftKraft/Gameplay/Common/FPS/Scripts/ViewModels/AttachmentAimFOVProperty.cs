@@ -14,7 +14,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         ModifiableStatistic.Modifier viewFOVModifier;
         ModifiableStatistic.Modifier modelFOVModifier;
 
-        public override void Init(WeaponAttachmentSlot.Attachment parent)
+        public override void Init(WeaponAttachmentSlotScriptable.Attachment parent)
         {
             base.Init(parent);
             viewFOVModifier = Component.AimCameraFOV.AddModifier();
@@ -39,10 +39,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public override void Uninstall()
         {
             base.Uninstall();
-            viewFOVModifier.Value = 1f;
-            viewFOVModifier.Type = ModifiableStatistic.ModifierType.Multiplication;
-            modelFOVModifier.Value = 1f;
-            modelFOVModifier.Type = ModifiableStatistic.ModifierType.Multiplication;
+            viewFOVModifier.Value = 0f;
+            viewFOVModifier.Type = ModifiableStatistic.ModifierType.Addition;
+            modelFOVModifier.Value = 0f;
+            modelFOVModifier.Type = ModifiableStatistic.ModifierType.Addition;
         }
 
         public override void Destroy()
@@ -51,5 +51,14 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
             viewFOVModifier.Dispose();
             modelFOVModifier.Dispose();
         }
+
+        public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() => 
+            new AttachmentAimFOVProperty()
+            {
+                viewFOV = viewFOV,
+                viewType = viewType,
+                modelFOV = modelFOV,
+                modelType = modelType
+            };
     }
 }

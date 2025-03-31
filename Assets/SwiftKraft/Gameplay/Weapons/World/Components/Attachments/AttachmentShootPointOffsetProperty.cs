@@ -15,5 +15,11 @@ namespace SwiftKraft.Gameplay.Weapons
             base.Uninstall();
             overrider.OverridePosition = default;
         }
+
+        public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
+            new AttachmentShootPointOffsetProperty()
+            {
+                TargetOffset = TargetOffset,
+            };
     }
 }

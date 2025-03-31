@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  SlotName: Underbarrel
+  Scriptable: {fileID: 11400000, guid: 06e78bfb5c05d54488e66ae89001e904, type: 2}
   Attachments:
   - parent: {fileID: 0}
     name: None
@@ -3708,11 +3708,11 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7004824918824025216}
+  - {fileID: 3643813323892068471}
   - {fileID: 8292492007045750322}
   - {fileID: 1766594775606709479}
   - {fileID: 2862482359590744088}
   - {fileID: 7004902041970175260}
-  - {fileID: 3643813323892068471}
   m_Father: {fileID: 682911739140861939}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4135481554721097038
@@ -4122,7 +4122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  SlotName: Barrel
+  Scriptable: {fileID: 11400000, guid: dda0fc0fc14c2e74598cce9a28fbec0f, type: 2}
   Attachments:
   - parent: {fileID: 0}
     name: None
@@ -4801,7 +4801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  SlotName: Slide
+  Scriptable: {fileID: 11400000, guid: fecf356623bfe9e4dbe5a9093b9101cb, type: 2}
   Attachments:
   - parent: {fileID: 0}
     name: None

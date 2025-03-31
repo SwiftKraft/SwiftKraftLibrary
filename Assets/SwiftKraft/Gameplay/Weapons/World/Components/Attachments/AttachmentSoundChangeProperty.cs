@@ -10,7 +10,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         WeaponAudio.Audio weaponAudio;
 
-        public override void Init(WeaponAttachmentSlot.Attachment parent)
+        public override void Init(WeaponAttachmentSlotScriptable.Attachment parent)
         {
             base.Init(parent);
             if (Component != null)
@@ -29,5 +29,12 @@ namespace SwiftKraft.Gameplay.Weapons
             if (weaponAudio != null)
                 weaponAudio.Override = null;
         }
+
+        public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
+            new AttachmentSoundChangeProperty()
+            {
+                Action = Action,
+                Clips = Clips,
+            };
     }
 }
