@@ -10,6 +10,7 @@ public class PL_ODM : MonoBehaviour
     private bool isReeling = false;
     PlayerMovementSlide slide;
     PlayerMovementGround ground;
+    
 
     Vector3 leftDirection;
     Vector3 rightDirection;
@@ -274,19 +275,23 @@ public class PL_ODM : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && hookCooldownTimes[0] <= 0 && hooksReady[0] && hookPredictionHits[0].point != Vector3.zero)
         {
             FireHook(0);
+            
         }
         else if (Input.GetMouseButtonUp(0))
         {
             StopHook(0);
+           
         }
 
         if (Input.GetMouseButtonDown(1) && hookCooldownTimes[1] <= 0 && hooksReady[1] && hookPredictionHits[1].point != Vector3.zero)
         {
             FireHook(1);
+           
         }
         else if (Input.GetMouseButtonUp(1))
         {
             StopHook(1);
+           
         }
 
         // Gas particles
@@ -327,6 +332,12 @@ public class PL_ODM : MonoBehaviour
         //Orbiting
         if (movementScript.IsGrounded == false) //Player distance from point is too long  )
         {
+           if (!hooksReady[0] || !hooksReady[1])
+            {
+
+
+
+            
             if (Input.GetKey(KeyCode.W) && isReeling)
             {
                 HandleDashNoDoubleTap(5);
@@ -343,6 +354,7 @@ public class PL_ODM : MonoBehaviour
             {
                 HandleDashNoDoubleTap(8);
             }
+        }
         }
         else
             return;
