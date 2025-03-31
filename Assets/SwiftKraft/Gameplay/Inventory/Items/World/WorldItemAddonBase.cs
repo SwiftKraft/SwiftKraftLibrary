@@ -9,6 +9,6 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public ItemInstance Item => Parent != null ? Parent.Item : null;
 
-        protected virtual void Awake() => Parent = GetComponent<WorldItemBase>();
+        public virtual void Init(WorldItemBase parent) => Parent = parent;
     }
 }

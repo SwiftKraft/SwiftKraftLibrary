@@ -191,7 +191,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 191
+    m_Bits: 447
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -535,6 +535,9 @@ MonoBehaviour:
     Slot: 3
   - Key: 53
     Slot: 4
+  DropTransform: {fileID: 1289007188879271878}
+  DropOffset: {x: 0, y: 0, z: 0.5}
+  ThrowStrength: 10
   DropKey: 116
 --- !u!114 &6061303147417084388
 MonoBehaviour:
@@ -550,7 +553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractionLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   TriggerInteraction: 2
   InteractionDistance: 2
   TargetTransform: {fileID: 1289007188879271878}

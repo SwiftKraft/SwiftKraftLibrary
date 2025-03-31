@@ -5,7 +5,7 @@ namespace SwiftKraft.Gameplay.Weapons
     public class AttachmentRecoilProperty : AttachmentStatisticPropertyBase<WeaponRecoil>
     {
         public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
-            new AttachmentAimSpeedProperty()
+            new AttachmentRecoilProperty()
             {
                 value = value,
                 type = type,

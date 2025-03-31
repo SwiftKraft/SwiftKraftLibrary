@@ -13,6 +13,10 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
         public SlotSelector[] Selectors;
 
+        public Transform DropTransform;
+        public Vector3 DropOffset;
+        public float ThrowStrength = 10f;
+
         public KeyCode DropKey;
 
         private void Awake()
@@ -31,8 +35,10 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
             if (Input.GetKeyDown(DropKey) && Equipper.Current != null)
             {
-                DropItem(Equipper.Current.Instance, transform.position + transform.forward + transform.up, transform.rotation);
+                WorldItemBase wib = DropItem(Equipper.Current.Instance, DropTransform.position + DropTransform.rotation * DropOffset, DropTransform.rotation);
                 Equipper.ForceUnequip(true);
+                if (wib.TryGetComponent(out Rigidbody rb))
+                    rb.AddForce(DropTransform.forward * ThrowStrength, ForceMode.Impulse);
             }
         }
 

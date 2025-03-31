@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7519163918563392632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7476559011804688699}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProtoHandsRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2829288671668545683}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1591192756079444510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8592277439102506947}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,13 +182,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7987124633929520808}
   - component: {fileID: 117524276197383711}
-  m_Layer: 0
+  - component: {fileID: 4534744499592389884}
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7987124633929520808
 Transform:
   m_ObjectHideFlags: 0
@@ -249,7 +250,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -7062360709606581966, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   m_Bones:
@@ -332,6 +333,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0057103503, y: -0.03542776, z: -0.01577944}
     m_Extent: {x: 0.0008068085, y: 0.0043558627, z: 0.002797814}
   m_DirtyAABB: 0
+--- !u!114 &4534744499592389884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268282050509345811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a111ab093e0b4e8d7fe04fddfe54c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scriptable: {fileID: 11400000, guid: dda0fc0fc14c2e74598cce9a28fbec0f, type: 2}
 --- !u!1 &3294868547953246318
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3961139576109333943}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Casing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4023386911776201276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8197874075794195765}
   - component: {fileID: 8858329871549845818}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProtoPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +488,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -9172760029490684231, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   m_Bones:
@@ -566,7 +580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5564516277657191193}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +614,8 @@ GameObject:
   - component: {fileID: 4280619847586004035}
   - component: {fileID: 5638258679784063825}
   - component: {fileID: 369432658084618824}
-  m_Layer: 0
+  - component: {fileID: 2172504179741062993}
+  m_Layer: 8
   m_Name: ProtoPistolItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,7 +667,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5964860817834573339}
   serializedVersion: 4
-  m_Mass: 2.5
+  m_Mass: 1.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -684,6 +699,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartType: {fileID: 0}
+--- !u!114 &2172504179741062993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5964860817834573339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b1f28b79eb5a34097ce9fa794a9a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6070253145891102600
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2542546287373567786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2223021867870645536}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -755,7 +782,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3755391146788440412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3478239386844240668}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mag2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,13 +846,14 @@ GameObject:
   m_Component:
   - component: {fileID: 697647569254016714}
   - component: {fileID: 1745390274500741003}
-  m_Layer: 0
+  - component: {fileID: 4852510610926027989}
+  m_Layer: 8
   m_Name: Underbarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &697647569254016714
 Transform:
   m_ObjectHideFlags: 0
@@ -886,7 +914,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -7429937956110996719, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   m_Bones:
@@ -969,6 +997,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0057103517, y: -0.028725678, z: -0.0130388625}
     m_Extent: {x: 0.0011681402, y: 0.0026406888, z: 0.0029506776}
   m_DirtyAABB: 0
+--- !u!114 &4852510610926027989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277079047482581009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a111ab093e0b4e8d7fe04fddfe54c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scriptable: {fileID: 11400000, guid: 06e78bfb5c05d54488e66ae89001e904, type: 2}
 --- !u!1 &8154757357055984831
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +1019,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5512078312360279704}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1010,7 +1051,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6456315352336355772}
   - component: {fileID: 1068143736780023804}
-  m_Layer: 0
+  - component: {fileID: 3253671541541652624}
+  m_Layer: 8
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1120,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 2885756083127718827, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
   m_Bones:
@@ -1161,6 +1203,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.005710353, y: -0.025134604, z: -0.011082169}
     m_Extent: {x: 0.0008794614, y: 0.0065663643, z: 0.00395751}
   m_DirtyAABB: 0
+--- !u!114 &3253671541541652624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578394822447384121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636a111ab093e0b4e8d7fe04fddfe54c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scriptable: {fileID: 11400000, guid: fecf356623bfe9e4dbe5a9093b9101cb, type: 2}
 --- !u!1 &8898021785918266055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1417647720392522052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1201,7 +1256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3424563252551188256}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mag1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

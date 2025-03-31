@@ -38,13 +38,13 @@ namespace SwiftKraft.Gameplay.Inventory
             Data.Items.RemoveAll((it) => it == null);
         }
 
-        public virtual void DropItem(ItemInstance inst, Vector3 position, Quaternion rotation = default, Transform parent = null)
+        public virtual WorldItemBase DropItem(ItemInstance inst, Vector3 position, Quaternion rotation = default, Transform parent = null)
         {
             if (inst == null || !Data.Items.Contains(inst) || inst.Type == null || inst.Type.WorldPrefab == null)
-                return;
+                return null;
 
             RemoveItem(inst);
-            inst.Type.SpawnItem(inst, position, rotation, parent);
+            return inst.Type.SpawnItem(inst, position, rotation, parent);
         }
 
         protected virtual void OnItemSwitch(ItemInstance inst, InventoryInstance inv) => RemoveItem(inst);

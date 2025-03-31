@@ -16,7 +16,13 @@ namespace SwiftKraft.Gameplay.Inventory.Items
                 Init(new ItemInstance(StartType));
         }
 
-        public void Init(ItemInstance item) => Item = item;
+        public void Init(ItemInstance item)
+        {
+            Item = item;
+
+            foreach (WorldItemAddonBase addon in GetComponents<WorldItemAddonBase>())
+                addon.Init(this);
+        }
 
         public void Interact(InteractorBase interactor)
         {

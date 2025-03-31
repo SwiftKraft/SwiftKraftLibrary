@@ -36,12 +36,12 @@ MonoBehaviour:
       - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
       - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
     properties:
-    - rid: 4744942044584345626
-    - rid: 4744942044584345627
+    - rid: 4744942048694501379
+    - rid: 4744942048694501381
   references:
     version: 2
     RefIds:
-    - rid: 4744942044584345626
+    - rid: 4744942048694501379
       type: {class: AttachmentAimSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}
       data:
@@ -54,7 +54,7 @@ MonoBehaviour:
           properties: []
         value: 1.4
         type: 3
-    - rid: 4744942044584345627
+    - rid: 4744942048694501381
       type: {class: AttachmentRecoilProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         parent:

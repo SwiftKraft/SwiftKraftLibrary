@@ -1,4 +1,7 @@
 using SwiftKraft.Gameplay.Inventory.Items;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -30,6 +33,9 @@ namespace SwiftKraft.Gameplay.Weapons
             }
 
             Slots = GetComponentsInChildren<WeaponAttachmentSlot>();
+            List<WeaponAttachmentSlot> temp = Slots.ToList();
+            temp.Sort((a, b) => a.Scriptable.name.CompareTo(b.Scriptable.name));
+            Slots = temp.ToArray();
         }
 
         protected virtual void OnDestroy()
