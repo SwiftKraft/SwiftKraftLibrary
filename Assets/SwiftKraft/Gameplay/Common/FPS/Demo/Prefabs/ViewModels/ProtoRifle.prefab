@@ -628,56 +628,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 0
   Scriptable: {fileID: 11400000, guid: e4d70645a445228459f028af514496fe, type: 2}
-  Attachments:
-  - parent: {fileID: 0}
-    name: None
-    package:
-      mesh: {fileID: 8108563764783910780, guid: 5149efcf6938e4049989526f85b4fb8d,
-        type: 3}
-      materials:
-      - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-    properties: []
-  - parent: {fileID: 0}
-    name: Extended Barrel
-    package:
-      mesh: {fileID: 3828601404574971821, guid: 5149efcf6938e4049989526f85b4fb8d,
-        type: 3}
-      materials:
-      - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-    properties:
-    - rid: 4744941982812995599
-    - rid: 4744941982812995601
-  references:
-    version: 2
-    RefIds:
-    - rid: 4744941982812995599
-      type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
-        asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        TargetOffset: {x: 0, y: 0, z: -0.00889}
-    - rid: 4744941982812995601
-      type: {class: AttachmentRecoilProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 1.2
-        type: 3
 --- !u!1 &1631567766052296593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,57 +1983,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 0
   Scriptable: {fileID: 11400000, guid: 3552db7cee0a6e641a2666dfa273828a, type: 2}
-  Attachments:
-  - parent: {fileID: 0}
-    name: Default
-    package:
-      mesh: {fileID: 6947048641319348780, guid: 5149efcf6938e4049989526f85b4fb8d,
-        type: 3}
-      materials:
-      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: -2548980356893904593, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-    properties: []
-  - parent: {fileID: 0}
-    name: Extended
-    package:
-      mesh: {fileID: 1600944390240643706, guid: 5149efcf6938e4049989526f85b4fb8d,
-        type: 3}
-      materials:
-      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: -2548980356893904593, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-    properties:
-    - rid: 4744942002358976514
-    - rid: 4744942002358976516
-  references:
-    version: 2
-    RefIds:
-    - rid: 4744942002358976514
-      type: {class: AttachmentMaxAmmoProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 30
-        type: 0
-    - rid: 4744942002358976516
-      type: {class: AttachmentReloadSpeedProperty, ns: SwiftKraft.Gameplay.Weapons,
-        asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 1.15
-        type: 3
 --- !u!1 &2268551268753119185
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,70 +2811,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 0
   Scriptable: {fileID: 11400000, guid: f74430a9628f8a54184d216e7292da97, type: 2}
-  Attachments:
-  - parent: {fileID: 0}
-    name: Iron Sights
-    package:
-      mesh: {fileID: 2183720242721537697, guid: 5149efcf6938e4049989526f85b4fb8d,
-        type: 3}
-      materials:
-      - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-    properties: []
-  - parent: {fileID: 0}
-    name: Holographic Sight
-    package:
-      mesh: {fileID: 2594999250697716090, guid: 5149efcf6938e4049989526f85b4fb8d,
-        type: 3}
-      materials:
-      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 2100000, guid: a5b93f46de22a4b4380a95ba70465be1, type: 2}
-    properties:
-    - rid: 1968381529576439813
-  - parent: {fileID: 0}
-    name: 2x Scope
-    package:
-      mesh: {fileID: 6101988875147511788, guid: 5149efcf6938e4049989526f85b4fb8d,
-        type: 3}
-      materials:
-      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-      - {fileID: 2100000, guid: 1d2250bcbff0b1345a4da461eac1a048, type: 2}
-    properties:
-    - rid: 1968381529576439813
-    - rid: 4744941987405496321
-  references:
-    version: 2
-    RefIds:
-    - rid: 1968381529576439813
-      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
-        asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        TargetOffset: {x: 0, y: -0.0055, z: 0}
-        TargetEulerOffset: {x: -0.227, y: 0, z: 0}
-    - rid: 4744941987405496321
-      type: {class: AttachmentAimFOVProperty, ns: SwiftKraft.Gameplay.Common.FPS.ViewModels,
-        asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        viewFOV: 1.5
-        viewType: 3
-        modelFOV: 1.5
-        modelType: 3
 --- !u!1 &4188797405681656713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,16 +3182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 0
   Scriptable: {fileID: 11400000, guid: 734a1702ea820b745ac0fa85021afe34, type: 2}
-  Attachments:
-  - parent: {fileID: 0}
-    name: None
-    package:
-      mesh: {fileID: 0}
-      materials: []
-    properties: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &4740401241698371742
 GameObject:
   m_ObjectHideFlags: 0
