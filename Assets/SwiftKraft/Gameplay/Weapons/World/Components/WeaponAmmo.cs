@@ -28,6 +28,9 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             get
             {
+                if (Item == null)
+                    return _currentAmmo;
+
                 if (data == null || data.Disposed)
                     Item.Instance.TryData(AmmoSaveID, out data);
 
@@ -35,6 +38,14 @@ namespace SwiftKraft.Gameplay.Weapons
             }
             set
             {
+                if (Item == null)
+                {
+                    OnAmmoUpdated?.Invoke(value);
+                    _currentAmmo = value;
+                    AttackDisabler.Active = data.CurrentAmmo <= 0;
+                    return;
+                }
+
                 if (data == null || data.Disposed)
                     Item.Instance.TryData(AmmoSaveID, out data);
 
@@ -43,6 +54,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 AttackDisabler.Active = data.CurrentAmmo <= 0;
             }
         }
+        int _currentAmmo;
 
         public virtual bool Reloading => false;
 
@@ -60,7 +72,8 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.Awake();
             Item = GetComponent<EquippedItem>();
-            Item.OnEquip += OnEquip;
+            if (Item != null)
+                Item.OnEquip += OnEquip;
             Parent.OnAttack += OnAttack;
             Parent.AddAction(ReloadAction, StartReload);
             CanShoot = Parent.CanAttack.AddLock();
@@ -72,7 +85,8 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            Item.OnEquip -= OnEquip;
+            if (Item != null)
+                Item.OnEquip -= OnEquip;
             Parent.OnAttack -= OnAttack;
             Parent.Actions.Remove(ReloadAction);
             Parent.CanAttack.RemoveLock(CanShoot);
