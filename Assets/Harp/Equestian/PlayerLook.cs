@@ -1,3 +1,4 @@
+using SwiftKraft.Saving;
 using SwiftKraft.Saving.Settings;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,8 +38,7 @@ namespace Player.Movement
         public float TargetTilt;
         public float TiltSmoothTime = 0.05f;
 
-        [SerializeField]
-        private float Sensitivity = 12f;
+        public float Sensitivity => SettingsManager.Current.TrySetting("Sensitivity", out SingleSetting<float> sens) ? sens.Value : 1f;
 
         float currSens;
 
