@@ -46,6 +46,18 @@ MonoBehaviour:
     - rid: 4744942044584345621
     - rid: 4744942044584345623
     - rid: 4744942044584345624
+  - parent: {fileID: 0}
+    name: Extended Barrel
+    package:
+      mesh: {fileID: 3828601404574971821, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties:
+    - rid: 4744942044584345621
+    - rid: 4744942044584345623
   references:
     version: 2
     RefIds:
@@ -72,7 +84,7 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        TargetOffset: {x: 0, y: 0, z: -0.008}
+        TargetOffset: {x: 0, y: 0, z: -0.00834}
     - rid: 4744942044584345622
       type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
@@ -95,7 +107,7 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 1.1
+        value: 1.055
         type: 3
     - rid: 4744942044584345624
       type: {class: AttachmentSoundChangeProperty, ns: SwiftKraft.Gameplay.Weapons,

@@ -46,9 +46,22 @@ MonoBehaviour:
     properties:
     - rid: 4744942044584345601
     - rid: 4744942044584345612
+    - rid: 1893896724051918854
   references:
     version: 2
     RefIds:
+    - rid: 1893896724051918854
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.15
+        type: 3
     - rid: 4744942044584345600
       type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}

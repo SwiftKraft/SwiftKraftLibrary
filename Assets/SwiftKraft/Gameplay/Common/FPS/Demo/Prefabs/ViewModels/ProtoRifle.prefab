@@ -3832,6 +3832,7 @@ GameObject:
   - component: {fileID: 4867886208895681561}
   - component: {fileID: 1713166684888503834}
   - component: {fileID: 1813499156033171506}
+  - component: {fileID: 4224237178102105119}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -4013,6 +4014,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParameterName: Movement
+--- !u!114 &4224237178102105119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6382368516374574951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d06ddee5da7d14db228ec035c30233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModifyTarget: {fileID: 6041977976375274973}
+  ReferenceTransform: {fileID: 5815484644316226888}
+  AxisMultiplier: {x: -1, y: 1, z: 1, w: 1}
 --- !u!1 &6400190512459168193
 GameObject:
   m_ObjectHideFlags: 0

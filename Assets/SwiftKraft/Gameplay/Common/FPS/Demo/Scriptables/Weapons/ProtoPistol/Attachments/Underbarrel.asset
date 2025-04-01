@@ -23,7 +23,7 @@ MonoBehaviour:
   - parent: {fileID: 0}
     name: Holographic Sight
     package:
-      mesh: {fileID: -7429937956110996719, guid: 384f8faa6b87553429a38b543c2a4468,
+      mesh: {fileID: 2594999250697716090, guid: 384f8faa6b87553429a38b543c2a4468,
         type: 3}
       materials:
       - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
@@ -33,9 +33,63 @@ MonoBehaviour:
     - rid: 4744942044584345607
     - rid: 4744942044584345619
     - rid: 4744942044584345618
+  - parent: {fileID: 0}
+    name: 2x Scope
+    package:
+      mesh: {fileID: 6101988875147511788, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: 2100000, guid: 949c851ccdcaa5d459cd175f92e5e7c1, type: 2}
+    properties:
+    - rid: 1893896724051918852
+    - rid: 1893896724051918851
+    - rid: 1893896724051918849
   references:
     version: 2
     RefIds:
+    - rid: 1893896724051918849
+      type: {class: AttachmentAimFOVProperty, ns: SwiftKraft.Gameplay.Common.FPS.ViewModels,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        viewFOV: 1.5
+        viewType: 3
+        modelFOV: 1.5
+        modelType: 3
+    - rid: 1893896724051918851
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.2
+        type: 3
+    - rid: 1893896724051918852
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: -0.0065, z: 0}
+        TargetEulerOffset: {x: -0.34, y: 0, z: 0}
     - rid: 4744942044584345607
       type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}
