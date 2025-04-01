@@ -3826,7 +3826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 6041977976375274973}
   ReferenceTransform: {fileID: 682911739140861939}
-  AxisMultiplier: {x: -1, y: 1, z: 1, w: 1}
+  AxisMultiplier: {x: -1, y: 0.75, z: 1, w: 1}
 --- !u!1 &6402522133864380094
 GameObject:
   m_ObjectHideFlags: 0
