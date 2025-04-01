@@ -50,6 +50,7 @@ namespace SwiftKraft.Gameplay.Weapons
                     Item.Instance.TryData(AmmoSaveID, out data);
 
                 OnAmmoUpdated?.Invoke(value);
+                
                 data.CurrentAmmo = value;
                 AttackDisabler.Active = data.CurrentAmmo <= 0;
             }
