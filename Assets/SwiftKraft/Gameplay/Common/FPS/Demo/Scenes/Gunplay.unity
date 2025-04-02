@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.617
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -96,7 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9c8df634d0f73284c8a940f9db4c94fd,
+    type: 2}
   m_LightingSettings: {fileID: 1886212754}
 --- !u!196 &4
 NavMeshSettings:
@@ -20855,7 +20856,7 @@ LightingSettings:
   m_AlbedoBoost: 1
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
-  m_BakeBackend: 1
+  m_BakeBackend: 2
   m_LightmapMaxSize: 1024
   m_BakeResolution: 40
   m_Padding: 2
@@ -20866,7 +20867,7 @@ LightingSettings:
   m_CompAOExponentDirect: 0
   m_ExtractAO: 0
   m_MixedBakeMode: 2
-  m_LightmapsBakeMode: 1
+  m_LightmapsBakeMode: 0
   m_FilterMode: 1
   m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
@@ -20877,7 +20878,7 @@ LightingSettings:
   m_FinalGather: 0
   m_FinalGatherRayCount: 256
   m_FinalGatherFiltering: 1
-  m_PVRCulling: 1
+  m_PVRCulling: 0
   m_PVRSampling: 1
   m_PVRDirectSampleCount: 32
   m_PVRSampleCount: 512
