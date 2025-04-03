@@ -107,7 +107,7 @@ public class PL_ODM : MonoBehaviour
 
     private void UpdateGasUI()
     {
-        gasUI.fillAmount = currentGasAmount / 1000;
+        gasUI.fillAmount = currentGasAmount / 1500;
     }
 
     void FixedUpdate()
@@ -466,7 +466,7 @@ public class PL_ODM : MonoBehaviour
         
 
         
-        currentGasAmount -= gasDashForce;
+        currentGasAmount -= gasDashForce / 100;
         gasDashParticles.Emit(120);
         gasDashParticles.Play();
         //gasDashAudioSource.Play();
@@ -477,6 +477,8 @@ public class PL_ODM : MonoBehaviour
         // Gas usage
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            if (currentGasAmount < 0) return;
+
             UseGas(gasForce);
             movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.09f, ForceMode.VelocityChange);
             movementScript.Rigidbody.AddForce(playerCameraTransform.transform.forward* 0.03f, ForceMode.VelocityChange);
