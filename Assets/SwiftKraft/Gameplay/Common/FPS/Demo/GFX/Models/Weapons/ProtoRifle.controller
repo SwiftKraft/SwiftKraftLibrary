@@ -401,6 +401,7 @@ MonoBehaviour:
   - SecretReload
   MidReloadStateNames: []
   FullEndReloadThreshold: 0.9
+  ReloadSpeed: 1
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
