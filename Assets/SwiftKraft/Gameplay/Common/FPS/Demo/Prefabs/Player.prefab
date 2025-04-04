@@ -554,8 +554,12 @@ MonoBehaviour:
   InteractionLayers:
     serializedVersion: 2
     m_Bits: 257
+  LOSLayers:
+    serializedVersion: 2
+    m_Bits: 1
   TriggerInteraction: 2
   InteractionDistance: 2
+  InteractionRadius: 0.2
   TargetTransform: {fileID: 1289007188879271878}
   Key: 102
 --- !u!143 &8931565105445680502

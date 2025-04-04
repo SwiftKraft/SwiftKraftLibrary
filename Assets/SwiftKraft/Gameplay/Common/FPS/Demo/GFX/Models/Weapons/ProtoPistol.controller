@@ -248,8 +248,8 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -3566390262540360077}
   - {fileID: 1617411833855351816}
+  - {fileID: -3566390262540360077}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -528,6 +528,7 @@ MonoBehaviour:
   - SecretReload
   MidReloadStateNames: []
   FullEndReloadThreshold: 0.75
+  ReloadSpeed: 1
 --- !u!1102 &-462546211196443059
 AnimatorState:
   serializedVersion: 6
@@ -539,8 +540,8 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -4311111027443770233}
   - {fileID: -4439028773874512864}
+  - {fileID: -4311111027443770233}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -994,7 +995,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: Ammo
+    m_ConditionEvent: Movement
     m_EventTreshold: 0.6
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5456176270635963217}

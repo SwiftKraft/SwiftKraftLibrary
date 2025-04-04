@@ -6,8 +6,10 @@ namespace SwiftKraft.Gameplay.Interactions
     public class PlayerInteractor3D : InteractorBase
     {
         public LayerMask InteractionLayers;
+        public LayerMask LOSLayers;
         public QueryTriggerInteraction TriggerInteraction;
         public float InteractionDistance = 2f;
+        public float InteractionRadius = 0.5f;
         public Transform TargetTransform;
         public KeyCode Key;
 
@@ -17,10 +19,26 @@ namespace SwiftKraft.Gameplay.Interactions
                 Interact(Detect());
         }
 
-        public override IInteractable Detect() => Physics.Raycast(TargetTransform.position, TargetTransform.forward,
-                out RaycastHit hitInfo, InteractionDistance, InteractionLayers, TriggerInteraction)
-                && hitInfo.transform.TryGetComponent(out IInteractable interactable)
-                ? interactable
-                : null;
+        public override IInteractable Detect()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(TargetTransform.position, InteractionRadius, TargetTransform.forward,
+                InteractionDistance, InteractionLayers, TriggerInteraction);
+
+
+            IInteractable selected = null;
+            Vector3 selectedPoint = default;
+            foreach (RaycastHit hitInfo in hits)
+            {
+                if (hitInfo.transform.TryGetComponent(out IInteractable interactable)
+                    && !Physics.Linecast(TargetTransform.position, hitInfo.point, LOSLayers, QueryTriggerInteraction.Ignore)
+                    && (selected == null || (selectedPoint - TargetTransform.position).sqrMagnitude > (hitInfo.point - TargetTransform.position).sqrMagnitude))
+                {
+                    selected = interactable;
+                    selectedPoint = hitInfo.point;
+                }
+            }
+
+            return selected;
+        }
     }
 }

@@ -3889,6 +3889,9 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
+  SoundSource: {fileID: 2895807444976228756}
+  Sounds:
+  - {fileID: 0}
 --- !u!114 &6482029906544610366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4876,8 +4879,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 5815484644316226888}
   Multiplier: 1
-  TiltMultiplier: -3
-  Maximum: 1.2
+  TiltMultiplier: -1.75
+  Maximum: 1.5
   TiltMaximum: 2
   SmoothTime: 0.15
 --- !u!1 &8488331807436290598
