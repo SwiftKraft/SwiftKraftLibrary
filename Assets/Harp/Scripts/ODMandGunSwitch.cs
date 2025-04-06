@@ -60,7 +60,7 @@ public class ODMandGunSwitch : MonoBehaviour
         isToggling = true;
 
             PL_ODM.enabled = true;
-        ItemEquip.ForceUnequip();
+        ItemEquip.ForceUnequip(true);
         yield return new WaitForSeconds(toggleDelay);
         
 
