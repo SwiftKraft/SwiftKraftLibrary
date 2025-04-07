@@ -10,6 +10,7 @@ public class PL_ODM : MonoBehaviour
     private bool isReeling = false;
     PlayerMovementSlide slide;
     PlayerMovementGround ground;
+    PlayerMotor motor;
     
 
     Vector3 leftDirection;
@@ -494,6 +495,7 @@ public class PL_ODM : MonoBehaviour
     {
         if (hookJoints[0])
         {
+
             ReelInHook(0);
         }
         if (hookJoints[1])
@@ -651,10 +653,21 @@ public class PL_ODM : MonoBehaviour
         source.Play();
     }
 
-   
+   void PlayerJumpUpOnHookShot()
+    {
+        if (currentGasAmount > 0 && motor.IsGrounded == false)
+        {
+            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
+        }
+        else
+            return;
+    }
 
     IEnumerator LaunchAndAttachHook(int hookIndex, float distanceToPoint)
     {
+        PlayerJumpUpOnHookShot();
+
+
         if (!hookJoints[hookIndex])
         {
             StopHook(hookIndex);

@@ -57,9 +57,13 @@ public class GasRefilStation : MonoBehaviour
         if (isPlayerInTrigger && odm != null && odm.currentGasAmount < 1500)
         {
             RefillStationCapacity -= Time.deltaTime * refillRateMultiplier;
-            if(RefillStationCapacity > 0)
+            if (RefillStationCapacity > 0)
             {
                 odm.currentGasAmount += Time.deltaTime * refillRateMultiplier;
+            }
+            else
+            {
+                return;
             }
             
             

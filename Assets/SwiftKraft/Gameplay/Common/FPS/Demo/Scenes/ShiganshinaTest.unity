@@ -23191,6 +23191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refillRateMultiplier: 100
+  RefillStationCapacity: 8000
 --- !u!43 &1113907083
 Mesh:
   m_ObjectHideFlags: 0
@@ -40072,7 +40073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Color: {r: 0, g: 0.6862745, b: 1, a: 0.34117648}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -40083,7 +40084,7 @@ MonoBehaviour:
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -41426,7 +41427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReeling: 0
-  hookEjectForce: 100
+  hookEjectForce: 150
   hookReelInForce: 857.3
   hookMaxDistance: 80
   playerTransform: {fileID: 420243505308756522}
@@ -43355,7 +43356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &7247336266474512858
 CanvasRenderer:
   m_ObjectHideFlags: 0
