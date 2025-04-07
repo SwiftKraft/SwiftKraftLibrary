@@ -87,7 +87,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 public void Play(AudioSource source, float volumeMultiplier = 1f)
                 {
                     source.priority = Priority;
-                    source.pitch = Pitch;
+                    source.pitch = Pitch * Time.timeScale;
                     source.volume = Volume * volumeMultiplier;
                     source.panStereo = StereoPan;
                     source.spatialBlend = SpatialBlend;

@@ -102,8 +102,8 @@ namespace SwiftKraft.Gameplay.Motors
 
         protected virtual void Awake()
         {
-            foreach (DriverSlot slot in Drivers)
-                slot.Init(this);
+/*            foreach (DriverSlot slot in Drivers)
+                slot.Init(this);*/
         }
 
         protected virtual void Update()
