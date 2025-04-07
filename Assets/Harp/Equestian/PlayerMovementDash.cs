@@ -31,6 +31,10 @@ namespace Player.Movement
             {
                 
                 Debug.Log("GroundDash ODM found! Starting gas hop");
+                if(ODM.currentGasAmount > 0)
+                {
+                   ODM.movementScript.Rigidbody.AddForce(ODM.movementScript.Rigidbody.transform.up * ODM.gasDashForce / 1.4f, ForceMode.VelocityChange);
+                }
             }
             else
             {

@@ -109,7 +109,7 @@ public class PL_ODM : MonoBehaviour
     void Update()
     {
         currentSpeed = movementScript.Rigidbody.velocity.magnitude;
-        SpeedText.text =  "Current Value: " + currentSpeed.ToString("km/h");
+        SpeedText.text = currentSpeed.ToString() + " km/h";
         UpdateCooldownTimers();
         UpdateDashTimers();
         UpdateSpringSettings(0);
@@ -454,7 +454,7 @@ public class PL_ODM : MonoBehaviour
 
         Vector3 currentVelocity = movementScript.Rigidbody.velocity.normalized;
 
-        Vector3 newVelocity = Vector3.Lerp(previousVelocity, currentVelocity, Time.deltaTime * 3f); // Smoothly transition[The greater the f value the stronger the lerp]
+        Vector3 newVelocity = Vector3.Lerp(previousVelocity, currentVelocity, Time.deltaTime * 1f); // Smoothly transition[The greater the f value the stronger the lerp]
 
         movementScript.Rigidbody.velocity = newVelocity; // Apply smooth transition
 
@@ -482,16 +482,21 @@ public class PL_ODM : MonoBehaviour
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
                 break; ///Up Down Left Right Forces for when hooked, gas enabled, and holding WASD keys need to be created.
             case 5: // Up Orbit
+                StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 25f, ForceMode.VelocityChange);
                 break;
             case 6: // Down Orbit
+                StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 25f, ForceMode.VelocityChange);
                 break;
             case 7: // Left Orbit
+                StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 22f, ForceMode.VelocityChange);
                 break;
             case 8: // Right Orbit
+                StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 22f, ForceMode.VelocityChange);
+                
 
                 
                 break;
