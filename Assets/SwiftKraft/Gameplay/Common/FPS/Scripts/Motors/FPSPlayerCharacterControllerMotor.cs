@@ -53,8 +53,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         float originalHeight;
         float originalCameraHeight;
 
-        protected virtual void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             originalCameraHeight = LookPointHeight;
             originalHeight = Height;
 
