@@ -10,7 +10,7 @@ public class PL_ODM : MonoBehaviour
     private bool isReeling = false;
     PlayerMovementSlide slide;
     PlayerMovementGround ground;
-    PlayerMotor motor;
+ 
     
 
     Vector3 leftDirection;
@@ -476,7 +476,7 @@ public class PL_ODM : MonoBehaviour
     void CheckInputFixed()
     {
         // Gas usage
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && movementScript.IsGrounded == false)
         {
             if (currentGasAmount < 0) return;
 
@@ -655,9 +655,9 @@ public class PL_ODM : MonoBehaviour
 
    void PlayerJumpUpOnHookShot()
     {
-        if (currentGasAmount > 0 && motor.IsGrounded == false)
+        if (currentGasAmount > 0 && movementScript.IsGrounded == false)
         {
-            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
+            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 0.5f, ForceMode.Force);
         }
         else
             return;

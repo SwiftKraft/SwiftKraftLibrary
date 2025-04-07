@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GasRefilStation : MonoBehaviour
 {
-
+    public UnityEngine.UI.Image gasFillUI;
     private PL_ODM odm;
     public float refillRateMultiplier = 10f;
     public float RefillStationCapacity = 8000;
@@ -31,6 +31,7 @@ public class GasRefilStation : MonoBehaviour
     }
 
 
+
     // Optional: Clear the reference when player leaves
     private void OnTriggerExit(Collider other)
     {
@@ -50,12 +51,19 @@ public class GasRefilStation : MonoBehaviour
         
     }
 
-        
-    void Update()
+    private void UpdateGasRefillUI()
     {
+        gasFillUI.fillAmount = RefillStationCapacity;
+    }
+        
+    void FixedUpdate()
+    {
+
+        
         // Constantly refill while player is in trigger and ODM exists
         if (isPlayerInTrigger && odm != null && odm.currentGasAmount < 1500)
         {
+            gasFillUI.fillAmount = RefillStationCapacity / 8000;
             RefillStationCapacity -= Time.deltaTime * refillRateMultiplier;
             if (RefillStationCapacity > 0)
             {
