@@ -53,7 +53,7 @@ public class GasRefilStation : MonoBehaviour
     void Update()
     {
         // Constantly refill while player is in trigger and ODM exists
-        if (isPlayerInTrigger && odm != null)
+        if (isPlayerInTrigger && odm != null && odm.currentGasAmount < 1500)
         {
             odm.currentGasAmount += Time.deltaTime * refillRateMultiplier;
         }
