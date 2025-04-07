@@ -3,11 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class PL_ODM : MonoBehaviour
 {
     [SerializeField]
+    private float currentSpeed; // Private variable to store speed
+    [SerializeField]
     private bool isReeling = false;
+    [SerializeField]
+    private bool isOrbiting = false;
     PlayerMovementSlide slide;
     PlayerMovementGround ground;
  
@@ -19,7 +25,11 @@ public class PL_ODM : MonoBehaviour
     [Header("Main")]
 
     public float hookEjectForce = 2;
-    public float hookReelInForce = 2;
+    
+    public float hookCurrentReelInForce = 2;
+    public float hookNormalReelInForce = 2;
+    public float hookBoostReelInForce = 2;
+    
     public float hookMaxDistance = 100;
     public Transform playerTransform;
     public Transform playerCameraTransform;
@@ -93,9 +103,13 @@ public class PL_ODM : MonoBehaviour
 
     [Header("UI Gas")]
     public UnityEngine.UI.Image gasUI;
+    [Header("UI Speed")]
+    public TMP_Text SpeedText;
 
     void Update()
     {
+        currentSpeed = movementScript.Rigidbody.velocity.magnitude;
+        SpeedText.text =  "Current Value: " + currentSpeed.ToString("km/h");
         UpdateCooldownTimers();
         UpdateDashTimers();
         UpdateSpringSettings(0);
@@ -337,24 +351,31 @@ public class PL_ODM : MonoBehaviour
             {
 
 
+                isOrbiting = false;
 
-            
-            if (Input.GetKey(KeyCode.W) && isReeling)
-            {
-                HandleDashNoDoubleTap(5);
-            }
-            if (Input.GetKey(KeyCode.S) && isReeling)
-            {
-                HandleDashNoDoubleTap(6);
-            }
-            if (Input.GetKey(KeyCode.A) && isReeling)
-            {
-                HandleDashNoDoubleTap(7);
-            }
-            if (Input.GetKey(KeyCode.D) && isReeling)
-            {
-                HandleDashNoDoubleTap(8);
-            }
+
+                if (Input.GetKey(KeyCode.W) && isReeling)
+                    {
+                        HandleDashNoDoubleTap(5);
+                    isOrbiting = true;
+
+                    }
+                    if (Input.GetKey(KeyCode.S) && isReeling)
+                    {
+                        HandleDashNoDoubleTap(6);
+                    isOrbiting = true;
+                }
+                    if (Input.GetKey(KeyCode.A) && isReeling)
+                    {
+                        HandleDashNoDoubleTap(7);
+                    isOrbiting = true;
+                }
+                    if (Input.GetKey(KeyCode.D) && isReeling)
+                    {
+                        HandleDashNoDoubleTap(8);
+                    isOrbiting = true;
+                }
+                
         }
         }
         else
@@ -419,14 +440,26 @@ public class PL_ODM : MonoBehaviour
         
             PerformDash(buttonIndex);
             dashTimer = dashCooldown;
-       
 
+       
 
 
 
         
     }
 
+    IEnumerator OrbitVelocityChange()
+    {
+        Vector3 previousVelocity = movementScript.Rigidbody.velocity; // Store current velocity
+
+        Vector3 currentVelocity = movementScript.Rigidbody.velocity.normalized;
+
+        Vector3 newVelocity = Vector3.Lerp(previousVelocity, currentVelocity, Time.deltaTime * 3f); // Smoothly transition[The greater the f value the stronger the lerp]
+
+        movementScript.Rigidbody.velocity = newVelocity; // Apply smooth transition
+
+        yield return null;
+    }
     void PerformDash(int buttonIndex)
     {
         if (currentGasAmount < 0) return;
@@ -509,9 +542,20 @@ public class PL_ODM : MonoBehaviour
         }
     }
 
+    
+
     void ReelInHook(int hookIndex)
     {
-       
+        if (Input.GetKey(KeyCode.LeftShift))//Gas Boost to reel speed
+        {
+            hookCurrentReelInForce = hookBoostReelInForce;
+        }
+        else 
+        {
+            hookCurrentReelInForce = hookNormalReelInForce;
+        }
+        
+
         if (currentGasAmount <= 0) return;
 
         Vector3 previousVelocity = movementScript.Rigidbody.velocity; // Store current velocity
@@ -519,6 +563,7 @@ public class PL_ODM : MonoBehaviour
         {
             isReeling = true;
             movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.1f, ForceMode.Impulse);
+            
         }
 
 
@@ -532,7 +577,7 @@ public class PL_ODM : MonoBehaviour
         {
             divider = Mathf.Lerp(divider, PL_ResourceManagement.MapToRange(distanceFromPoint, 0, hookMaxDistance, 0.1f, 0.01f), Time.deltaTime * 4f);
 
-            Vector3 reelForceBasedOnDistance = (hookSwingPoints[hookIndex] - transform.position).normalized * (hookReelInForce * divider);
+            Vector3 reelForceBasedOnDistance = (hookSwingPoints[hookIndex] - transform.position).normalized * (hookCurrentReelInForce * divider);
             Vector3 newVelocity = Vector3.Lerp(previousVelocity, reelForceBasedOnDistance, Time.deltaTime * 3f); // Smoothly transition[The greater the f value the stronger the lerp]
 
             movementScript.Rigidbody.velocity = newVelocity; // Apply smooth transition
@@ -657,7 +702,7 @@ public class PL_ODM : MonoBehaviour
     {
         if (currentGasAmount > 0 && movementScript.IsGrounded == false)
         {
-            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 0.5f, ForceMode.Force);
+            movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 2f, ForceMode.VelocityChange);
         }
         else
             return;

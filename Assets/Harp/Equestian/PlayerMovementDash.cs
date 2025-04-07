@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 namespace Player.Movement
@@ -7,6 +8,8 @@ namespace Player.Movement
     {
         public const int DashLayer = 21;
         public const int PlayerLayer = 3;
+
+        private PL_ODM ODM;
 
         public PlayerMovementStateBase ExitState;
 
@@ -23,6 +26,17 @@ namespace Player.Movement
 
         public override void StateStarted(PlayerMotor parent)
         {
+            ODM = parent.GetComponent<PL_ODM>();
+            if (ODM != null)
+            {
+                
+                Debug.Log("GroundDash ODM found! Starting gas hop");
+            }
+            else
+            {
+                Debug.LogWarning("No PL_ODM component found on the player!");
+            }
+
             base.StateStarted(parent);
 
             direction = parent.GetWishDir();
