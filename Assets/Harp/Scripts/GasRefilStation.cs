@@ -7,6 +7,7 @@ public class GasRefilStation : MonoBehaviour
 
     private PL_ODM odm;
     public float refillRateMultiplier = 10f;
+    public float RefillStationCapacity = 8000;
     private bool isPlayerInTrigger = false;
     // Start is called before the first frame update
 
@@ -55,7 +56,13 @@ public class GasRefilStation : MonoBehaviour
         // Constantly refill while player is in trigger and ODM exists
         if (isPlayerInTrigger && odm != null && odm.currentGasAmount < 1500)
         {
-            odm.currentGasAmount += Time.deltaTime * refillRateMultiplier;
+            RefillStationCapacity -= Time.deltaTime * refillRateMultiplier;
+            if(RefillStationCapacity > 0)
+            {
+                odm.currentGasAmount += Time.deltaTime * refillRateMultiplier;
+            }
+            
+            
         }
     }
 }
