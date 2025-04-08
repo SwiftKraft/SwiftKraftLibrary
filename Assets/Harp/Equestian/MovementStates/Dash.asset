@@ -17,11 +17,12 @@ MonoBehaviour:
   Gravity: -30
   ControlThreshold: 11.93
   Speed: 20
+  GasSpeed: 0.8
   WalkSpeed: 20
   Drag: 2.41
-  JumpSpeed: 18
-  JumpBuffer: 0.1
-  ExitState: {fileID: 11400000, guid: 5b243ef2319bfd54982049046df9249e, type: 2}
+  JumpSpeed: 29.4
+  JumpBuffer: 0.7
+  ExitState: {fileID: 11400000, guid: 354a082a6bc46c241b2557133353c573, type: 2}
   JumpCost: 20
   Duration: 0.23
   DashEndMultiplier: 0.3

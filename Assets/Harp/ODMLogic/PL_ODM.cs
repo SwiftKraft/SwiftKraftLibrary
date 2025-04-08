@@ -108,7 +108,7 @@ public class PL_ODM : MonoBehaviour
 
     void Update()
     {
-        currentSpeed = movementScript.Rigidbody.velocity.magnitude;
+        currentSpeed = Mathf.Ceil(movementScript.Rigidbody.velocity.magnitude);
         SpeedText.text = currentSpeed.ToString() + " km/h";
         UpdateCooldownTimers();
         UpdateDashTimers();
@@ -132,6 +132,7 @@ public class PL_ODM : MonoBehaviour
         PredictGrappleSpot(1);
         CheckInputFixed();
         UpdateGasUI();
+        
     }
 
     void UpdateCooldownTimers()
@@ -312,7 +313,11 @@ public class PL_ODM : MonoBehaviour
         // Gas particles
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            StartODMGasVFX();
+            if (!isReeling)
+            {
+                StartODMGasVFX();
+            }
+                
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
@@ -320,6 +325,7 @@ public class PL_ODM : MonoBehaviour
         }
 
         // Dashing
+        
         if (Input.GetKeyDown(KeyCode.A) )
         {
             HandleDash(0);
@@ -483,19 +489,19 @@ public class PL_ODM : MonoBehaviour
                 break; ///Up Down Left Right Forces for when hooked, gas enabled, and holding WASD keys need to be created.
             case 5: // Up Orbit
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 25f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 15f, ForceMode.VelocityChange);
                 break;
             case 6: // Down Orbit
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 25f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 15f, ForceMode.VelocityChange);
                 break;
             case 7: // Left Orbit
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 22f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 12f, ForceMode.VelocityChange);
                 break;
             case 8: // Right Orbit
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 22f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 12f, ForceMode.VelocityChange);
                 
 
                 
@@ -514,13 +520,13 @@ public class PL_ODM : MonoBehaviour
     void CheckInputFixed()
     {
         // Gas usage
-        if (Input.GetKey(KeyCode.LeftShift) && movementScript.IsGrounded == false)
+        if (Input.GetKey(KeyCode.LeftShift) && movementScript.IsGrounded == false && !isReeling)
         {
             if (currentGasAmount < 0) return;
 
             UseGas(gasForce);
             movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.09f, ForceMode.VelocityChange);
-            movementScript.Rigidbody.AddForce(playerCameraTransform.transform.forward* 0.03f, ForceMode.VelocityChange);
+            //  movementScript.Rigidbody.AddForce(playerCameraTransform.transform.forward* 0.03f, ForceMode.VelocityChange);
         }
         else if (isUsingGas)
         {
