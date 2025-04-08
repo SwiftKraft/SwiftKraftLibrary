@@ -16,7 +16,7 @@ MonoBehaviour:
   BodyHeight: 2
   Gravity: -30
   ControlThreshold: 11.93
-  Speed: 20
+  Speed: 23.1
   GasSpeed: 0.8
   WalkSpeed: 20
   Drag: 2.41
@@ -24,5 +24,6 @@ MonoBehaviour:
   JumpBuffer: 0.7
   ExitState: {fileID: 11400000, guid: 354a082a6bc46c241b2557133353c573, type: 2}
   JumpCost: 20
-  Duration: 0.23
+  Duration: 0.1
+  DurationIfNoGas: 0.47
   DashEndMultiplier: 0.3

@@ -16,6 +16,7 @@ namespace Player.Movement
 
         public float JumpCost = 20f;
         public float Duration = 0.3f;
+        public float DurationIfNoGas = 1f;
         public float DashEndMultiplier = 0.3f;
 
         float timer;
@@ -38,7 +39,12 @@ namespace Player.Movement
             if (direction == Vector3.zero)
                 direction = parent.transform.forward;
 
-            timer = Duration;
+            if (ODM.currentGasAmount > 0)
+            {
+                timer = Duration;
+            }
+            else
+                timer = DurationIfNoGas;
 
             parent.Collider.gameObject.layer = DashLayer;
         }
