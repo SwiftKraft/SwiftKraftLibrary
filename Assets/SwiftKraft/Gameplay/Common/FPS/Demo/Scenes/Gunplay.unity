@@ -9081,7 +9081,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -9709,9 +9709,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 437584691}
-  - component: {fileID: 437584693}
-  - component: {fileID: 437584695}
   - component: {fileID: 437584694}
+  - component: {fileID: 437584696}
   m_Layer: 0
   m_Name: TestVehicle
   m_TagString: Untagged
@@ -9728,7 +9727,7 @@ Transform:
   m_GameObject: {fileID: 437584690}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 17}
+  m_LocalPosition: {x: 0, y: 0, z: 13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9737,7 +9736,24 @@ Transform:
   - {fileID: 392204309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &437584693
+--- !u!114 &437584694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437584690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5926384590989a4299480299a537b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Drivers:
+  - Point: {fileID: 392204309}
+    ExitPoint: {fileID: 2101964358}
+    LookInfluence: 0
+    MoveInfluence: 1
+--- !u!143 &437584696
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9763,40 +9779,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &437584694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437584690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5926384590989a4299480299a537b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Drivers:
-  - Point: {fileID: 392204309}
-    ExitPoint: {fileID: 2101964358}
-    LookInfluence: 0
-    MoveInfluence: 1
---- !u!114 &437584695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437584690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5effb27bd590ba443a807116b41ada90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <LookPoint>k__BackingField: {fileID: 588604025}
-  <Enabled>k__BackingField: 1
-  <LookInUpdate>k__BackingField: 1
-  MoveSpeed: 20
-  Gravity: -9.81
 --- !u!1001 &456901553
 PrefabInstance:
   m_ObjectHideFlags: 0
