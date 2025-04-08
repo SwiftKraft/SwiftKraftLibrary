@@ -10,6 +10,7 @@ namespace Player.Movement
         public const int PlayerLayer = 3;
 
         private PL_ODM ODM;
+        private PlayerMotor motor;
 
         public PlayerMovementStateBase ExitState;
 
@@ -27,19 +28,8 @@ namespace Player.Movement
         public override void StateStarted(PlayerMotor parent)
         {
             ODM = parent.GetComponent<PL_ODM>();
-            if (ODM != null)
-            {
-                
-                Debug.Log("GroundDash ODM found! Starting gas hop");
-                if(ODM.currentGasAmount > 0)
-                {
-                   ODM.movementScript.Rigidbody.AddForce(ODM.movementScript.Rigidbody.transform.up * ODM.gasDashForce / 1.4f, ForceMode.VelocityChange);
-                }
-            }
-            else
-            {
-                Debug.LogWarning("No PL_ODM component found on the player!");
-            }
+            motor = parent.GetComponent<PlayerMotor>();
+           
 
             base.StateStarted(parent);
 
@@ -63,6 +53,8 @@ namespace Player.Movement
                 dashJumped = false;
             else
                 parent.Rigidbody.velocity *= DashEndMultiplier;
+                
+
         }
 
         public override void TickUpdate(PlayerMotor parent)
@@ -75,6 +67,21 @@ namespace Player.Movement
             {
                 timer = 0f;
                 parent.CurrentState = ExitState;
+                if (ODM != null)
+                {
+
+                    Debug.Log("GroundDash ODM found! Starting gas hop");
+                    if (ODM.currentGasAmount > 0)
+                    {
+                        direction = parent.GetWishDir();
+                        ODM.movementScript.Rigidbody.AddForce(ODM.movementScript.Rigidbody.transform.up * ODM.gasDashForce * 1.5f, ForceMode.Impulse);
+                        ODM.movementScript.Rigidbody.AddForce(direction * ODM.gasDashForce * 1f, ForceMode.Impulse);
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("No PL_ODM component found on the player!");
+                }
                 return;
             }
 
