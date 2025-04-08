@@ -87,7 +87,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         protected override void FixedUpdate()
         {
-            IsGrounded = Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            IsGrounded = Vehicle == null && Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
             CrouchInterp.Tick(Time.fixedDeltaTime);
             CrouchInterp.MaxValue = WishCrouch ? 1f : 0f;
@@ -113,7 +113,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
                 coyoteTime.Tick(coyoteTime.MaxValue);
             }
 
-            Component.Move(Vector3.up * (currentGravity * Time.fixedDeltaTime));
+            if (Vehicle == null)
+                Component.Move(Vector3.up * (currentGravity * Time.fixedDeltaTime));
+            else
+                currentGravity = 0f;
 
             base.FixedUpdate();
 

@@ -4,46 +4,6 @@ namespace SwiftKraft.Gameplay.Motors
 {
     public abstract class MotorBase : MonoBehaviour
     {
-        public class DriverSlot
-        {
-            public MotorBase Parent { get; private set; }
-            public MotorBase Reference
-            {
-                get => _reference;
-                set
-                {
-                    if (_reference == value)
-                        return;
-
-                    if (_reference != null)
-                    {
-                        _reference.Vehicle = null;
-                        _reference.transform.parent = prevParent;
-                        if (ExitPoint != null)
-                            _reference.transform.SetPositionAndRotation(ExitPoint.position, ExitPoint.rotation);
-                    }
-
-                    _reference = value;
-                    _reference.Vehicle = Parent;
-                    prevParent = _reference.transform.parent;
-                    _reference.transform.parent = Point;
-                    _reference.transform.SetLocalPositionAndRotation(default, Quaternion.identity);
-                }
-            }
-            MotorBase _reference;
-            public Transform Point;
-            public Transform ExitPoint;
-            public float Influence;
-
-            Transform prevParent;
-
-            public void Init(MotorBase parent) => Parent = parent;
-
-            public Vector3 GetMove() => Reference == null ? Vector3.zero : Reference.WishMoveDirection * Influence;
-
-            public Quaternion GetLook() => Reference == null ? Quaternion.identity : Quaternion.LerpUnclamped(Quaternion.identity, Reference.WishLookRotation, Influence);
-        }
-
         public Vector3 WishMoveDirection { get; set; }
 
         public Vector3 WishMovePosition
@@ -96,15 +56,9 @@ namespace SwiftKraft.Gameplay.Motors
         /// </summary>
         public bool Moving { get; protected set; }
 
-        public DriverSlot[] Drivers;
-
         public MotorBase Vehicle { get; set; }
 
-        protected virtual void Awake()
-        {
-/*            foreach (DriverSlot slot in Drivers)
-                slot.Init(this);*/
-        }
+        protected virtual void Awake() { }
 
         protected virtual void Update()
         {
