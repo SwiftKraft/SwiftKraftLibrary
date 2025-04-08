@@ -35,7 +35,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
             if (SoundSource == null)
                 return;
 
-            SoundSource.PlayOneShot(clip);
+            SoundSource.clip = clip;
+            SoundSource.pitch = Animator.speed * Time.timeScale;
+            SoundSource.Play();
         }
 
         [Serializable]

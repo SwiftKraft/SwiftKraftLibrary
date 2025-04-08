@@ -47,8 +47,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         CapsuleCollider capsule;
 
-        protected virtual void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             capsule = GetComponent<CapsuleCollider>();

@@ -3865,6 +3865,11 @@ MonoBehaviour:
         - ProtoPistol|ReloadTacticoolAim
         Clips:
         - {fileID: 8300000, guid: d7bccddb7dfe4d04fa2b7b332d22aba2, type: 3}
+      - AnimationNames:
+        - ProtoPistol|ReloadTactical
+        - ProtoPistol|ReloadTacticalAim
+        Clips:
+        - {fileID: 8300000, guid: ac098bb141bb69d459b177b3c8c64167, type: 3}
     - StateName: SecretReload
       CrossFade: 0.05
       Weight: 1

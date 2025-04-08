@@ -56,6 +56,10 @@ namespace SwiftKraft.Gameplay.Motors
         /// </summary>
         public bool Moving { get; protected set; }
 
+        public MotorBase Vehicle { get; set; }
+
+        protected virtual void Awake() { }
+
         protected virtual void Update()
         {
             if (!Enabled)
@@ -74,13 +78,16 @@ namespace SwiftKraft.Gameplay.Motors
                 return;
 
             CurrentLookRotation = LookInterpolation();
-            CurrentMoveDirection = MoveInterpolation();
-
-            Moving = CurrentMoveDirection != Vector3.zero;
-            TimeMoving = Moving ? TimeMoving + Time.fixedDeltaTime : 0f;
-
             Look(CurrentLookRotation);
-            Move(CurrentMoveDirection);
+
+            if (Vehicle == null)
+            {
+                CurrentMoveDirection = MoveInterpolation();
+                Move(CurrentMoveDirection);
+
+                Moving = CurrentMoveDirection != Vector3.zero;
+                TimeMoving = Moving ? TimeMoving + Time.fixedDeltaTime : 0f;
+            }
         }
 
         public virtual Quaternion LookInterpolation() => WishLookRotation;
