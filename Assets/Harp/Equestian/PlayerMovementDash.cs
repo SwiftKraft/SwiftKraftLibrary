@@ -76,6 +76,7 @@ namespace Player.Movement
                         direction = parent.GetWishDir();
                         ODM.movementScript.Rigidbody.AddForce(ODM.movementScript.Rigidbody.transform.up * ODM.gasDashForce * 1.5f, ForceMode.Impulse);
                         ODM.movementScript.Rigidbody.AddForce(direction * ODM.gasDashForce * 1.5f, ForceMode.Impulse);
+                        ODM.currentGasAmount -= ODM.gasDashForce / 100;
                     }
                 }
                 else
