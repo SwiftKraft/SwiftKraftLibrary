@@ -9711,6 +9711,7 @@ GameObject:
   - component: {fileID: 437584691}
   - component: {fileID: 437584694}
   - component: {fileID: 437584696}
+  - component: {fileID: 437584697}
   m_Layer: 0
   m_Name: TestVehicle
   m_TagString: Untagged
@@ -9779,6 +9780,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &437584697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437584690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5effb27bd590ba443a807116b41ada90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <LookPoint>k__BackingField: {fileID: 0}
+  <Enabled>k__BackingField: 1
+  <LookInUpdate>k__BackingField: 1
+  MoveSpeed: 10
+  Gravity: 9.81
 --- !u!1001 &456901553
 PrefabInstance:
   m_ObjectHideFlags: 0
