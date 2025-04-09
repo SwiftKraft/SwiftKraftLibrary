@@ -852,6 +852,7 @@ GameObject:
   - component: {fileID: 6399840945172612297}
   - component: {fileID: 3861869158581378852}
   - component: {fileID: 798410578431796580}
+  - component: {fileID: -2141351711637346413}
   m_Layer: 6
   m_Name: ProtoRifle
   m_TagString: Untagged
@@ -1738,6 +1739,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShootPoint: {fileID: 406053053416329889}
+--- !u!114 &-2141351711637346413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243808998322166224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57ab3d5847dcbd47bede550d0c52857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2244465191708029533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3857,6 +3870,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+      Sounds: []
   - ID: Reload
     States:
     - StateName: Reload
@@ -3865,6 +3879,7 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
+      Sounds: []
   - ID: Equip
     States:
     - StateName: Equip
@@ -3873,6 +3888,7 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
+      Sounds: []
   - ID: Unequip
     States:
     - StateName: Unequip
@@ -3881,6 +3897,7 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
+      Sounds: []
   - ID: Inspect
     States:
     - StateName: Inspect
@@ -3889,9 +3906,8 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
+      Sounds: []
   SoundSource: {fileID: 2895807444976228756}
-  Sounds:
-  - {fileID: 0}
 --- !u!114 &6482029906544610366
 MonoBehaviour:
   m_ObjectHideFlags: 0

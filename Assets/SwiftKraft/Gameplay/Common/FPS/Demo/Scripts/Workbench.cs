@@ -1,7 +1,7 @@
 using SwiftKraft.Gameplay.Interactions;
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Weapons;
-using SwiftKraft.UI;
+using SwiftKraft.UI.Menus;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.Demo
