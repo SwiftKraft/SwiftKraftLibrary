@@ -619,4 +619,5 @@ MonoBehaviour:
   ReferenceFOV: 90
   CrouchInterp:
     <MaxValue>k__BackingField: 0
-    <Speed>k__BackingField: 5
+    <SmoothTime>k__BackingField: 0.15
+    SnapRange: 0.00001

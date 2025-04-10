@@ -33,7 +33,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         readonly Trigger jumpInput = new();
         float currentGravity;
 
-        public MoveTowardsInterpolater CrouchInterp;
+        public SmoothDampInterpolater CrouchInterp;
 
         public bool WishCrouch { get; private set; }
 
