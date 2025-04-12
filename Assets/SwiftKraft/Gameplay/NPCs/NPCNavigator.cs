@@ -1,5 +1,8 @@
+using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
+using SwiftKraft.Utils;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace SwiftKraft.Gameplay.NPCs
 {
@@ -9,6 +12,7 @@ namespace SwiftKraft.Gameplay.NPCs
         public MotorBase Motor { get; private set; }
 
         public float WaypointRadius = 0.25f;
+        public Timer RepathTimer;
 
         public int CurrentWaypointIndex
         {
@@ -26,21 +30,29 @@ namespace SwiftKraft.Gameplay.NPCs
                     return;
 
                 _destination = value;
-                Stopped = Vector3.Distance(_destination, transform.position) <= WaypointRadius;
+                if (!CheckStop() && RepathTimer.Ended)
+                {
+                    Repath();
+                    RepathTimer.Reset();
+                }
             }
         }
         Vector3 _destination;
 
-        public Vector3 CurrentWaypoint => Waypoints[CurrentWaypointIndex];
+        public Vector3 CurrentWaypoint => Waypoints.Length <= 0 ? Destination : Waypoints[CurrentWaypointIndex];
 
         public bool Stopped { get; set; }
 
-        protected Vector3[] Waypoints;
+        protected Vector3[] Waypoints => Path?.corners;
+
+        protected NavMeshPath Path { get; private set; }
 
         protected override void Awake()
         {
             base.Awake();
             Motor = GetComponent<MotorBase>();
+            Destination = transform.position;
+            Path = new();
         }
 
         protected virtual void FixedUpdate()
@@ -50,21 +62,50 @@ namespace SwiftKraft.Gameplay.NPCs
                 Motor.WishMoveDirection = Vector3.zero;
                 return;
             }
+
+            RepathTimer.Tick(Time.fixedDeltaTime);
+            Motor.WishMovePosition = CurrentWaypoint;
+
+            if (Vector3.Distance(transform.position, CurrentWaypoint) <= WaypointRadius)
+            {
+                CurrentWaypointIndex++;
+                CheckStop();
+            }
+
+            if (RepathTimer.Ended)
+            {
+                RepathTimer.Reset();
+                Repath();
+            }
+        }
+
+        protected virtual bool CheckStop()
+        {
+            Stopped = Vector3.Distance(_destination, transform.position) <= WaypointRadius;
+            return Stopped;
+        }
+
+        public void Repath()
+        {
+            Stopped = !NavMesh.CalculatePath(transform.position, Destination, NavMesh.AllAreas, Path);
+            CurrentWaypointIndex = 0;
         }
 
 #if UNITY_EDITOR
 
         private void OnDrawGizmos()
         {
-            if (Waypoints.Length <= 0)
+            if (Waypoints == null || Waypoints.Length <= 0)
                 return;
 
-            Gizmos.color = Color.green;
+            Gizmos.color = Stopped ? Color.red : Color.green;
 
-            foreach (Vector3 position in Waypoints)
-                Gizmos.DrawWireSphere(position, 0.25f);
-
-            Gizmos.DrawLineList(Waypoints);
+            for (int i = 0; i < Waypoints.Length; i++)
+            {
+                if (i < Waypoints.Length - 1)
+                    Gizmos.DrawLine(Waypoints[i], Waypoints[i + 1]);
+                Gizmos.DrawWireSphere(Waypoints[i], 0.25f);
+            }
         }
 
 #endif
