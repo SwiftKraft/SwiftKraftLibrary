@@ -1,32 +1,50 @@
-using System.Collections.Generic;
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.NPCs
 {
     public class NPCCore : MonoBehaviour
     {
-        public readonly Dictionary<string, NPCModuleBase> Modules = new();
+        public readonly SafeDictionary<string, NPCModuleBase> Modules = new();
+        public readonly SafeDictionary<string, object> Values = new();
 
-        public bool TryGetModule<T>(string id, out T module) where T : NPCModuleBase
+        public NPCStateBase CurrentState
         {
-            module = GetModule<T>(id);
-            return module != null;
+            get => _currentState;
+            set
+            {
+                if (_currentState != null)
+                {
+                    _currentState.End();
+                    DestroyImmediate(_currentState, false);
+                }
+
+                if (value == null)
+                    return;
+
+                _currentState = Instantiate(value);
+                _currentState.Init(this);
+                _currentState.Begin();
+            }
+        }
+        NPCStateBase _currentState;
+
+        [SerializeField]
+        private NPCStateBase startingState;
+
+        protected virtual void Start() => CurrentState = startingState;
+
+        protected virtual void Update()
+        {
+            if (CurrentState != null)
+                CurrentState.Update();
         }
 
-        public T GetModule<T>(string id) where T : NPCModuleBase => Modules.ContainsKey(id) && Modules[id] is T t ? t : null;
-
-        public bool AddModule(string id, NPCModuleBase reference)
+        protected virtual void FixedUpdate()
         {
-            if (Modules.ContainsKey(id))
-                return false;
-
-            Modules.Add(id, reference);
-            return true;
+            if (CurrentState != null)
+                CurrentState.Tick();
         }
-
-        public bool RemoveModule(string id) => Modules.Remove(id);
-
-        public bool RemoveModule(NPCModuleBase reference) => RemoveModule(reference.ID);
     }
 
     [RequireComponent(typeof(NPCCore))]
@@ -39,7 +57,13 @@ namespace SwiftKraft.Gameplay.NPCs
         protected virtual void Awake()
         {
             Parent = GetComponent<NPCCore>();
-            Parent.AddModule(ID, this);
+            Parent.Modules.Add(ID, this);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (Parent != null)
+                Parent.Modules.Remove(ID);
         }
     }
 }

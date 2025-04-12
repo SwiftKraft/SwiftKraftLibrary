@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
@@ -7,8 +6,10 @@ using UnityEngine.AI;
 namespace SwiftKraft.Gameplay.NPCs
 {
     [RequireComponent(typeof(MotorBase))]
+    [DisallowMultipleComponent]
     public class NPCNavigator : NPCModuleBase
     {
+        public override string ID => "Essentials.Navigator";
         public MotorBase Motor { get; private set; }
 
         public float WaypointRadius = 0.25f;
