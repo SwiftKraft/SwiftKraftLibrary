@@ -59,8 +59,6 @@ namespace SwiftKraft.Gameplay.NPCs
 
         protected virtual void FixedUpdate()
         {
-            Destination = FindFirstObjectByType<SimpleFPSInventory>().transform.position;
-
             if (Stopped)
             {
                 Motor.WishMoveDirection = Vector3.zero;
