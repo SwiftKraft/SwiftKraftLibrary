@@ -68,5 +68,54 @@ namespace SwiftKraft.Utils
 
             return null;
         }
+
+        public static int GetSign(this int value) => value switch
+        {
+            > 0 => 1,
+            < 0 => -1,
+            _ => 0,
+        };
+
+        public static short GetSign(this short value) => value switch
+        {
+            > 0 => 1,
+            < 0 => -1,
+            _ => 0,
+        };
+
+        public static sbyte GetSign(this sbyte value) => value switch
+        {
+            > 0 => 1,
+            < 0 => -1,
+            _ => 0,
+        };
+
+        public static long GetSign(this long value) => value switch
+        {
+            > 0L => 1L,
+            < 0L => -1L,
+            _ => 0L,
+        };
+
+        public static float GetSign(this float value) => value switch
+        {
+            > 0f => 1f,
+            < 0f => -1f,
+            _ => 0f,
+        };
+
+        public static double GetSign(this double value) => value switch
+        {
+            > 0d => 1d,
+            < 0d => -1d,
+            _ => 0d,
+        };
+
+        public static decimal GetSign(this decimal value) => value switch
+        {
+            > 0M => 1M,
+            < 0M => -1M,
+            _ => 0M,
+        };
     }
 }
