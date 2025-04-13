@@ -7,7 +7,9 @@ namespace SwiftKraft.Gameplay.Map
     {
         public Animator Animator { get; private set; }
 
-        public string BoolName = "IsOpen";
+        public float CrossFadeTime = 0.1f;
+        public string OpenName = "Open";
+        public string CloseName = "Close";
 
         protected virtual void Awake()
         {
@@ -32,7 +34,11 @@ namespace SwiftKraft.Gameplay.Map
             IsOpen = isOpen;
             if (Animator != null)
             {
-                Animator.SetBoolSafe(BoolName, isOpen);
+                string state = isOpen ? OpenName : CloseName;
+                if (CrossFadeTime > 0f)
+                    Animator.CrossFadeInFixedTime(state, CrossFadeTime, 0, 0f);
+                else
+                    Animator.Play(state, 0, 0f);
                 Animator.Update(0f);
             }
         }
