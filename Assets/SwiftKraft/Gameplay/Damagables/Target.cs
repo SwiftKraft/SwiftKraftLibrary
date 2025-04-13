@@ -6,12 +6,12 @@ namespace SwiftKraft.Gameplay.Damagables
 {
     public class Target : MonoBehaviour, IDamagable
     {
-        public UnityEvent<float> OnDamage;
+        public UnityEvent<DamageDataBase> OnDamage;
         public UnityEvent<Vector3> OnHit;
 
         public void Damage(DamageDataBase data)
         {
-            OnDamage?.Invoke(data.Damage);
+            OnDamage?.Invoke(data);
             OnHit?.Invoke(data.HitPoint);
         }
     }
