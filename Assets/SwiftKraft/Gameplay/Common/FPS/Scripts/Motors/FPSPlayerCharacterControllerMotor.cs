@@ -37,6 +37,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public bool WishCrouch { get; private set; }
 
+        public float CurrentSpeed => IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed);
+
+        public override float MoveRateMultiplier => CurrentSpeed;
+
         public float Height
         {
             get => Component.height;
@@ -150,7 +154,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public override void Move(Vector3 direction)
         {
-            Vector3 vel = direction * (Time.fixedDeltaTime * (IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed)));
+            Vector3 vel = direction * (Time.fixedDeltaTime * CurrentSpeed);
             Component.Move(vel);
         }
     }

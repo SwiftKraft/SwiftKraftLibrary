@@ -889,7 +889,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   Amplitude: 0.1
-  Rate: 5
+  Rate: 1
   DampTime: 0.1
 --- !u!1 &6492839637052000451
 GameObject:
@@ -1054,9 +1054,9 @@ MonoBehaviour:
     m_Bits: 1
   GroundRadius: 0.1
   JumpSpeed: 4
-  MoveSpeed: 3
-  CrouchSpeed: 1.5
-  SprintSpeed: 5
+  MoveSpeed: 5
+  CrouchSpeed: 3
+  SprintSpeed: 8
   Gravity: 12
   CrouchHeight: 1
   CrouchCameraHeight: 0.8
