@@ -150,6 +150,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b0e5870b81de04e9f586cd235bf814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7717686603094605905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5045147032702924123}
+  - component: {fileID: 5558367799475709869}
+  m_Layer: 0
+  m_Name: Light Probe Group
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5045147032702924123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717686603094605905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.49999982, y: 1, z: 0.000004438425}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5683183081286705612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!220 &5558367799475709869
+LightProbeGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717686603094605905}
+  m_Enabled: 1
+  m_SourcePositions:
+  - {x: 0.000006556511, y: 0.75, z: 0.25000912}
+  - {x: -0.00000667572, y: 0.75, z: -0.24999106}
+  - {x: 0.000006556511, y: -0.7499999, z: 0.250009}
+  - {x: -0.00000667572, y: -0.7499999, z: -0.24999118}
+  m_Dering: 1
 --- !u!1 &9028526869252263547
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +228,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3361235813233421786}
+  - {fileID: 5045147032702924123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8239563875411459478
@@ -196,13 +243,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db0d3cb0267cf04bb3f8858688280a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInteract: 1
   OnOpenChanged:
     m_PersistentCalls:
       m_Calls: []
   OnStatusChanged:
     m_PersistentCalls:
       m_Calls: []
-  BoolName: IsOpen
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  CrossFadeTime: 0.1
+  OpenName: Open
+  CloseName: Close
 --- !u!95 &3578388875849543297
 Animator:
   serializedVersion: 5

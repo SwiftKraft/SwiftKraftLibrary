@@ -8,6 +8,9 @@ namespace SwiftKraft.Gameplay.Map
 {
     public abstract class DoorBase : MonoBehaviour, IInteractable
     {
+        [field: SerializeField]
+        public bool CanInteract { get; set; } = true;
+
         public bool IsOpen
         {
             get => _isOpen;
@@ -50,7 +53,7 @@ namespace SwiftKraft.Gameplay.Map
 
         public virtual void Interact(InteractorBase interactor)
         {
-            if (prevInteractor == interactor)
+            if (!CanInteract || prevInteractor == interactor)
                 return;
 
             SetState(!IsOpen);
