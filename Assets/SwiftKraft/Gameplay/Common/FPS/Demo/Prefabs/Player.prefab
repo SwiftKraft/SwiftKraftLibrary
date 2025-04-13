@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a0b6b75b4ad824f8107a9047693f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 6492839637052000451}
 --- !u!1 &362979803673857439
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4013005902616619962}
+  - component: {fileID: 5762069191706930250}
   - component: {fileID: 5189038673888340861}
   - component: {fileID: 6742730238961451742}
   - component: {fileID: 6061303147417084388}
@@ -736,6 +736,19 @@ Transform:
   - {fileID: 5768972771258173209}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5762069191706930250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6492839637052000451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f6ab2f5eb61624fbc6e64b5d2fa4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Faction>k__BackingField: Player
 --- !u!114 &5189038673888340861
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Ownership
 {
-    public class OwnerColliderComponent : OwnerComponentBase, ICollider
+    public class OwnerComponentCollider : OwnerComponentBase, ICollider
     {
         public Collider[] Colliders
         {

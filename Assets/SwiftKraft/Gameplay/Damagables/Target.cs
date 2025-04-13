@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 using UnityEngine.Events;

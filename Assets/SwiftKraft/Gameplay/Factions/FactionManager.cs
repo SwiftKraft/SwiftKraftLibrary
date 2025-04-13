@@ -1,6 +1,8 @@
 using SwiftKraft.Gameplay.Interfaces;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace SwiftKraft.Gameplay.Factions
 {
@@ -22,30 +24,32 @@ namespace SwiftKraft.Gameplay.Factions
         public static void RemoveFaction(string id)
         {
             if (Factions.ContainsKey(id))
-                Object.Destroy(Factions[id]);
+                Factions[id].Dispose();
             Factions.Remove(id);
         }
 
         public static void ClearFactions()
         {
             foreach (Faction f in Factions.Values)
-                Object.Destroy(f);
+                f.Dispose();
             Factions.Clear();
         }
     }
 
-    public class Faction : Object, IFaction
+    public class Faction : IFaction, IDisposable
     {
+        public readonly string Name;
         public readonly string ID;
 
         public readonly Dictionary<string, object> Statistics = new();
 
         public bool FriendlyFire { get; set; }
+        public bool Disposed { get; private set; } = false;
 
         public Faction(string id, string name) : base()
         {
             ID = id;
-            this.name = name;
+            Name = name;
         }
 
         string IFaction.Faction { get => ID; set { } }
@@ -63,6 +67,8 @@ namespace SwiftKraft.Gameplay.Factions
                 return false;
             }
         }
+
+        public void Dispose() => Disposed = true;
 
         public static implicit operator string(Faction f) => f.ID;
         public static implicit operator Faction(string id) => FactionManager.GetFaction(id);
