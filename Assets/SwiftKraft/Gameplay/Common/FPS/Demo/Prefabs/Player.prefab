@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6061017516257229357}
   - component: {fileID: 5201404808144487794}
   - component: {fileID: 6786337407616028624}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: ViewModelWorkspace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 6226381520296062969}
   - component: {fileID: 7534890546092182937}
   - component: {fileID: 2870093364035506129}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 2868770743033175232}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 3426307732425479901}
   - component: {fileID: 1261464851342156887}
   - component: {fileID: 153268146045303286}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ViewModel Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -888,8 +888,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  Amplitude: 0.1
-  Rate: 1
+  Amplitude: 0.05
+  Rate: 0.5
   DampTime: 0.1
 --- !u!1 &6492839637052000451
 GameObject:
@@ -1026,13 +1026,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &8250421343296959061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,14 +1052,14 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 1
-  GroundRadius: 0.1
-  JumpSpeed: 4
+  GroundRadius: 0.015
+  JumpSpeed: 5
   MoveSpeed: 5
   CrouchSpeed: 3
   SprintSpeed: 8
   Gravity: 12
-  CrouchHeight: 1
-  CrouchCameraHeight: 0.8
+  CrouchHeight: 0.9
+  CrouchCameraHeight: 0.75
   MainCamera: {fileID: 6226381520296062969}
   ReferenceFOV: 90
   CrouchInterp:

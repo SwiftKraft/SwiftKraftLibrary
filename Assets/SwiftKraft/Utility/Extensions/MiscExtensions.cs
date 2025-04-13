@@ -5,13 +5,13 @@ namespace SwiftKraft.Utils
 {
     public static class MiscExtensions
     {
-        public static bool TryGetComponentInChildren<T>(this Component comp, out T component) where T : Component
+        public static bool TryGetComponentInChildren<T>(this Component comp, out T component)
         {
             component = comp.GetComponentInChildren<T>();
             return component != null;
         }
 
-        public static bool TryGetComponentInParent<T>(this Component comp, out T component) where T : Component
+        public static bool TryGetComponentInParent<T>(this Component comp, out T component)
         {
             component = comp.GetComponentInParent<T>();
             return component != null;
