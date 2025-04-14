@@ -473,16 +473,16 @@ public class PL_ODM : MonoBehaviour
         switch (buttonIndex)
         {
             case 0: // Left Dash
-                movementScript.Rigidbody.AddForce(-playerCameraTransform.right * gasDashForce, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(-playerCameraTransform.right * gasDashForce * 2, ForceMode.VelocityChange);
                 break;
             case 1: // Right Dash
-                movementScript.Rigidbody.AddForce(playerCameraTransform.right * gasDashForce, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(playerCameraTransform.right * gasDashForce * 2, ForceMode.VelocityChange);
                 break;
             case 2: // Forward Dash
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.forward * gasDashForce, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.forward * gasDashForce * 2, ForceMode.VelocityChange);
                 break;
             case 3: // Back Dash
-                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.forward * gasDashForce, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.forward * gasDashForce * 2, ForceMode.VelocityChange);
                 break;
             case 4: // Up Dash
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
