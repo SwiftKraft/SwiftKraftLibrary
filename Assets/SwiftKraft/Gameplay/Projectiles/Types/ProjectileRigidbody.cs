@@ -86,7 +86,7 @@ namespace SwiftKraft.Gameplay.Projectiles
         {
             HitInfo info = new(collision.GetContact(0));
             HitEvent(info);
-            if (info.Object.TryGetComponent(out IDamagable dmg))
+            if (info.Object.TryGetComponent(out IDamagable dmg) && (dmg is not IFaction f || f.Faction != Faction))
                 dmg.Damage(GetDamageData(info));
         }
     }

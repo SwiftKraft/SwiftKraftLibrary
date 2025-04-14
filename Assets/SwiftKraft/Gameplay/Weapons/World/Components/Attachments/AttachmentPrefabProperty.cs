@@ -1,3 +1,4 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -16,7 +17,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.Init(parent);
 
-            Workspace = string.IsNullOrEmpty(WorkspaceName) ? this.parent.parent.transform : this.parent.parent.Parent.transform.Find(WorkspaceName);
+            Workspace = string.IsNullOrEmpty(WorkspaceName) ? this.parent.parent.transform : this.parent.parent.Parent.transform.FindRecursive(WorkspaceName);
         }
 
         public override void Update()

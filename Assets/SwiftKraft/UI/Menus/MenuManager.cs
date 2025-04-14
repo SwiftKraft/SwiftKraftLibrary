@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SwiftKraft.UI
+namespace SwiftKraft.UI.Menus
 {
     public class MenuManager : MonoBehaviour
     {

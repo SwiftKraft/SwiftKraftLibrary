@@ -20,6 +20,31 @@ MonoBehaviour:
       mesh: {fileID: 0}
       materials: []
     properties: []
+  - parent: {fileID: 0}
+    name: Flashlight
+    package:
+      mesh: {fileID: 119302499102753868, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      materials:
+      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+    properties:
+    - rid: 1893896972554731521
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1893896972554731521
+      type: {class: AttachmentPrefabProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        OffsetPosition: {x: 0.00234, y: 0.00488, z: -0.04825}
+        OffsetRotation: {x: 0, y: 180, z: 0}
+        Prefab: {fileID: 9203381039926972812, guid: 03efde4b23d2d1743ba66a43d56e904a,
+          type: 3}
+        WorkspaceName: Base

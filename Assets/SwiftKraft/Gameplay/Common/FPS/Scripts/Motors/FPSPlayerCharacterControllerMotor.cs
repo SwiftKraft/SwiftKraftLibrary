@@ -33,9 +33,13 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         readonly Trigger jumpInput = new();
         float currentGravity;
 
-        public MoveTowardsInterpolater CrouchInterp;
+        public SmoothDampInterpolater CrouchInterp;
 
         public bool WishCrouch { get; private set; }
+
+        public float CurrentSpeed => IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed);
+
+        public override float MoveRateMultiplier => CurrentSpeed;
 
         public float Height
         {
@@ -102,7 +106,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             }
             else
             {
-                currentGravity = -1f;
+                currentGravity = -0.1f;
                 coyoteTime.Reset();
             }
 
@@ -150,7 +154,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public override void Move(Vector3 direction)
         {
-            Vector3 vel = direction * (Time.fixedDeltaTime * (IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed)));
+            Vector3 vel = direction * (Time.fixedDeltaTime * CurrentSpeed);
             Component.Move(vel);
         }
     }

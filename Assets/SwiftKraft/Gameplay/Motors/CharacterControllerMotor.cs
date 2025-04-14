@@ -29,7 +29,7 @@ namespace SwiftKraft.Gameplay.Motors
             else
                 currentGravity = 0;
 
-            Component.Move(Vector3.down * (currentGravity * Time.fixedDeltaTime));
+            Component.Move(Vector3.up * (currentGravity * Time.fixedDeltaTime));
         }
 
         public override void Look(Quaternion rotation)

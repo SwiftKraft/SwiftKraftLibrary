@@ -9,6 +9,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponBase : PetBehaviourBase
     {
+        public static event Action<WeaponBase> OnWeaponAttack;
+
         public class WeaponAction
         {
             public readonly Func<bool> Function;
@@ -168,6 +170,7 @@ namespace SwiftKraft.Gameplay.Weapons
             if (CurrentMode != null)
             {
                 CurrentMode.Attack(origin);
+                OnWeaponAttack?.Invoke(this);
                 return true;
             }
 

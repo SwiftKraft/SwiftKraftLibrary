@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SwiftKraft.UI
+namespace SwiftKraft.UI.Menus
 {
     public abstract class MenuBase : MonoBehaviour
     {

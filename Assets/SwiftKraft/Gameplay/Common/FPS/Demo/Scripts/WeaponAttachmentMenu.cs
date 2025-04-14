@@ -1,5 +1,5 @@
 using SwiftKraft.Gameplay.Weapons;
-using SwiftKraft.UI;
+using SwiftKraft.UI.Menus;
 using System;
 using UnityEngine;
 
