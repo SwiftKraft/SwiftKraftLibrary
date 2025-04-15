@@ -1,0 +1,22 @@
+{
+    "name": "com.swiftkraft.lib",
+    "version": "1.0.0.0",
+    "displayName": "SwiftKraft Library",
+    "description": "This is a game foundation that has extendable scripts to create any type of game you need. Also contains a lot of essential components to a high quality game.",
+    "unity": "2022.3",
+    "documentationUrl": "https://github.com/SwiftKraft/SwiftKraftLibrary",
+    "dependencies": {
+      "com.unity.nuget.newtonsoft-json": "3.2.1",
+      "com.unity.textmeshpro": "3.0.9"
+   },
+   "keywords": [
+      "swiftkraft",
+      "gamelibrary",
+      "swiftlib"
+    ],
+    "author": {
+      "name": "SwiftKraft",
+      "email": "swiftkraftyt@gmail.com",
+      "url": "https://www.youtube.com/@swiftkraft"
+    }
+  }

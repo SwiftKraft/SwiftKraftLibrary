@@ -1,5 +1,6 @@
 using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
+using static SwiftKraft.Gameplay.Projectiles.ProjectileBase;
 
 namespace SwiftKraft.Gameplay.Interactions
 {
@@ -30,7 +31,7 @@ namespace SwiftKraft.Gameplay.Interactions
             foreach (RaycastHit hitInfo in hits)
             {
                 if (hitInfo.transform.TryGetComponent(out IInteractable interactable)
-                    && !Physics.Linecast(TargetTransform.position, hitInfo.point, LOSLayers, QueryTriggerInteraction.Ignore)
+                    && HasLOS(hitInfo)
                     && (selected == null || (selectedPoint - TargetTransform.position).sqrMagnitude > (hitInfo.point - TargetTransform.position).sqrMagnitude))
                 {
                     selected = interactable;
@@ -39,6 +40,15 @@ namespace SwiftKraft.Gameplay.Interactions
             }
 
             return selected;
+        }
+
+        public bool HasLOS(RaycastHit hitInfo)
+        {
+            Collider collider = hitInfo.collider;
+            collider.enabled = false;
+            bool los = !Physics.Linecast(TargetTransform.position, hitInfo.point, LOSLayers, QueryTriggerInteraction.Ignore);
+            collider.enabled = true;
+            return los;
         }
     }
 }
