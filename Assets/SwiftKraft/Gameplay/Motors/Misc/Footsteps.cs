@@ -1,7 +1,7 @@
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using System;
 using System.Linq;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors.Miscellaneous
@@ -14,6 +14,7 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
         public AudioSource Source;
 
         public float Rate = 1f;
+        public Timer RateLimit = new(0.2f);
 
         public Transform RayPoint;
         public float RayDistance = 0.25f;
@@ -24,11 +25,15 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
         float factor;
         float prevFactor;
 
+        bool prevGrounded;
+
         private void Awake()
         {
             MotorBase = GetComponent<MotorBase>();
             factor = MotorBase.MoveFactor % (1f / Rate);
             prevFactor = factor;
+            if (MotorBase is IGroundable groundable)
+                prevGrounded = groundable.IsGrounded;
 
             if (Source == null)
                 enabled = false;
@@ -36,32 +41,49 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 
         private void FixedUpdate()
         {
+            RateLimit.Tick(Time.fixedDeltaTime);
+
             factor = MotorBase.MoveFactor % (1f / Rate);
 
             if (factor < prevFactor)
                 Trigger();
 
             prevFactor = factor;
+
+            if (MotorBase is IGroundable groundable)
+            {
+                if (groundable.IsGrounded && !prevGrounded)
+                    Trigger();
+
+                prevGrounded = groundable.IsGrounded;
+            }
         }
 
         public void Trigger()
         {
+            if (!RateLimit.Ended)
+                return;
+
             if (Physics.Raycast(RayPoint.position, -RayPoint.up, out RaycastHit _hit, RayDistance, RayMask, QueryTriggerInteraction.Ignore))
             {
                 Material mat = FindFaceMaterial(_hit);
 
                 if (mat == null)
                     return;
-                
+
                 FootstepProfile profile = GetProfile(mat);
                 if (profile == null)
                 {
                     if (Profiles.Length > 0)
+                    {
                         Source.PlayOneShot(Profiles[0].GetClip(MotorBase.State));
+                        RateLimit.Reset();
+                    }
                     return;
                 }
 
                 Source.PlayOneShot(profile.GetClip(MotorBase.State));
+                RateLimit.Reset();
             }
         }
 

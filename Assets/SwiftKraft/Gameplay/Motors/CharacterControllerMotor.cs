@@ -1,9 +1,10 @@
+using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors
 {
     [RequireComponent(typeof(CharacterController))]
-    public class CharacterControllerMotor : MotorBase<CharacterController>
+    public class CharacterControllerMotor : MotorBase<CharacterController>, IGroundable
     {
         public float MoveSpeed = 5f;
         public float Gravity = 9.81f;
@@ -18,13 +19,15 @@ namespace SwiftKraft.Gameplay.Motors
             }
         }
 
+        public bool IsGrounded => Component.isGrounded;
+
         float currentGravity;
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
 
-            if (!Component.isGrounded)
+            if (!IsGrounded)
                 currentGravity -= Gravity * Time.fixedDeltaTime;
             else
                 currentGravity = 0;
