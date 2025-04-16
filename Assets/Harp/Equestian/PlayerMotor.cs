@@ -2,6 +2,8 @@ using SwiftKraft.Utils;
 using System;
 using System.Linq;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Player.Movement
 {
@@ -11,6 +13,8 @@ namespace Player.Movement
         public delegate void OnPlayerGroundedChanged(bool curr, bool prev);
 
         public PlayerMovementStateBase DefaultState;
+
+        public PlayerMovementStateBase SlideState;
 
         public PlayerMovementStateBase CurrentState
         {
@@ -116,6 +120,7 @@ namespace Player.Movement
         public AudioSource[] Audio;
         public ParticleSystem[] Particles;
 
+        public float currentSpeed;
         PlayerMovementStateBase state;
         bool isGrounded;
         float cameraVel;
@@ -125,15 +130,37 @@ namespace Player.Movement
             Rigidbody = GetComponent<Rigidbody>();
             Collider = GetComponent<CapsuleCollider>();
 
+           
+
             TargetCameraHeight = OriginalCameraHeight;
 
             if (DefaultState == null)
                 enabled = false;
+
+            
+            
         }
+        private void Start()
+        {
+            StartCoroutine(UpdateSpeed());
+        }
+
+
+        private IEnumerator UpdateSpeed()
+        {
+            while (true) // This will run indefinitely
+            {
+                currentSpeed = Mathf.Ceil(Rigidbody.velocity.magnitude);
+                yield return new WaitForSeconds(1f); // Wait for 1 second
+            }
+        }
+
+      
 
         private void Update()
         {
             CameraHeight = Mathf.SmoothDamp(CameraHeight, TargetCameraHeight, ref cameraVel, CameraSmoothTime);
+
 
             CurrentState.InputUpdate(this);
         }

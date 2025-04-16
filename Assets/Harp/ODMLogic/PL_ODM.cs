@@ -489,19 +489,19 @@ public class PL_ODM : MonoBehaviour
                 break; ///Up Down Left Right Forces for when hooked, gas enabled, and holding WASD keys need to be created.
             case 5: // Up Orbit
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 15f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 6: // Down Orbit
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 15f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 7: // Left Orbit
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 12f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 8: // Right Orbit
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 12f, ForceMode.VelocityChange);
+                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 11f, ForceMode.VelocityChange);
                 
 
                 
