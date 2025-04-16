@@ -1321,14 +1321,53 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   Profiles:
-  - MaterialKeywords: []
+  - MaterialKeywords:
+    - ct
+    - concrete
+    - stone
+    - rock
     States:
-    - MotorState: -1
+    - MotorState: 1
       Clips:
-      - {fileID: 8300000, guid: f6b6527653e48c544aa3faf528a7e339, type: 3}
-      - {fileID: 8300000, guid: 0430291dce3ca5648b528a0e9358d2d4, type: 3}
-      - {fileID: 8300000, guid: 6c42d3ce772ea4748bc79289b9d2c7d8, type: 3}
-      - {fileID: 8300000, guid: e121dd0d61b87cd468a115ffa0e1d981, type: 3}
-      - {fileID: 8300000, guid: a0497767c5a5a3145964b506d26c3db2, type: 3}
-      - {fileID: 8300000, guid: 6471626e80f659243a5707d59a33b35f, type: 3}
-      - {fileID: 8300000, guid: 6ec5381ec8cc69c44bc77cecd3a17345, type: 3}
+      - {fileID: 8300000, guid: f9df15cb939708d4da308def5326a104, type: 3}
+      - {fileID: 8300000, guid: af40af5007eb71948a8ec771d714f92e, type: 3}
+      - {fileID: 8300000, guid: 510a5ed9e49c99b4d912bf2ed33d3287, type: 3}
+      - {fileID: 8300000, guid: 14b9745f124a30e4a997762cb4c4ec2d, type: 3}
+      - {fileID: 8300000, guid: e18ab1692a0cf614e8387d41a2070780, type: 3}
+      - {fileID: 8300000, guid: 90c97a007d9ec0d43969ee4a68b8f1ee, type: 3}
+      - {fileID: 8300000, guid: c52de578ed2ba2f4c8b848b3b12169fe, type: 3}
+      - {fileID: 8300000, guid: d01877092467e1243bbdad0f2efeea15, type: 3}
+    - MotorState: 2
+      Clips:
+      - {fileID: 8300000, guid: 9c7fb7625d4a62a459cfe1239b7c1621, type: 3}
+      - {fileID: 8300000, guid: 066209a8dededfd4b9ca1cd843273719, type: 3}
+      - {fileID: 8300000, guid: 0696ccd70a1253e4aaf37e4e94423624, type: 3}
+      - {fileID: 8300000, guid: 877692793ead43447ae2d46432147f7b, type: 3}
+      - {fileID: 8300000, guid: ba9d0b658163ecb428eff3b3d1c34593, type: 3}
+      - {fileID: 8300000, guid: 311a6624929870b48a400e3dcd608e52, type: 3}
+      - {fileID: 8300000, guid: 49b8d2cfe59907844afb2bd209db9e86, type: 3}
+      - {fileID: 8300000, guid: 15bcaca1fe289ab45b2b7384f99cd10e, type: 3}
+  - MaterialKeywords:
+    - metal
+    - steel
+    States:
+    - MotorState: 1
+      Clips:
+      - {fileID: 8300000, guid: fff6694ea048e4e45ae04a8f113a11c8, type: 3}
+      - {fileID: 8300000, guid: 200e8c5e38f83454aa853455f709958a, type: 3}
+      - {fileID: 8300000, guid: 312d7196e40a58a4f87f6d7d579d93cc, type: 3}
+      - {fileID: 8300000, guid: b2677867a408fc641b84b947f98f605d, type: 3}
+      - {fileID: 8300000, guid: a76ba2c053b6a4f4bb72c12d42773a4e, type: 3}
+      - {fileID: 8300000, guid: e43751cb48985ed40a60a8b88155dd6e, type: 3}
+      - {fileID: 8300000, guid: c9a66a245b30a3843b491d5b96593de9, type: 3}
+      - {fileID: 8300000, guid: b59e5cc1a3d2e4a45864fe250ec6d9d7, type: 3}
+    - MotorState: 2
+      Clips:
+      - {fileID: 8300000, guid: a6bf6c22c3c723d4fa3018a16129163d, type: 3}
+      - {fileID: 8300000, guid: 1fcb8bdd861ae624c9ce46cdbdccddc1, type: 3}
+      - {fileID: 8300000, guid: dec0a4003d23a75499b7698e86e37717, type: 3}
+      - {fileID: 8300000, guid: 490fae3fa3b947645918490cdb53ad51, type: 3}
+      - {fileID: 8300000, guid: e5ca2fa705dc8974780eeeb2dfc6a893, type: 3}
+      - {fileID: 8300000, guid: ca877d09e854ccd4b953519c18725fd5, type: 3}
+      - {fileID: 8300000, guid: 29b9220b6d16e7f46abfac78c6732fca, type: 3}
+      - {fileID: 8300000, guid: 50cef0e90c261834eb0776307715e1f3, type: 3}
