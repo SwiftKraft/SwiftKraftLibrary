@@ -25,8 +25,8 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 
         protected virtual void Update()
         {
-            Position = Vector3.SmoothDamp(Position, MovePosition.Evaluate(MotorBase.MoveRate * Rate) * Amplitude, ref pos, DampTime);
-            Rotation = Rotation.SmoothDamp(Quaternion.Euler(MoveRotation.Evaluate(MotorBase.MoveRate * Rate) * Amplitude), ref rot, DampTime);
+            Position = Vector3.SmoothDamp(Position, MovePosition.Evaluate(MotorBase.MoveFactor * Rate) * Amplitude, ref pos, DampTime);
+            Rotation = Rotation.SmoothDamp(Quaternion.Euler(MoveRotation.Evaluate(MotorBase.MoveFactor * Rate) * Amplitude), ref rot, DampTime);
         }
     }
 }
