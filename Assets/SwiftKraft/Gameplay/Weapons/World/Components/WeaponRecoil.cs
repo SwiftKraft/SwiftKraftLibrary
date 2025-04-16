@@ -71,7 +71,7 @@ namespace SwiftKraft.Gameplay.Weapons
         protected abstract void DecayRecoil();
         protected abstract void ApplyRecoil();
 
-        protected virtual void OnAttack(GameObject go)
+        protected virtual void OnAttack(GameObject[] go)
         {
             Heat.Increment(1f);
             if (!Smooth)

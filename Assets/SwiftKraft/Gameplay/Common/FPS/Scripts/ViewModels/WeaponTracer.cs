@@ -17,13 +17,16 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         protected virtual void OnDestroy() => Parent.OnAttack -= OnAttack;
 
-        private void OnAttack(GameObject obj)
+        private void OnAttack(GameObject[] obj)
         {
             if (VisualOrigin == null)
                 return;
 
-            if (obj.TryGetComponent(out IVisualOrigin origin))
-                origin.VisualOrigin = ViewModel == null ? VisualOrigin.position : ViewModel.Parent.MainCamera.ScreenToWorldPoint(ViewModel.Parent.ViewModelCamera.WorldToScreenPoint(VisualOrigin.position));
+            foreach (GameObject go in obj)
+            {
+                if (go.TryGetComponent(out IVisualOrigin origin))
+                    origin.VisualOrigin = ViewModel == null ? VisualOrigin.position : ViewModel.Parent.MainCamera.ScreenToWorldPoint(ViewModel.Parent.ViewModelCamera.WorldToScreenPoint(VisualOrigin.position));
+            }
         }
     }
 }

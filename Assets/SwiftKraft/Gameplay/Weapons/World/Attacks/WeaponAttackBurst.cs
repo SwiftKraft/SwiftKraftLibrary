@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    [CreateAssetMenu(menuName = "SwiftKraft/Gameplay/Weapons/Attacks/Burst", fileName = "New Attack", order = 1)]
-    public class WeaponAttackScriptableBurst : WeaponAttackScriptableBase
+    public class WeaponAttackBurst : WeaponAttackSingle
     {
         public int Count;
 

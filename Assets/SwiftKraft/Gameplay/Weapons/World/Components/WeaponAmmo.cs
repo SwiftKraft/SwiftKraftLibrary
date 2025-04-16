@@ -114,7 +114,7 @@ namespace SwiftKraft.Gameplay.Weapons
             OnAmmoUpdated?.Invoke(CurrentAmmo);
         }
 
-        protected virtual void OnAttack(GameObject go) => TryUseAmmo();
+        protected virtual void OnAttack(GameObject[] go) => TryUseAmmo();
 
         public bool HasAmmo(int ammo = 1) => CurrentAmmo >= ammo;
 
