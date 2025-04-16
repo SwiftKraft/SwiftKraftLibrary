@@ -38,27 +38,9 @@ namespace SwiftKraft.Gameplay.Weapons
         public readonly Dictionary<string, WeaponAction> Actions = new();
 
         [field: SerializeField]
-        public WeaponScriptable Scriptable { get; private set; }
-
-        [field: SerializeField]
         public Transform AttackOrigin { get; private set; }
 
         public ModifiableStatistic Damage;
-
-        public List<WeaponAttackScriptableBase> AttackModeCache
-        {
-            get
-            {
-                if (_attackModeCache == null)
-                {
-                    _attackModeCache = new();
-                    RefreshAttackModes();
-                }
-
-                return _attackModeCache;
-            }
-        }
-        List<WeaponAttackScriptableBase> _attackModeCache;
 
         public virtual bool Attacking => false;
 
@@ -67,7 +49,7 @@ namespace SwiftKraft.Gameplay.Weapons
             get => _currentMode;
             private set
             {
-                value %= AttackModeCache.Count;
+                value %= AttackModes.Count;
                 OnAttackModeUpdated?.Invoke(value);
                 _currentMode = value;
             }
@@ -75,23 +57,28 @@ namespace SwiftKraft.Gameplay.Weapons
         int _currentMode;
         public readonly BooleanLock CanAttack = new();
 
-        public WeaponAttackScriptableBase CurrentMode => AttackModeCache.InRange(CurrentModeIndex) ? AttackModeCache[CurrentModeIndex] : null;
+        public WeaponAttackBase CurrentMode => AttackModes.InRange(CurrentModeIndex) ? AttackModes[CurrentModeIndex] : null;
+
+        [field: SerializeReference, Subclass(IsList = true)]
+        public List<WeaponAttackBase> AttackModes { get; private set; } = new();
 
         public event Action<int> OnAttackModeUpdated;
         public event Action<string> OnStartAction;
         public event Action<string> OnAttemptAction;
-        public event Action<GameObject> OnAttack;
+        public event Action<GameObject[]> OnAttack;
         public event Action OnPreAttack;
 
         protected virtual void Awake()
         {
             Owner = transform.root.GetComponentInChildren<IPawn>();
             AddAction(AttackAction, Attack);
+
+            foreach (WeaponAttackBase attack in AttackModes)
+                attack.Parent = this;
         }
 
         protected virtual void OnDestroy()
         {
-            DestroyAttackModes();
             Actions.Remove(AttackAction);
         }
 
@@ -127,38 +114,20 @@ namespace SwiftKraft.Gameplay.Weapons
             return status;
         }
 
-        public void AttackEvent(GameObject go) => OnAttack?.Invoke(go);
+        public void AddAttack(WeaponAttackBase attack)
+        {
+            AttackModes.Add(attack);
+            attack.Parent = this;
+        }
+
+        public void RemoveAttack(WeaponAttackBase attack)
+        {
+            if (AttackModes.Remove(attack))
+                attack.Parent = null;
+        }
+
+        public void AttackEvent(GameObject[] go) => OnAttack?.Invoke(go);
         public void PreAttackEvent() => OnPreAttack?.Invoke();
-
-        public void RefreshAttackModes()
-        {
-            if (Scriptable == null)
-            {
-                Debug.LogError("Weapon view model \"" + gameObject.name + "\" does not have an assigned WeaponScriptable!");
-                return;
-            }
-
-            DestroyAttackModes();
-            CloneAttackModes();
-        }
-
-        public void DestroyAttackModes()
-        {
-            if (_attackModeCache.Count > 0)
-                foreach (WeaponAttackScriptableBase atk in _attackModeCache)
-                    DestroyImmediate(atk, false);
-            _attackModeCache.Clear();
-        }
-
-        public void CloneAttackModes()
-        {
-            foreach (WeaponAttackScriptableBase atk in Scriptable.Attacks)
-            {
-                WeaponAttackScriptableBase scr = Instantiate(atk);
-                scr.Parent = this;
-                AttackModeCache.Add(scr);
-            }
-        }
 
         public virtual bool Attack() => Attack(AttackOrigin);
 
@@ -179,8 +148,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         protected virtual void FixedUpdate()
         {
-            if (CurrentMode != null)
-                CurrentMode.Tick();
+            CurrentMode?.Tick();
         }
     }
 }
