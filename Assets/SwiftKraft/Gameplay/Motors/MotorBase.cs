@@ -49,7 +49,7 @@ namespace SwiftKraft.Gameplay.Motors
         /// <summary>
         /// The the amount of time spent moving before stopping. 
         /// </summary>
-        public float MoveRate { get; protected set; }
+        public float MoveFactor { get; protected set; }
 
         /// <summary>
         /// Whether or not the motor is currently moving.
@@ -58,7 +58,7 @@ namespace SwiftKraft.Gameplay.Motors
 
         public MotorBase Vehicle { get; set; }
 
-        public virtual float MoveRateMultiplier => 1f;
+        public virtual float MoveFactorMultiplier => 1f;
 
         protected virtual void Awake() { }
 
@@ -88,7 +88,7 @@ namespace SwiftKraft.Gameplay.Motors
                 Move(CurrentMoveDirection);
 
                 Moving = CurrentMoveDirection != Vector3.zero;
-                MoveRate = Moving ? MoveRate + Time.fixedDeltaTime * MoveRateMultiplier : 0f;
+                MoveFactor = Moving ? MoveFactor + Time.fixedDeltaTime * MoveFactorMultiplier : 0f;
             }
         }
 
