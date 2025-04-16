@@ -1316,6 +1316,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Source: {fileID: 5596218956003814458}
   Rate: 0.5
+  RateLimit:
+    <MaxValue>k__BackingField: 0.4
+    StartEnded: 0
   RayPoint: {fileID: 4013005902616619962}
   RayDistance: 0.1
   RayMask:
