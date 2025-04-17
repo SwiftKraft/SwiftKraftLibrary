@@ -487,6 +487,12 @@ public class PL_ODM : MonoBehaviour
             case 4: // Up Dash
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 1.4f, ForceMode.VelocityChange);
                 break; ///Up Down Left Right Forces for when hooked, gas enabled, and holding WASD keys need to be created.
+
+
+
+
+
+
             case 5: // Up Orbit
                 StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
@@ -557,7 +563,7 @@ public class PL_ODM : MonoBehaviour
 
     void ReelInHook(int hookIndex)
     {
-        if (Input.GetKey(KeyCode.LeftShift))//Gas Boost to reel speed
+        if (Input.GetKey(KeyCode.LeftShift))//Gas Boost to reel speed CHANGE TO SPACEBAR
         {
             hookCurrentReelInForce = hookBoostReelInForce;
         }
