@@ -1,9 +1,10 @@
+using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.NPCs
 {
-    public class NPCCore : MonoBehaviour
+    public class NPCCore : PawnBehaviourBase
     {
         public readonly SafeDictionary<string, NPCModuleBase> Modules = new();
         public readonly SafeDictionary<string, object> Values = new();

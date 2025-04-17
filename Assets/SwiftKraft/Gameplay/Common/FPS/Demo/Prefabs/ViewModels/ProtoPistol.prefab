@@ -1413,12 +1413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b259e8bde484ab4ba595a94f31c48b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Scriptable>k__BackingField: {fileID: 11400000, guid: 65ee1a21c4352e94a8492fa1b58c9533,
-    type: 2}
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
   Damage:
     <BaseValue>k__BackingField: 20
     <Values>k__BackingField: []
+  <AttackModes>k__BackingField:
+  - rid: 1893897059637133319
   PrefireDelay:
     <BaseValue>k__BackingField: 0
     <Values>k__BackingField: []
@@ -1432,6 +1432,16 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0.2
     StartEnded: 0
   CancelPrefire: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1893897059637133319
+      type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        Parent: {fileID: 0}
+        Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
+          type: 3}
+        Amount: 1
 --- !u!114 &610497832379667108
 MonoBehaviour:
   m_ObjectHideFlags: 0

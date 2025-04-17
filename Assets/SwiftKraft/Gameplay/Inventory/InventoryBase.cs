@@ -55,5 +55,8 @@ namespace SwiftKraft.Gameplay.Inventory
     {
         [JsonProperty]
         public List<ItemInstance> Items = new();
+
+        public static string InventoryToJson(InventoryInstance inventory) => JsonConvert.SerializeObject(inventory);
+        public static InventoryInstance JsonToInventory(string json) => JsonConvert.DeserializeObject<InventoryInstance>(json);
     }
 }

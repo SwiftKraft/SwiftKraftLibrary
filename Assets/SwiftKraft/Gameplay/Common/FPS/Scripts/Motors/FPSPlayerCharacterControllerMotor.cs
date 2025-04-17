@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Saving.Settings;
 using SwiftKraft.Utils;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace SwiftKraft.Gameplay.Common.FPS.Motors
 {
     [RequireComponent(typeof(CharacterController))]
-    public class FPSPlayerCharacterControllerMotor : PlayerMotorBase<CharacterController>
+    public class FPSPlayerCharacterControllerMotor : PlayerMotorBase<CharacterController>, IGroundable
     {
         public float CeilingHeight => Physics.Raycast(GroundPoint.position, Vector3.up, out RaycastHit hit, Mathf.Infinity, GroundLayers, QueryTriggerInteraction.Ignore) ? hit.distance : Mathf.Infinity;
 
@@ -39,7 +40,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public float CurrentSpeed => IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed);
 
-        public override float MoveRateMultiplier => CurrentSpeed;
+        public override float MoveFactorMultiplier => IsSprinting ? SprintSpeed / 1.25f : (WishCrouch ? CrouchSpeed : MoveSpeed);
 
         public float Height
         {

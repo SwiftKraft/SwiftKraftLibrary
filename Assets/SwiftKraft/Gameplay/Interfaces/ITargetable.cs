@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace SwiftKraft.Gameplay.Interfaces
 {
     public interface ITargetable : IFaction, IDamagable, ILineOfSight

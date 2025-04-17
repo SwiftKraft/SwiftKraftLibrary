@@ -1,4 +1,6 @@
 using SwiftKraft.Utils;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors.Miscellaneous
@@ -14,6 +16,8 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
         public float Rate = 1f;
         public float DampTime = 0.1f;
 
+        public List<int> BannedStates;
+
         Vector3 pos;
         Vector3 rot;
 
@@ -25,8 +29,11 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 
         protected virtual void Update()
         {
-            Position = Vector3.SmoothDamp(Position, MovePosition.Evaluate(MotorBase.MoveRate * Rate) * Amplitude, ref pos, DampTime);
-            Rotation = Rotation.SmoothDamp(Quaternion.Euler(MoveRotation.Evaluate(MotorBase.MoveRate * Rate) * Amplitude), ref rot, DampTime);
+            if (BannedStates.Contains(MotorBase.State))
+                return;
+
+            Position = Vector3.SmoothDamp(Position, MovePosition.Evaluate(MotorBase.MoveFactor * Rate) * Amplitude, ref pos, DampTime);
+            Rotation = Rotation.SmoothDamp(Quaternion.Euler(MoveRotation.Evaluate(MotorBase.MoveFactor * Rate) * Amplitude), ref rot, DampTime);
         }
     }
 }

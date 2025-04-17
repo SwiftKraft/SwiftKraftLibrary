@@ -31,6 +31,10 @@ namespace SwiftKraft.Gameplay.NPCs
         public float ScanRange = 50f;
         public float PriorityWeight = 0.7f;
 
+        public Timer ScanTimer;
+
+        public Transform SightPoint;
+
         public readonly Package Data = new();
 
         protected override void Awake()
@@ -40,9 +44,28 @@ namespace SwiftKraft.Gameplay.NPCs
             Parent.Values.Add(ID, Data);
         }
 
-        public virtual bool ValidTarget(ITargetable target) => CheckLOS(target.GameObject.transform.position);
+        protected virtual void FixedUpdate()
+        {
 
-        public abstract bool CheckLOS(Vector3 targetPos);
+        }
+
+        public void Scan()
+        {
+            Data.Targets.Clear();
+            ITargetable[] targets = AcquireTargets();
+            foreach (ITargetable target in targets)
+            {
+                if (ValidTarget(target))
+                    Data.Targets.Add(target);
+            }
+            Data.Sort();
+        }
+
+        public virtual bool ValidTarget(ITargetable target) => target.Faction != Parent.Faction && CheckLOS(target.GameObject.transform.position, target.GameObject);
+
+        public abstract ITargetable[] AcquireTargets();
+
+        public abstract bool CheckLOS(Vector3 targetPos, GameObject target = null);
 
         public static float CalculateTargetScore(float distance, float maxDistance, float priority, float weight)
         {
