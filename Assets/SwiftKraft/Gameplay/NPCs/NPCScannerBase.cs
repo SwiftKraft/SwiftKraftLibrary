@@ -8,7 +8,8 @@ namespace SwiftKraft.Gameplay.NPCs
     [DisallowMultipleComponent]
     public abstract class NPCScannerBase : NPCModuleBase
     {
-        public override string ID => "Essentials.Scanner";
+        public const string DataID = "Essentials.Scanner";
+        public override string ID => DataID;
 
         public class Package
         {
