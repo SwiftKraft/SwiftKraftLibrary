@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using SwiftKraft.Gameplay.Inventory.Items;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -54,7 +55,7 @@ namespace SwiftKraft.Gameplay.Inventory
     public class InventoryInstance
     {
         [JsonProperty]
-        public List<ItemInstance> Items = new();
+        public List<Guid> Items = new();
 
         public static string InventoryToJson(InventoryInstance inventory) => JsonConvert.SerializeObject(inventory);
         public static InventoryInstance JsonToInventory(string json) => JsonConvert.DeserializeObject<InventoryInstance>(json);

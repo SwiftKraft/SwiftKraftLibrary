@@ -25,6 +25,12 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public static void RemoveInstance(this ItemInstance instance) => Instances.Remove(instance.Guid);
 
+        public static bool TryGetInstance(Guid id, out ItemInstance inst)
+        {
+            inst = GetInstance(id);
+            return inst != null;
+        }
+
         public static ItemInstance GetInstance(Guid id) => Instances.ContainsKey(id) ? Instances[id] : null;
     }
 }

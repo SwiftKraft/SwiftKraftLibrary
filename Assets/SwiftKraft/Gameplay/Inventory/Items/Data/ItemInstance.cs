@@ -80,6 +80,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public bool TryData<T>(string id, out T dat) where T : ItemDataBase, new() => TryGetData(id, out dat) || TryAddData(id, out dat);
 
+        public static implicit operator Guid(ItemInstance inst) => inst.Guid;
+        public static implicit operator ItemInstance(Guid guid) => ItemManager.TryGetInstance(guid, out ItemInstance inst) ? inst : null;
+
         public static string ItemToJson(ItemInstance inst) => JsonConvert.SerializeObject(inst);
 
         public static ItemInstance JsonToItem(string json) => JsonConvert.DeserializeObject<ItemInstance>(json);
