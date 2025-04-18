@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
@@ -43,6 +42,9 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public Vector3 CurrentWaypoint => Waypoints.Length <= 0 ? Destination : Waypoints[CurrentWaypointIndex];
 
+        [field: SerializeField]
+        public bool LookAtWaypoint { get; set; }
+
         public bool Stopped { get; set; }
 
         protected Vector3[] Waypoints => Path?.corners;
@@ -67,6 +69,9 @@ namespace SwiftKraft.Gameplay.NPCs
 
             RepathTimer.Tick(Time.fixedDeltaTime);
             Motor.WishMovePosition = CurrentWaypoint;
+
+            if (LookAtWaypoint)
+                Motor.WishLookPosition = CurrentWaypoint + Motor.LookPoint.localPosition;
 
             if (Vector3.Distance(transform.position, CurrentWaypoint) <= WaypointRadius)
             {

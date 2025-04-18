@@ -6,9 +6,9 @@ namespace SwiftKraft.Gameplay.NPCs
     {
         public WeaponBase Weapon;
 
-        public float Range = 50f;
-
         protected NPCScannerBase.Package ScannerData;
+
+        public bool HasTarget => (ScannerData != null || Parent.Values.TryGet(NPCScannerBase.DataID, out ScannerData)) && ScannerData.Targets.Count >= 0;
 
         protected override void Awake()
         {
@@ -18,14 +18,6 @@ namespace SwiftKraft.Gameplay.NPCs
         }
 
         protected virtual void Start() => ScannerData = Parent.Values.Get<NPCScannerBase.Package>(NPCScannerBase.DataID);
-
-        protected virtual void FixedUpdate()
-        {
-            if ((ScannerData == null && !Parent.Values.TryGet(NPCScannerBase.DataID, out ScannerData)) || ScannerData.Targets.Count < 0)
-                return;
-
-            Attack();
-        }
 
         public virtual void Attack() => Weapon.Attack();
     }

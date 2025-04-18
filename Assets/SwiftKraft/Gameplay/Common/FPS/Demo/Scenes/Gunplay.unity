@@ -23905,6 +23905,7 @@ MonoBehaviour:
   RepathTimer:
     <MaxValue>k__BackingField: 0.5
     StartEnded: 0
+  <LookAtWaypoint>k__BackingField: 1
 --- !u!114 &955232104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23935,6 +23936,9 @@ MonoBehaviour:
     m_Bits: 1
   ScanRange: 50
   PriorityWeight: 0.7
+  ScanTimer:
+    <MaxValue>k__BackingField: 0
+    StartEnded: 0
   SightPoint: {fileID: 2067478668}
 --- !u!114 &955232106
 MonoBehaviour:

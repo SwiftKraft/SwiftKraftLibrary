@@ -45,11 +45,6 @@ namespace SwiftKraft.Gameplay.NPCs
             Parent.Values.Add(ID, Data);
         }
 
-        protected virtual void FixedUpdate()
-        {
-
-        }
-
         public void Scan()
         {
             Data.Targets.Clear();
