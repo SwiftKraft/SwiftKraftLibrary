@@ -39,6 +39,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         readonly Timer coyoteTime = new(0.2f, false);
         readonly Trigger jumpInput = new();
+        readonly Trigger slideInput = new();
         float currentGravity;
 
         public SmoothDampInterpolater CrouchInterp;
@@ -91,6 +92,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             if (Input.GetKeyDown(KeyCode.Space))
                 jumpInput.SetTrigger();
+
+            if (Input.GetKeyDown(KeyCode.C))
+                slideInput.SetTrigger();
 
             float fovSensMult = MainCamera.fieldOfView / ReferenceFOV;
 
@@ -164,7 +168,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
                     slideVelocity = 0f;
             }
 
-            if (IsSprinting && IsGrounded && slideVelocity <= SlideMinVelocity && Input.GetKeyDown(KeyCode.C))
+            if (slideInput.GetTrigger() && IsGrounded && IsSprinting && slideVelocity <= SlideMinVelocity)
             {
                 slideVelocity = SlideVelocity;
 
