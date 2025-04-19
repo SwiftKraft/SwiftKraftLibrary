@@ -1,6 +1,7 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
         public Transform RayPoint;
         public float RayDistance = 0.25f;
         public LayerMask RayMask;
+
+        public List<int> BannedStates;
 
         public FootstepProfile[] Profiles;
 
@@ -41,6 +44,9 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 
         private void FixedUpdate()
         {
+            if (BannedStates.Contains(MotorBase.State))
+                return;
+
             RateLimit.Tick(Time.fixedDeltaTime);
 
             factor = MotorBase.MoveFactor % (1f / Rate);

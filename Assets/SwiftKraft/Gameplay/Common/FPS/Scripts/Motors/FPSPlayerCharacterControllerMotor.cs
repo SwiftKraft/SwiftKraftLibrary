@@ -26,9 +26,16 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public float Gravity = 9.81f;
         public float CrouchHeight = 1f;
         public float CrouchCameraHeight = 0.8f;
+        public float SlideMinVelocity = 8f;
+        public float SlideVelocity = 10f;
+        public float SlideFrictionAccel = 80f;
+        public AudioClip SlideSound;
+        public AudioSource SlideSource;
 
         public Camera MainCamera;
         public float ReferenceFOV;
+
+        public bool AllowSlide = true;
 
         readonly Timer coyoteTime = new(0.2f, false);
         readonly Trigger jumpInput = new();
@@ -38,7 +45,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public bool WishCrouch { get; private set; }
 
-        public float CurrentSpeed => IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed);
+        public bool CanJump { get; set; } = true;
+
+        public float CurrentSpeed => slideVelocity <= SlideMinVelocity ? (IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed)) : slideVelocity;
 
         public override float MoveFactorMultiplier => IsSprinting ? SprintSpeed / 1.25f : (WishCrouch ? CrouchSpeed : MoveSpeed);
 
@@ -55,6 +64,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         SingleSetting<float> sensitivity;
         SingleSetting<float> aimSensitivity;
 
+        float slideVelocity;
         float originalHeight;
         float originalCameraHeight;
 
@@ -111,7 +121,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
                 coyoteTime.Reset();
             }
 
-            if (jumpInput.GetTrigger() && !coyoteTime.Ended)
+            if (CanJump && jumpInput.GetTrigger() && !coyoteTime.Ended)
             {
                 currentGravity = JumpSpeed;
                 IsGrounded = false;
@@ -139,7 +149,28 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting && IsGrounded ? 1 : 0) : 0;
 
-            WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y).normalized;
+            if (slideVelocity <= SlideMinVelocity)
+            {
+                WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y).normalized;
+                CanJump = true;
+            }
+            else
+            {
+                WishCrouch = true;
+                CanJump = false;
+                State = 0;
+                slideVelocity -= Time.fixedDeltaTime * SlideFrictionAccel;
+                if (slideVelocity < SlideMinVelocity)
+                    slideVelocity = 0f;
+            }
+
+            if (IsSprinting && IsGrounded && slideVelocity <= SlideMinVelocity && Input.GetKeyDown(KeyCode.C))
+            {
+                slideVelocity = SlideVelocity;
+
+                if (SlideSource != null)
+                    SlideSource.PlayOneShot(SlideSound);
+            }
         }
 
         public override Vector2 GetInputLook() => new(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
