@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
@@ -61,6 +62,8 @@ namespace SwiftKraft.Gameplay.NPCs
 
         protected virtual void FixedUpdate()
         {
+            Destination = FindFirstObjectByType<SimpleFPSInventory>().transform.position;
+
             if (Stopped)
             {
                 Motor.WishMoveDirection = Vector3.zero;

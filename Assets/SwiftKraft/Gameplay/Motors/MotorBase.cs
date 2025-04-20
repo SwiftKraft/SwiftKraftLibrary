@@ -6,6 +6,8 @@ namespace SwiftKraft.Gameplay.Motors
     {
         public Vector3 WishMoveDirection { get; set; }
 
+        public Vector3 LocalWishMoveDirection => Quaternion.Inverse(transform.rotation) * WishMoveDirection;
+
         public Vector3 WishMovePosition
         {
             get => transform.position + WishMoveDirection;
