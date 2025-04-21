@@ -117,16 +117,22 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 
             int limit = triangleIndex * 3;
             int submesh;
-            for (submesh = 0; submesh < mesh.subMeshCount; submesh++)
-            {
-                int numIndices = mesh.GetTriangles(submesh).Length;
-                if (numIndices > limit)
-                    break;
 
-                limit -= numIndices;
+            if (mesh.isReadable)
+            {
+                for (submesh = 0; submesh < mesh.subMeshCount; submesh++)
+                {
+                    int numIndices = mesh.GetTriangles(submesh).Length;
+                    if (numIndices > limit)
+                        break;
+
+                    limit -= numIndices;
+                }
+
+                return collider.GetComponentInChildren<MeshRenderer>().sharedMaterials[submesh];
             }
 
-            return collider.GetComponentInChildren<MeshRenderer>().sharedMaterials[submesh];
+            return collider.GetComponentInChildren<MeshRenderer>().material;
         }
 
         [Serializable]

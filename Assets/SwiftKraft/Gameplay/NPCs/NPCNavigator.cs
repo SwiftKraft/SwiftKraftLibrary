@@ -62,7 +62,7 @@ namespace SwiftKraft.Gameplay.NPCs
 
         protected virtual void FixedUpdate()
         {
-            Destination = FindFirstObjectByType<SimpleFPSInventory>().transform.position;
+            //Destination = FindFirstObjectByType<SimpleFPSInventory>().transform.position;
 
             if (Stopped)
             {
