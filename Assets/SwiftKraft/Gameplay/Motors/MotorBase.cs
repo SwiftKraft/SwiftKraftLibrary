@@ -21,7 +21,12 @@ namespace SwiftKraft.Gameplay.Motors
         public Vector3 WishLookDirection
         {
             get => WishLookRotation * Vector3.forward;
-            set => WishLookRotation = Quaternion.LookRotation(value.normalized);
+            set
+            {
+                Vector3 target = Quaternion.LookRotation(value.normalized, transform.up).eulerAngles;
+                target.x = -target.x;
+                WishLookRotation = Quaternion.Euler(target);
+            }
         }
 
         public Vector3 WishLookPosition

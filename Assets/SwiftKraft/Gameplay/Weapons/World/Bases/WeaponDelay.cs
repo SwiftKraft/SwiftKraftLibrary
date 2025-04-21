@@ -20,7 +20,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         Transform attackOrigin;
 
-        bool triggered;
+        readonly Trigger attackTrigger = new();
 
         protected override void Awake()
         {
@@ -34,12 +34,12 @@ namespace SwiftKraft.Gameplay.Weapons
             base.FixedUpdate();
 
             if (!CanAttack)
-                triggered = false;
+                attackTrigger.SetTrigger(false);
 
             Prefire.Tick(Time.fixedDeltaTime);
             Cooldown.Tick(Time.fixedDeltaTime);
 
-            if (triggered && Prefire.Ended)
+            if (attackTrigger.GetTrigger() && Prefire.Ended)
                 PerformAttack(attackOrigin);
         }
 
@@ -48,7 +48,7 @@ namespace SwiftKraft.Gameplay.Weapons
             if (!Cooldown.Ended || !Prefire.Ended)
                 return false;
 
-            triggered = true;
+            attackTrigger.SetTrigger();
             attackOrigin = origin;
 
             if (!CancelPrefire)
@@ -63,7 +63,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual bool PerformAttack(Transform origin)
         {
             bool status = base.Attack(origin);
-            triggered = false;
+            attackTrigger.SetTrigger(false);
 
             if (status)
                 Cooldown.Reset();

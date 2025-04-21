@@ -42,7 +42,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 {
                     OnAmmoUpdated?.Invoke(value);
                     _currentAmmo = value;
-                    AttackDisabler.Active = data.CurrentAmmo <= 0;
+                    AttackDisabler.Active = _currentAmmo <= 0;
                     return;
                 }
 
@@ -75,13 +75,16 @@ namespace SwiftKraft.Gameplay.Weapons
             Item = GetComponent<EquippedItem>();
             if (Item != null)
                 Item.OnEquip += OnEquip;
+            else
+                _currentAmmo = Mathf.RoundToInt(MaxAmmo);
             Parent.OnAttack += OnAttack;
             Parent.AddAction(ReloadAction, StartReload);
             CanShoot = Parent.CanAttack.AddLock();
             MaxAmmo.OnUpdate += OnMaxAmmoUpdated;
+            AttackDisabler.Active = CurrentAmmo <= 0;
         }
 
-        protected virtual void OnEnable() { }
+        protected virtual void OnEnable() => AttackDisabler.Active = CurrentAmmo <= 0;
 
         protected override void OnDestroy()
         {
@@ -108,11 +111,7 @@ namespace SwiftKraft.Gameplay.Weapons
             AttackDisabler.Active = CurrentAmmo <= 0;
         }
 
-        protected virtual void OnMaxAmmoUpdated(float max)
-        {
-            CurrentAmmo = Mathf.Min(Mathf.RoundToInt(max), CurrentAmmo);
-            OnAmmoUpdated?.Invoke(CurrentAmmo);
-        }
+        protected virtual void OnMaxAmmoUpdated(float max) => CurrentAmmo = Mathf.Min(Mathf.RoundToInt(max), CurrentAmmo);
 
         protected virtual void OnAttack(GameObject[] go) => TryUseAmmo();
 

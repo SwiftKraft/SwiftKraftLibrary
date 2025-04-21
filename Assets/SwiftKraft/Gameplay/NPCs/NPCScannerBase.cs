@@ -14,11 +14,11 @@ namespace SwiftKraft.Gameplay.NPCs
         public class Package
         {
             public NPCScannerBase Parent { get; private set; }
-            public readonly List<ITargetable> Targets = new();
+            public readonly List<KeyValuePair<ITargetable, Transform>> Targets = new();
 
             public void Init(NPCScannerBase scn) => Parent = scn;
 
-            public void Sort() => Targets.Sort((a, b) => (int)(Score(b) - Score(a)).GetSign());
+            public void Sort() => Targets.Sort((a, b) => (int)(Score(b.Key) - Score(a.Key)).GetSign());
 
             private float Score(ITargetable target) =>
                 CalculateTargetScore
@@ -45,23 +45,58 @@ namespace SwiftKraft.Gameplay.NPCs
             Parent.Values.Add(ID, Data);
         }
 
+        protected virtual void FixedUpdate()
+        {
+            ScanTimer.Tick(Time.fixedDeltaTime);
+            if (ScanTimer.Ended)
+            {
+                Scan();
+                ScanTimer.Reset();
+            }
+        }
+
         public void Scan()
         {
             Data.Targets.Clear();
-            ITargetable[] targets = AcquireTargets();
-            foreach (ITargetable target in targets)
+            Dictionary<ITargetable, Transform> targets = AcquireTargets();
+            foreach (KeyValuePair<ITargetable, Transform> target in targets)
             {
-                if (ValidTarget(target))
+                if (ValidTarget(target.Key))
                     Data.Targets.Add(target);
             }
             Data.Sort();
         }
 
-        public virtual bool ValidTarget(ITargetable target) => target.Faction != Parent.Faction && CheckLOS(target.GameObject.transform.position, target.GameObject);
+        public virtual bool ValidTarget(ITargetable target) => target.CanTarget && target.Faction != Parent.Faction;
 
-        public abstract ITargetable[] AcquireTargets();
+        public abstract Dictionary<ITargetable, Transform> AcquireTargets();
 
         public abstract bool CheckLOS(Vector3 targetPos, GameObject target = null);
+
+        public virtual bool CheckTargetLOS(ITargetable target, out Transform valid)
+        {
+            foreach (Transform tr in target.SightPoints)
+                if (CheckLOS(tr.position, tr.gameObject))
+                {
+                    valid = tr;
+                    return true;
+                }
+
+            valid = null;
+            return false;
+        }
+
+        protected virtual void OnDrawGizmos()
+        {
+            if (Data.Targets.Count <= 0)
+                return;
+
+            foreach (KeyValuePair<ITargetable, Transform> k in Data.Targets)
+            {
+                Gizmos.color = ValidTarget(k.Key) ? Color.red : Color.green;
+                Gizmos.DrawLine(SightPoint.position, k.Value.position);
+            }
+        }
 
         public static float CalculateTargetScore(float distance, float maxDistance, float priority, float weight)
         {

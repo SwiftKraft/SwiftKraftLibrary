@@ -17,6 +17,8 @@ namespace SwiftKraft.Gameplay.Damagables
 
         public string Faction { get => FactionCore.Faction; set => FactionCore.Faction = value; }
 
+        public bool CanTarget => !IsDead;
+
         protected override void Awake()
         {
             base.Awake();

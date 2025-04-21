@@ -30,7 +30,7 @@ namespace SwiftKraft.Gameplay.NPCs
 
             Collider.enabled = false;
 
-            bool los = Physics.Linecast(SightPoint.position, targetPos, LOSLayers, QueryTriggerInteraction.Ignore);
+            bool los = !Physics.Linecast(SightPoint.position, targetPos, LOSLayers, QueryTriggerInteraction.Ignore);
             
             Collider.enabled = colliderState;
 
@@ -40,16 +40,16 @@ namespace SwiftKraft.Gameplay.NPCs
             return los;
         }
 
-        public override ITargetable[] AcquireTargets()
+        public override Dictionary<ITargetable, Transform> AcquireTargets()
         {
-            List<ITargetable> targetables = new();
+            Dictionary<ITargetable, Transform> targetables = new();
             Collider[] cols = Physics.OverlapSphere(SightPoint.position, ScanRange);
             foreach (Collider col in cols)
             {
-                if (col.TryGetComponentInParent(out ITargetable targetable) || col.TryGetComponent(out targetable))
-                    targetables.Add(targetable);
+                if ((col.TryGetComponentInParent(out ITargetable targetable) || col.TryGetComponent(out targetable)) && CheckTargetLOS(targetable, out Transform valid))
+                    targetables.Add(targetable, valid);
             }
-            return targetables.ToArray();
+            return targetables;
         }
     }
 }
