@@ -81,10 +81,11 @@ namespace SwiftKraft.Gameplay.Weapons
             Parent.AddAction(ReloadAction, StartReload);
             CanShoot = Parent.CanAttack.AddLock();
             MaxAmmo.OnUpdate += OnMaxAmmoUpdated;
-            AttackDisabler.Active = CurrentAmmo <= 0;
         }
 
-        protected virtual void OnEnable() => AttackDisabler.Active = CurrentAmmo <= 0;
+        protected virtual void Start() => AttackDisabler.Active = CurrentAmmo <= 0;
+
+        protected virtual void OnEnable() { }
 
         protected override void OnDestroy()
         {
