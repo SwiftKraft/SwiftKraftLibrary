@@ -25,7 +25,6 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             ReloadTimer.Tick(Time.fixedDeltaTime * ReloadSpeedMultiplier);
             CanShoot.Active = !ReloadTimer.Ended;
-            Debug.Log(AttackDisabler.Active);
         }
 
         private void End() => EndReload(true);
