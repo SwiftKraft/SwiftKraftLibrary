@@ -14,6 +14,8 @@ public class PL_ODM : MonoBehaviour
     private bool isReeling = false;
     [SerializeField]
     private bool isOrbiting = false;
+    [SerializeField]
+    private bool isProperlyHooked = true;
     PlayerMovementSlide slide;
     PlayerMovementGround ground;
  
@@ -132,7 +134,8 @@ public class PL_ODM : MonoBehaviour
         PredictGrappleSpot(1);
         CheckInputFixed();
         UpdateGasUI();
-        
+        CheckHookLocked(1);
+
     }
 
     void UpdateCooldownTimers()
@@ -151,6 +154,8 @@ public class PL_ODM : MonoBehaviour
             dashTimer -= Time.deltaTime;
         }
     }
+
+    
 
     void PredictGrappleSpot(int hookIndex)
     {
@@ -525,6 +530,7 @@ public class PL_ODM : MonoBehaviour
 
     void CheckInputFixed()
     {
+
         // Gas usage
         if (Input.GetKey(KeyCode.LeftShift) && movementScript.IsGrounded == false && !isReeling)
         {
@@ -541,7 +547,7 @@ public class PL_ODM : MonoBehaviour
         }
 
         // Hook reeling
-        if (Input.GetKey(KeyCode.Space))
+        if (isProperlyHooked == true)
     {
         if (hookJoints[0])
         {
@@ -563,7 +569,7 @@ public class PL_ODM : MonoBehaviour
 
     void ReelInHook(int hookIndex)
     {
-        if (Input.GetKey(KeyCode.LeftShift))//Gas Boost to reel speed CHANGE TO SPACEBAR
+        if (isProperlyHooked && Input.GetKey(KeyCode.Space))//Gas Boost to reel speed CHANGE TO SPACEBAR
         {
             hookCurrentReelInForce = hookBoostReelInForce;
         }
@@ -725,6 +731,16 @@ public class PL_ODM : MonoBehaviour
             return;
     }
 
+
+    void CheckHookLocked(int hookIndex)
+    {
+        if (reelingInOutState[hookIndex] == 1)
+        {
+            isProperlyHooked = true;
+
+        }
+
+    }
     IEnumerator LaunchAndAttachHook(int hookIndex, float distanceToPoint)
     {
         PlayerJumpUpOnHookShot();
@@ -764,7 +780,8 @@ public class PL_ODM : MonoBehaviour
         }
 
         reelingInOutState[hookIndex] = 1;
-
+        
+           
         if (hookJoints[hookIndex] && !hooksLatchAudioSources[hookIndex].isPlaying)
         {
             hooksReady[hookIndex] = false;
