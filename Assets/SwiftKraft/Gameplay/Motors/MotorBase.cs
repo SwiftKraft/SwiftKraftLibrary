@@ -1,8 +1,9 @@
+using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors
 {
-    public abstract class MotorBase : MonoBehaviour
+    public abstract class MotorBase : MonoBehaviour, ILookable, IMovable
     {
         public Vector3 WishMoveDirection { get; set; }
 
