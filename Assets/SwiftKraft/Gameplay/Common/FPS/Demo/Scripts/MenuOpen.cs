@@ -1,6 +1,7 @@
 using SwiftKraft.Gameplay.Motors;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SwiftKraft.Gameplay.Common.FPS.Demo
 {
@@ -32,6 +33,11 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         public void QuitGame()
         {
             Application.Quit();
+        }
+
+        public void ResetScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

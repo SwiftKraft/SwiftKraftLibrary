@@ -42,7 +42,7 @@ namespace SwiftKraft.Gameplay.Motors
         {
             Vector3 euler = rotation.eulerAngles;
             transform.localRotation = Quaternion.Euler(0f, euler.y, 0f);
-            LookPoint.localRotation = Quaternion.Euler(-euler.x, 0f, 0f);
+            LookPoint.localRotation = Quaternion.Euler(euler.x, 0f, 0f);
         }
 
         public override void Move(Vector3 direction)

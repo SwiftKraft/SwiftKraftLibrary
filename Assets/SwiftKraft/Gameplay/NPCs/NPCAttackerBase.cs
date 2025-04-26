@@ -14,7 +14,7 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public abstract bool CanAttack { get; }
 
-        public bool AllowAttack { get; set; }
+        public bool AllowAttack { get; set; } = true;
 
         protected virtual void Start() => ScannerData = Parent.Values.Get<NPCScannerBase.Package>(NPCScannerBase.DataID);
 

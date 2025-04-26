@@ -103,7 +103,7 @@ namespace SwiftKraft.Gameplay.NPCs
 
 #if UNITY_EDITOR
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (Waypoints == null || Waypoints.Length <= 0)
                 return;

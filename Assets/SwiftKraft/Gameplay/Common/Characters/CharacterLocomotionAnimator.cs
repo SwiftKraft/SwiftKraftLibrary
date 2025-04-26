@@ -27,8 +27,6 @@ namespace SwiftKraft.Gameplay.Common.Characters
             if (Motor != null)
             {
                 Vector3 localDir = Motor.LocalWishMoveDirection;
-                Debug.DrawRay(transform.position, Motor.WishMoveDirection, Color.blue, 1f);
-                Debug.DrawRay(transform.position, localDir, Color.red, 1f);
                 TargetDirection = new Vector2(Mathf.Round(localDir.x), Mathf.Round(localDir.z)) * GetStateMultiplier(Motor.State);
             }
 

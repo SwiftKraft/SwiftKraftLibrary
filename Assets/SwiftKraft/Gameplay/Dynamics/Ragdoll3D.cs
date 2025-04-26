@@ -5,6 +5,7 @@ namespace SwiftKraft.Gameplay.Dynamics
 {
     public class Ragdoll3D : RagdollBase
     {
+        [field: Header("Layers")]
         [field: SerializeField]
         public int RagdollLayer { get; private set; }
         [field: SerializeField]
@@ -58,6 +59,9 @@ namespace SwiftKraft.Gameplay.Dynamics
                 else
                     r.WakeUp();
             }
+
+            if (state && DestroyAfter)
+                Destroy(DestroyTarget != null ? DestroyTarget : gameObject, DestroyTime);
         }
 
         public void RecordTransform()

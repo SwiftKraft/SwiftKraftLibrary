@@ -1,8 +1,9 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
-    public class ItemSpawner : MonoBehaviour
+    public class ItemSpawner : MonoBehaviour, ISpawner
     {
         public ItemType Item;
 

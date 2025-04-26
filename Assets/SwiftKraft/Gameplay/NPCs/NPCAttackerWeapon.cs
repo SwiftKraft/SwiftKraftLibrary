@@ -1,7 +1,5 @@
 using SwiftKraft.Gameplay.Interfaces;
-using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Gameplay.Weapons;
-using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.NPCs
@@ -11,6 +9,8 @@ namespace SwiftKraft.Gameplay.NPCs
         public WeaponBase Weapon;
 
         public float Range = 30f;
+        public float AttackDot = 0.7f;
+        public Vector3 AttackDotAxis = Vector3.forward;
 
         protected ILookable Lookable;
 
@@ -24,8 +24,11 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public override void Attack()
         {
-            Lookable.WishLookRotation = Quaternion.LookRotation((CurrentTarget.Value.position - Lookable.LookPoint.position).normalized, transform.up);
-            Weapon.StartAction(WeaponBase.AttackAction);
+            Vector3 direction = (CurrentTarget.Value.position - Lookable.LookPoint.position).normalized;
+            Lookable.WishLookRotation = Quaternion.LookRotation(direction, transform.up);
+
+            if (Vector3.Dot(direction, Lookable.LookPoint.rotation * AttackDotAxis.normalized) >= AttackDot)
+                Weapon.StartAction(WeaponBase.AttackAction);
         }
     }
 }

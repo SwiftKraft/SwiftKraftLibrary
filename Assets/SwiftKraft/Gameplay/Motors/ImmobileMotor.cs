@@ -1,4 +1,5 @@
 using SwiftKraft.Gameplay.Interfaces;
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors
@@ -8,12 +9,15 @@ namespace SwiftKraft.Gameplay.Motors
         public Transform Vertical;
         public Transform Horizontal;
 
+        public float PitchOffset;
+        public float YawOffset = -180f;
+
         public Vector3 VerticalMultiplier = Vector3.right;
         public Vector3 HorizontalMultiplier = Vector3.up;
 
-        public Quaternion WishLookRotation { get; set; }
+        public Quaternion WishLookRotation { get; set; } = Quaternion.identity;
 
-        public Quaternion CurrentLookRotation { get; private set; }
+        public Quaternion CurrentLookRotation { get; private set; } = Quaternion.identity;
 
         public Vector3 WishLookDirection
         {
@@ -36,6 +40,12 @@ namespace SwiftKraft.Gameplay.Motors
 
         public bool LookInUpdate = false;
 
+        protected virtual void Awake()
+        {
+            WishLookRotation = transform.rotation;
+            CurrentLookRotation = WishLookRotation;
+        }
+
         protected virtual void Update()
         {
             if (LookInUpdate)
@@ -54,12 +64,12 @@ namespace SwiftKraft.Gameplay.Motors
         public virtual void UpdateRotation()
         {
             float pitch = CurrentLookRotation.eulerAngles.x;
-            float yaw = CurrentLookRotation.eulerAngles.y;
+            float yaw = CurrentLookRotation.eulerAngles.y + YawOffset;
 
             if (Vertical != null)
                 Vertical.localRotation = Quaternion.Euler(VerticalMultiplier * -pitch);
             if (Horizontal != null)
-                Horizontal.localRotation = Quaternion.Euler(HorizontalMultiplier * -yaw);
+                Horizontal.localRotation = Quaternion.Euler(HorizontalMultiplier * yaw);
         }
     }
 }

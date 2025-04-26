@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 7194290633910592814}
   Damage:
-    <BaseValue>k__BackingField: 25
+    <BaseValue>k__BackingField: 35
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
   - rid: 1893897272271568897
@@ -285,7 +285,7 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 0
     <Values>k__BackingField: []
   CooldownDelay:
-    <BaseValue>k__BackingField: 0.5
+    <BaseValue>k__BackingField: 0.4
     <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
@@ -429,6 +429,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2368494299934063355}
   - component: {fileID: 5780805148844510263}
+  - component: {fileID: 3688197444578813778}
+  - component: {fileID: 1784419905511200946}
   - component: {fileID: 8071183987895040843}
   - component: {fileID: 8013366320715405843}
   - component: {fileID: 3309233271889982325}
@@ -470,6 +472,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Faction>k__BackingField: Player
+--- !u!114 &3688197444578813778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479035059698927783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf27701dd5f07646acbde1934b816ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1784419905511200946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479035059698927783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54102af1ba2a4e4ea651e1d36bb9522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 200
+  DestroyOnDeath: 1
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  <Priority>k__BackingField: 1
+  <SightPoints>k__BackingField:
+  - {fileID: 525282685310715134}
 --- !u!65 &8071183987895040843
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -505,6 +542,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Vertical: {fileID: 525282685310715134}
   Horizontal: {fileID: 4115821987883226499}
+  PitchOffset: 0
+  YawOffset: -180
   VerticalMultiplier: {x: 1, y: 0, z: 0}
   HorizontalMultiplier: {x: 0, y: 0, z: 1}
   LookInUpdate: 0
@@ -536,6 +575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weapon: {fileID: 7959247379243623435}
   Range: 20
+  AttackDot: 0.999
+  AttackDotAxis: {x: 0, y: 1, z: 0}
 --- !u!114 &7343373892227615798
 MonoBehaviour:
   m_ObjectHideFlags: 0
