@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 8161852815476257360}
   - component: {fileID: 248794633928989830}
   - component: {fileID: 6674710385775432710}
+  - component: {fileID: 4324172739021947929}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -275,9 +276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b259e8bde484ab4ba595a94f31c48b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AttackOrigin>k__BackingField: {fileID: 7194290633910592814}
+  <AttackOrigin>k__BackingField: {fileID: 4595915870002989635}
   Damage:
-    <BaseValue>k__BackingField: 35
+    <BaseValue>k__BackingField: 20
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
   - rid: 1893897272271568897
@@ -285,7 +286,7 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 0
     <Values>k__BackingField: []
   CooldownDelay:
-    <BaseValue>k__BackingField: 0.4
+    <BaseValue>k__BackingField: 0.35
     <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
@@ -301,7 +302,7 @@ MonoBehaviour:
       type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         Parent: {fileID: 0}
-        Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
+        Prefab: {fileID: 161029702014116550, guid: 505eed4b1e017934b87f8c8ba08ff8a6,
           type: 3}
         Amount: 1
 --- !u!114 &7670938693955400808
@@ -391,19 +392,19 @@ MonoBehaviour:
   - Action: Attack
     Source: {fileID: 3736318266278605619}
     Clips:
-    - Sound: {fileID: 8300000, guid: 9d2125d15b4cd6a40a819bf91ccc1a3b, type: 3}
+    - Sound: {fileID: 8300000, guid: aa40cee557a403641803660997a6229c, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: 2b2aaf37604005244996a51ba64b7465, type: 3}
+    - Sound: {fileID: 8300000, guid: cc21c98be7b270c458ace5e8032b54b1, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: 8ec1130ae0fcd694a8b45f451f23eb6e, type: 3}
+    - Sound: {fileID: 8300000, guid: c877906dc5d29f6448c809a5bf981d9d, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
@@ -419,6 +420,72 @@ MonoBehaviour:
       <MaxValue>k__BackingField: 0
       <DecayRate>k__BackingField: 0
       <CanDecay>k__BackingField: 1
+--- !u!114 &4324172739021947929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664206629025606121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb84162e023429146b0e12d50530bc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpreadTransform: {fileID: 4595915870002989635}
+  SpreadMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  SpreadAimMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  Spread: 0.4
+  SpreadAim: 0
+  SpreadRecoil:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  SpreadAimRecoil:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Aim: {fileID: 0}
+  Recoil: {fileID: 0}
+--- !u!1 &4771739348332649740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4595915870002989635}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4595915870002989635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771739348332649740}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 7194290633910592814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6479035059698927783
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +505,7 @@ GameObject:
   - component: {fileID: 7343373892227615798}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Unbuildable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -496,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54102af1ba2a4e4ea651e1d36bb9522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 200
+  <MaxHealth>k__BackingField: 300
   DestroyOnDeath: 1
   OnDeath:
     m_PersistentCalls:
@@ -627,6 +694,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 4595915870002989635}
   - {fileID: 1990482998995750564}
   - {fileID: 5668880990818178311}
   m_Father: {fileID: 7252718598271796621}

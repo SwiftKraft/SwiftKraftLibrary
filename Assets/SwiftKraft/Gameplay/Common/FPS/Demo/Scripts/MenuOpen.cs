@@ -13,6 +13,11 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         public GameObject MenuObject;
 
+        private void Start()
+        {
+            SetMenu(false);
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))

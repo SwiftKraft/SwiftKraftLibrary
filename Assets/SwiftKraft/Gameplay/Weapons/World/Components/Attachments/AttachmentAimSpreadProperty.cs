@@ -11,6 +11,6 @@ namespace SwiftKraft.Gameplay.Weapons
                 type = type,
             };
 
-        public override ModifiableStatistic.Modifier CreateOverrider() => Component.AimMultiplier.AddModifier();
+        public override ModifiableStatistic.Modifier CreateOverrider() => Component.SpreadAimMultiplier.AddModifier();
     }
 }

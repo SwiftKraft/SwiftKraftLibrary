@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace SwiftKraft.Utils
@@ -11,26 +12,28 @@ namespace SwiftKraft.Utils
 
         int lastRandom;
 
-        public ISpawner[] Spawners { get; private set; }
+        public List<ISpawner> Spawners { get; private set; }
 
-        private void Awake() => Spawners = GetComponentsInChildren<ISpawner>();
+        private void Awake()
+        {
+            Spawners = new(GetComponentsInChildren<ISpawner>());
+            Spawners.Remove(this);
+        }
 
         public void Spawn()
         {
-            if (Spawners.Length <= 0)
+            if (Spawners.Count <= 0)
                 return;
 
-            for (int i = 0; i < Amount; i++)
+            if (SpawnAll)
             {
-                if (SpawnAll)
-                {
-                    foreach (ISpawner sp in Spawners)
-                        sp.Spawn();
-                    return;
-                }
-
-                Spawners.GetRandom(ref lastRandom).Spawn();
+                foreach (ISpawner sp in Spawners)
+                    sp.Spawn();
+                return;
             }
+
+            for (int i = 0; i < Amount; i++)
+                Spawners.GetRandom(ref lastRandom).Spawn();
         }
     }
 }
