@@ -46,7 +46,7 @@ namespace SwiftKraft.Gameplay.NPCs
             Collider[] cols = Physics.OverlapSphere(SightPoint.position, ScanRange);
             foreach (Collider col in cols)
             {
-                if ((col.TryGetComponentInParent(out ITargetable targetable) || col.TryGetComponent(out targetable)) && CheckTargetLOS(targetable, out Transform valid))
+                if ((col.TryGetComponentInParent(out ITargetable targetable) || col.TryGetComponent(out targetable)) && !targetables.ContainsKey(targetable) && CheckTargetLOS(targetable, out Transform valid))
                     targetables.Add(targetable, valid);
             }
             return targetables;

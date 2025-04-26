@@ -38,6 +38,10 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public readonly Package Data = new();
 
+        public virtual bool HasTarget => Data.Targets.Count > 0;
+
+        public List<KeyValuePair<ITargetable, Transform>> Targets => Data.Targets;
+
         protected override void Awake()
         {
             base.Awake();

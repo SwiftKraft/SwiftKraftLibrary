@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Damagables
 {
-    public class BasicPlayerDamagable : BasicDamagable, ITargetable
+    public class BasicTargetableDamagable : BasicDamagable, ITargetable
     {
         public FactionCore FactionCore { get; set; }
 
-        public int Priority { get => 1; set { } }
+        [field: SerializeField]
+        public int Priority { get; set; } = 1;
 
         [field: SerializeField]
         public Transform[] SightPoints { get; set; }

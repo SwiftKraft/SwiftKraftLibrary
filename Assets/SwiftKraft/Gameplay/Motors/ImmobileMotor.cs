@@ -8,9 +8,31 @@ namespace SwiftKraft.Gameplay.Motors
         public Transform Vertical;
         public Transform Horizontal;
 
+        public Vector3 VerticalMultiplier = Vector3.right;
+        public Vector3 HorizontalMultiplier = Vector3.up;
+
         public Quaternion WishLookRotation { get; set; }
 
         public Quaternion CurrentLookRotation { get; private set; }
+
+        public Vector3 WishLookDirection
+        {
+            get => WishLookRotation * Vector3.forward;
+            set
+            {
+                Vector3 target = Quaternion.LookRotation(value.normalized, transform.up).eulerAngles;
+                target.x = -target.x;
+                WishLookRotation = Quaternion.Euler(target);
+            }
+        }
+
+        public Vector3 WishLookPosition
+        {
+            get => Vertical.position + WishLookDirection;
+            set => WishLookDirection = value - Vertical.position;
+        }
+
+        public Transform LookPoint => Vertical;
 
         public bool LookInUpdate = false;
 
@@ -35,9 +57,9 @@ namespace SwiftKraft.Gameplay.Motors
             float yaw = CurrentLookRotation.eulerAngles.y;
 
             if (Vertical != null)
-                Vertical.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+                Vertical.localRotation = Quaternion.Euler(VerticalMultiplier * -pitch);
             if (Horizontal != null)
-                Horizontal.localRotation = Quaternion.Euler(0f, yaw, 0f);
+                Horizontal.localRotation = Quaternion.Euler(HorizontalMultiplier * -yaw);
         }
     }
 }

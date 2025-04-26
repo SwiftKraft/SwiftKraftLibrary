@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Gameplay.Weapons;
 using System;
@@ -11,19 +12,19 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public float Range = 30f;
 
-        protected MotorBase Motor;
+        protected ILookable Lookable;
 
         protected override void Awake()
         {
             base.Awake();
-            Motor = Parent.GetComponent<MotorBase>();
+            Lookable = Parent.GetComponent<ILookable>();
             if (Weapon == null)
                 Weapon = GetComponentInChildren<WeaponBase>();
         }
 
         public override void Attack()
         {
-            Motor.WishLookPosition = CurrentTarget.Value.position;
+            Lookable.WishLookRotation = Quaternion.LookRotation((CurrentTarget.Value.position - Lookable.LookPoint.position).normalized, transform.up);
             Weapon.StartAction(WeaponBase.AttackAction);
         }
     }

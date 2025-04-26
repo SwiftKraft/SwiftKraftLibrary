@@ -14,11 +14,13 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public abstract bool CanAttack { get; }
 
+        public bool AllowAttack { get; set; }
+
         protected virtual void Start() => ScannerData = Parent.Values.Get<NPCScannerBase.Package>(NPCScannerBase.DataID);
 
         protected virtual void FixedUpdate()
         {
-            if (HasTarget && CanAttack)
+            if (AllowAttack && CanAttack)
                 Attack();
         }
 
