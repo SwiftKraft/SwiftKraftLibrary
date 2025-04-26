@@ -4,9 +4,9 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using static SwiftKraft.Gameplay.Common.FPS.ViewModels.ViewModelAnimator.Animation.State;
+using static SwiftKraft.Gameplay.Weapons.ViewModelAnimator.Animation.State;
 
-namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
+namespace SwiftKraft.Gameplay.Weapons
 {
     [RequireComponent(typeof(Animator))]
     public class ViewModelAnimator : RequiredDependencyComponent<Animator>

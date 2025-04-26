@@ -44,7 +44,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
         public void DropInventory()
         {
-            ItemInstance[] items = Data.Items.ToArray();
+            Guid[] items = Data.Items.ToArray();
             foreach (ItemInstance it in items)
                 DropItem(it, DropTransform.position + DropTransform.rotation * DropOffset, DropTransform.rotation);
         }

@@ -17,6 +17,18 @@ namespace SwiftKraft.Utils
             return component != null;
         }
 
+        public static bool TryGetComponentInChildren<T>(this GameObject go, out T component)
+        {
+            component = go.GetComponentInChildren<T>();
+            return component != null;
+        }
+
+        public static bool TryGetComponentInParent<T>(this GameObject go, out T component)
+        {
+            component = go.GetComponentInParent<T>();
+            return component != null;
+        }
+
         public static bool InLayerMask(this GameObject obj, LayerMask mask) => obj.layer.InLayerMask(mask);
         public static bool InLayerMask(this int layer, LayerMask mask) => (mask.value & (1 << layer)) != 0;
 

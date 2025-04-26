@@ -47,6 +47,21 @@ MonoBehaviour:
     - rid: 4744942044584345601
     - rid: 4744942044584345612
     - rid: 1893896724051918854
+  - parent: {fileID: 0}
+    name: 4x Scope
+    package:
+      mesh: {fileID: -3216440805686255927, guid: 5149efcf6938e4049989526f85b4fb8d,
+        type: 3}
+      materials:
+      - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+      - {fileID: 2100000, guid: 1d2250bcbff0b1345a4da461eac1a048, type: 2}
+    properties:
+    - rid: 1893897132975325185
+    - rid: 1893897132975325187
+    - rid: 1893897132975325188
+    - rid: 1893897132975325190
   references:
     version: 2
     RefIds:
@@ -61,6 +76,59 @@ MonoBehaviour:
             materials: []
           properties: []
         value: 1.15
+        type: 3
+    - rid: 1893897132975325185
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: -0.0065, z: 0}
+        TargetEulerOffset: {x: -0.227, y: 0, z: 0}
+    - rid: 1893897132975325187
+      type: {class: AttachmentAimFOVProperty, ns: SwiftKraft.Gameplay.Common.FPS.ViewModels,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        viewFOV: 3.5
+        viewType: 3
+        modelFOV: 3
+        modelType: 3
+    - rid: 1893897132975325188
+      type: {class: AttachmentAimSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 2
+        type: 3
+    - rid: 1893897132975325190
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.3
         type: 3
     - rid: 4744942044584345600
       type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,

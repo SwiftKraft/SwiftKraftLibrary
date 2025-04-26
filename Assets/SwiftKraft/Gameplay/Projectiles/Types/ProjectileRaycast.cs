@@ -1,11 +1,19 @@
 using SwiftKraft.Gameplay.Interfaces;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Projectiles
 {
     public class ProjectileRaycast : ProjectileHitscan
     {
-        public override RaycastHit[] Cast() => Physics.RaycastAll(transform.position, transform.forward, Range, Layers, TriggerInteraction);
+        public bool HitFriendly;
+
+        public override RaycastHit[] Cast()
+        {
+            List<RaycastHit> hits = new(Physics.RaycastAll(transform.position, transform.forward, Range, Layers, TriggerInteraction));
+            hits.RemoveAll((h) => h.collider.TryGetComponent(out IFaction faction) && faction.Faction == Faction);
+            return hits.ToArray();
+        }
 
         public override void Hit(RaycastHit[] hits)
         {

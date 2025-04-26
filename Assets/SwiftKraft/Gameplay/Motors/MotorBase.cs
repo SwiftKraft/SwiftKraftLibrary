@@ -1,10 +1,13 @@
+using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors
 {
-    public abstract class MotorBase : MonoBehaviour
+    public abstract class MotorBase : MonoBehaviour, ILookable, IMovable
     {
         public Vector3 WishMoveDirection { get; set; }
+
+        public Vector3 LocalWishMoveDirection => Quaternion.Inverse(transform.rotation) * WishMoveDirection;
 
         public Vector3 WishMovePosition
         {
@@ -19,7 +22,12 @@ namespace SwiftKraft.Gameplay.Motors
         public Vector3 WishLookDirection
         {
             get => WishLookRotation * Vector3.forward;
-            set => WishLookRotation = Quaternion.LookRotation(value.normalized);
+            set
+            {
+                Vector3 target = Quaternion.LookRotation(value.normalized, transform.up).eulerAngles;
+                target.x = -target.x;
+                WishLookRotation = Quaternion.Euler(target);
+            }
         }
 
         public Vector3 WishLookPosition

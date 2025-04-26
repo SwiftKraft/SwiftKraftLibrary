@@ -7,6 +7,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ItemInstance
     {
+        [JsonProperty]
+        public readonly Guid Guid;
+
         public ItemType Type
         {
             get
@@ -31,13 +34,15 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public Dictionary<string, ItemDataBase> Data { get; private set; } = new();
 
         [JsonConstructor]
-        public ItemInstance(string typeId)
+        public ItemInstance(Guid guid, string typeId)
         {
+            Guid = guid;
             this.typeId = typeId;
-            this.AddInstance();
+            if (!this.AddInstance())
+                Disposed = true;
         }
 
-        public ItemInstance(ItemType type) : this(type.ID) => _type = type;
+        public ItemInstance(ItemType type) : this(Guid.NewGuid(), type.ID) => _type = type;
 
         public void SwitchInventoryEvent(InventoryInstance inv) => OnSwitchInventory?.Invoke(this, inv);
 
@@ -74,6 +79,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         }
 
         public bool TryData<T>(string id, out T dat) where T : ItemDataBase, new() => TryGetData(id, out dat) || TryAddData(id, out dat);
+
+        public static implicit operator Guid(ItemInstance inst) => inst.Guid;
+        public static implicit operator ItemInstance(Guid guid) => ItemManager.TryGetInstance(guid, out ItemInstance inst) ? inst : null;
 
         public static string ItemToJson(ItemInstance inst) => JsonConvert.SerializeObject(inst);
 
