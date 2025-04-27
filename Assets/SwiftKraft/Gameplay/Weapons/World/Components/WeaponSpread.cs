@@ -7,8 +7,8 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public Transform SpreadTransform;
 
-        public ModifiableStatistic HipMultiplier = new(1f);
-        public ModifiableStatistic AimMultiplier = new(1f);
+        public ModifiableStatistic SpreadMultiplier = new(1f);
+        public ModifiableStatistic SpreadAimMultiplier = new(1f);
 
         public float Spread;
         public float SpreadAim;
@@ -56,7 +56,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         protected virtual void OnPreAttack() => ApplySpread();
 
-        protected virtual float GetCurrentMultiplier() => Aim != null ? Mathf.Lerp(HipMultiplier, AimMultiplier, Aim.Aiming) : HipMultiplier;
+        protected virtual float GetCurrentMultiplier() => Aim != null ? Mathf.Lerp(SpreadMultiplier, SpreadAimMultiplier, Aim.Aiming) : SpreadMultiplier;
 
         public virtual float GetSpread()
         {
