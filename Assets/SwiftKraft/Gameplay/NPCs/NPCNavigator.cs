@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;

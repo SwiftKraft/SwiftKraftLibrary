@@ -3,8 +3,11 @@ using System.Collections.Generic;
 
 namespace SwiftKraft.Utils
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public abstract class SaveInstanceBase<E> where E : SaveDataBase
     {
+        public bool Disposed { get; protected set; }
+
         [JsonProperty]
         public Dictionary<string, SaveDataBase> Data { get; private set; } = new();
 

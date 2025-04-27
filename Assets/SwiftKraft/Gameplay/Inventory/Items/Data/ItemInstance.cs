@@ -28,8 +28,6 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public event Action OnDestroy;
         public event Action<ItemInstance, InventoryInstance> OnSwitchInventory;
 
-        public bool Disposed { get; private set; }
-
         [JsonConstructor]
         public ItemInstance(Guid guid, string typeId)
         {
