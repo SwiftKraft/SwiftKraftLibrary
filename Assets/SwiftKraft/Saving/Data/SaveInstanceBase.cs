@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace SwiftKraft.Utils
+namespace SwiftKraft.Saving.Data
 {
     [JsonObject(MemberSerialization.OptIn)]
     public abstract class SaveInstanceBase<E> where E : SaveDataBase

@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using SwiftKraft.Utils;
+using SwiftKraft.Saving.Data;
 using System;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
