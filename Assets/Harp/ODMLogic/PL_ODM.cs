@@ -134,6 +134,7 @@ public class PL_ODM : MonoBehaviour
         PredictGrappleSpot(1);
         CheckInputFixed();
         UpdateGasUI();
+        CheckHookLocked(0);
         CheckHookLocked(1);
 
     }
@@ -547,8 +548,9 @@ public class PL_ODM : MonoBehaviour
         }
 
         // Hook reeling
-        if (isProperlyHooked == true)
+        if (isProperlyHooked == true && isOrbiting == false)
     {
+        isReeling = true;
         if (hookJoints[0])
         {
 
@@ -559,16 +561,22 @@ public class PL_ODM : MonoBehaviour
             ReelInHook(1);
         }
     }
-        else
+    else
         {
             isReeling = false;
         }
+       
     }
 
     
 
     void ReelInHook(int hookIndex)
     {
+        if(isReeling == true)
+     {
+
+
+        
         if (isProperlyHooked && Input.GetKey(KeyCode.Space))//Gas Boost to reel speed CHANGE TO SPACEBAR
         {
             hookCurrentReelInForce = hookBoostReelInForce;
@@ -584,7 +592,7 @@ public class PL_ODM : MonoBehaviour
         Vector3 previousVelocity = movementScript.Rigidbody.velocity; // Store current velocity
         if (!isReeling)
         {
-            isReeling = true;
+            
             movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.1f, ForceMode.Impulse);
             
         }
@@ -613,6 +621,7 @@ public class PL_ODM : MonoBehaviour
         
 
         currentGasAmount -= 0.1f;
+     }
     }
 
     void ReelingSounds(int hookIndex)
@@ -734,11 +743,8 @@ public class PL_ODM : MonoBehaviour
 
     void CheckHookLocked(int hookIndex)
     {
-        if (reelingInOutState[hookIndex] == 1)
-        {
-            isProperlyHooked = true;
-
-        }
+        isProperlyHooked = (reelingInOutState[0] == 1 || reelingInOutState[1] == 1);
+        
 
     }
     IEnumerator LaunchAndAttachHook(int hookIndex, float distanceToPoint)
