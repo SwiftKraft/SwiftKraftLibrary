@@ -317,7 +317,7 @@ public class PL_ODM : MonoBehaviour
         }
 
         // Gas particles
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isReeling)
             {
@@ -325,14 +325,18 @@ public class PL_ODM : MonoBehaviour
             }
                 
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             StopODMGasVFX();
         }
 
         // Dashing
         
-        if (Input.GetKeyDown(KeyCode.A) )
+        if(!isOrbiting && !isReeling)
+       {
+
+        
+        if (Input.GetKeyDown(KeyCode.A))
         {
             HandleDash(0);
 
@@ -355,6 +359,7 @@ public class PL_ODM : MonoBehaviour
            //Big Jump 
 
         }
+       }
 
         //Orbiting
         if (movementScript.IsGrounded == false) //Player distance from point is too long  )
@@ -370,6 +375,7 @@ public class PL_ODM : MonoBehaviour
                     {
                         HandleDashNoDoubleTap(5);
                     isOrbiting = true;
+                    
 
                     }
                     if (Input.GetKey(KeyCode.S) && isReeling)
@@ -621,6 +627,9 @@ public class PL_ODM : MonoBehaviour
         
 
         currentGasAmount -= 0.1f;
+     }
+     else{
+        return;
      }
     }
 
