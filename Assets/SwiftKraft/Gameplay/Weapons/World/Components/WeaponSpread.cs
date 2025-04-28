@@ -49,12 +49,12 @@ namespace SwiftKraft.Gameplay.Weapons
             if (SpreadTransform.TryGetComponent(out MultiModifyTransform tr))
                 modifier = tr.AddModifier();
 
-            Parent.OnPreAttack += OnPreAttack;
+            Parent.OnPreSpawn += OnPreSpawn;
         }
 
-        protected virtual void OnDestroy() => Parent.OnPreAttack -= OnPreAttack;
+        protected virtual void OnDestroy() => Parent.OnPreSpawn -= OnPreSpawn;
 
-        protected virtual void OnPreAttack() => ApplySpread();
+        protected virtual void OnPreSpawn() => ApplySpread();
 
         protected virtual float GetCurrentMultiplier() => Aim != null ? Mathf.Lerp(SpreadMultiplier, SpreadAimMultiplier, Aim.Aiming) : SpreadMultiplier;
 
