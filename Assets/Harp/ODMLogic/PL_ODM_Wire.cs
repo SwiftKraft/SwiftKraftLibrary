@@ -101,7 +101,7 @@ public class PL_ODM_Wire : MonoBehaviour
 
             
         }
-        else if (playerODMGear.hookJoints[hookIndex] && playerODMGear.reelingInOutState[hookIndex] != 3)
+        else if (playerODMGear.hookJoints[hookIndex] && playerODMGear.reelingInOutState[hookIndex] != 3 && playerODMGear.reelingInOutState[hookIndex] != 0)
         {
             float speedForLerp = playerODMGear.hookEjectForce * Time.deltaTime;
 
