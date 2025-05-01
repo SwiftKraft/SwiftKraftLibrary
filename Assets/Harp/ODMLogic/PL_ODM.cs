@@ -374,7 +374,7 @@ public class PL_ODM : MonoBehaviour
                     if (Input.GetKey(KeyCode.W) && isReeling)
                     {
                         HandleDashNoDoubleTap(5);
-                        StartCoroutine(OrbitVelocityChange());
+               
                         isOrbiting = true;
                         isReeling = false;
                     
@@ -383,7 +383,7 @@ public class PL_ODM : MonoBehaviour
                     if (Input.GetKey(KeyCode.S) && isReeling)
                     {
                         HandleDashNoDoubleTap(6);
-                        StartCoroutine(OrbitVelocityChange());
+           
                         isOrbiting = true;
                         isReeling = false;
 
@@ -391,14 +391,14 @@ public class PL_ODM : MonoBehaviour
                     if (Input.GetKey(KeyCode.A) && isReeling)
                     {
                         HandleDashNoDoubleTap(7);
-                        StartCoroutine(OrbitVelocityChange());
+                       
                         isOrbiting = true;
                         isReeling = false;
                 }
                     if (Input.GetKey(KeyCode.D) && isReeling)
                     {
                         HandleDashNoDoubleTap(8);
-                        StartCoroutine(OrbitVelocityChange());
+                    
                         isOrbiting = true;
                         isReeling = false;
                 }
@@ -481,11 +481,11 @@ public class PL_ODM : MonoBehaviour
 
         Vector3 currentVelocity = movementScript.Rigidbody.velocity.normalized;
 
-        Vector3 newVelocity = Vector3.Lerp(previousVelocity, currentVelocity, Time.deltaTime * 1f); // Smoothly transition[The greater the f value the stronger the lerp]
+        Vector3 newVelocity = Vector3.Lerp(previousVelocity, currentVelocity, Time.deltaTime * 3f); // Smoothly transition[The greater the f value the stronger the lerp]
 
         movementScript.Rigidbody.velocity = newVelocity; // Apply smooth transition
 
-        yield return null;
+        yield break;
     }
     void PerformDash(int buttonIndex)
     {
@@ -515,19 +515,19 @@ public class PL_ODM : MonoBehaviour
 
 
             case 5: // Up Orbit
-               
+                StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 6: // Down Orbit
-               
+                StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 7: // Left Orbit
-               
+                StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 8: // Right Orbit
-               
+                StartCoroutine(OrbitVelocityChange());
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 11f, ForceMode.VelocityChange);
                 
 
@@ -623,10 +623,11 @@ public class PL_ODM : MonoBehaviour
 
         if (distanceFromPoint > 0.0f)
         {
+                //VELOCITY LERP
             divider = Mathf.Lerp(divider, PL_ResourceManagement.MapToRange(distanceFromPoint, 0, hookMaxDistance, 0.1f, 0.01f), Time.deltaTime * 4f);
 
             Vector3 reelForceBasedOnDistance = (hookSwingPoints[hookIndex] - transform.position).normalized * (hookCurrentReelInForce * divider);
-            Vector3 newVelocity = Vector3.Lerp(previousVelocity, reelForceBasedOnDistance, Time.deltaTime * 3f); // Smoothly transition[The greater the f value the stronger the lerp]
+            Vector3 newVelocity = Vector3.Lerp(previousVelocity, reelForceBasedOnDistance, Time.deltaTime * 4f); // Smoothly transition[The greater the f value the stronger the lerp]
 
             movementScript.Rigidbody.velocity = newVelocity; // Apply smooth transition
             movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * 0.1f, ForceMode.VelocityChange);
