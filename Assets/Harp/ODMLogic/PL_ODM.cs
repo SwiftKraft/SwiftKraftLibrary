@@ -371,27 +371,36 @@ public class PL_ODM : MonoBehaviour
                 isOrbiting = false;
 
 
-                if (Input.GetKey(KeyCode.W) && isReeling)
+                    if (Input.GetKey(KeyCode.W) && isReeling)
                     {
                         HandleDashNoDoubleTap(5);
-                    isOrbiting = true;
+                        StartCoroutine(OrbitVelocityChange());
+                        isOrbiting = true;
+                        isReeling = false;
                     
 
                     }
                     if (Input.GetKey(KeyCode.S) && isReeling)
                     {
                         HandleDashNoDoubleTap(6);
-                    isOrbiting = true;
+                        StartCoroutine(OrbitVelocityChange());
+                        isOrbiting = true;
+                        isReeling = false;
+
                 }
                     if (Input.GetKey(KeyCode.A) && isReeling)
                     {
                         HandleDashNoDoubleTap(7);
-                    isOrbiting = true;
+                        StartCoroutine(OrbitVelocityChange());
+                        isOrbiting = true;
+                        isReeling = false;
                 }
                     if (Input.GetKey(KeyCode.D) && isReeling)
                     {
                         HandleDashNoDoubleTap(8);
-                    isOrbiting = true;
+                        StartCoroutine(OrbitVelocityChange());
+                        isOrbiting = true;
+                        isReeling = false;
                 }
                 
         }
@@ -506,19 +515,19 @@ public class PL_ODM : MonoBehaviour
 
 
             case 5: // Up Orbit
-                StartCoroutine(OrbitVelocityChange());
+               
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 6: // Down Orbit
-                StartCoroutine(OrbitVelocityChange());
+               
                 movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 7: // Left Orbit
-                StartCoroutine(OrbitVelocityChange());
+               
                 movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
             case 8: // Right Orbit
-                StartCoroutine(OrbitVelocityChange());
+               
                 movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 11f, ForceMode.VelocityChange);
                 
 
@@ -556,16 +565,18 @@ public class PL_ODM : MonoBehaviour
         // Hook reeling
         if (isProperlyHooked == true && isOrbiting == false)
     {
-        isReeling = true;
+        
         if (hookJoints[0])
         {
 
             ReelInHook(0);
+                isReeling = true;
         }
         if (hookJoints[1])
         {
             ReelInHook(1);
-        }
+                isReeling = true;
+            }
     }
     else
         {
@@ -630,6 +641,7 @@ public class PL_ODM : MonoBehaviour
      }
      else{
         return;
+            
      }
     }
 
