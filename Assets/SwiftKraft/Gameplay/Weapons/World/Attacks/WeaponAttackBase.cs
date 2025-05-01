@@ -15,7 +15,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public GameObject Prefab;
         public int Amount = 1;
 
-        public virtual GameObject[] Spawn(Vector3 pos, Quaternion rot)
+        public virtual GameObject[] Spawn(Transform transform)
         {
             if (Amount <= 0)
                 Amount = 1;
@@ -24,7 +24,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
             for (int i = 0; i < Amount; i++)
             {
-                GameObject go = Object.Instantiate(Prefab, pos, rot);
+                Parent.PreSpawnEvent();
+                GameObject go = Object.Instantiate(Prefab, transform.position, transform.rotation);
 
                 if (go.TryGetComponent(out ProjectileBase projectile))
                     projectile.BaseDamage = Parent.Damage;
@@ -33,6 +34,7 @@ namespace SwiftKraft.Gameplay.Weapons
                     pet.Owner = Parent.GetRootOwner();
 
                 res[i] = go;
+                Parent.SpawnEvent(go);
             }
 
             return res;

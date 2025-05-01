@@ -67,6 +67,8 @@ namespace SwiftKraft.Gameplay.Weapons
         public event Action<string> OnAttemptAction;
         public event Action<GameObject[]> OnAttack;
         public event Action OnPreAttack;
+        public event Action<GameObject> OnSpawn;
+        public event Action OnPreSpawn;
 
         protected virtual void Awake()
         {
@@ -128,6 +130,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public void AttackEvent(GameObject[] go) => OnAttack?.Invoke(go);
         public void PreAttackEvent() => OnPreAttack?.Invoke();
+        public void SpawnEvent(GameObject go) => OnSpawn?.Invoke(go);
+        public void PreSpawnEvent() => OnPreSpawn?.Invoke();
 
         public virtual bool Attack() => Attack(AttackOrigin);
 

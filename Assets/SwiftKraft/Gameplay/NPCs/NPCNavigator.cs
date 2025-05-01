@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
@@ -97,7 +96,7 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public void Repath()
         {
-            Stopped = !NavMesh.CalculatePath(transform.position, Destination, NavMesh.AllAreas, Path);
+            Stopped = !NavMesh.CalculatePath(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas) ? hit.position : transform.position, Destination, NavMesh.AllAreas, Path);
             CurrentWaypointIndex = 0;
         }
 

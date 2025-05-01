@@ -10,7 +10,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
 
             Parent.PreAttackEvent();
-            GameObject[] go = Spawn(origin.position, origin.rotation);
+            GameObject[] go = Spawn(origin);
             Parent.AttackEvent(go);
         }
     }

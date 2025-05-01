@@ -152,7 +152,7 @@ MonoBehaviour:
       type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         Parent: {fileID: 0}
-        Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
+        Prefab: {fileID: 161029702014116550, guid: 103442b890dcee647bfe9e8b77ef9360,
           type: 3}
         Amount: 1
 --- !u!114 &1241681551958203808
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxAmmo>k__BackingField:
-    <BaseValue>k__BackingField: 3
+    <BaseValue>k__BackingField: 4
     <Values>k__BackingField: []
   <ReloadSpeedMultiplier>k__BackingField:
     <BaseValue>k__BackingField: 1
@@ -240,19 +240,19 @@ MonoBehaviour:
   - Action: Attack
     Source: {fileID: 5852023055265059739}
     Clips:
-    - Sound: {fileID: 8300000, guid: 9d2125d15b4cd6a40a819bf91ccc1a3b, type: 3}
+    - Sound: {fileID: 8300000, guid: 2f84a7c771f56bf40a64debdffab9bf4, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: 2b2aaf37604005244996a51ba64b7465, type: 3}
+    - Sound: {fileID: 8300000, guid: e563efaf275d5df40a075fce45ab5a54, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: 8ec1130ae0fcd694a8b45f451f23eb6e, type: 3}
+    - Sound: {fileID: 8300000, guid: f6f1cb610a708314aa5d84757d94ab50, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
@@ -286,6 +286,8 @@ MonoBehaviour:
       <MaxValue>k__BackingField: 0
       <DecayRate>k__BackingField: 10
       <CanDecay>k__BackingField: 1
+    Repeat: 0
+    RepeatDelay: 0
 --- !u!114 &6391053170963483088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +303,8 @@ MonoBehaviour:
   Particles:
   - Action: Attack
     ParticleSystem: {fileID: 4475987755175711861}
+    Repeat: 0
+    RepeatDelay: 0
 --- !u!1 &577158417110850108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,7 +2040,7 @@ MonoBehaviour:
   ScanRange: 15
   PriorityWeight: 0.7
   ScanTimer:
-    <MaxValue>k__BackingField: 0.25
+    <MaxValue>k__BackingField: 0.5
     StartEnded: 0
   SightPoint: {fileID: 2025195663804695605}
 --- !u!114 &8396378012427590715

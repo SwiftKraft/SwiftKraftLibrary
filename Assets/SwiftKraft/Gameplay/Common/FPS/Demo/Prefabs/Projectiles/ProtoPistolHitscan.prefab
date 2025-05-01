@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime:
-    <MaxValue>k__BackingField: 1
+    <MaxValue>k__BackingField: 0.1
     StartEnded: 0
   Range: 100
   Layers:
@@ -56,6 +56,7 @@ MonoBehaviour:
     m_Bits: 9
   TriggerInteraction: 1
   Pierce: 0
+  HitFriendly: 0
 --- !u!114 &932972797607531699
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,11 +1,11 @@
 using Newtonsoft.Json;
+using SwiftKraft.Saving.Data;
 using System;
-using System.Collections.Generic;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class ItemInstance
+    public class ItemInstance : SaveInstanceBase<ItemDataBase>
     {
         [JsonProperty]
         public readonly Guid Guid;
@@ -28,11 +28,6 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public event Action OnDestroy;
         public event Action<ItemInstance, InventoryInstance> OnSwitchInventory;
 
-        public bool Disposed { get; private set; }
-
-        [JsonProperty]
-        public Dictionary<string, ItemDataBase> Data { get; private set; } = new();
-
         [JsonConstructor]
         public ItemInstance(Guid guid, string typeId)
         {
@@ -44,6 +39,12 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public ItemInstance(ItemType type) : this(Guid.NewGuid(), type.ID) => _type = type;
 
+        public override void InitializeData<T>(T t)
+        {
+            base.InitializeData(t);
+            t.Init(this);
+        }
+
         public void SwitchInventoryEvent(InventoryInstance inv) => OnSwitchInventory?.Invoke(this, inv);
 
         public void Despawn()
@@ -53,33 +54,6 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             this.RemoveInstance();
         }
 
-        public T AddData<T>(string id) where T : ItemDataBase, new()
-        {
-            if (Data.ContainsKey(id))
-                return null;
-
-            T t = new();
-            t.Init(this);
-            Data.Add(id, t);
-            return t;
-        }
-
-        public bool TryAddData<T>(string id, out T dat) where T : ItemDataBase, new()
-        {
-            dat = AddData<T>(id);
-            return dat != null;
-        }
-
-        public T GetData<T>(string id) where T : ItemDataBase => Data.ContainsKey(id) && Data[id] is T t ? t : null;
-
-        public bool TryGetData<T>(string id, out T dat) where T : ItemDataBase
-        {
-            dat = GetData<T>(id);
-            return dat != null;
-        }
-
-        public bool TryData<T>(string id, out T dat) where T : ItemDataBase, new() => TryGetData(id, out dat) || TryAddData(id, out dat);
-
         public static implicit operator Guid(ItemInstance inst) => inst.Guid;
         public static implicit operator ItemInstance(Guid guid) => ItemManager.TryGetInstance(guid, out ItemInstance inst) ? inst : null;
 
@@ -88,8 +62,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public static ItemInstance JsonToItem(string json) => JsonConvert.DeserializeObject<ItemInstance>(json);
     }
 
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public abstract class ItemDataBase
+    public abstract class ItemDataBase : SaveDataBase
     {
         public ItemInstance Parent { get; private set; }
 

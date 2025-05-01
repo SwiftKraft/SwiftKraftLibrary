@@ -7,6 +7,12 @@ namespace SwiftKraft.Utils
         public Vector3 Position;
         public Quaternion Rotation;
 
+        public TransformData(Transform transform, bool local = false)
+        {
+            Position = local ? transform.localPosition : transform.position;
+            Rotation = local ? transform.localRotation : transform.rotation;
+        }
+
         public TransformData(Vector3 position, Quaternion rotation)
         {
             Position = position;
@@ -21,6 +27,13 @@ namespace SwiftKraft.Utils
         public Vector3 Position;
         public Quaternion Rotation;
         public Vector3 Scale;
+
+        public TransformDataScale(Transform transform, bool local = false)
+        {
+            Position = local ? transform.localPosition : transform.position;
+            Rotation = local ? transform.localRotation : transform.rotation;
+            Scale = local ? transform.localScale : transform.lossyScale;
+        }
 
         public TransformDataScale(Vector3 position, Quaternion rotation, Vector3 scale)
         {
