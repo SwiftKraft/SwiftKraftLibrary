@@ -963,10 +963,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpreadTransform: {fileID: 3608207479672408995}
-  HipMultiplier:
+  SpreadMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
-  AimMultiplier:
+  SpreadAimMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   Spread: 0
@@ -1688,19 +1688,19 @@ MonoBehaviour:
   - Action: Attack
     Source: {fileID: 2895807444976228756}
     Clips:
-    - Sound: {fileID: 8300000, guid: 9d2125d15b4cd6a40a819bf91ccc1a3b, type: 3}
+    - Sound: {fileID: 8300000, guid: 2f84a7c771f56bf40a64debdffab9bf4, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: 2b2aaf37604005244996a51ba64b7465, type: 3}
+    - Sound: {fileID: 8300000, guid: e563efaf275d5df40a075fce45ab5a54, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: 8ec1130ae0fcd694a8b45f451f23eb6e, type: 3}
+    - Sound: {fileID: 8300000, guid: f6f1cb610a708314aa5d84757d94ab50, type: 3}
       Priority: 128
       Pitch: 1
       Volume: 0.5
@@ -1743,6 +1743,8 @@ MonoBehaviour:
       <MaxValue>k__BackingField: 5
       <DecayRate>k__BackingField: 7
       <CanDecay>k__BackingField: 1
+    Repeat: 0
+    RepeatDelay: 0
 --- !u!114 &509385651155450324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1758,6 +1760,8 @@ MonoBehaviour:
   Particles:
   - Action: Attack
     ParticleSystem: {fileID: 56711355422907227}
+    Repeat: 0
+    RepeatDelay: 0
 --- !u!114 &6399840945172612297
 MonoBehaviour:
   m_ObjectHideFlags: 0
