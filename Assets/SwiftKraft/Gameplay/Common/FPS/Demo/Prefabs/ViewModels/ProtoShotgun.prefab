@@ -336,7 +336,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 8108563764783910780, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   m_Bones:
@@ -493,7 +493,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4861938068866656573, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   m_Bones:
@@ -809,7 +809,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -4974468161004867859, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   m_Bones:
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f62cdb46c5044b4f84daea5e875ac91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FOV: 55
+  FOV: 45
   CamAxisMultiplier: {x: 1, y: -1, z: -1, w: -1}
   CamMultiplier: 2
   Local: 1
@@ -1028,7 +1028,7 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 0
     <Values>k__BackingField: []
   CooldownDelay:
-    <BaseValue>k__BackingField: 0.1
+    <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   Prefire:
     <MaxValue>k__BackingField: 0
@@ -1046,7 +1046,7 @@ MonoBehaviour:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
           type: 3}
-        Amount: 1
+        Amount: 5
 --- !u!114 &2790031504580108237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1370,6 +1370,15 @@ MonoBehaviour:
   CancelActions:
   - Attack
   Amounts: 
+  MidReloadAnimationID: MidReload
+  EndReloadAnimationID: EndReload
+  MidReloadStates:
+  - MidReload
+  EndReloadStates:
+  - EndReload
+  StartReloadStates:
+  - StartReload
+  FullEndReloadThreshold: 0.9
 --- !u!114 &8699032933459824843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,8 +1882,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2300581144722050047}
   - {fileID: 7406781099686171895}
@@ -2867,6 +2876,24 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       Sounds: []
+  - ID: MidReload
+    States:
+    - StateName: MidReload
+      CrossFade: 0
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      Sounds: []
+  - ID: EndReload
+    States:
+    - StateName: EndReload
+      CrossFade: 0
+      Weight: 1
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      Sounds: []
   SoundSource: {fileID: 2895807444976228756}
 --- !u!114 &6482029906544610366
 MonoBehaviour:
@@ -3556,7 +3583,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -1980668727884169438, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   m_Bones:
@@ -4255,7 +4282,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 7946851307090103757, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   m_Bones:

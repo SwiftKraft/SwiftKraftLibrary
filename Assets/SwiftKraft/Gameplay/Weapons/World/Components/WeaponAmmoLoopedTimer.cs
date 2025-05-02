@@ -10,8 +10,7 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void Reload()
         {
             base.Reload();
-            LoadDelay.Reset();
-            OnStartLoadEvent();
+            MidReload();
         }
 
         protected virtual void FixedUpdate()
@@ -22,11 +21,10 @@ namespace SwiftKraft.Gameplay.Weapons
             {
                 AddAmmo();
                 if (Reloading)
-                {
-                    LoadDelay.Reset();
-                    OnStartLoadEvent();
-                }
+                    MidReload();
             }
         }
+
+        public override void MidReload() => LoadDelay.Reset();
     }
 }

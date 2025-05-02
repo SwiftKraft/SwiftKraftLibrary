@@ -10,6 +10,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public int[] Amounts;
 
+        public int NextAmount { get; private set; }
+
         public override bool Reloading => reloading;
         protected bool reloading;
 
@@ -60,6 +62,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             LoadedAmmo = 0;
             CanShoot.Active = true;
+            UpdateNextAmount();
             OnReloadUpdatedEvent(true);
             reloading = true;
         }
@@ -73,20 +76,24 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public abstract void MidReload();
 
-        public virtual int NextAmount()
+        public virtual void UpdateNextAmount()
         {
             foreach (int i in Amounts)
                 if ((MaxAmmo - CurrentAmmo) >= i)
-                    return i;
-            return Amounts.Length > 0 ? Amounts[0] : 1;
+                {
+                    NextAmount = i;
+                    return;
+                }
+            NextAmount = Amounts.Length > 0 ? Amounts[0] : 1;
         }
 
         public virtual void AddAmmo()
         {
             if (CanReload)
             {
-                CurrentAmmo = Mathf.Clamp(CurrentAmmo + NextAmount(), 0, Mathf.RoundToInt(MaxAmmo));
-                LoadedAmmo += NextAmount();
+                UpdateNextAmount();
+                CurrentAmmo = Mathf.Clamp(CurrentAmmo + NextAmount, 0, Mathf.RoundToInt(MaxAmmo));
+                LoadedAmmo += NextAmount;
 
                 if (CurrentAmmo >= MaxAmmo)
                 {
