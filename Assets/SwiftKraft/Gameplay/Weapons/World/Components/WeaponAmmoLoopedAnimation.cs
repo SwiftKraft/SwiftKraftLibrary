@@ -1,9 +1,14 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAmmoLoopedAnimation : WeaponAmmoLooped
     {
+        public string[] MidReloadStates = { "LoopReload" };
+        public string[] EndReloadStates = { "EndReload" };
+        public string[] StartReloadStates = { "StartReload" };
+        public float FullEndReloadThreshold = 0.9f;
         public Animator Animator
         {
             get
@@ -16,59 +21,40 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         Animator _animator;
 
-        public WeaponReloadAnimator ReloadCommunicator
-        {
-            get
-            {
-                if (_reloadCommunicator == null)
-                    _reloadCommunicator = Animator.GetBehaviour<WeaponReloadAnimator>();
-
-                return _reloadCommunicator;
-            }
-        }
-        WeaponReloadAnimator _reloadCommunicator;
+        float reloadNormalizedTime;
 
         protected override void Awake()
         {
             base.Awake();
-            ReloadCommunicator.MidReload += FinishCycle;
-            ReloadCommunicator.EndReload += EndReload;
         }
 
-        protected override void OnEnable()
+        protected virtual void Update()
         {
-            base.OnEnable();
-            ReloadCommunicator.MidReload -= FinishCycle;
-            ReloadCommunicator.EndReload -= EndReload;
-            ReloadCommunicator.MidReload += FinishCycle;
-            ReloadCommunicator.EndReload += EndReload;
-        }
+            if (Animator.IsInTransition(0))
+                return;
 
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-            if (ReloadCommunicator != null)
+            if (Animator.GetCurrentAnimatorStateInfo(0).CheckName(MidReloadStates))
             {
-                ReloadCommunicator.MidReload -= FinishCycle;
-                ReloadCommunicator.EndReload -= EndReload;
+                reloadNormalizedTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                if (reloadNormalizedTime >= 1f)
+                    EndReload(true);
+            }
+            else if (reloading)
+            {
+                EndReload(reloadNormalizedTime >= FullEndReloadThreshold);
+                reloadNormalizedTime = 0f;
             }
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-
-            if (ReloadCommunicator != null)
-            {
-                ReloadCommunicator.MidReload -= FinishCycle;
-                ReloadCommunicator.EndReload -= EndReload;
-            }
         }
 
         protected override void Reload()
         {
             base.Reload();
-            ReloadCommunicator.ReloadSpeed = ReloadSpeedMultiplier;
+            Animator.speed = ReloadSpeedMultiplier;
         }
 
         protected virtual void FinishCycle()

@@ -51787,6 +51787,80 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2727248630901589903, guid: eb9dd55235009ed4a9373e34fe594353, type: 3}
+--- !u!1001 &2083375388
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.166
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990159545357776218, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852272558835464859, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_Name
+      value: ProtoShotgunItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860835096430983414, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: StartType
+      value: 
+      objectReference: {fileID: 11400000, guid: 0341c9984fe42c34bb1cf9ef6a381bb3,
+        type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 32d8677915521dc4eb6710a7cb5f4808, type: 3}
 --- !u!1001 &2099134868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54328,3 +54402,4 @@ SceneRoots:
   - {fileID: 1293013517}
   - {fileID: 927992460}
   - {fileID: 1297118365}
+  - {fileID: 2083375388}

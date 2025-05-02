@@ -1691,19 +1691,19 @@ MonoBehaviour:
     - Sound: {fileID: 8300000, guid: 2f84a7c771f56bf40a64debdffab9bf4, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.65
       StereoPan: 0
       SpatialBlend: 1
     - Sound: {fileID: 8300000, guid: e563efaf275d5df40a075fce45ab5a54, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.65
       StereoPan: 0
       SpatialBlend: 1
     - Sound: {fileID: 8300000, guid: f6f1cb610a708314aa5d84757d94ab50, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.65
       StereoPan: 0
       SpatialBlend: 1
     VolumeMultiplier:
@@ -1712,15 +1712,24 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -0.6
-        outSlope: -0.6
+        inSlope: -0.19959086
+        outSlope: -0.19959086
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 0.4
+        time: 1.0116882
+        value: 0.7980763
+        inSlope: -0.34627765
+        outSlope: -0.34627765
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2
+        value: 0.42263326
         inSlope: -0.114793345
         outSlope: -0.114793345
         tangentMode: 0
@@ -1729,7 +1738,7 @@ MonoBehaviour:
         outWeight: 0.18048292
       - serializedVersion: 3
         time: 5
-        value: 0.2
+        value: 0.24304953
         inSlope: -0.0073254053
         outSlope: -0.0073254053
         tangentMode: 0

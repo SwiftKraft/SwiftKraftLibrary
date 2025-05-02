@@ -8,7 +8,7 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public string[] CancelActions = { "Attack" };
 
-        public int Amount;
+        public int[] Amounts;
 
         public override bool Reloading => reloading;
         protected bool reloading;
@@ -27,7 +27,6 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         int _loadedAmmo;
 
-        public event Action OnStartLoad;
         public event Action<int> OnLoopedAmmoChanged;
 
         protected override void Awake()
@@ -57,8 +56,6 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
-        protected void OnStartLoadEvent() => OnStartLoad?.Invoke();
-
         protected override void Reload()
         {
             LoadedAmmo = 0;
@@ -69,21 +66,27 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public override void EndReload(bool fullEnd)
         {
-            LoadedAmmo = 0;
-            if (fullEnd)
-            {
-                CanShoot.Active = false;
-                OnReloadUpdatedEvent(false);
-                reloading = false;
-            }
+            CanShoot.Active = false;
+            OnReloadUpdatedEvent(false);
+            reloading = false;
+        }
+
+        public abstract void MidReload();
+
+        public virtual int NextAmount()
+        {
+            foreach (int i in Amounts)
+                if ((MaxAmmo - CurrentAmmo) >= i)
+                    return i;
+            return Amounts.Length > 0 ? Amounts[0] : 1;
         }
 
         public virtual void AddAmmo()
         {
             if (CanReload)
             {
-                CurrentAmmo = Mathf.Clamp(CurrentAmmo + Amount, 0, Mathf.RoundToInt(MaxAmmo));
-                LoadedAmmo += Amount;
+                CurrentAmmo = Mathf.Clamp(CurrentAmmo + NextAmount(), 0, Mathf.RoundToInt(MaxAmmo));
+                LoadedAmmo += NextAmount();
 
                 if (CurrentAmmo >= MaxAmmo)
                 {
