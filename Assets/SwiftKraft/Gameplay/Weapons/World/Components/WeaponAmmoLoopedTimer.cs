@@ -25,6 +25,10 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
-        public override void MidReload() => LoadDelay.Reset();
+        public override void MidReload()
+        {
+            base.MidReload();
+            LoadDelay.Reset();
+        }
     }
 }

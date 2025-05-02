@@ -10,7 +10,8 @@ namespace SwiftKraft.Gameplay.Weapons
         public string[] MidReloadStates = { "LoopReload" };
         public string[] EndReloadStates = { "EndReload" };
         public string[] StartReloadStates = { "StartReload" };
-        public float FullEndReloadThreshold = 0.9f;
+        public float FullMidReloadThreshold = 0.9f;
+        public float FullEndReloadThreshold = 0.8f;
         public Animator Animator => WeaponAnimator.Animator.Animator;
 
         public WeaponAnimator WeaponAnimator
@@ -32,21 +33,23 @@ namespace SwiftKraft.Gameplay.Weapons
 
             AnimatorStateInfo info = Animator.GetCurrentAnimatorStateInfo(0);
 
-            if (info.CheckName(MidReloadStates) && info.normalizedTime >= FullEndReloadThreshold && Reloading)
+            if (info.CheckName(MidReloadStates) && info.normalizedTime >= FullMidReloadThreshold)
             {
-                MidReload();
+                AddAmmo();
+                DecideEnd();
             }
             else if (info.CheckName(StartReloadStates) && info.normalizedTime >= 1f)
-            {
-                if (Reloading)
-                    MidReload();
-                else
-                    WeaponAnimator.PlayAnimation(EndReloadAnimationID);
-            }
-            else if (info.CheckName(EndReloadStates) && info.normalizedTime >= 1f)
-            {
+                DecideEnd();
+            else if (info.CheckName(EndReloadStates) && info.normalizedTime >= FullEndReloadThreshold)
                 EndReload(true);
-            }
+        }
+
+        public void DecideEnd()
+        {
+            if (Reloading)
+                MidReload();
+            else
+                WeaponAnimator.PlayAnimation(EndReloadAnimationID);
         }
 
         protected override void Reload()
@@ -57,6 +60,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public override void MidReload()
         {
+            base.MidReload();
             WeaponAnimator.PlayAnimation(MidReloadAnimationID);
         }
     }
