@@ -1494,6 +1494,8 @@ MonoBehaviour:
   ValidMaterial: {fileID: 2100000, guid: 3069d89ef27294c48877ec8a334441b8, type: 2}
   InvalidMaterial: {fileID: 2100000, guid: 19611734af2b175479f983be6766dafb, type: 2}
   CastPoint: {fileID: 1289007188879271878}
+  SnapGrid: {x: 0.5, y: 0.5, z: 0.5}
+  SnapGridOffset: {x: 0, y: 0, z: 0}
   CastRange: 5
   CastLayers:
     serializedVersion: 2

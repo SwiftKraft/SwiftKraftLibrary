@@ -33,13 +33,13 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             statsText.SetText("");
 
             Target.OnTargetDamage += OnTargetHit;
-            WeaponBase.OnWeaponAttack += OnWeaponAttack;
+            WeaponBase.OnWeaponSpawn += OnWeaponSpawn;
         }
 
         private void OnDestroy()
         {
             Target.OnTargetDamage -= OnTargetHit;
-            WeaponBase.OnWeaponAttack -= OnWeaponAttack;
+            WeaponBase.OnWeaponSpawn -= OnWeaponSpawn;
         }
 
         private void FixedUpdate()
@@ -48,7 +48,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                 timer += Time.fixedDeltaTime;
         }
 
-        private void OnWeaponAttack(WeaponBase weapon)
+        private void OnWeaponSpawn(WeaponBase weapon, GameObject go)
         {
             if (ongoing)
                 shotsFired++;

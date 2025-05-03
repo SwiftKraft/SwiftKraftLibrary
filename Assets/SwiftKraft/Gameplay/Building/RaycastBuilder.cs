@@ -1,3 +1,4 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Building
@@ -8,6 +9,9 @@ namespace SwiftKraft.Gameplay.Building
         public Material InvalidMaterial;
 
         public Transform CastPoint;
+
+        public Vector3 SnapGrid;
+        public Vector3 SnapGridOffset;
 
         public float CastRange = 5f;
         public LayerMask CastLayers;
@@ -44,16 +48,23 @@ namespace SwiftKraft.Gameplay.Building
         {
             UpdateBlueprint();
 
+            if (currentBlueprint == null)
+                return;
+
             if (Input.GetKeyDown(KeyCode.Mouse0) && canBuild)
                 Build();
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+                RemoveBlueprint();
         }
+
+        private void OnDestroy() => RemoveBlueprint();
 
         public void Build()
         {
-            if (currentBlueprint == null || Prefab == null)
+            if (currentBlueprint == null || Prefab == null || BuildingManager.Instance == null)
                 return;
 
-            Instantiate(Prefab, currentBlueprint.transform.position, currentBlueprint.transform.rotation);
+            BuildingManager.Instance.Create(Prefab, new(currentBlueprint.transform));
         }
 
         public void UpdateBlueprint()
@@ -62,6 +73,9 @@ namespace SwiftKraft.Gameplay.Building
                 return;
 
             bool raycast = Physics.Raycast(CastPoint.position, CastPoint.forward, out RaycastHit _hit, CastRange, CastLayers, QueryTriggerInteraction.Ignore);
+
+            if (raycast && SnapGrid != default)
+                raycast = Physics.Raycast(CastPoint.position, _hit.point.GridSnap(SnapGrid, SnapGridOffset) - CastPoint.position, out _hit, CastRange, CastLayers, QueryTriggerInteraction.Ignore);
 
             aimedPoint = raycast
                 ? _hit.point
@@ -92,7 +106,7 @@ namespace SwiftKraft.Gameplay.Building
         public void RemoveBlueprint()
         {
             if (currentBlueprint != null)
-                Destroy(currentBlueprint);
+                Destroy(currentBlueprint.gameObject);
         }
     }
 }
