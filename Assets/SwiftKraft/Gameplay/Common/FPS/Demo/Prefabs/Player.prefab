@@ -1165,6 +1165,7 @@ GameObject:
   - component: {fileID: 8250421343296959061}
   - component: {fileID: 7846360718022847068}
   - component: {fileID: 4339619682770234711}
+  - component: {fileID: 9173360841550424576}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1478,6 +1479,26 @@ MonoBehaviour:
       - {fileID: 8300000, guid: a0497767c5a5a3145964b506d26c3db2, type: 3}
       - {fileID: 8300000, guid: 6471626e80f659243a5707d59a33b35f, type: 3}
       - {fileID: 8300000, guid: 6ec5381ec8cc69c44bc77cecd3a17345, type: 3}
+--- !u!114 &9173360841550424576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6492839637052000451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b623c8727de723143a1163fb2994365e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlueprintMaterial: {fileID: -7848952084472943420, guid: 5c5f5bcbf6ece794480ef88bf1fc2ad3,
+    type: 3}
+  CastPoint: {fileID: 1289007188879271878}
+  CastRange: 5
+  CastLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  test: {fileID: 6479035059698927783, guid: 31f34f826528b4445b9e2fef9028c918, type: 3}
 --- !u!1 &7785686638887547644
 GameObject:
   m_ObjectHideFlags: 0

@@ -80,6 +80,33 @@ namespace SwiftKraft.Gameplay.Building
             prefab = GetPrefab(id);
             return prefab != null;
         }
+
+        public static GameObject ToBlueprint(GameObject prefab, Material blueprintMat)
+        {
+            GameObject go = Instantiate(prefab);
+
+            foreach (Component c in go.GetComponentsInChildren<Component>())
+            {
+                if (c is not Renderer r)
+                {
+                    if (c is not MeshFilter && c is not Transform)
+                    {
+                        Debug.Log("Trying to destroy: " + c.GetType());
+                        c.DestroyRequiredComponents();
+                        Destroy(c);
+                    }
+                }
+                else
+                {
+                    Material[] mats = new Material[r.sharedMaterials.Length];
+                    for (int i = 0; i < r.sharedMaterials.Length; i++)
+                        mats[i] = blueprintMat;
+                    r.sharedMaterials = mats;
+                }
+            }
+
+            return go;
+        }
     }
 
     [JsonObject(MemberSerialization.OptIn)]
