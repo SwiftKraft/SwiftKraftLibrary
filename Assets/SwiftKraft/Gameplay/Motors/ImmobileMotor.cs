@@ -63,9 +63,12 @@ namespace SwiftKraft.Gameplay.Motors
 
         public virtual void UpdateRotation()
         {
-            float pitch = CurrentLookRotation.eulerAngles.x;
-            float yaw = CurrentLookRotation.eulerAngles.y + YawOffset;
+            Quaternion localRot = Quaternion.Inverse(transform.rotation) * CurrentLookRotation;
+            Vector3 localEuler = localRot.eulerAngles;
 
+            float pitch = localEuler.x;
+            float yaw = localEuler.y + YawOffset;
+            
             if (Vertical != null)
                 Vertical.localRotation = Quaternion.Euler(VerticalMultiplier * -pitch);
             if (Horizontal != null)

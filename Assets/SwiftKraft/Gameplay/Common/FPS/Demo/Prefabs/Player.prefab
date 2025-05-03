@@ -1491,14 +1491,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b623c8727de723143a1163fb2994365e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueprintMaterial: {fileID: -7848952084472943420, guid: 5c5f5bcbf6ece794480ef88bf1fc2ad3,
-    type: 3}
+  ValidMaterial: {fileID: 2100000, guid: 3069d89ef27294c48877ec8a334441b8, type: 2}
+  InvalidMaterial: {fileID: 2100000, guid: 19611734af2b175479f983be6766dafb, type: 2}
   CastPoint: {fileID: 1289007188879271878}
   CastRange: 5
   CastLayers:
     serializedVersion: 2
     m_Bits: 1
   test: {fileID: 6479035059698927783, guid: 31f34f826528b4445b9e2fef9028c918, type: 3}
+  UseNormal: 1
 --- !u!1 &7785686638887547644
 GameObject:
   m_ObjectHideFlags: 0

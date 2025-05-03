@@ -4,7 +4,8 @@ namespace SwiftKraft.Gameplay.Building
 {
     public class RaycastBuilder : MonoBehaviour
     {
-        public Material BlueprintMaterial;
+        public Material ValidMaterial;
+        public Material InvalidMaterial;
 
         public Transform CastPoint;
 
@@ -12,6 +13,8 @@ namespace SwiftKraft.Gameplay.Building
         public LayerMask CastLayers;
 
         public GameObject test;
+
+        public bool UseNormal;
 
         public GameObject Prefab
         {
@@ -26,10 +29,11 @@ namespace SwiftKraft.Gameplay.Building
         }
         GameObject _prefab;
 
-        GameObject currentBlueprint;
+        Blueprint currentBlueprint;
 
         Vector3 aimedPoint;
-        Quaternion currentRotation;
+        Quaternion currentRotation = Quaternion.identity;
+        bool canBuild;
 
         private void Start()
         {
@@ -38,25 +42,51 @@ namespace SwiftKraft.Gameplay.Building
 
         private void Update()
         {
+            UpdateBlueprint();
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && canBuild)
+                Build();
+        }
+
+        public void Build()
+        {
+            if (currentBlueprint == null || Prefab == null)
+                return;
+
+            Instantiate(Prefab, currentBlueprint.transform.position, currentBlueprint.transform.rotation);
+        }
+
+        public void UpdateBlueprint()
+        {
             if (currentBlueprint == null)
                 return;
 
-            UpdateBlueprint();
-        }
+            bool raycast = Physics.Raycast(CastPoint.position, CastPoint.forward, out RaycastHit _hit, CastRange, CastLayers, QueryTriggerInteraction.Ignore);
 
-        public void UpdateBlueprint() =>
-            aimedPoint = Physics.Raycast(CastPoint.position, CastPoint.forward, out RaycastHit _hit, CastRange, CastLayers, QueryTriggerInteraction.Ignore)
+            aimedPoint = raycast
                 ? _hit.point
                 : CastPoint.position + CastPoint.forward * CastRange;
+
+            bool nextCanBuild = raycast;
+
+            if (canBuild != nextCanBuild)
+            {
+                canBuild = nextCanBuild;
+                currentBlueprint.ChangeMaterial(canBuild ? ValidMaterial : InvalidMaterial);
+            }
+
+            currentBlueprint.transform.SetPositionAndRotation(aimedPoint, currentRotation * (UseNormal && raycast ? Quaternion.FromToRotation(currentRotation * Vector3.up, _hit.normal) : Quaternion.identity));
+        }
 
         public void CreateBlueprint(Vector3 position, Quaternion rotation)
         {
             if (Prefab == null)
                 return;
 
-            GameObject go = BuildingManager.ToBlueprint(Prefab, BlueprintMaterial);
+            Blueprint go = BuildingManager.ToBlueprint(Prefab);
             go.transform.SetPositionAndRotation(position, rotation);
             currentBlueprint = go;
+            go.ChangeMaterial(canBuild ? ValidMaterial : InvalidMaterial);
         }
 
         public void RemoveBlueprint()

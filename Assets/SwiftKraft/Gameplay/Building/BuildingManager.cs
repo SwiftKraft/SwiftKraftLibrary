@@ -81,31 +81,21 @@ namespace SwiftKraft.Gameplay.Building
             return prefab != null;
         }
 
-        public static GameObject ToBlueprint(GameObject prefab, Material blueprintMat)
+        public static Blueprint ToBlueprint(GameObject prefab)
         {
             GameObject go = Instantiate(prefab);
 
+            List<Renderer> l = new();
             foreach (Component c in go.GetComponentsInChildren<Component>())
-            {
-                if (c is not Renderer r)
-                {
-                    if (c is not MeshFilter && c is not Transform)
-                    {
-                        Debug.Log("Trying to destroy: " + c.GetType());
-                        c.DestroyRequiredComponents();
-                        Destroy(c);
-                    }
-                }
-                else
-                {
-                    Material[] mats = new Material[r.sharedMaterials.Length];
-                    for (int i = 0; i < r.sharedMaterials.Length; i++)
-                        mats[i] = blueprintMat;
-                    r.sharedMaterials = mats;
-                }
-            }
+                if (c is Renderer r)
+                    l.Add(r);
+                else if (c is not MeshFilter && c is not Transform)
+                    c.CleanDestroy();
 
-            return go;
+            Blueprint bp = go.AddComponent<Blueprint>();
+            bp.Renderers = l.ToArray();
+
+            return bp;
         }
     }
 
