@@ -288,7 +288,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1471
+    m_Bits: 3519
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1260,10 +1260,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractionLayers:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 2305
   LOSLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   TriggerInteraction: 2
   InteractionDistance: 2.5
   InteractionRadius: 0.2
@@ -1313,8 +1313,8 @@ MonoBehaviour:
   GroundPoint: {fileID: 4013005902616619962}
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 1
-  GroundRadius: 0.015
+    m_Bits: 2561
+  GroundRadius: 0.21
   JumpSpeed: 5
   MoveSpeed: 5
   CrouchSpeed: 3
@@ -1465,7 +1465,7 @@ MonoBehaviour:
   RayDistance: 0.1
   RayMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   BannedStates: 00000000
   Profiles:
   - MaterialKeywords: []
@@ -1499,7 +1499,7 @@ MonoBehaviour:
   CastRange: 5
   CastLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   test: {fileID: 6479035059698927783, guid: 31f34f826528b4445b9e2fef9028c918, type: 3}
   UseNormal: 1
 --- !u!1 &7785686638887547644

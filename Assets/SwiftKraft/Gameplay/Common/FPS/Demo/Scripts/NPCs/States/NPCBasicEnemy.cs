@@ -61,10 +61,13 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                 }
 
                 if (Attack || scanner.Targets[0].Value != null)
-                    lastRemembered = lastRemembered = Attack ? AttackCoordinates : scanner.Targets[0].Value.position;
+                    lastRemembered = Attack ? AttackCoordinates : scanner.Targets[0].Value.position;
             }
             else if (navigator.Stopped)
                     navigator.Destination = NavMesh.SamplePosition(lastRemembered, out NavMeshHit hit, 5f, NavMesh.AllAreas) ? hit.position : lastRemembered;
+
+            if ((lastRemembered - Core.transform.position).sqrMagnitude <= 9f)
+                lastRemembered = Attack ? AttackCoordinates : Core.transform.position;
         }
 
         public override void Update() { }

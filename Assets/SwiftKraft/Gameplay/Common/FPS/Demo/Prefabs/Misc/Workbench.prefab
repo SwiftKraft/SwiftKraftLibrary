@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4909770688817197584}
   - component: {fileID: 7059988985482030917}
   - component: {fileID: 8196517206041923245}
-  - component: {fileID: 8988656028923407965}
-  m_Layer: 0
+  - component: {fileID: 3195798970067221719}
+  - component: {fileID: 5439060129051344280}
+  m_Layer: 11
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8988656028923407965
-MeshCollider:
+--- !u!65 &3195798970067221719
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,10 +104,30 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: a1e8c97d2bd222344b969dd636c87e79, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.0095000025, y: 0.020000005, z: 0.0100000035}
+  m_Center: {x: -0.00024999917, y: -0.0000000049172035, z: 0.0049941125}
+--- !u!65 &5439060129051344280
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620041505259700257}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.00064065884, y: 0.020000005, z: 0.0100000035}
+  m_Center: {x: 0.004179682, y: -0.000000005215395, z: 0.014999996}
 --- !u!1 &5299127937510951550
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +139,8 @@ GameObject:
   - component: {fileID: 5394352095768632927}
   - component: {fileID: 5321431218190515568}
   - component: {fileID: 1759056598291373865}
-  m_Layer: 0
+  - component: {fileID: 9216311142355394501}
+  m_Layer: 11
   m_Name: Workbench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,3 +198,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!208 &9216311142355394501
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299127937510951550}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5

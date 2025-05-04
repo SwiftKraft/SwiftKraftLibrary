@@ -38,6 +38,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public bool AllowSlide = true;
 
         readonly Timer coyoteTime = new(0.2f, false);
+        readonly Timer jumpTime = new(0.1f, false);
         readonly Trigger jumpInput = new();
         readonly Trigger slideInput = new();
         float currentGravity;
@@ -106,7 +107,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         protected override void FixedUpdate()
         {
-            IsGrounded = Vehicle == null && Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            jumpTime.Tick(Time.fixedDeltaTime);
+            if (jumpTime.Ended)
+                IsGrounded = Vehicle == null && Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
             CrouchInterp.Tick(Time.fixedDeltaTime);
             CrouchInterp.MaxValue = WishCrouch ? 1f : 0f;
@@ -129,6 +132,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             {
                 currentGravity = JumpSpeed;
                 IsGrounded = false;
+                jumpTime.Reset();
                 coyoteTime.Tick(coyoteTime.MaxValue);
             }
 

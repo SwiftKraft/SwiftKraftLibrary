@@ -376,6 +376,8 @@ MonoBehaviour:
   Particles:
   - Action: Attack
     ParticleSystem: {fileID: 2564785623678880756}
+    Repeat: 0
+    RepeatDelay: 0
 --- !u!114 &6674710385775432710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +422,8 @@ MonoBehaviour:
       <MaxValue>k__BackingField: 0
       <DecayRate>k__BackingField: 0
       <CanDecay>k__BackingField: 1
+    Repeat: 0
+    RepeatDelay: 0
 --- !u!114 &4324172739021947929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,7 +662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LOSLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   ScanRange: 20
   PriorityWeight: 0.7
   ScanTimer:
