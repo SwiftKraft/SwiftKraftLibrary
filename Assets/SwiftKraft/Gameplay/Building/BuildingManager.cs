@@ -80,6 +80,23 @@ namespace SwiftKraft.Gameplay.Building
             prefab = GetPrefab(id);
             return prefab != null;
         }
+
+        public static Blueprint ToBlueprint(GameObject prefab)
+        {
+            GameObject go = Instantiate(prefab);
+
+            List<Renderer> l = new();
+            foreach (Component c in go.GetComponentsInChildren<Component>())
+                if (c is Renderer r)
+                    l.Add(r);
+                else if (c is not MeshFilter && c is not Transform)
+                    c.CleanDestroy();
+
+            Blueprint bp = go.AddComponent<Blueprint>();
+            bp.Renderers = l.ToArray();
+
+            return bp;
+        }
     }
 
     [JsonObject(MemberSerialization.OptIn)]
