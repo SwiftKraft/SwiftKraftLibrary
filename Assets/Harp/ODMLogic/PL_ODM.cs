@@ -333,7 +333,7 @@ public class PL_ODM : MonoBehaviour
 
         // Dashing
         
-        if(!isOrbiting && !isReeling)
+        if(!isOrbiting && !isReeling && !movementScript.IsGrounded)
        {
 
         
@@ -595,6 +595,7 @@ public class PL_ODM : MonoBehaviour
         if (isProperlyHooked == true && isOrbiting == false)
     {
         
+            
         if (hookJoints[0])
         {
 
