@@ -18,6 +18,7 @@ public class PL_ODM : MonoBehaviour
     private bool isProperlyHooked = true;
     PlayerMovementSlide slide;
     PlayerMovementGround ground;
+    PlayerMovementAir air;
  
     
 
@@ -371,33 +372,33 @@ public class PL_ODM : MonoBehaviour
                 isOrbiting = false;
 
 
-                    if (Input.GetKey(KeyCode.W) && isReeling)
+                    if (Input.GetKey(KeyCode.W) && isReeling)//UP
                     {
-                        HandleDashNoDoubleTap(5);
+                        HandleDashNoDoubleTap(8);
                
                         isOrbiting = true;
                         isReeling = false;
                     
 
                     }
-                    if (Input.GetKey(KeyCode.S) && isReeling)
+                    if (Input.GetKey(KeyCode.S) && isReeling)//DOWN
                     {
-                        HandleDashNoDoubleTap(6);
+                        HandleDashNoDoubleTap(7);
            
                         isOrbiting = true;
                         isReeling = false;
 
                 }
-                    if (Input.GetKey(KeyCode.A) && isReeling)
+                    if (Input.GetKey(KeyCode.A) && isReeling)//LEFt
                     {
-                        HandleDashNoDoubleTap(7);
+                        HandleDashNoDoubleTap(6);
                        
                         isOrbiting = true;
                         isReeling = false;
                 }
-                    if (Input.GetKey(KeyCode.D) && isReeling)
+                    if (Input.GetKey(KeyCode.D) && isReeling)//RIGHT
                     {
-                        HandleDashNoDoubleTap(8);
+                        HandleDashNoDoubleTap(5);
                     
                         isOrbiting = true;
                         isReeling = false;
@@ -475,6 +476,23 @@ public class PL_ODM : MonoBehaviour
         
     }
 
+    Vector3 GetOrbitCenter()
+    {
+        if (hookJoints[0] && hookJoints[1])
+        {
+            return (hookSwingPoints[0] + hookSwingPoints[1]) / 2f;
+        }
+        else if (hookJoints[0])
+        {
+            return hookSwingPoints[0];
+        }
+        else if (hookJoints[1])
+        {
+            return hookSwingPoints[1];
+        }
+        return Vector3.zero; // Fallback to zero if no hooks are active
+    }
+
     IEnumerator OrbitVelocityChange()
     {
         Vector3 previousVelocity = movementScript.Rigidbody.velocity; // Store current velocity
@@ -483,6 +501,8 @@ public class PL_ODM : MonoBehaviour
 
         Vector3 newVelocity = Vector3.Lerp(previousVelocity, currentVelocity, Time.deltaTime * 3f); // Smoothly transition[The greater the f value the stronger the lerp]
 
+        
+
         movementScript.Rigidbody.velocity = newVelocity; // Apply smooth transition
 
         yield break;
@@ -490,6 +510,12 @@ public class PL_ODM : MonoBehaviour
     void PerformDash(int buttonIndex)
     {
         if (currentGasAmount < 0) return;
+
+        Vector3 orbitCenter = GetOrbitCenter();
+        Vector3 playerPos = playerTransform.position;
+        Vector3 toPlayer = playerPos - orbitCenter;
+        Vector3 orbitAxis = Vector3.up; // Orbit in the horizontal plane
+        Vector3 tangent;
 
         switch (buttonIndex)
         {
@@ -514,24 +540,27 @@ public class PL_ODM : MonoBehaviour
 
 
 
-            case 5: // Up Orbit
+            case 5: // RIGHT Orbit (clockwise around vertical axis)
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
+                tangent = Vector3.Cross(toPlayer, orbitAxis).normalized; // Right-hand rule: clockwise when viewed from above
+                movementScript.Rigidbody.AddForce(tangent * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
-            case 6: // Down Orbit
+            case 6: // LEFT Orbit (counter-clockwise around vertical axis)
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.up * gasDashForce / 11f, ForceMode.VelocityChange);
+                tangent = Vector3.Cross(orbitAxis, toPlayer).normalized; // Counter-clockwise
+                movementScript.Rigidbody.AddForce(tangent * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
-            case 7: // Left Orbit
+            case 7: // DOWN Orbit (clockwise around camera right axis)
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(-movementScript.Rigidbody.transform.right * gasDashForce / 11f, ForceMode.VelocityChange);
+                orbitAxis = playerCameraTransform.right; // Orbit around camera's right axis
+                tangent = Vector3.Cross(toPlayer, orbitAxis).normalized; // Clockwise when viewed along right axis
+                movementScript.Rigidbody.AddForce(tangent * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
-            case 8: // Right Orbit
+            case 8: // UP Orbit (counter-clockwise around camera right axis)
                 StartCoroutine(OrbitVelocityChange());
-                movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.right * gasDashForce / 11f, ForceMode.VelocityChange);
-                
-
-                
+                orbitAxis = playerCameraTransform.right;
+                tangent = Vector3.Cross(orbitAxis, toPlayer).normalized; // Counter-clockwise
+                movementScript.Rigidbody.AddForce(tangent * gasDashForce / 11f, ForceMode.VelocityChange);
                 break;
         }
         
@@ -757,6 +786,11 @@ public class PL_ODM : MonoBehaviour
         if (currentGasAmount > 0 && movementScript.IsGrounded == false)
         {
             movementScript.Rigidbody.AddForce(movementScript.Rigidbody.transform.up * gasDashForce / 2f, ForceMode.VelocityChange);
+            //refresh dubleJump
+            if(!movementScript.IsGrounded == false)
+            {
+                
+            }
         }
         else
             return;
@@ -831,7 +865,9 @@ public class PL_ODM : MonoBehaviour
     void StopHook(int hookIndex)
     {
         reelingInOutState[hookIndex] = 3;
+        PlayerJumpUpOnHookShot();
         Destroy(hookJoints[hookIndex]);
+
     }
 
     public void KillPlayer()
