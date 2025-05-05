@@ -295,7 +295,7 @@ public class PL_ODM : MonoBehaviour
     void CheckInputUpdate()
     {
         // Hook fire detection
-        if (Input.GetMouseButtonDown(0) && hookCooldownTimes[0] <= 0 && hooksReady[0] && hookPredictionHits[0].point != Vector3.zero)
+        if (Input.GetMouseButtonDown(0) && hookCooldownTimes[0] <= 0 && hooksReady[0] && hookPredictionHits[0].point != Vector3.zero && currentGasAmount > 0) 
         {
             FireHook(0);
             
@@ -306,7 +306,7 @@ public class PL_ODM : MonoBehaviour
            
         }
 
-        if (Input.GetMouseButtonDown(1) && hookCooldownTimes[1] <= 0 && hooksReady[1] && hookPredictionHits[1].point != Vector3.zero)
+        if (Input.GetMouseButtonDown(1) && hookCooldownTimes[1] <= 0 && hooksReady[1] && hookPredictionHits[1].point != Vector3.zero && currentGasAmount > 0)
         {
             FireHook(1);
            
