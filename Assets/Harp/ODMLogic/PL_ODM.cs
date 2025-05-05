@@ -318,7 +318,7 @@ public class PL_ODM : MonoBehaviour
         }
 
         // Gas particles
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (!isReeling)
             {
