@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Damagables
 {
+    [RequireComponent(typeof(FactionCore))]
     public class BasicTargetableDamagable : BasicDamagable, ITargetable
     {
         public FactionCore FactionCore { get; set; }

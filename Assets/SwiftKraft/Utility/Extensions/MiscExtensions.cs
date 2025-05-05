@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -80,6 +81,10 @@ namespace SwiftKraft.Utils
 
             return null;
         }
+
+        public static float GridSnap(this float value, float grid, float offset = default) => grid != 0f ? Mathf.Round(value / grid) * grid + offset : value;
+        public static double GridSnap(this double value, double grid, double offset = default) => grid != 0d ? Math.Round(value / grid) * grid + offset : value;
+        public static decimal GridSnap(this decimal value, decimal grid, decimal offset = default) => grid != 0m ? Math.Round(value / grid) * grid + offset : value;
 
         public static int GetSign(this int value) => value switch
         {

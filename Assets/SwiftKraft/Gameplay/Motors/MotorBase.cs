@@ -71,7 +71,11 @@ namespace SwiftKraft.Gameplay.Motors
 
         public virtual float MoveFactorMultiplier => 1f;
 
-        protected virtual void Awake() { }
+        protected virtual void Awake() 
+        { 
+            WishLookRotation = transform.rotation;
+            CurrentLookRotation = WishLookRotation;
+        }
 
         protected virtual void Update()
         {

@@ -8,7 +8,22 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public string[] CancelActions = { "Attack" };
 
-        public int Amount;
+        public int[] Amounts;
+
+        public int NextAmount
+        {
+            get => _nextAmount;
+            private set
+            {
+                if (_nextAmount == value)
+                    return;
+
+                OnNextAmountChanged?.Invoke(value);
+                _nextAmount = value;
+            }
+        }
+        int _nextAmount;
+        public event Action<int> OnNextAmountChanged;
 
         public override bool Reloading => reloading;
         protected bool reloading;
@@ -26,9 +41,9 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
         int _loadedAmmo;
-
-        public event Action OnStartLoad;
         public event Action<int> OnLoopedAmmoChanged;
+
+        public bool MaxLoopedAmmoOnEmpty = true;
 
         protected override void Awake()
         {
@@ -57,33 +72,42 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
-        protected void OnStartLoadEvent() => OnStartLoad?.Invoke();
-
         protected override void Reload()
         {
-            LoadedAmmo = 0;
+            LoadedAmmo = CurrentAmmo <= 0 ? Mathf.RoundToInt(MaxAmmo) : 0;
             CanShoot.Active = true;
+            UpdateNextAmount();
             OnReloadUpdatedEvent(true);
             reloading = true;
         }
 
         public override void EndReload(bool fullEnd)
         {
-            LoadedAmmo = 0;
-            if (fullEnd)
-            {
-                CanShoot.Active = false;
-                OnReloadUpdatedEvent(false);
-                reloading = false;
-            }
+            CanShoot.Active = false;
+            OnReloadUpdatedEvent(false);
+            reloading = false;
+        }
+
+        public virtual void MidReload() => UpdateNextAmount();
+
+        public virtual void UpdateNextAmount()
+        {
+            foreach (int i in Amounts)
+                if (MaxAmmo - CurrentAmmo >= i)
+                {
+                    NextAmount = i;
+                    return;
+                }
+            NextAmount = Amounts.Length > 0 ? Amounts[0] : 1;
         }
 
         public virtual void AddAmmo()
         {
             if (CanReload)
             {
-                CurrentAmmo = Mathf.Clamp(CurrentAmmo + Amount, 0, Mathf.RoundToInt(MaxAmmo));
-                LoadedAmmo += Amount;
+                UpdateNextAmount();
+                CurrentAmmo = Mathf.Clamp(CurrentAmmo + NextAmount, 0, Mathf.RoundToInt(MaxAmmo));
+                LoadedAmmo += NextAmount;
 
                 if (CurrentAmmo >= MaxAmmo)
                 {

@@ -32,8 +32,16 @@ namespace SwiftKraft.Utils
                 return;
             }
 
+            List<ISpawner> candidates = new(Spawners);
+
             for (int i = 0; i < Amount; i++)
-                Spawners.GetRandom(ref lastRandom).Spawn();
+            {
+                ISpawner sp = candidates.GetRandom(ref lastRandom);
+
+                sp ??= Spawners.GetRandom(ref lastRandom);
+                candidates.Remove(sp);
+                sp.Spawn();
+            }
         }
     }
 }

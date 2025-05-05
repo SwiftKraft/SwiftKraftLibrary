@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Damagables;
 using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 
@@ -87,7 +88,11 @@ namespace SwiftKraft.Gameplay.Projectiles
             HitInfo info = new(collision.GetContact(0));
             HitEvent(info);
             if (info.Object.TryGetComponent(out IDamagable dmg) && (dmg is not IFaction f || f.Faction != Faction))
-                dmg.Damage(GetDamageData(info));
+            {
+                DamageDataBase data = GetDamageData(info);
+                dmg.Damage(data);
+                data.ApplyDamage(dmg);
+            }
         }
     }
 }

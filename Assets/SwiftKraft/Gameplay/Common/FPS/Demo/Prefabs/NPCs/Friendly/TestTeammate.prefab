@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestTeammate
       objectReference: {fileID: 0}
+    - target: {fileID: 3749455666820030302, guid: eb9dd55235009ed4a9373e34fe594353,
+        type: 3}
+      propertyPath: LOSLayers.m_Bits
+      value: 2049
+      objectReference: {fileID: 0}
     - target: {fileID: 3803001122073645159, guid: eb9dd55235009ed4a9373e34fe594353,
         type: 3}
       propertyPath: startingState
