@@ -318,7 +318,7 @@ public class PL_ODM : MonoBehaviour
         }
 
         // Gas particles
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && currentGasAmount > 0)
         {
             if (!isReeling)
             {
@@ -595,7 +595,6 @@ public class PL_ODM : MonoBehaviour
         if (isProperlyHooked == true && isOrbiting == false)
     {
         
-            
         if (hookJoints[0])
         {
 
