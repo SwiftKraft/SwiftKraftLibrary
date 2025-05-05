@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ea20280074471488a6a4196716cddb, type: 3}
+  m_Name: HumanoidFootsteps
+  m_EditorClassIdentifier: 
+  Profiles:
+  - MaterialKeywords: []
+    States:
+    - MotorState: 1
+      Clips:
+      - {fileID: 8300000, guid: f6b6527653e48c544aa3faf528a7e339, type: 3}
+      - {fileID: 8300000, guid: 0430291dce3ca5648b528a0e9358d2d4, type: 3}
+      - {fileID: 8300000, guid: 6c42d3ce772ea4748bc79289b9d2c7d8, type: 3}
+      - {fileID: 8300000, guid: e121dd0d61b87cd468a115ffa0e1d981, type: 3}
+      - {fileID: 8300000, guid: a0497767c5a5a3145964b506d26c3db2, type: 3}
+      - {fileID: 8300000, guid: 6471626e80f659243a5707d59a33b35f, type: 3}
+      - {fileID: 8300000, guid: 6ec5381ec8cc69c44bc77cecd3a17345, type: 3}
