@@ -1,7 +1,6 @@
 using SwiftKraft.Utils;
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace SwiftKraft.Inputs
 {
@@ -53,6 +52,7 @@ namespace SwiftKraft.Inputs
             return false;
         }
 
+        [Serializable]
         public abstract class ActionBase
         {
             public string ID;
