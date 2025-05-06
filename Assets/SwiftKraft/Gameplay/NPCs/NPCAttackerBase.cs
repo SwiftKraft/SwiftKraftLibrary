@@ -18,8 +18,9 @@ namespace SwiftKraft.Gameplay.NPCs
 
         protected virtual void Start() => ScannerData = Parent.Values.Get<NPCScannerBase.Package>(NPCScannerBase.DataID);
 
-        protected virtual void FixedUpdate()
+        public override void Tick()
         {
+            base.Tick();
             if (AllowAttack && CanAttack)
                 Attack();
         }

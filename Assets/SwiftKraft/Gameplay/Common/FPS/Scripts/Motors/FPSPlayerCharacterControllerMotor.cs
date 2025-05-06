@@ -145,6 +145,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             if (!Enabled || InputBlocker.Blocked)
             {
+                WishMoveDirection = Vector3.zero;
                 IsSprinting = false;
                 State = 0;
                 return;
