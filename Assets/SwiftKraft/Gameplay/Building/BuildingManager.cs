@@ -89,6 +89,13 @@ namespace SwiftKraft.Gameplay.Building
             foreach (Component c in go.GetComponentsInChildren<Component>())
                 if (c is Renderer r)
                     l.Add(r);
+                else if (c is Collider col)
+                {
+                    if (col is MeshCollider mCol)
+                        mCol.convex = true;
+
+                    col.isTrigger = true;
+                }
                 else if (c is not MeshFilter && c is not Transform)
                     c.CleanDestroy();
 
