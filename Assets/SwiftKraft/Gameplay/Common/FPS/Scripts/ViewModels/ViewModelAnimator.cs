@@ -15,6 +15,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public Animator Animator => Component;
 
+        public AnimatorOverrideController OverrideController { get; private set; }
+
         [Header("Sounds")]
         public AudioSource SoundSource;
 
@@ -22,6 +24,9 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             foreach (Animation anim in Animations)
                 anim.Parent = this;
+
+            OverrideController = new(Animator.runtimeAnimatorController);
+            Animator.runtimeAnimatorController = OverrideController;
         }
 
         public void PlayAnimation(string id)
@@ -39,6 +44,11 @@ namespace SwiftKraft.Gameplay.Weapons
             SoundSource.pitch = Animator.speed * Time.timeScale;
             SoundSource.Play();
         }
+
+        public void SwapAnimation(AnimationClip clip, AnimationClip overrider) => SwapAnimation(clip.name, overrider);
+
+        public void SwapAnimation(string clipName, AnimationClip overrider) => OverrideController[clipName] = overrider;
+
 
         [Serializable]
         public class Animation
