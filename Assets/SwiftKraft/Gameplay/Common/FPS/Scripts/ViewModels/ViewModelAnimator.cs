@@ -45,7 +45,11 @@ namespace SwiftKraft.Gameplay.Weapons
             SoundSource.Play();
         }
 
+        public void ResetAnimation(AnimationClip clip) => ResetAnimation(clip.name);
+
         public void SwapAnimation(AnimationClip clip, AnimationClip overrider) => SwapAnimation(clip.name, overrider);
+
+        public void ResetAnimation(string clipName) => OverrideController[clipName] = null;
 
         public void SwapAnimation(string clipName, AnimationClip overrider) => OverrideController[clipName] = overrider;
 
