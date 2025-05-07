@@ -156,7 +156,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             WishCrouch = Input.GetKey(KeyCode.LeftControl) || CeilingHeight < originalHeight;
             IsSprinting = !WishCrouch && Input.GetKey(KeyCode.LeftShift) && inputMove.y > 0f;
 
-            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting && IsGrounded ? 1 : 0) : 0;
+            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (WishCrouch ? 2 : 0) + (IsSprinting ? 1 : 0) : 0;
 
             if (slideVelocity <= SlideMinVelocity)
             {
