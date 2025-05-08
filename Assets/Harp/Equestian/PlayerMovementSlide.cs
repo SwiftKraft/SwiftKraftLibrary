@@ -9,6 +9,7 @@ namespace Player.Movement
 
         public PlayerMovementStateBase ExitState;
         public PlayerMovementCrouch CrouchState;
+        public PlayerMovementDash DashState;
 
         public AnimationCurve SlideSoundVolumeControl;
         public float RequiredVelocity = 3f;
@@ -19,6 +20,7 @@ namespace Player.Movement
         public float BoosterStickSpeed = 2f;
         public float CoyoteTime = 0.3f;
 
+     
         public override void StateStarted(PlayerMotor parent)
         {
             Vector3 horizVel = parent.Rigidbody.velocity;
@@ -68,6 +70,15 @@ namespace Player.Movement
                 ExitState.ReceiveData(JumpSpeed);
                 return;
             }
+
+            //IF Sliding and Manuvering Gear is enabled AND ODM has gas enabled 
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+
+                parent.CurrentState = DashState;
+
+            }
+
 
             if (horizVel.magnitude <= RequiredVelocity && !isOnSlideBooster)
             {
