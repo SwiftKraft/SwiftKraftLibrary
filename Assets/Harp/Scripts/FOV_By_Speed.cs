@@ -34,6 +34,6 @@ public class FOV_By_Speed : MonoBehaviour
     {
         float targetFOV = basefov + currentSpeed * 0.5f;
         // Smoothly interpolate between current FOV and target FOV
-        maincamera.fieldOfView = Mathf.Lerp(maincamera.fieldOfView, targetFOV, Time.deltaTime * fovSmoothSpeed);
+        maincamera.fieldOfView = Mathf.Lerp(maincamera.fieldOfView, targetFOV, Time.deltaTime * fovSmoothSpeed * 1.3f);
     }
 }
