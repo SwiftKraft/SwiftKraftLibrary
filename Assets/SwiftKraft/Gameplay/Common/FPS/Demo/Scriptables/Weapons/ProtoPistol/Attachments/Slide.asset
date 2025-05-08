@@ -38,9 +38,68 @@ MonoBehaviour:
     properties:
     - rid: 4744942048694501379
     - rid: 4744942048694501381
+  - parent: {fileID: 0}
+    name: Booster
+    package:
+      mesh: {fileID: 3600581056126159747, guid: 384f8faa6b87553429a38b543c2a4468,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: 3589333493158463532, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+    properties:
+    - rid: 4343724222013505538
+    - rid: 4744942048694501381
+    - rid: 4343724222013505540
+    - rid: 4343724222013505542
   references:
     version: 2
     RefIds:
+    - rid: 4343724222013505538
+      type: {class: AttachmentHipSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 0.8
+        type: 3
+    - rid: 4343724222013505540
+      type: {class: AttachmentPropertyOverrideTriggerAction, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Overrides:
+        - ID: Attack
+          Key: 323
+          Style: 1
+          Linger:
+            <MaxValue>k__BackingField: 0
+            StartEnded: 0
+    - rid: 4343724222013505542
+      type: {class: AttachmentPropertyAttackCooldown, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.7
+        type: 3
     - rid: 4744942048694501379
       type: {class: AttachmentAimSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}
@@ -52,7 +111,7 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 1.4
+        value: 0.9
         type: 3
     - rid: 4744942048694501381
       type: {class: AttachmentRecoilProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
@@ -64,5 +123,5 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 2
-        type: 3
+        value: 1.2
+        type: 2

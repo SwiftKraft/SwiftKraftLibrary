@@ -52,7 +52,7 @@ namespace SwiftKraft.Gameplay.Weapons
             attackOrigin = origin;
 
             if (!CancelPrefire)
-                Prefire.Reset();
+                Prefire.Reset(PrefireDelay);
 
             if (Prefire.Ended || CancelPrefire)
                 return PerformAttack(origin);
@@ -66,7 +66,7 @@ namespace SwiftKraft.Gameplay.Weapons
             attackTrigger.SetTrigger(false);
 
             if (status)
-                Cooldown.Reset();
+                Cooldown.Reset(CooldownDelay);
 
             return status;
         }

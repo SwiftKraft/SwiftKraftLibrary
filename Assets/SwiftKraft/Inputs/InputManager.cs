@@ -112,6 +112,7 @@ namespace SwiftKraft.Inputs
 
         public enum InputStyle
         {
+            NotSpecified,
             Click,
             Hold,
             Toggle

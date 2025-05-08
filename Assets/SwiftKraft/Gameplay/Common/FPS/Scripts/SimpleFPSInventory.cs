@@ -16,7 +16,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
         public Transform DropTransform;
         public Vector3 DropOffset;
         public float ThrowStrength = 10f;
-        
+
 
         public KeyCode DropKey;
 
@@ -47,6 +47,11 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
         protected override void OnDestroy()
         {
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode && UnityEditor.EditorApplication.isPlaying)
+                return;
+#endif
+
             if (DropOnDestroy)
                 DropInventory();
         }
