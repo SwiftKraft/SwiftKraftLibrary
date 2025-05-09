@@ -2156,17 +2156,17 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -0.3
-        outSlope: -0.3
+        inSlope: -0.35
+        outSlope: -0.35
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2
-        value: 0.4
-        inSlope: -0.3
-        outSlope: -0.3
+        value: 0.3
+        inSlope: -0.35
+        outSlope: -0.35
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -2176,7 +2176,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     PlayedTimes:
       <MaxValue>k__BackingField: 5
-      <DecayRate>k__BackingField: 10
+      <DecayRate>k__BackingField: 7
       <CanDecay>k__BackingField: 1
     Repeat: 0
     RepeatDelay: 0
