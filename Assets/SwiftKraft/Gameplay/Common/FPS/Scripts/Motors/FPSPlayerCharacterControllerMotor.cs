@@ -45,6 +45,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public SmoothDampInterpolater CrouchInterp;
 
+        public CollisionFlags LastCollisionFlag { get; private set; }
+
         public bool WishCrouch { get; private set; }
 
         public bool CanJump { get; set; } = true;
@@ -196,7 +198,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public override void Move(Vector3 direction)
         {
             Vector3 vel = direction * (Time.fixedDeltaTime * CurrentSpeed);
-            Component.Move(vel);
+            LastCollisionFlag = Component.Move(vel);
         }
     }
 }
