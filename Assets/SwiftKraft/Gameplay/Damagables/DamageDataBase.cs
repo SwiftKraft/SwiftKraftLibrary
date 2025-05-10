@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Damagables
 {
-    public class DamageDataBase
+    public class DamageDataBase : ICloneable<DamageDataBase>
     {
         public readonly IPawn Attacker;
 
-        public readonly float Damage;
-        public readonly Vector3 HitPoint;
+        public float Damage;
+        public Vector3 HitPoint;
 
         public virtual void ApplyDamage(IDamagable dmg) { }
 
@@ -18,5 +18,8 @@ namespace SwiftKraft.Gameplay.Damagables
             Damage = damage;
             HitPoint = hitPoint;
         }
+
+        public virtual DamageDataBase Clone() => new(Damage, HitPoint, Attacker);
+
     }
 }

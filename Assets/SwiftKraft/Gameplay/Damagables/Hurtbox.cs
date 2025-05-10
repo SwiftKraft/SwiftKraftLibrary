@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Damagables
 {
-    public class Hitbox : MonoBehaviour, IDamagable, IFaction
+    public class Hurtbox : MonoBehaviour, IDamagable, IFaction
     {
         public IDamagable Parent { get; private set; }
-        public string Faction
+        public virtual string Faction
         {
             get => Parent is IFaction f ? f.Faction : default;
             set
@@ -24,6 +24,6 @@ namespace SwiftKraft.Gameplay.Damagables
                 Parent = null;
         }
 
-        public void Damage(DamageDataBase data) => Parent?.Damage(data);
+        public virtual void Damage(DamageDataBase data) => Parent?.Damage(data);
     }
 }
