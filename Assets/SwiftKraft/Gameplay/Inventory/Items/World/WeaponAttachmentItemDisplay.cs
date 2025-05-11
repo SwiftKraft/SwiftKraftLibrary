@@ -1,6 +1,7 @@
 using SwiftKraft.Gameplay.Weapons;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
@@ -16,7 +17,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             slots.Sort((a, b) => a.Scriptable.name.CompareTo(b.Scriptable.name));
 
             base.Init(parent);
-            if (!Parent.Item.TryGetData(WeaponAttachments.AttachmentSaveID, out data))
+            if (!((ItemInstance)Parent.Item).TryGetData(WeaponAttachments.AttachmentSaveID, out data))
             {
                 SetAttachments(new int[slots.Count]);
                 return;
@@ -27,7 +28,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void SetAttachments(int[] atts)
         {
-            for (int i = 0; i < atts.Length; i++)
+            for (int i = 0; i < Mathf.Min(atts.Length, slots.Count); i++)
                 slots[i].SetAttachment(atts[i]);
         }
     }

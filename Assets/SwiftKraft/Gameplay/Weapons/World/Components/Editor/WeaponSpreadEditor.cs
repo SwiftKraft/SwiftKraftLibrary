@@ -12,6 +12,8 @@ namespace SwiftKraft.Gameplay.Weapons.Editors
         SerializedProperty spread_aim;
         SerializedProperty spread_recoil;
         SerializedProperty spread_aim_recoil;
+        SerializedProperty spread_multiplier;
+        SerializedProperty spread_aim_multiplier;
 
         SerializedProperty recoil;
         SerializedProperty aim;
@@ -23,6 +25,8 @@ namespace SwiftKraft.Gameplay.Weapons.Editors
             spread_aim = serializedObject.FindProperty(nameof(WeaponSpread.SpreadAim));
             spread_recoil = serializedObject.FindProperty(nameof(WeaponSpread.SpreadRecoil));
             spread_aim_recoil = serializedObject.FindProperty(nameof(WeaponSpread.SpreadAimRecoil));
+            spread_multiplier = serializedObject.FindProperty(nameof(WeaponSpread.SpreadMultiplier));
+            spread_aim_multiplier = serializedObject.FindProperty(nameof(WeaponSpread.SpreadAimMultiplier));
 
             recoil = serializedObject.FindProperty(nameof(WeaponSpread.Recoil));
             aim = serializedObject.FindProperty(nameof(WeaponSpread.Aim));
@@ -32,7 +36,7 @@ namespace SwiftKraft.Gameplay.Weapons.Editors
         {
             base.OnInspectorGUI();
 
-            DrawDefaultInspectorExcluding(nameof(WeaponSpread.SpreadTransform), nameof(WeaponSpread.Spread), nameof(WeaponSpread.SpreadAim), nameof(WeaponSpread.SpreadRecoil), nameof(WeaponSpread.SpreadAimRecoil), nameof(WeaponSpread.Recoil), nameof(WeaponSpread.Aim));
+            DrawDefaultInspectorExcluding(nameof(WeaponSpread.SpreadMultiplier), nameof(WeaponSpread.SpreadAimMultiplier), nameof(WeaponSpread.SpreadTransform), nameof(WeaponSpread.Spread), nameof(WeaponSpread.SpreadAim), nameof(WeaponSpread.SpreadRecoil), nameof(WeaponSpread.SpreadAimRecoil), nameof(WeaponSpread.Recoil), nameof(WeaponSpread.Aim));
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("References", EditorStyles.boldLabel);
@@ -43,6 +47,11 @@ namespace SwiftKraft.Gameplay.Weapons.Editors
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Values", EditorStyles.boldLabel);
+
+            EditorGUILayout.PropertyField(spread_multiplier);
+
+            if (aim.objectReferenceValue != null)
+                EditorGUILayout.PropertyField(spread_aim_multiplier);
 
             if (aim.objectReferenceValue != null && recoil.objectReferenceValue != null)
             {

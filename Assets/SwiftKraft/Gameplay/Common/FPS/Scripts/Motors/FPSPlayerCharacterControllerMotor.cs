@@ -26,19 +26,32 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public float Gravity = 9.81f;
         public float CrouchHeight = 1f;
         public float CrouchCameraHeight = 0.8f;
+        public float SlideMinVelocity = 8f;
+        public float SlideVelocity = 10f;
+        public float SlideFrictionAccel = 80f;
+        public AudioClip SlideSound;
+        public AudioSource SlideSource;
 
         public Camera MainCamera;
         public float ReferenceFOV;
 
+        public bool AllowSlide = true;
+
         readonly Timer coyoteTime = new(0.2f, false);
+        readonly Timer jumpTime = new(0.1f, false);
         readonly Trigger jumpInput = new();
+        readonly Trigger slideInput = new();
         float currentGravity;
 
         public SmoothDampInterpolater CrouchInterp;
 
+        public CollisionFlags LastCollisionFlag { get; private set; }
+
         public bool WishCrouch { get; private set; }
 
-        public float CurrentSpeed => IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed);
+        public bool CanJump { get; set; } = true;
+
+        public float CurrentSpeed => slideVelocity <= SlideMinVelocity ? (IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed)) : slideVelocity;
 
         public override float MoveFactorMultiplier => IsSprinting ? SprintSpeed / 1.25f : (WishCrouch ? CrouchSpeed : MoveSpeed);
 
@@ -55,6 +68,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         SingleSetting<float> sensitivity;
         SingleSetting<float> aimSensitivity;
 
+        float slideVelocity;
         float originalHeight;
         float originalCameraHeight;
 
@@ -82,6 +96,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             if (Input.GetKeyDown(KeyCode.Space))
                 jumpInput.SetTrigger();
 
+            if (Input.GetKeyDown(KeyCode.C))
+                slideInput.SetTrigger();
+
             float fovSensMult = MainCamera.fieldOfView / ReferenceFOV;
 
             Vector2 inputLook = (sensitivity == null ? 1f : sensitivity.Value) * Mathf.LerpUnclamped(1f, fovSensMult, aimSensitivity != null ? aimSensitivity.Value : 1f) * GetInputLook();
@@ -92,7 +109,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         protected override void FixedUpdate()
         {
-            IsGrounded = Vehicle == null && Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            jumpTime.Tick(Time.fixedDeltaTime);
+            if (jumpTime.Ended)
+                IsGrounded = Vehicle == null && Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
             CrouchInterp.Tick(Time.fixedDeltaTime);
             CrouchInterp.MaxValue = WishCrouch ? 1f : 0f;
@@ -111,10 +130,11 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
                 coyoteTime.Reset();
             }
 
-            if (jumpInput.GetTrigger() && !coyoteTime.Ended)
+            if (CanJump && jumpInput.GetTrigger() && !coyoteTime.Ended)
             {
                 currentGravity = JumpSpeed;
                 IsGrounded = false;
+                jumpTime.Reset();
                 coyoteTime.Tick(coyoteTime.MaxValue);
             }
 
@@ -127,6 +147,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             if (!Enabled || InputBlocker.Blocked)
             {
+                WishMoveDirection = Vector3.zero;
                 IsSprinting = false;
                 State = 0;
                 return;
@@ -137,9 +158,30 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             WishCrouch = Input.GetKey(KeyCode.LeftControl) || CeilingHeight < originalHeight;
             IsSprinting = !WishCrouch && Input.GetKey(KeyCode.LeftShift) && inputMove.y > 0f;
 
-            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting && IsGrounded ? 1 : 0) : 0;
+            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1/* + (WishCrouch ? 2 : 0)*/ + (IsSprinting ? 1 : 0) : 0;
 
-            WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y).normalized;
+            if (slideVelocity <= SlideMinVelocity)
+            {
+                WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y).normalized;
+                CanJump = true;
+            }
+            else
+            {
+                WishCrouch = true;
+                CanJump = false;
+                State = 0;
+                slideVelocity -= Time.fixedDeltaTime * SlideFrictionAccel;
+                if (slideVelocity < SlideMinVelocity)
+                    slideVelocity = 0f;
+            }
+
+            if (slideInput.GetTrigger() && IsGrounded && IsSprinting && slideVelocity <= SlideMinVelocity)
+            {
+                slideVelocity = SlideVelocity;
+
+                if (SlideSource != null)
+                    SlideSource.PlayOneShot(SlideSound);
+            }
         }
 
         public override Vector2 GetInputLook() => new(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
@@ -156,7 +198,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public override void Move(Vector3 direction)
         {
             Vector3 vel = direction * (Time.fixedDeltaTime * CurrentSpeed);
-            Component.Move(vel);
+            LastCollisionFlag = Component.Move(vel);
         }
     }
 }

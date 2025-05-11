@@ -10,6 +10,7 @@ namespace SwiftKraft.Gameplay.Weapons
     public class WeaponBase : PetBehaviourBase
     {
         public static event Action<WeaponBase> OnWeaponAttack;
+        public static event Action<WeaponBase, GameObject> OnWeaponSpawn;
 
         public class WeaponAction
         {
@@ -67,6 +68,8 @@ namespace SwiftKraft.Gameplay.Weapons
         public event Action<string> OnAttemptAction;
         public event Action<GameObject[]> OnAttack;
         public event Action OnPreAttack;
+        public event Action<GameObject> OnSpawn;
+        public event Action OnPreSpawn;
 
         protected virtual void Awake()
         {
@@ -126,8 +129,20 @@ namespace SwiftKraft.Gameplay.Weapons
                 attack.Parent = null;
         }
 
-        public void AttackEvent(GameObject[] go) => OnAttack?.Invoke(go);
+        public void AttackEvent(GameObject[] go)
+        {
+            OnAttack?.Invoke(go);
+            OnWeaponAttack?.Invoke(this);
+        }
+
         public void PreAttackEvent() => OnPreAttack?.Invoke();
+        public void SpawnEvent(GameObject go)
+        {
+            OnSpawn?.Invoke(go);
+            OnWeaponSpawn?.Invoke(this, go);
+        }
+
+        public void PreSpawnEvent() => OnPreSpawn?.Invoke();
 
         public virtual bool Attack() => Attack(AttackOrigin);
 
@@ -139,7 +154,6 @@ namespace SwiftKraft.Gameplay.Weapons
             if (CurrentMode != null)
             {
                 CurrentMode.Attack(origin);
-                OnWeaponAttack?.Invoke(this);
                 return true;
             }
 

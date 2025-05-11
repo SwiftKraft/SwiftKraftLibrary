@@ -27,17 +27,23 @@ namespace SwiftKraft.Gameplay.Projectiles
                 Despawn();
             else
                 Lifetime.OnTimerEnd += Despawn;
+
+            Projectile.OnCast += Show;
         }
 
-        protected virtual void Start()
+        protected virtual void OnDestroy()
         {
-            Vector3[] positions = { VisualOrigin, Projectile.Hits.Length > 0 ? Projectile.Hits[^1].point : transform.position + transform.forward * Projectile.Range };
-            Tracer.SetPositions(positions);
+            Lifetime.OnTimerEnd -= Despawn;
+            Projectile.OnCast -= Show;
         }
-
-        protected virtual void OnDestroy() => Lifetime.OnTimerEnd -= Despawn;
 
         protected virtual void Update() => Lifetime.Tick(Time.deltaTime);
+
+        public void Show()
+        {
+            Vector3[] positions = { VisualOrigin, Projectile.Hits.Length > 0 ? Projectile.Hits[Mathf.Min(Projectile.Pierce, Projectile.Hits.Length - 1)].point : transform.position + transform.forward * Projectile.Range };
+            Tracer.SetPositions(positions);
+        }
 
         public virtual void Despawn()
         {

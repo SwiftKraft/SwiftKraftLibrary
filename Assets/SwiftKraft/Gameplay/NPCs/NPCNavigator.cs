@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
@@ -43,6 +42,9 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public Vector3 CurrentWaypoint => Waypoints.Length <= 0 ? Destination : Waypoints[CurrentWaypointIndex];
 
+        [field: SerializeField]
+        public bool LookAtWaypoint { get; set; }
+
         public bool Stopped { get; set; }
 
         protected Vector3[] Waypoints => Path?.corners;
@@ -57,8 +59,10 @@ namespace SwiftKraft.Gameplay.NPCs
             Path = new();
         }
 
-        protected virtual void FixedUpdate()
+        public override void Tick()
         {
+            base.Tick();
+
             if (Stopped)
             {
                 Motor.WishMoveDirection = Vector3.zero;
@@ -67,6 +71,9 @@ namespace SwiftKraft.Gameplay.NPCs
 
             RepathTimer.Tick(Time.fixedDeltaTime);
             Motor.WishMovePosition = CurrentWaypoint;
+
+            if (LookAtWaypoint)
+                Motor.WishLookPosition = CurrentWaypoint + Motor.LookPoint.localPosition;
 
             if (Vector3.Distance(transform.position, CurrentWaypoint) <= WaypointRadius)
             {
@@ -89,13 +96,13 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public void Repath()
         {
-            Stopped = !NavMesh.CalculatePath(transform.position, Destination, NavMesh.AllAreas, Path);
+            Stopped = !NavMesh.CalculatePath(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas) ? hit.position : transform.position, Destination, NavMesh.AllAreas, Path);
             CurrentWaypointIndex = 0;
         }
 
 #if UNITY_EDITOR
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (Waypoints == null || Waypoints.Length <= 0)
                 return;

@@ -42,6 +42,13 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public Accumulator PlayedTimes = new();
 
+            public int Repeat;
+            public float RepeatDelay;
+
+            readonly Timer repeatTimer = new();
+            int repeatCount;
+            bool playing;
+
             public void Initialize(WeaponAudio audio)
             {
                 Parent = audio;
@@ -51,7 +58,30 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public void Destroy() => Parent.Parent.OnStartAction -= Play;
 
-            public void Update() => PlayedTimes.Tick(Time.deltaTime);
+            public void Update()
+            {
+                PlayedTimes.Tick(Time.deltaTime);
+
+                if (!playing)
+                    return;
+
+                repeatTimer.Tick(Time.deltaTime);
+                if (repeatTimer.Ended)
+                {
+                    Clip cl = Override != null ? Override.GetRandom() : Clips.GetRandom();
+                    cl?.Play(Source, VolumeMultiplier.keys.Length > 0 ? VolumeMultiplier.Evaluate(PlayedTimes.CurrentValue) : 1f);
+                    PlayedTimes.Increment(1f);
+                    repeatCount++;
+                    if (repeatCount < Repeat + 1)
+                        repeatTimer.Reset(RepeatDelay);
+                    else
+                    {
+                        playing = false;
+                        repeatCount = 0;
+                        repeatTimer.Reset(0f);
+                    }
+                }
+            }
 
             public void Play(string state)
             {
@@ -64,10 +94,10 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (state != Action)
                     return;
 
-                Clip cl = Override != null ? Override.GetRandom() : Clips.GetRandom();
-                cl?.Play(Source, VolumeMultiplier.keys.Length > 0 ? VolumeMultiplier.Evaluate(PlayedTimes.CurrentValue) : 1f);
-                PlayedTimes.Increment(1f);
+                Play();
             }
+
+            public void Play() => playing = true;
 
             [Serializable]
             public class Clip

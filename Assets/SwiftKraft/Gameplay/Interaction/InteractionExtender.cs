@@ -17,7 +17,6 @@ namespace SwiftKraft.Gameplay.Interactions
 
         public void Interact(InteractorBase interactor)
         {
-            Debug.Log($"Interacting with {gameObject.name} ({Parent})");
             if ((Object)Parent != null)
                 Parent.Interact(interactor);
         }

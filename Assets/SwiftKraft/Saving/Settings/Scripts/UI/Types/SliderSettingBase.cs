@@ -87,7 +87,10 @@ namespace SwiftKraft.Saving.Settings.UI
         protected virtual void OnInputFieldChanged(string value)
         {
             if (float.TryParse(value, out float res))
+            {
                 OnValueChanged(res);
+                base.OnUpdate();
+            }
             else
                 InputField.SetTextWithoutNotify(Value.ToString(TextFormat));
         }

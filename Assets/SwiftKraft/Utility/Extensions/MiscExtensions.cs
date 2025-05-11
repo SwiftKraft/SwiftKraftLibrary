@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,18 @@ namespace SwiftKraft.Utils
         public static bool TryGetComponentInParent<T>(this Component comp, out T component)
         {
             component = comp.GetComponentInParent<T>();
+            return component != null;
+        }
+
+        public static bool TryGetComponentInChildren<T>(this GameObject go, out T component)
+        {
+            component = go.GetComponentInChildren<T>();
+            return component != null;
+        }
+
+        public static bool TryGetComponentInParent<T>(this GameObject go, out T component)
+        {
+            component = go.GetComponentInParent<T>();
             return component != null;
         }
 
@@ -68,6 +81,10 @@ namespace SwiftKraft.Utils
 
             return null;
         }
+
+        public static float GridSnap(this float value, float grid, float offset = default) => grid != 0f ? Mathf.Round(value / grid) * grid + offset : value;
+        public static double GridSnap(this double value, double grid, double offset = default) => grid != 0d ? Math.Round(value / grid) * grid + offset : value;
+        public static decimal GridSnap(this decimal value, decimal grid, decimal offset = default) => grid != 0m ? Math.Round(value / grid) * grid + offset : value;
 
         public static int GetSign(this int value) => value switch
         {

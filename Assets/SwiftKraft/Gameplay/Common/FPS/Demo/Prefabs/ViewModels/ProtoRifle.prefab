@@ -535,7 +535,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 3828601404574971821, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  m_Mesh: {fileID: 3618710709962313328, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
   m_Bones:
   - {fileID: 8108505491139896930}
   - {fileID: 4686873896396251278}
@@ -963,10 +963,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpreadTransform: {fileID: 3608207479672408995}
-  HipMultiplier:
+  SpreadMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
-  AimMultiplier:
+  SpreadAimMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   Spread: 0
@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243808998322166224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b90369659df0144a359601bdd6ab7c, type: 3}
+  m_Script: {fileID: 11500000, guid: f99b5fde23f8e064f8c6cd603e8d2d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &985517395273582322
@@ -1688,22 +1688,22 @@ MonoBehaviour:
   - Action: Attack
     Source: {fileID: 2895807444976228756}
     Clips:
-    - Sound: {fileID: 8300000, guid: 9d2125d15b4cd6a40a819bf91ccc1a3b, type: 3}
+    - Sound: {fileID: 8300000, guid: 2f84a7c771f56bf40a64debdffab9bf4, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.65
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: 2b2aaf37604005244996a51ba64b7465, type: 3}
+    - Sound: {fileID: 8300000, guid: e563efaf275d5df40a075fce45ab5a54, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.65
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: 8ec1130ae0fcd694a8b45f451f23eb6e, type: 3}
+    - Sound: {fileID: 8300000, guid: f6f1cb610a708314aa5d84757d94ab50, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.65
       StereoPan: 0
       SpatialBlend: 1
     VolumeMultiplier:
@@ -1712,15 +1712,24 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -0.6
-        outSlope: -0.6
+        inSlope: -0.19959086
+        outSlope: -0.19959086
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 0.4
+        time: 1.0116882
+        value: 0.7980763
+        inSlope: -0.34627765
+        outSlope: -0.34627765
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2
+        value: 0.42263326
         inSlope: -0.114793345
         outSlope: -0.114793345
         tangentMode: 0
@@ -1729,7 +1738,7 @@ MonoBehaviour:
         outWeight: 0.18048292
       - serializedVersion: 3
         time: 5
-        value: 0.2
+        value: 0.24304953
         inSlope: -0.0073254053
         outSlope: -0.0073254053
         tangentMode: 0
@@ -1743,6 +1752,8 @@ MonoBehaviour:
       <MaxValue>k__BackingField: 5
       <DecayRate>k__BackingField: 7
       <CanDecay>k__BackingField: 1
+    Repeat: 0
+    RepeatDelay: 0
 --- !u!114 &509385651155450324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1758,6 +1769,8 @@ MonoBehaviour:
   Particles:
   - Action: Attack
     ParticleSystem: {fileID: 56711355422907227}
+    Repeat: 0
+    RepeatDelay: 0
 --- !u!114 &6399840945172612297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2689,6 +2702,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
   - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
   - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
   m_StaticBatchInfo:
@@ -2715,7 +2729,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 2594999250697716090, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  m_Mesh: {fileID: -3216440805686255927, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
   m_Bones:
   - {fileID: 8108505491139896930}
   - {fileID: 4686873896396251278}

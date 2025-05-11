@@ -1,7 +1,4 @@
-using SwiftKraft.Gameplay.Weapons;
-using UnityEngine;
-
-namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
+namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAnimator : WeaponComponent
     {

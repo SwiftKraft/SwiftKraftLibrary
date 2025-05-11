@@ -1,5 +1,6 @@
 using SwiftKraft.Gameplay.Interactions;
 using SwiftKraft.Gameplay.Interfaces;
+using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
@@ -8,15 +9,15 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     {
         public ItemType StartType;
 
-        public ItemInstance Item { get; private set; }
+        public Guid Item { get; private set; }
 
         protected virtual void Awake()
         {
             if (StartType != null)
-                Init(new ItemInstance(StartType));
+                Init(new ItemInstance(StartType).Guid);
         }
 
-        public void Init(ItemInstance item)
+        public void Init(Guid item)
         {
             Item = item;
 

@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using SwiftKraft.Gameplay.Inventory.Items;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace SwiftKraft.Gameplay.Inventory
 {
     public abstract class InventoryBase : MonoBehaviour
     {
+        public bool DropOnDestroy = true;
+
         public virtual InventoryInstance Data
         {
             get
@@ -47,6 +50,19 @@ namespace SwiftKraft.Gameplay.Inventory
             return inst.Type.SpawnItem(inst, position, rotation, parent);
         }
 
+        public virtual void DropInventory(Vector3 position, Quaternion rotation = default, Transform parent = null)
+        {
+            Guid[] items = Data.Items.ToArray();
+            foreach (ItemInstance it in items)
+                DropItem(it, position, rotation, parent);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (DropOnDestroy)
+                DropInventory(transform.position, transform.rotation);
+        }
+
         protected virtual void OnItemSwitch(ItemInstance inst, InventoryInstance inv) => RemoveItem(inst);
     }
 
@@ -54,6 +70,9 @@ namespace SwiftKraft.Gameplay.Inventory
     public class InventoryInstance
     {
         [JsonProperty]
-        public List<ItemInstance> Items = new();
+        public List<Guid> Items = new();
+
+        public static string InventoryToJson(InventoryInstance inventory) => JsonConvert.SerializeObject(inventory);
+        public static InventoryInstance JsonToInventory(string json) => JsonConvert.DeserializeObject<InventoryInstance>(json);
     }
 }

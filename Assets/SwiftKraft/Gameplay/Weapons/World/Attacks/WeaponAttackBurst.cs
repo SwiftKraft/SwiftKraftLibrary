@@ -7,7 +7,9 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public int Count;
 
-        public Timer Delay;
+        public float Delay;
+
+        private readonly Timer delay = new();
 
         public bool Firing { get; private set; }
 
@@ -29,15 +31,15 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.Tick();
 
-            Delay.Tick(Time.fixedDeltaTime);
+            delay.Tick(Time.fixedDeltaTime);
 
             if (Parent.CanAttack && Firing && count < Count)
             {
-                if (Delay.Ended)
+                if (delay.Ended)
                 {
                     base.Attack(attackOrigin);
                     count++;
-                    Delay.Reset();
+                    delay.Reset(Delay);
                 }
             }
             else

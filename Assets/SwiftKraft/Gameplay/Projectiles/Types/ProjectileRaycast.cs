@@ -1,11 +1,20 @@
+using SwiftKraft.Gameplay.Damagables;
 using SwiftKraft.Gameplay.Interfaces;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Projectiles
 {
     public class ProjectileRaycast : ProjectileHitscan
     {
-        public override RaycastHit[] Cast() => Physics.RaycastAll(transform.position, transform.forward, Range, Layers, TriggerInteraction);
+        public bool HitFriendly;
+
+        public override RaycastHit[] Cast()
+        {
+            List<RaycastHit> hits = new(Physics.RaycastAll(transform.position, transform.forward, Range, Layers, TriggerInteraction));
+            hits.RemoveAll((h) => h.collider.TryGetComponent(out IFaction faction) && faction.Faction == Faction);
+            return hits.ToArray();
+        }
 
         public override void Hit(RaycastHit[] hits)
         {
@@ -18,7 +27,11 @@ namespace SwiftKraft.Gameplay.Projectiles
                 HitInfo info = new(hit);
                 HitEvent(info);
                 if (info.Object.TryGetComponent(out IDamagable dmg) && (dmg is not IFaction f || f.Faction != Faction))
-                    dmg.Damage(GetDamageData(info));
+                {
+                    DamageDataBase data = GetDamageData(info);
+                    dmg.Damage(data);
+                    data.ApplyDamage(dmg);
+                }
                 if (info.Object.TryGetComponent(out Rigidbody rb))
                     rb.AddForceAtPosition(transform.forward * BaseDamage, info.Position, ForceMode.Impulse);
                 cur++;

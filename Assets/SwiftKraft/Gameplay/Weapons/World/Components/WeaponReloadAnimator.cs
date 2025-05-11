@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
+    [Obsolete]
     public class WeaponReloadAnimator : StateMachineBehaviour
     {
         public string[] IdleStateNames = { "Idle" };

@@ -1,81 +1,67 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
     public class WeaponAmmoLoopedAnimation : WeaponAmmoLooped
     {
-        public Animator Animator
+        public string MidReloadAnimationID = "MidReload";
+        public string EndReloadAnimationID = "EndReload";
+        public string[] MidReloadStates = { "LoopReload" };
+        public string[] EndReloadStates = { "EndReload" };
+        public string[] StartReloadStates = { "StartReload" };
+        public float FullMidReloadThreshold = 0.9f;
+        public float FullEndReloadThreshold = 0.8f;
+        public Animator Animator => WeaponAnimator.Animator.Animator;
+
+        public WeaponAnimator WeaponAnimator
         {
             get
             {
-                if (_animator == null)
-                    _animator = GetComponentInChildren<Animator>();
+                if (_weaponAnimator == null)
+                    _weaponAnimator = GetComponentInChildren<WeaponAnimator>();
 
-                return _animator;
+                return _weaponAnimator;
             }
         }
-        Animator _animator;
+        WeaponAnimator _weaponAnimator;
 
-        public WeaponReloadAnimator ReloadCommunicator
+        protected virtual void Update()
         {
-            get
+            if (Animator.IsInTransition(0))
+                return;
+
+            AnimatorStateInfo info = Animator.GetCurrentAnimatorStateInfo(0);
+
+            if (info.CheckName(MidReloadStates) && info.normalizedTime >= FullMidReloadThreshold)
             {
-                if (_reloadCommunicator == null)
-                    _reloadCommunicator = Animator.GetBehaviour<WeaponReloadAnimator>();
-
-                return _reloadCommunicator;
+                AddAmmo();
+                DecideEnd();
             }
-        }
-        WeaponReloadAnimator _reloadCommunicator;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            ReloadCommunicator.MidReload += FinishCycle;
-            ReloadCommunicator.EndReload += EndReload;
+            else if (info.CheckName(StartReloadStates) && info.normalizedTime >= 1f)
+                DecideEnd();
+            else if (info.CheckName(EndReloadStates) && info.normalizedTime >= FullEndReloadThreshold)
+                EndReload(true);
         }
 
-        protected override void OnEnable()
+        public void DecideEnd()
         {
-            base.OnEnable();
-            ReloadCommunicator.MidReload -= FinishCycle;
-            ReloadCommunicator.EndReload -= EndReload;
-            ReloadCommunicator.MidReload += FinishCycle;
-            ReloadCommunicator.EndReload += EndReload;
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-            if (ReloadCommunicator != null)
-            {
-                ReloadCommunicator.MidReload -= FinishCycle;
-                ReloadCommunicator.EndReload -= EndReload;
-            }
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            if (ReloadCommunicator != null)
-            {
-                ReloadCommunicator.MidReload -= FinishCycle;
-                ReloadCommunicator.EndReload -= EndReload;
-            }
+            if (Reloading)
+                MidReload();
+            else
+                WeaponAnimator.PlayAnimation(EndReloadAnimationID);
         }
 
         protected override void Reload()
         {
             base.Reload();
-            ReloadCommunicator.ReloadSpeed = ReloadSpeedMultiplier;
+            Animator.speed = ReloadSpeedMultiplier;
         }
 
-        protected virtual void FinishCycle()
+        public override void MidReload()
         {
-            AddAmmo();
-            if (Reloading)
-                OnStartLoadEvent();
+            base.MidReload();
+            WeaponAnimator.PlayAnimation(MidReloadAnimationID);
         }
     }
 }

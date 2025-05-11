@@ -6,12 +6,26 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
     public class WeaponAmmoLoopedCommunicator : AnimatorCommunicator<WeaponAmmoLooped>
     {
-        public string ParameterName = "LoopedAmmo";
+        public string LoopedAmmoName = "LoopedAmmo";
+        public string NextAmmoName = "NextAmmo";
 
-        private void Awake() => ParentComponent.OnLoopedAmmoChanged += OnLoopedAmmoUpdated;
+        private void Awake()
+        {
+            ParentComponent.OnLoopedAmmoChanged += OnLoopedAmmoUpdated;
+            ParentComponent.OnNextAmountChanged += OnNextAmountChanged;
+        }
 
-        private void OnDestroy() => ParentComponent.OnLoopedAmmoChanged -= OnLoopedAmmoUpdated;
+        private void OnDestroy()
+        {
+            ParentComponent.OnLoopedAmmoChanged -= OnLoopedAmmoUpdated;
+            ParentComponent.OnNextAmountChanged -= OnNextAmountChanged;
+        }
 
-        private void OnLoopedAmmoUpdated(int ammo) => Animator.SetFloatSafe(ParameterName, ammo);
+        private void OnNextAmountChanged(int amount) => Animator.SetFloatSafe(NextAmmoName, amount);
+
+        private void OnLoopedAmmoUpdated(int ammo)
+        {
+            Animator.SetFloatSafe(LoopedAmmoName, ammo);
+        }
     }
 }

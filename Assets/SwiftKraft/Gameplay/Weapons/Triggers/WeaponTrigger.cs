@@ -1,5 +1,6 @@
 using SwiftKraft.Utils;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons.Triggers
@@ -8,6 +9,7 @@ namespace SwiftKraft.Gameplay.Weapons.Triggers
     public class WeaponTrigger : WeaponComponent
     {
         public Action[] Actions;
+        public readonly Dictionary<string, Action> Overrides = new();
 
         public bool Enabled = true;
 
@@ -25,14 +27,31 @@ namespace SwiftKraft.Gameplay.Weapons.Triggers
             if (!Enabled || InputBlocker.Blocked)
                 return;
 
-            foreach (Action a in Actions)
+            for (int i = 0; i < Actions.Length; i++)
             {
+                Action a = Actions[i];
+
+                if (Overrides.ContainsKey(a.ID))
+                    a = Overrides[a.ID];
+
                 bool input = a.GetInput();
                 Parent.UpdateAction(a.ID, input);
                 if (input && Parent.StartAction(a.ID))
                     a.Performed();
             }
         }
+
+        public void CreateOverride(Action act)
+        {
+            if (Overrides.ContainsKey(act.ID))
+                Overrides[act.ID] = act;
+            else
+                Overrides.Add(act.ID, act);
+        }
+
+        public void RemoveOverride(Action act) => RemoveOverride(act.ID);
+
+        public void RemoveOverride(string id) => Overrides.Remove(id);
 
         [Serializable]
         public class Action

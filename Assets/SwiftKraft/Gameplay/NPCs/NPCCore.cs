@@ -1,9 +1,10 @@
+using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.NPCs
 {
-    public class NPCCore : MonoBehaviour
+    public class NPCCore : PawnBehaviourBase
     {
         public readonly SafeDictionary<string, NPCModuleBase> Modules = new();
         public readonly SafeDictionary<string, object> Values = new();
@@ -32,19 +33,31 @@ namespace SwiftKraft.Gameplay.NPCs
         [SerializeField]
         private NPCStateBase startingState;
 
+        protected virtual void Awake() => NPCManager.Instance.NPCs.Add(this);
+
         protected virtual void Start() => CurrentState = startingState;
 
-        protected virtual void Update()
+        public virtual void Frame()
         {
             if (CurrentState != null)
                 CurrentState.Update();
+
+            foreach (NPCModuleBase mod in Modules.Values)
+                if (mod.enabled)
+                    mod.Frame();
         }
 
-        protected virtual void FixedUpdate()
+        public virtual void Tick()
         {
             if (CurrentState != null)
                 CurrentState.Tick();
+
+            foreach (NPCModuleBase mod in Modules.Values)
+                if (mod.enabled)
+                    mod.Tick();
         }
+
+        protected virtual void OnDestroy() => NPCManager.Instance.NPCs.Remove(this);
     }
 
     [RequireComponent(typeof(NPCCore))]
@@ -59,6 +72,10 @@ namespace SwiftKraft.Gameplay.NPCs
             Parent = GetComponent<NPCCore>();
             Parent.Modules.Add(ID, this);
         }
+
+        public virtual void Frame() { }
+
+        public virtual void Tick() { }
 
         protected virtual void OnDestroy()
         {

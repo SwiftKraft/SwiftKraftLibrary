@@ -1,3 +1,4 @@
+using SwiftKraft.Utils;
 using System;
 using UnityEngine;
 
@@ -13,6 +14,12 @@ namespace SwiftKraft.Gameplay.Weapons
                 par.Initialize(this);
         }
 
+        protected virtual void Update()
+        {
+            foreach (Particle par in Particles)
+                par.Update();
+        }
+
         protected virtual void OnDestroy()
         {
             foreach (Particle par in Particles)
@@ -26,6 +33,12 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public string Action;
             public ParticleSystem ParticleSystem;
+            public int Repeat;
+            public float RepeatDelay;
+
+            readonly Timer repeatTimer = new();
+            int repeatCount;
+            bool playing;
 
             public void Initialize(WeaponParticle parent)
             {
@@ -46,7 +59,30 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (state != Action)
                     return;
 
-                ParticleSystem.Play();
+                Play();
+            }
+
+            public void Play() => playing = true;
+
+            public void Update()
+            {
+                if (!playing)
+                    return;
+
+                repeatTimer.Tick(Time.deltaTime);
+                if (repeatTimer.Ended)
+                {
+                    ParticleSystem.Play();
+                    repeatCount++;
+                    if (repeatCount < Repeat + 1)
+                        repeatTimer.Reset(RepeatDelay);
+                    else
+                    {
+                        playing = false;
+                        repeatCount = 0;
+                        repeatTimer.Reset(0f);
+                    }
+                }
             }
         }
     }
