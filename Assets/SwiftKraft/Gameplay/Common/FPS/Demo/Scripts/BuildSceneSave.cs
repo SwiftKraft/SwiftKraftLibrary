@@ -34,10 +34,10 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         private void OnDestroy()
         {
-            ProgressManager.Current = null;
-
             BuildScene.OnCreate -= OnCreate;
             BuildScene.OnRemove -= OnRemove;
+
+            ProgressManager.Current = null;
         }
     }
 }
