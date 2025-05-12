@@ -44,6 +44,8 @@ namespace SwiftKraft.Gameplay.Building
             if (BuildingManager.Instance != null)
                 BuildingManager.Instance.CurrentScene.Remove(this);
             Disposed = true;
+            if (Linker != null)
+                Object.Destroy(Linker.gameObject);
         }
     }
 

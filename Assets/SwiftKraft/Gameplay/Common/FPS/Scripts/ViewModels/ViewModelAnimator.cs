@@ -79,10 +79,10 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public void PlaySound(State state, Animator anim)
             {
-                AnimatorClipInfo[] infos = anim.GetNextAnimatorClipInfo(0);
+                AnimatorClipInfo[] infos = anim.IsInTransition(0) ? anim.GetNextAnimatorClipInfo(0) : anim.GetCurrentAnimatorClipInfo(0);
 
                 if (infos.Length <= 0)
-                    infos = anim.GetCurrentAnimatorClipInfo(0);
+                    infos = anim.IsInTransition(0) ? anim.GetCurrentAnimatorClipInfo(0) : anim.GetNextAnimatorClipInfo(0);
 
                 if (infos.Length <= 0)
                     return;

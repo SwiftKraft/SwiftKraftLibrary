@@ -53,6 +53,7 @@ MonoBehaviour:
     - rid: 4744942048694501381
     - rid: 4343724222013505540
     - rid: 4343724222013505542
+    - rid: 4343724243414155265
   references:
     version: 2
     RefIds:
@@ -98,8 +99,52 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 1.7
+        value: 2.5
         type: 3
+    - rid: 4343724243414155265
+      type: {class: AttachmentAnimationChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Overrides:
+        - OriginalClip: {fileID: -2951823348129993485, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          OverrideClip: {fileID: 7915130521902402373, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+        - OriginalClip: {fileID: 6133219395827115664, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          OverrideClip: {fileID: 6911293835502136813, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+        - OriginalClip: {fileID: 5073298101848787917, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          OverrideClip: {fileID: 8241055658201338141, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+        - OriginalClip: {fileID: 878986534553138008, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          OverrideClip: {fileID: 8536279275336195521, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+        - OriginalClip: {fileID: 3205454310474280782, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          OverrideClip: {fileID: -4686532131594201315, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+        - OriginalClip: {fileID: -7433197589959754485, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          OverrideClip: {fileID: -6139050544125134000, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+        - OriginalClip: {fileID: 1718987871991819280, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          OverrideClip: {fileID: -8528466653277411537, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+        - OriginalClip: {fileID: 2883019296301288348, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          OverrideClip: {fileID: -6104233947866589611, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
     - rid: 4744942048694501379
       type: {class: AttachmentAimSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}

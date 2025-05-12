@@ -22,6 +22,8 @@ namespace SwiftKraft.Gameplay.NPCs
         public readonly List<NPCCore> NPCs = new();
         static NPCManager _instance;
 
+        private void Awake() => DontDestroyOnLoad(gameObject);
+
         private void Update()
         {
             for (int i = 0; i < NPCs.Count; i++)

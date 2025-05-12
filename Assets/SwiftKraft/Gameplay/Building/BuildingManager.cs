@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using SwiftKraft.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -25,11 +26,16 @@ namespace SwiftKraft.Gameplay.Building
             {
                 if (value == null)
                 {
+                    _currentScene.Clear();
                     _currentScene = new();
                     return;
                 }
 
+                if (_currentScene != value && _currentScene != null)
+                    _currentScene.Clear();
+
                 _currentScene = value;
+                _currentScene.Refresh();
             }
         }
         private BuildScene _currentScene;
@@ -62,14 +68,7 @@ namespace SwiftKraft.Gameplay.Building
 
         public bool IsPrefabRegistered(GameObject prefab) => IsPrefabRegistered(prefab, out _);
 
-        public GameObject Create(string id, TransformData transf)
-        {
-            BuildInstance bi = new(id, transf);
-            GameObject sp = bi.Spawn();
-            if (sp != null)
-                CurrentScene.Builds.Add(bi);
-            return sp;
-        }
+        public GameObject Create(string id, TransformData transf) => CurrentScene.Create(id, transf);
 
         public GameObject Create(GameObject prefab, TransformData transf) => !IsPrefabRegistered(prefab, out string id) ? null : Create(id, transf);
 
@@ -112,6 +111,36 @@ namespace SwiftKraft.Gameplay.Building
         [JsonProperty]
         public List<BuildInstance> Builds = new();
 
-        public void Remove(BuildInstance build) => Builds.Remove(build);
+        public static event Action<BuildScene, BuildInstance> OnCreate;
+        public static event Action<BuildScene, BuildInstance> OnRemove;
+
+        public void Remove(BuildInstance build)
+        {
+            Builds.Remove(build);
+            OnRemove?.Invoke(this, build);
+        }
+
+        public GameObject Create(string id, TransformData transf)
+        {
+            BuildInstance bi = new(id, transf);
+            GameObject sp = bi.Spawn();
+            if (sp != null)
+                Builds.Add(bi);
+            OnCreate?.Invoke(this, bi);
+            return sp;
+        }
+
+        public void Clear()
+        {
+            for (int i = 0; i < Builds.Count; i++)
+                Builds[i].Destroy();
+            Builds.Clear();
+        }
+
+        public void Refresh()
+        {
+            for (int i = 0; i < Builds.Count; i++)
+                Builds[i].Spawn();
+        }
     }
 }

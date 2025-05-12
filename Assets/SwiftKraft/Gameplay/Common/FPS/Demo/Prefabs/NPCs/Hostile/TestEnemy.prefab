@@ -1115,7 +1115,7 @@ GameObject:
   - component: {fileID: 1082343207111537683}
   - component: {fileID: 581730772895873841}
   - component: {fileID: 7850958852705047771}
-  - component: {fileID: 476357583296379987}
+  - component: {fileID: 4807372553461165020}
   m_Layer: 0
   m_Name: mixamorig:Head
   m_TagString: Untagged
@@ -1233,7 +1233,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &476357583296379987
+--- !u!114 &4807372553461165020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1242,9 +1242,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2071467953477299860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c0d3bee9a9609644a64cade8580f071, type: 3}
+  m_Script: {fileID: 11500000, guid: a2dc052063e433c448f43370be3d8dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Multiplier: 4
 --- !u!1 &2374077483591406602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54102af1ba2a4e4ea651e1d36bb9522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 50
+  <MaxHealth>k__BackingField: 100
   DestroyOnDeath: 0
   OnDeath:
     m_PersistentCalls:
