@@ -7,7 +7,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ItemInstance : SaveInstanceBase<ItemDataBase>
     {
-        [JsonProperty]
+        [JsonProperty("guid")]
         public readonly Guid Guid;
 
         public ItemType Type
@@ -22,7 +22,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         }
         ItemType _type;
 
-        [JsonProperty]
+        [JsonProperty("typeId")]
         private readonly string typeId;
 
         public event Action OnDestroy;
