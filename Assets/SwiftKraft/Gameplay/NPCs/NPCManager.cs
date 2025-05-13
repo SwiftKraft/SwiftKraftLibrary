@@ -9,7 +9,7 @@ namespace SwiftKraft.Gameplay.NPCs
         {
             get
             {
-                if (_instance == null)
+                if (_instance == null && !destroyed)
                     new GameObject("NPCManager").AddComponent<NPCManager>();
 
                 return _instance;
@@ -17,13 +17,17 @@ namespace SwiftKraft.Gameplay.NPCs
             private set => _instance = value;
         }
         static NPCManager _instance;
+        static bool destroyed = false;
 
         public readonly List<NPCCore> NPCs = new();
 
         private void Awake()
         {
             if (_instance == null)
+            {
                 Instance = this;
+                destroyed = false;
+            }
             else
             {
                 Destroy(gameObject);
@@ -46,5 +50,7 @@ namespace SwiftKraft.Gameplay.NPCs
                 if (NPCs[i].enabled)
                     NPCs[i].Tick();
         }
+
+        private void OnDestroy() => destroyed = true;
     }
 }
