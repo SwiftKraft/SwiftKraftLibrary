@@ -169,8 +169,9 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
             {
                 public int MotorState = 1;
                 public AudioClip[] Clips;
+                int last;
 
-                public AudioClip GetClip() => Clips.Length > 0 ? Clips.GetRandom() : null;
+                public AudioClip GetClip() => Clips.Length > 0 ? Clips.GetRandom(ref last) : null;
             }
         }
     }

@@ -54,17 +54,21 @@ namespace SwiftKraft.Gameplay.Building
                 bi.Spawn();
         }
 
-        public bool IsPrefabRegistered(GameObject prefab, out string id)
+        public bool IsPrefabRegistered(GameObject prefab, out string id, out BuildingPrefabsRegistry.Entry entr)
         {
             foreach (BuildingPrefabsRegistry.Entry ent in Registry.Entries)
                 if (ent.Prefab == prefab)
                 {
                     id = ent.ID;
+                    entr = ent;
                     return true;
                 }
             id = "";
+            entr = default;
             return false;
         }
+
+        public bool IsPrefabRegistered(GameObject prefab, out string id) => IsPrefabRegistered(prefab, out id, out _);
 
         public bool IsPrefabRegistered(GameObject prefab) => IsPrefabRegistered(prefab, out _);
 
@@ -82,6 +86,15 @@ namespace SwiftKraft.Gameplay.Building
 
         public static Blueprint ToBlueprint(GameObject prefab)
         {
+            if (Instance != null && Instance.IsPrefabRegistered(prefab, out _, out BuildingPrefabsRegistry.Entry ent) && ent.OverrideBlueprint != null)
+            {
+                GameObject b = Instantiate(ent.OverrideBlueprint);
+
+                Blueprint m = b.TryGetComponent(out Blueprint p) ? p : b.AddComponent<Blueprint>();
+                m.Renderers = b.GetComponentsInChildren<Renderer>();
+                return m;
+            }
+
             GameObject go = Instantiate(prefab);
 
             List<Renderer> l = new();

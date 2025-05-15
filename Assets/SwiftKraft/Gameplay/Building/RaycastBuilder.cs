@@ -73,12 +73,27 @@ namespace SwiftKraft.Gameplay.Building
                 return;
 
             bool raycast = Physics.Raycast(CastPoint.position, CastPoint.forward, out RaycastHit _hit, CastRange, CastLayers, QueryTriggerInteraction.Ignore);
+            bool hasSnapPoint = false;
+            Vector3 point = _hit.point;
+            Quaternion rotation = Quaternion.identity;
 
-            if (raycast && SnapGrid != default)
-                raycast = Physics.Raycast(CastPoint.position, _hit.point.GridSnap(SnapGrid, SnapGridOffset) - CastPoint.position, out _hit, CastRange, CastLayers, QueryTriggerInteraction.Ignore);
+            if (raycast)
+            {
+                if (_hit.transform.TryGetComponent(out IBuildingSnapPoint snapPoint))
+                {
+                    point = snapPoint.SnapPosition;
+                    rotation = snapPoint.SnapRotation;
+                    hasSnapPoint = true;
+                }
+                else if (SnapGrid != default)
+                {
+                    raycast = Physics.Raycast(CastPoint.position, _hit.point.GridSnap(SnapGrid, SnapGridOffset) - CastPoint.position, out _hit, CastRange, CastLayers, QueryTriggerInteraction.Ignore);
+                    point = _hit.point;
+                }
+            }
 
             aimedPoint = raycast
-                ? _hit.point
+                ? point
                 : CastPoint.position + CastPoint.forward * CastRange;
 
             bool nextCanBuild = raycast;
@@ -89,7 +104,7 @@ namespace SwiftKraft.Gameplay.Building
                 currentBlueprint.ChangeMaterial(canBuild ? ValidMaterial : InvalidMaterial);
             }
 
-            currentBlueprint.transform.SetPositionAndRotation(aimedPoint, currentRotation * (UseNormal && raycast ? Quaternion.FromToRotation(currentRotation * Vector3.up, _hit.normal) : Quaternion.identity));
+            currentBlueprint.transform.SetPositionAndRotation(aimedPoint, currentRotation * rotation * (UseNormal && raycast && !hasSnapPoint ? Quaternion.FromToRotation(currentRotation * Vector3.up, _hit.normal) : Quaternion.identity));
         }
 
         public void CreateBlueprint(Vector3 position, Quaternion rotation)

@@ -9,9 +9,9 @@ namespace SwiftKraft.Gameplay.Building
     {
         public GameObject Prefab => BuildingManager.Instance.TryGetPrefab(prefabID, out GameObject prefab) ? prefab : null;
 
-        [JsonProperty]
+        [JsonProperty("prefabID")]
         private readonly string prefabID;
-        [JsonProperty]
+        [JsonProperty("transform")]
         public SavableTransformData Transform;
 
         public BuildLinker Linker { get; private set; }

@@ -16,6 +16,8 @@ namespace SwiftKraft.Utils
         public event Action<float> OnUpdate;
         public void UpdateValue() => OnUpdate?.Invoke(GetValue());
 
+        public readonly List<ModifiableStatistic> Additives = new();
+
         public ModifiableStatistic() { }
 
         public ModifiableStatistic(float baseValue) { BaseValue = baseValue; }
@@ -23,8 +25,16 @@ namespace SwiftKraft.Utils
         public float GetValue()
         {
             float value = BaseValue;
-            foreach (Modifier mod in Values)
-                value = mod.Modify(value);
+
+            if (Values.Count > 0)
+                for (int i = 0; i < Values.Count; i++)
+                    value = Values[i].Modify(value);
+
+            if (Additives.Count > 0)
+                for (int i = 0; i < Additives.Count; i++)
+                    for (int j = 0; j < Additives[i].Values.Count; j++)
+                        value = Additives[i].Values[j].Modify(value);
+
             return value;
         }
 
@@ -42,12 +52,9 @@ namespace SwiftKraft.Utils
         [Serializable]
         public class Modifier : OverrideBase<ModifiableStatistic>
         {
-
-
-            
             public float Value
             {
-                get => value; 
+                get => value;
                 set
                 {
                     this.value = value;

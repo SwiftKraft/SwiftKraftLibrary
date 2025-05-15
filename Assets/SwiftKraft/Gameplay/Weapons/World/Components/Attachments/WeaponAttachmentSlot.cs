@@ -1,5 +1,4 @@
 using SwiftKraft.Utils;
-using UnityEngine;
 using static SwiftKraft.Gameplay.Weapons.WeaponAttachmentSlotScriptable;
 
 namespace SwiftKraft.Gameplay.Weapons

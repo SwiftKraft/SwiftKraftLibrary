@@ -851,12 +851,6 @@ GameObject:
   - component: {fileID: 8175185491969983762}
   - component: {fileID: 6297137570541806700}
   - component: {fileID: 1908633199230574078}
-  - component: {fileID: 1625574590863042466}
-  - component: {fileID: 8699032933459824843}
-  - component: {fileID: 2449021304951186053}
-  - component: {fileID: 1236420926987797861}
-  - component: {fileID: 3348710002142049648}
-  - component: {fileID: 8238681385561808684}
   m_Layer: 6
   m_Name: ProtoDeployable
   m_TagString: Untagged
@@ -913,111 +907,6 @@ MonoBehaviour:
   Offset: {x: 0, y: 0, z: 0}
   CameraTarget: {fileID: 5738632857782615544}
   ReferenceTarget: {fileID: 3535029038008648092}
---- !u!114 &1625574590863042466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808998322166224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7b6d16e354d9948b82dd6b9ae3677b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
-  Damage:
-    <BaseValue>k__BackingField: 0
-    <Values>k__BackingField: []
-  <AttackModes>k__BackingField: []
-  references:
-    version: 2
-    RefIds: []
---- !u!114 &8699032933459824843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808998322166224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e86725f4849e1c4f8f941ba09299a4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EquipTimer:
-    <MaxValue>k__BackingField: 0.4
-    StartEnded: 0
---- !u!114 &2449021304951186053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808998322166224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf0e259b3730ada43ac69b6e4dcbffc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UnequipTimer:
-    <MaxValue>k__BackingField: 0.5
-    StartEnded: 0
---- !u!114 &1236420926987797861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808998322166224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1e610a934c12c4fbf3d84c7ce1a00e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Actions:
-  - ID: Attack
-    Key: 323
-    Style: 0
-    Linger:
-      <MaxValue>k__BackingField: 0.21
-      StartEnded: 0
-  - ID: Unequip
-    Key: 103
-    Style: 0
-    Linger:
-      <MaxValue>k__BackingField: 0.05
-      StartEnded: 0
-  Enabled: 1
---- !u!114 &3348710002142049648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808998322166224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99b5fde23f8e064f8c6cd603e8d2d8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8238681385561808684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243808998322166224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 993194bd30f2a0344997d1a3ca21805d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackBlockStates: 
-  MovementInterpolater:
-    <MaxValue>k__BackingField: 0
-    <SmoothTime>k__BackingField: 0.12
-    SnapRange: 0.00001
 --- !u!1 &2414795133627358996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,7 +1385,6 @@ GameObject:
   - component: {fileID: 3535029038008648092}
   - component: {fileID: 85315649007782145}
   - component: {fileID: 6010160259904406447}
-  - component: {fileID: 5998878211573969947}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -1574,19 +1462,6 @@ MonoBehaviour:
           m_Calls: []
       Sounds: []
   SoundSource: {fileID: 0}
---- !u!114 &5998878211573969947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4198800173016685350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e45be7a78d5cda46aa9a11d0a675ca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParameterName: Movement
 --- !u!1 &4591812272765760055
 GameObject:
   m_ObjectHideFlags: 0

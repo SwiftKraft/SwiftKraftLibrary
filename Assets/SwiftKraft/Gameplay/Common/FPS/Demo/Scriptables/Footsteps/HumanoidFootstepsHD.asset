@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ea20280074471488a6a4196716cddb, type: 3}
+  m_Name: HumanoidFootstepsHD
+  m_EditorClassIdentifier: 
+  Profiles:
+  - MaterialKeywords:
+    - ProtoBlack
+    - Concrete
+    - Stone
+    - Rock
+    States:
+    - MotorState: 1
+      Clips:
+      - {fileID: 8300000, guid: 6b26ce06852dd77488600f1156ffc286, type: 3}
+      - {fileID: 8300000, guid: 610955e0a2ae01d46b7c8bb215166831, type: 3}
+      - {fileID: 8300000, guid: 4f0c90bcbf4e870419549ff16ac75c7d, type: 3}
+      - {fileID: 8300000, guid: a45b61a07d0fa9e43b6c42d645b8548f, type: 3}
+      - {fileID: 8300000, guid: a73d7e800961f074fb7c6f3d12bb77a4, type: 3}
+      - {fileID: 8300000, guid: 0ba7f83e98e470145a929a380f175eae, type: 3}
+      - {fileID: 8300000, guid: fc0d0428b53801e4c8c434a0374a87db, type: 3}
+      - {fileID: 8300000, guid: 362d2be957b50a049ae0585a81042d08, type: 3}
+    - MotorState: 2
+      Clips:
+      - {fileID: 8300000, guid: ed840fbf285fb7d4db78d7e056b3f7e1, type: 3}
+      - {fileID: 8300000, guid: 21fb588f5e550c54c8c929e73421d483, type: 3}
+      - {fileID: 8300000, guid: 2b1297b6c90b8884cbbe5c4b50fde46c, type: 3}
+      - {fileID: 8300000, guid: 8e876c99863b5884a9d02770d143b52d, type: 3}
+  - MaterialKeywords:
+    - ProtoWhite
+    - ProtoCyan
+    - Metal
+    - Steel
+    - Grate
+    - Catwalk
+    States:
+    - MotorState: 1
+      Clips:
+      - {fileID: 8300000, guid: ef70db36d7289f046a89df871f3a1b50, type: 3}
+      - {fileID: 8300000, guid: 1aa9c044bd6d99a46a0b322c3562199d, type: 3}
+      - {fileID: 8300000, guid: ec373f6f7478e3946920aad925878fdb, type: 3}
+      - {fileID: 8300000, guid: 049d57ec20aa6cb45a64866170fbe1d1, type: 3}
+      - {fileID: 8300000, guid: 93091a1b04f1c104f9936848fa6e7524, type: 3}
+      - {fileID: 8300000, guid: 5ae172f2fdb09e14dad6641df8d0d6a3, type: 3}
+      - {fileID: 8300000, guid: faad0dac074ff3a41a5d7f48193b0257, type: 3}
+      - {fileID: 8300000, guid: 623682d24d2ff1947abef925af041c46, type: 3}
+    - MotorState: 2
+      Clips:
+      - {fileID: 8300000, guid: 31a58cf4b304f954b9ab71dc3e2782dd, type: 3}
+      - {fileID: 8300000, guid: 9594cca4cd584d14b8ee1e9550bd2582, type: 3}
+      - {fileID: 8300000, guid: a57b8b27b467e0342bdeccc2461d982b, type: 3}
+      - {fileID: 8300000, guid: aa8045cc42bc8e141a99351450077fa0, type: 3}
+      - {fileID: 8300000, guid: 0f8d0fdb4786ea3469a172295b74ed58, type: 3}
+  - MaterialKeywords:
+    - ProtoOrange
+    - Wood
+    - Planks
+    - Log
+    States:
+    - MotorState: 1
+      Clips:
+      - {fileID: 8300000, guid: b45186c4d258edd4eb76611b1668c0d7, type: 3}
+      - {fileID: 8300000, guid: 6c1057acd22aa8d4ebbbc87510f593ea, type: 3}
+      - {fileID: 8300000, guid: 5652a3306c11109418c4ec2d85b20817, type: 3}
+      - {fileID: 8300000, guid: 8a7b733ed67d2f64c96d8610980645d0, type: 3}
+      - {fileID: 8300000, guid: 155f1a428ed458445857226253e577b6, type: 3}
+      - {fileID: 8300000, guid: 1ef1c46c7727c0049b97eef903b735c9, type: 3}
+      - {fileID: 8300000, guid: dea96eafbdc232f48ab282978291328e, type: 3}
+      - {fileID: 8300000, guid: 9ca63ff50671c4f48b557c445f8792ec, type: 3}
+    - MotorState: 2
+      Clips:
+      - {fileID: 8300000, guid: 548050bbe0dfa3040966c98c2acaffe9, type: 3}
+      - {fileID: 8300000, guid: 36a6658c1a932974ab9c6e25a440e3e5, type: 3}
+      - {fileID: 8300000, guid: 0c3c67865b84f494e98c2705386519a5, type: 3}
+      - {fileID: 8300000, guid: c5a48871a4475774aa1393edb9555651, type: 3}
