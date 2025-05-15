@@ -1454,6 +1454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786ab638222158b40a456ed5b4765fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Additives:
+  - {fileID: 610497832379667108}
   RecoilTransformOverride: {fileID: 682911739140861939}
   RecoilMultiplier:
     <BaseValue>k__BackingField: 1
@@ -1619,6 +1621,28 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  PositionalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  Positional:
+    X:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Y:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Z:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!114 &610497832379667108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1631,6 +1655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786ab638222158b40a456ed5b4765fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Additives:
+  - {fileID: 8029738550120293392}
   RecoilTransformOverride: {fileID: 0}
   RecoilMultiplier:
     <BaseValue>k__BackingField: 0.5
@@ -1841,6 +1867,28 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  PositionalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  Positional:
+    X:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Y:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Z:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!114 &6654161302878027630
 MonoBehaviour:
   m_ObjectHideFlags: 0
