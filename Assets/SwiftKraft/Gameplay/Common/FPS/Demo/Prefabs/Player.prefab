@@ -868,7 +868,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.453
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1467,8 +1467,8 @@ MonoBehaviour:
   RayMask:
     serializedVersion: 2
     m_Bits: 2049
-  BannedStates: 00000000
-  Profiles: {fileID: 11400000, guid: 4bb95d9d7bbed5549bf507630df7f9f7, type: 2}
+  BannedStates: 
+  Profiles: {fileID: 11400000, guid: ef83c24997001114f92c1c6cf61d896d, type: 2}
 --- !u!114 &9173360841550424576
 MonoBehaviour:
   m_ObjectHideFlags: 0
