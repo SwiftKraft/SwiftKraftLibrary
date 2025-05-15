@@ -13,6 +13,7 @@ namespace SwiftKraft.Gameplay.Building
         {
             public string ID;
             public GameObject Prefab;
+            public GameObject OverrideBlueprint;
         }
     }
 }
