@@ -1910,6 +1910,7 @@ MonoBehaviour:
   ReloadStates:
   - Reload
   - SecretReload
+  ReloadSpeedParameterName: ReloadSpeedMultiplier
   FullEndReloadThreshold: 0.8
 --- !u!114 &7074702899465627531
 MonoBehaviour:
@@ -4306,7 +4307,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e45be7a78d5cda46aa9a11d0a675ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MultiplierName: MovementSpeedMultiplier
   ParameterName: Movement
+  Raw: 0
+  Multiplier: 0.2
+  StateMultipliers:
+  - State: 2
+    Multiplier: 0.75
 --- !u!114 &6275665443212960621
 MonoBehaviour:
   m_ObjectHideFlags: 0

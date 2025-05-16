@@ -1348,6 +1348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786ab638222158b40a456ed5b4765fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Additives: []
   RecoilTransformOverride: {fileID: 0}
   RecoilMultiplier:
     <BaseValue>k__BackingField: 7
@@ -1432,6 +1433,28 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
+  PositionalMultiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  Positional:
+    X:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Y:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Z:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!114 &6654161302878027630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3321,7 +3344,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e45be7a78d5cda46aa9a11d0a675ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MultiplierName: MovementSpeedMultiplier
   ParameterName: Movement
+  Raw: 0
+  Multiplier: 0.2
+  StateMultipliers:
+  - State: 2
+    Multiplier: 0.75
 --- !u!114 &4224237178102105119
 MonoBehaviour:
   m_ObjectHideFlags: 0

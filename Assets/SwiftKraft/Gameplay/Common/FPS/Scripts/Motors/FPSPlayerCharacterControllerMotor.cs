@@ -53,7 +53,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public float CurrentSpeed => slideVelocity <= SlideMinVelocity ? (IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed)) : slideVelocity;
 
-        public override float MoveFactorMultiplier => IsSprinting ? SprintSpeed / 1.25f : (WishCrouch ? CrouchSpeed : MoveSpeed);
+        public override float MoveFactorRate => IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed);
+        public override float RawMoveFactorRate => MoveFactorRate / MoveSpeed;
 
         public float Height
         {
