@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2d4cf98f1b1f044b7e22a5e6f767b3, type: 3}
+  m_Name: TopRail
+  m_EditorClassIdentifier: 
+  SlotName: Top Rail
+  Attachments:
+  - parent: {fileID: 0}
+    name: None
+    package:
+      mesh: {fileID: 0}
+      materials: []
+    properties: []
+  - parent: {fileID: 0}
+    name: Holographic Sight
+    package:
+      mesh: {fileID: 2594999250697716090, guid: 47551341c3a44a14e9ed3892759e6743,
+        type: 3}
+      materials:
+      - {fileID: 2232875878998256659, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+      - {fileID: 2100000, guid: 949c851ccdcaa5d459cd175f92e5e7c1, type: 2}
+      - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+    properties:
+    - rid: 4343724440603590656
+  references:
+    version: 2
+    RefIds:
+    - rid: 4343724440603590656
+      type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        TargetOffset: {x: 0, y: -0.00475, z: 0}
+        TargetEulerOffset: {x: 0, y: 0, z: 0}
