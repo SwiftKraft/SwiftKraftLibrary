@@ -1230,7 +1230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa5cbf7350a1ab4b802be64243a3f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DropOnDestroy: 1
+  DropOnDestroy: 0
   DefaultItems: []
   Selectors:
   - Key: 49
@@ -1317,9 +1317,9 @@ MonoBehaviour:
     m_Bits: 2561
   GroundRadius: 0.21
   JumpSpeed: 4
-  MoveSpeed: 3
+  MoveSpeed: 4
   CrouchSpeed: 1.5
-  SprintSpeed: 5
+  SprintSpeed: 6
   Gravity: 12
   CrouchHeight: 0.9
   CrouchCameraHeight: 0.75

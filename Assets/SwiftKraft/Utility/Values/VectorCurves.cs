@@ -9,7 +9,7 @@ namespace SwiftKraft.Utils
         public AnimationCurve X;
         public AnimationCurve Y;
 
-        public Vector2 Evaluate(float time) => new(X.Evaluate(time), Y.Evaluate(time));
+        public Vector2 Evaluate(float time) => new(X.EvaluateSafe(time), Y.EvaluateSafe(time));
     }
 
     [Serializable]
@@ -19,7 +19,7 @@ namespace SwiftKraft.Utils
         public AnimationCurve Y;
         public AnimationCurve Z;
 
-        public Vector3 Evaluate(float time) => new(X.Evaluate(time), Y.Evaluate(time), Z.Evaluate(time));
+        public Vector3 Evaluate(float time) => new(X.EvaluateSafe(time), Y.EvaluateSafe(time), Z.EvaluateSafe(time));
     }
 
     [Serializable]
@@ -30,6 +30,11 @@ namespace SwiftKraft.Utils
         public AnimationCurve Z;
         public AnimationCurve W;
 
-        public Vector4 Evaluate(float time) => new(X.Evaluate(time), Y.Evaluate(time), Z.Evaluate(time), W.Evaluate(time));
+        public Vector4 Evaluate(float time) => new(X.EvaluateSafe(time), Y.EvaluateSafe(time), Z.EvaluateSafe(time), W.EvaluateSafe(time));
+    }
+
+    public static class CurveExtensions
+    {
+        public static float EvaluateSafe(this AnimationCurve curve, float time, float defVal = 0f) => curve.length > 0 ? curve.Evaluate(time) : defVal;
     }
 }

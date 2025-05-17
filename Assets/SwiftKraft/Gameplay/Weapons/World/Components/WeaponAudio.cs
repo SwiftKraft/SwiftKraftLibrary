@@ -69,7 +69,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (repeatTimer.Ended)
                 {
                     Clip cl = Override != null ? Override.GetRandom() : Clips.GetRandom();
-                    cl?.Play(Source, VolumeMultiplier.keys.Length > 0 ? VolumeMultiplier.Evaluate(PlayedTimes.CurrentValue) : 1f);
+                    cl?.Play(Source, VolumeMultiplier.keys.Length > 0 ? VolumeMultiplier.EvaluateSafe(PlayedTimes.CurrentValue, 1f) : 1f);
                     PlayedTimes.Increment(1f);
                     repeatCount++;
                     if (repeatCount < Repeat + 1)
