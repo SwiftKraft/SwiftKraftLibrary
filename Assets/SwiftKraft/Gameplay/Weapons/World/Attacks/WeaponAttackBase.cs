@@ -9,6 +9,8 @@ namespace SwiftKraft.Gameplay.Weapons
     [Serializable]
     public abstract class WeaponAttackBase
     {
+        public const string AttackEvent = "Attack";
+
         [HideInInspector]
         public WeaponBase Parent;
 
@@ -36,6 +38,8 @@ namespace SwiftKraft.Gameplay.Weapons
                 res[i] = go;
                 Parent.SpawnEvent(go);
             }
+
+            Parent.SendEvent(AttackEvent);
 
             return res;
         }

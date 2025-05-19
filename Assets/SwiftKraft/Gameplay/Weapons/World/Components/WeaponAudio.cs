@@ -1,7 +1,6 @@
 using SwiftKraft.Utils;
 using System;
 using System.Collections.Generic;
-using Unity.Properties;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -45,6 +44,8 @@ namespace SwiftKraft.Gameplay.Weapons
             public int Repeat;
             public float RepeatDelay;
 
+            public bool UseEvent;
+
             readonly Timer repeatTimer = new();
             int repeatCount;
             bool playing;
@@ -53,10 +54,19 @@ namespace SwiftKraft.Gameplay.Weapons
             {
                 Parent = audio;
                 Source.playOnAwake = false;
-                Parent.Parent.OnStartAction += Play;
+                if (!UseEvent)
+                    Parent.Parent.OnStartAction += Play;
+                else
+                    Parent.Parent.OnEvent += Play;
             }
 
-            public void Destroy() => Parent.Parent.OnStartAction -= Play;
+            public void Destroy()
+            {
+                if (!UseEvent)
+                    Parent.Parent.OnStartAction -= Play;
+                else
+                    Parent.Parent.OnEvent -= Play;
+            }
 
             public void Update()
             {
