@@ -36,6 +36,8 @@ namespace SwiftKraft.Gameplay.Weapons
             public int Repeat;
             public float RepeatDelay;
 
+            public bool UseEvent;
+
             readonly Timer repeatTimer = new();
             int repeatCount;
             bool playing;
@@ -43,10 +45,19 @@ namespace SwiftKraft.Gameplay.Weapons
             public void Initialize(WeaponParticle parent)
             {
                 Parent = parent;
-                Parent.Parent.OnStartAction += Play;
+                if (!UseEvent)
+                    Parent.Parent.OnStartAction += Play;
+                else
+                    Parent.Parent.OnEvent += Play;
             }
 
-            public void Destroy() => Parent.Parent.OnStartAction -= Play;
+            public void Destroy()
+            {
+                if (!UseEvent)
+                    Parent.Parent.OnStartAction -= Play;
+                else
+                    Parent.Parent.OnEvent -= Play;
+            }
 
             public void Play(string state)
             {
