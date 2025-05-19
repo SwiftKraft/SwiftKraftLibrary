@@ -1,3 +1,4 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
@@ -21,6 +22,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             return inst;
         }
 
-        public static implicit operator ItemType(string id) => ItemManager.Get(id);
+        public virtual WorldItemBase SpawnItem(ItemInstance item = null, TransformData data = default, Transform parent = null) => SpawnItem(item, data.Position, data.Rotation, parent);
+
+        public static implicit operator ItemType(string id) => ItemManager.GetRegistered(id);
     }
 }

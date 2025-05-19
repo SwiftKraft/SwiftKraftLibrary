@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Building
@@ -5,6 +6,8 @@ namespace SwiftKraft.Gameplay.Building
     public class Blueprint : MonoBehaviour
     {
         public Renderer[] Renderers { get; set; }
+
+        public readonly List<Collider> Intersections = new();
 
         public void ChangeMaterial(Material material)
         {
@@ -16,5 +19,13 @@ namespace SwiftKraft.Gameplay.Building
                 renderer.sharedMaterials = mats;
             }
         }
+
+        protected virtual void OnTriggerEnter(Collider other)
+        {
+            if (!Intersections.Contains(other))
+                Intersections.Add(other);
+        }
+
+        protected virtual void OnTriggerExit(Collider other) => Intersections.Remove(other);
     }
 }

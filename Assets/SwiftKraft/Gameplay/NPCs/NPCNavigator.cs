@@ -59,9 +59,9 @@ namespace SwiftKraft.Gameplay.NPCs
             Path = new();
         }
 
-        protected virtual void FixedUpdate()
+        public override void Tick()
         {
-            //Destination = FindFirstObjectByType<SimpleFPSInventory>().transform.position;
+            base.Tick();
 
             if (Stopped)
             {

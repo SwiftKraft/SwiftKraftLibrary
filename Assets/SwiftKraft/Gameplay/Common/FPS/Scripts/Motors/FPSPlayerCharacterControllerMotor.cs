@@ -45,13 +45,16 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public SmoothDampInterpolater CrouchInterp;
 
+        public CollisionFlags LastCollisionFlag { get; private set; }
+
         public bool WishCrouch { get; private set; }
 
         public bool CanJump { get; set; } = true;
 
         public float CurrentSpeed => slideVelocity <= SlideMinVelocity ? (IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed)) : slideVelocity;
 
-        public override float MoveFactorMultiplier => IsSprinting ? SprintSpeed / 1.25f : (WishCrouch ? CrouchSpeed : MoveSpeed);
+        public override float MoveFactorRate => IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed);
+        public override float RawMoveFactorRate => MoveFactorRate / MoveSpeed;
 
         public float Height
         {
@@ -145,6 +148,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
             if (!Enabled || InputBlocker.Blocked)
             {
+                WishMoveDirection = Vector3.zero;
                 IsSprinting = false;
                 State = 0;
                 return;
@@ -155,7 +159,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             WishCrouch = Input.GetKey(KeyCode.LeftControl) || CeilingHeight < originalHeight;
             IsSprinting = !WishCrouch && Input.GetKey(KeyCode.LeftShift) && inputMove.y > 0f;
 
-            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1 + (IsSprinting && IsGrounded ? 1 : 0) : 0;
+            State = inputMove.sqrMagnitude > 0f && IsGrounded ? 1/* + (WishCrouch ? 2 : 0)*/ + (IsSprinting ? 1 : 0) : 0;
 
             if (slideVelocity <= SlideMinVelocity)
             {
@@ -195,7 +199,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public override void Move(Vector3 direction)
         {
             Vector3 vel = direction * (Time.fixedDeltaTime * CurrentSpeed);
-            Component.Move(vel);
+            LastCollisionFlag = Component.Move(vel);
         }
     }
 }

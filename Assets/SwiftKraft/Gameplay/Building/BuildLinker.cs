@@ -1,3 +1,4 @@
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Building
@@ -10,9 +11,11 @@ namespace SwiftKraft.Gameplay.Building
 
         public void Init(BuildInstance instance) => Instance = instance;
 
+        public void Refresh() => Instance.Transform = new TransformData(transform);
+
         private void OnDestroy()
         {
-            if (!Refreshed)
+            if (!Refreshed && !Instance.Disposed)
                 Instance.Destroy();
         }
     }

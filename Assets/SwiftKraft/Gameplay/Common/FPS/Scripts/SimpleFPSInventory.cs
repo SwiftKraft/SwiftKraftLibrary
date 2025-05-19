@@ -17,6 +17,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
         public Vector3 DropOffset;
         public float ThrowStrength = 10f;
 
+
         public KeyCode DropKey;
 
         private void Awake()
@@ -42,11 +43,17 @@ namespace SwiftKraft.Gameplay.Common.FPS
             }
         }
 
-        public void DropInventory()
+        public void DropInventory() => DropInventory(DropTransform.position + DropTransform.rotation * DropOffset, DropTransform.rotation);
+
+        protected override void OnDestroy()
         {
-            Guid[] items = Data.Items.ToArray();
-            foreach (ItemInstance it in items)
-                DropItem(it, DropTransform.position + DropTransform.rotation * DropOffset, DropTransform.rotation);
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode && UnityEditor.EditorApplication.isPlaying)
+                return;
+#endif
+
+            if (DropOnDestroy)
+                DropInventory();
         }
 
         [Serializable]

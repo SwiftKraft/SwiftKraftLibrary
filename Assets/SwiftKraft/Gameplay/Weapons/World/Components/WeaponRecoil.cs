@@ -5,6 +5,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public abstract class WeaponRecoil : WeaponComponent
     {
+        public WeaponRecoil[] Additives;
+
         public Transform CurrentRecoilTransform => RecoilTransformOverride != null ? RecoilTransformOverride : (RecoilTransform != null ? RecoilTransform.transform : null);
 
         public Transform RecoilTransformOverride;
@@ -51,6 +53,16 @@ namespace SwiftKraft.Gameplay.Weapons
 
             if (CurrentRecoilTransform.TryGetComponent(out MultiModifyTransform tr))
                 modifier = tr.AddModifier();
+
+            if (Additives.Length > 0)
+                for (int i = 0; i < Additives.Length; i++)
+                {
+                    if (Additives[i] == this)
+                        continue;
+
+                    RecoilMultiplier.Additives.Add(Additives[i].RecoilMultiplier);
+                    DecayMultiplier.Additives.Add(Additives[i].DecayMultiplier);
+                }
         }
 
         protected virtual void OnDestroy()
@@ -62,7 +74,7 @@ namespace SwiftKraft.Gameplay.Weapons
         protected virtual void FixedUpdate()
         {
             Heat.CanDecay = !Component.Attacking;
-            Heat.Tick(DecayRate.Evaluate(Heat.CurrentValue) * DecayMultiplier * Time.fixedDeltaTime);
+            Heat.Tick(DecayRate.EvaluateSafe(Heat.CurrentValue) * DecayMultiplier * Time.fixedDeltaTime);
             if (Smooth && !Heat.CanDecay)
                 ApplyRecoil();
             DecayRecoil();

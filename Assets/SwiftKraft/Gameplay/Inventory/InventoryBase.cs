@@ -8,6 +8,8 @@ namespace SwiftKraft.Gameplay.Inventory
 {
     public abstract class InventoryBase : MonoBehaviour
     {
+        public bool DropOnDestroy = true;
+
         public virtual InventoryInstance Data
         {
             get
@@ -46,6 +48,19 @@ namespace SwiftKraft.Gameplay.Inventory
 
             RemoveItem(inst);
             return inst.Type.SpawnItem(inst, position, rotation, parent);
+        }
+
+        public virtual void DropInventory(Vector3 position, Quaternion rotation = default, Transform parent = null)
+        {
+            Guid[] items = Data.Items.ToArray();
+            foreach (ItemInstance it in items)
+                DropItem(it, position, rotation, parent);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (DropOnDestroy)
+                DropInventory(transform.position, transform.rotation);
         }
 
         protected virtual void OnItemSwitch(ItemInstance inst, InventoryInstance inv) => RemoveItem(inst);

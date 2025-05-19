@@ -49,8 +49,9 @@ namespace SwiftKraft.Gameplay.NPCs
             Parent.Values.Add(ID, Data);
         }
 
-        protected virtual void FixedUpdate()
+        public override void Tick()
         {
+            base.Tick();
             ScanTimer.Tick(Time.fixedDeltaTime);
             if (ScanTimer.Ended)
             {

@@ -40,6 +40,7 @@ namespace SwiftKraft.Saving.Data
 
         public bool TryData<T>(string id, out T dat) where T : E, new() => TryGetData(id, out dat) || TryAddData(id, out dat);
 
+        public bool RemoveData(string id) => Data.Remove(id);
     }
 
     [JsonObject(MemberSerialization.OptIn)]

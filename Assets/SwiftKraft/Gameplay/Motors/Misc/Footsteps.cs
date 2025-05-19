@@ -23,7 +23,11 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 
         public List<int> BannedStates;
 
-        public FootstepProfile[] Profiles;
+
+        public FootstepCollection Profiles;
+        public FootstepProfile[] StepProfiles => Profiles == null ? empty : Profiles.Profiles;
+
+        readonly FootstepProfile[] empty = new FootstepProfile[0];
 
         float factor;
         float prevFactor;
@@ -80,9 +84,9 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
                 FootstepProfile profile = GetProfile(mat);
                 if (profile == null)
                 {
-                    if (Profiles.Length > 0)
+                    if (StepProfiles.Length > 0)
                     {
-                        Source.PlayOneShot(Profiles[0].GetClip(MotorBase.State));
+                        Source.PlayOneShot(StepProfiles[0].GetClip(MotorBase.State));
                         RateLimit.Reset();
                     }
                     return;
@@ -95,7 +99,7 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 
         public FootstepProfile GetProfile(Material mat)
         {
-            foreach (FootstepProfile prof in Profiles)
+            foreach (FootstepProfile prof in StepProfiles)
                 if (prof.ValidMaterial(mat))
                     return prof;
             return null;
@@ -165,8 +169,9 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
             {
                 public int MotorState = 1;
                 public AudioClip[] Clips;
+                int last;
 
-                public AudioClip GetClip() => Clips.Length > 0 ? Clips.GetRandom() : null;
+                public AudioClip GetClip() => Clips.Length > 0 ? Clips.GetRandom(ref last) : null;
             }
         }
     }

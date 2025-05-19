@@ -15,6 +15,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public Animator Animator => Component;
 
+        public AnimatorOverrideController OverrideController { get; private set; }
+
         [Header("Sounds")]
         public AudioSource SoundSource;
 
@@ -22,6 +24,9 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             foreach (Animation anim in Animations)
                 anim.Parent = this;
+
+            OverrideController = new(Animator.runtimeAnimatorController);
+            Animator.runtimeAnimatorController = OverrideController;
         }
 
         public void PlayAnimation(string id)
@@ -39,6 +44,15 @@ namespace SwiftKraft.Gameplay.Weapons
             SoundSource.pitch = Animator.speed * Time.timeScale;
             SoundSource.Play();
         }
+
+        public void ResetAnimation(AnimationClip clip) => ResetAnimation(clip.name);
+
+        public void SwapAnimation(AnimationClip clip, AnimationClip overrider) => SwapAnimation(clip.name, overrider);
+
+        public void ResetAnimation(string clipName) => OverrideController[clipName] = null;
+
+        public void SwapAnimation(string clipName, AnimationClip overrider) => OverrideController[clipName] = overrider;
+
 
         [Serializable]
         public class Animation
@@ -65,10 +79,10 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public void PlaySound(State state, Animator anim)
             {
-                AnimatorClipInfo[] infos = anim.GetNextAnimatorClipInfo(0);
+                AnimatorClipInfo[] infos = anim.IsInTransition(0) ? anim.GetNextAnimatorClipInfo(0) : anim.GetCurrentAnimatorClipInfo(0);
 
                 if (infos.Length <= 0)
-                    infos = anim.GetCurrentAnimatorClipInfo(0);
+                    infos = anim.IsInTransition(0) ? anim.GetCurrentAnimatorClipInfo(0) : anim.GetNextAnimatorClipInfo(0);
 
                 if (infos.Length <= 0)
                     return;

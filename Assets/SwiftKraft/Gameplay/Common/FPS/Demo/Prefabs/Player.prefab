@@ -868,7 +868,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.685
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1166,6 +1166,7 @@ GameObject:
   - component: {fileID: 7846360718022847068}
   - component: {fileID: 4339619682770234711}
   - component: {fileID: 9173360841550424576}
+  - component: {fileID: 2245227610872954600}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1230,6 +1231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa5cbf7350a1ab4b802be64243a3f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DropOnDestroy: 0
   DefaultItems: []
   Selectors:
   - Key: 49
@@ -1315,10 +1317,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2561
   GroundRadius: 0.21
-  JumpSpeed: 5
-  MoveSpeed: 5
-  CrouchSpeed: 3
-  SprintSpeed: 8
+  JumpSpeed: 4
+  MoveSpeed: 4
+  CrouchSpeed: 1.5
+  SprintSpeed: 6
   Gravity: 12
   CrouchHeight: 0.9
   CrouchCameraHeight: 0.75
@@ -1462,23 +1464,12 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0.05
     StartEnded: 0
   RayPoint: {fileID: 4013005902616619962}
-  RayDistance: 0.1
+  RayDistance: 0.22
   RayMask:
     serializedVersion: 2
     m_Bits: 2049
-  BannedStates: 00000000
-  Profiles:
-  - MaterialKeywords: []
-    States:
-    - MotorState: -1
-      Clips:
-      - {fileID: 8300000, guid: f6b6527653e48c544aa3faf528a7e339, type: 3}
-      - {fileID: 8300000, guid: 0430291dce3ca5648b528a0e9358d2d4, type: 3}
-      - {fileID: 8300000, guid: 6c42d3ce772ea4748bc79289b9d2c7d8, type: 3}
-      - {fileID: 8300000, guid: e121dd0d61b87cd468a115ffa0e1d981, type: 3}
-      - {fileID: 8300000, guid: a0497767c5a5a3145964b506d26c3db2, type: 3}
-      - {fileID: 8300000, guid: 6471626e80f659243a5707d59a33b35f, type: 3}
-      - {fileID: 8300000, guid: 6ec5381ec8cc69c44bc77cecd3a17345, type: 3}
+  BannedStates: 
+  Profiles: {fileID: 11400000, guid: ef83c24997001114f92c1c6cf61d896d, type: 2}
 --- !u!114 &9173360841550424576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1499,9 +1490,21 @@ MonoBehaviour:
   CastRange: 5
   CastLayers:
     serializedVersion: 2
-    m_Bits: 2049
+    m_Bits: 6145
   test: {fileID: 6479035059698927783, guid: 31f34f826528b4445b9e2fef9028c918, type: 3}
   UseNormal: 1
+--- !u!114 &2245227610872954600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6492839637052000451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc059e0f82954ec43b59796c7ef99cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7785686638887547644
 GameObject:
   m_ObjectHideFlags: 0

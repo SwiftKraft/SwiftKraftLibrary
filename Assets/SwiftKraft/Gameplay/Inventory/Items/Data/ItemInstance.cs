@@ -7,7 +7,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ItemInstance : SaveInstanceBase<ItemDataBase>
     {
-        [JsonProperty]
+        [JsonProperty("guid")]
         public readonly Guid Guid;
 
         public ItemType Type
@@ -22,10 +22,11 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         }
         ItemType _type;
 
-        [JsonProperty]
+        [JsonProperty("typeId")]
         private readonly string typeId;
 
         public event Action OnDestroy;
+        public event Action OnRefresh;
         public event Action<ItemInstance, InventoryInstance> OnSwitchInventory;
 
         [JsonConstructor]
@@ -46,6 +47,13 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         }
 
         public void SwitchInventoryEvent(InventoryInstance inv) => OnSwitchInventory?.Invoke(this, inv);
+
+        public void Refresh()
+        {
+            OnRefresh?.Invoke();
+            if (TryGetData(WorldItemBase.TransformDataID, out WorldItemBase.Data data))
+                Type.SpawnItem(this, data.Transform);
+        }
 
         public void Despawn()
         {
