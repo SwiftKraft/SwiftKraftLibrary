@@ -10,7 +10,11 @@ namespace SwiftKraft.Gameplay.Damagables
         public float Damage;
         public Vector3 HitPoint;
 
-        public virtual void ApplyDamage(IDamagable dmg) { dmg.DamageEvent(this); }
+        public virtual void ApplyDamage(IDamagable dmg) 
+        {
+            dmg.Damage(this);
+            dmg.DamageEvent(this);
+        }
 
         public DamageDataBase(float damage, Vector3 hitPoint, IPawn attacker)
         {

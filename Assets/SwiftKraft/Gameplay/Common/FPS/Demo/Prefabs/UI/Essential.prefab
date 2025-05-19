@@ -291,6 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3136118860920891495}
   - component: {fileID: 8140862456080098912}
+  - component: {fileID: 1354969953280837528}
   m_Layer: 5
   m_Name: Hitmarker
   m_TagString: Untagged
@@ -337,6 +338,13 @@ MonoBehaviour:
     - rid: 4343724471933468672
     - rid: 4343724471933468674
     - rid: 4343724471933468676
+    - rid: 4343724488536883204
+  - Type: 1
+    Modules:
+    - rid: 4343724488536883201
+    - rid: 4343724488536883203
+    - rid: 4343724471933468676
+    - rid: 4343724488536883205
   Duration:
     <MaxValue>k__BackingField: 0.2
     StartEnded: 0
@@ -657,6 +665,210 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         Rect: {fileID: 7470814332099315634}
+    - rid: 4343724488536883201
+      type: {class: HitmarkerColor, ns: SwiftKraft.UI.HUD, asm: Assembly-CSharp}
+      data:
+        Gradient:
+          serializedVersion: 2
+          key0: {r: 1, g: 0, b: 0, a: 0}
+          key1: {r: 1, g: 0, b: 0, a: 1}
+          key2: {r: 0, g: 0, b: 0, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 65535
+          ctime2: 0
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 2506
+          atime2: 65535
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: 0
+          m_NumColorKeys: 2
+          m_NumAlphaKeys: 3
+        Graphics:
+        - {fileID: 7007525636982247158}
+        - {fileID: 514068732617409868}
+        - {fileID: 957799097831754017}
+        - {fileID: 1905463327898417490}
+    - rid: 4343724488536883203
+      type: {class: HitmarkerSize, ns: SwiftKraft.UI.HUD, asm: Assembly-CSharp}
+      data:
+        Multiplier: 3.5
+        RandomnessMax: 0.05
+        RandomnessMin: -0.05
+        Size:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0.2546997
+            inSlope: 13.37704
+            outSlope: 13.37704
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.033434726
+          - serializedVersion: 3
+            time: 0.20426053
+            value: 0.104833946
+            inSlope: -5.9661756
+            outSlope: -5.9661756
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.13341483
+            outWeight: 0.30418012
+          - serializedVersion: 3
+            time: 0.31510803
+            value: -0.001987286
+            inSlope: 0.9423239
+            outSlope: 0.9423239
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.13241895
+          - serializedVersion: 3
+            time: 0.59308046
+            value: 0.0010724235
+            inSlope: -0.3651583
+            outSlope: -0.3651583
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.25766608
+          - serializedVersion: 3
+            time: 0.7657918
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        Rect: {fileID: 7470814332099315634}
+    - rid: 4343724488536883204
+      type: {class: HitmarkerAudio, ns: SwiftKraft.UI.HUD, asm: Assembly-CSharp}
+      data:
+        Source: {fileID: 1354969953280837528}
+        Clips:
+        - {fileID: 8300000, guid: 25d624c2ca26d6c4889fedad9088da4a, type: 3}
+    - rid: 4343724488536883205
+      type: {class: HitmarkerAudio, ns: SwiftKraft.UI.HUD, asm: Assembly-CSharp}
+      data:
+        Source: {fileID: 1354969953280837528}
+        Clips:
+        - {fileID: 8300000, guid: 8b17f28e84593734a9f3216d9d17a408, type: 3}
+--- !u!82 &1354969953280837528
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619375134579606213}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.8
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 108
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 1
+  BypassListenerEffects: 0
+  BypassReverbZones: 1
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3990669928048049648
 GameObject:
   m_ObjectHideFlags: 0
