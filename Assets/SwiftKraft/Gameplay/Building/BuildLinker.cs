@@ -13,10 +13,10 @@ namespace SwiftKraft.Gameplay.Building
 
         public void Refresh() => Instance.Transform = new TransformData(transform);
 
-        private void OnDestroy()
+/*        private void OnDestroy()
         {
             if (!Refreshed && !Instance.Disposed)
                 Instance.Destroy();
-        }
+        }*/
     }
 }
