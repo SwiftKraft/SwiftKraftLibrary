@@ -339,14 +339,16 @@ MonoBehaviour:
     - rid: 4343724471933468674
     - rid: 4343724471933468676
     - rid: 4343724488536883204
+    - rid: 5239459249818173441
   - Type: 1
     Modules:
     - rid: 4343724488536883201
     - rid: 4343724488536883203
     - rid: 4343724471933468676
     - rid: 4343724488536883205
+    - rid: 5239459249818173443
   Duration:
-    <MaxValue>k__BackingField: 0.2
+    <MaxValue>k__BackingField: 0.25
     StartEnded: 0
   references:
     version: 2
@@ -706,7 +708,7 @@ MonoBehaviour:
     - rid: 4343724488536883203
       type: {class: HitmarkerSize, ns: SwiftKraft.UI.HUD, asm: Assembly-CSharp}
       data:
-        Multiplier: 3.5
+        Multiplier: 2.5
         RandomnessMax: 0.05
         RandomnessMin: -0.05
         Size:
@@ -714,7 +716,7 @@ MonoBehaviour:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 0.2546997
+            value: 0.47106934
             inSlope: 3.8704944
             outSlope: 3.8704944
             tangentMode: 0
@@ -723,7 +725,7 @@ MonoBehaviour:
             outWeight: 0.10602639
           - serializedVersion: 3
             time: 0.20426053
-            value: 0.104833946
+            value: 0.3212036
             inSlope: -3.9419525
             outSlope: -3.9419525
             tangentMode: 0
@@ -732,7 +734,7 @@ MonoBehaviour:
             outWeight: 0.16575478
           - serializedVersion: 3
             time: 0.31510803
-            value: -0.001987286
+            value: 0.21438235
             inSlope: 0.9423239
             outSlope: 0.9423239
             tangentMode: 0
@@ -741,7 +743,7 @@ MonoBehaviour:
             outWeight: 0.13241895
           - serializedVersion: 3
             time: 0.59308046
-            value: 0.0010724235
+            value: 0.21744205
             inSlope: -0.3651583
             outSlope: -0.3651583
             tangentMode: 0
@@ -750,7 +752,7 @@ MonoBehaviour:
             outWeight: 0.25766608
           - serializedVersion: 3
             time: 0.7657918
-            value: 0
+            value: 0.21636963
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -773,6 +775,104 @@ MonoBehaviour:
         Source: {fileID: 1354969953280837528}
         Clips:
         - {fileID: 8300000, guid: 8b17f28e84593734a9f3216d9d17a408, type: 3}
+    - rid: 5239459249818173441
+      type: {class: HitmarkerRotation, ns: SwiftKraft.UI.HUD, asm: Assembly-CSharp}
+      data:
+        Multiplier: 2
+        RandomnessMax: 1
+        RandomnessMin: -1
+        Rotation:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 3
+            inSlope: 48.44287
+            outSlope: 48.44287
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.13229483
+          - serializedVersion: 3
+            time: 0.18232
+            value: -1.9407469
+            inSlope: -9.326122
+            outSlope: -9.326122
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.44785708
+            value: 0.30226338
+            inSlope: 3.9498167
+            outSlope: 3.9498167
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.54743683
+            outSlope: -0.54743683
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        Rect: {fileID: 7470814332099315634}
+    - rid: 5239459249818173443
+      type: {class: HitmarkerRotation, ns: SwiftKraft.UI.HUD, asm: Assembly-CSharp}
+      data:
+        Multiplier: 2
+        RandomnessMax: 1
+        RandomnessMin: -1
+        Rotation:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 3
+            inSlope: 48.44287
+            outSlope: 48.44287
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.13229483
+          - serializedVersion: 3
+            time: 0.18232
+            value: -1.9407469
+            inSlope: -9.326122
+            outSlope: -9.326122
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.44785708
+            value: 0.30226338
+            inSlope: 3.9498167
+            outSlope: 3.9498167
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.54743683
+            outSlope: -0.54743683
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        Rect: {fileID: 7470814332099315634}
 --- !u!82 &1354969953280837528
 AudioSource:
   m_ObjectHideFlags: 0
