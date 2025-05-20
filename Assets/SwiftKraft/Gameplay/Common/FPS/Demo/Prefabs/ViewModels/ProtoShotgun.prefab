@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
   Damage:
-    <BaseValue>k__BackingField: 17
+    <BaseValue>k__BackingField: 16
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
   - rid: 1893897059637133321
@@ -1272,8 +1272,8 @@ MonoBehaviour:
   SpreadAimMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
-  Spread: 1.5
-  SpreadAim: 1
+  Spread: 2
+  SpreadAim: 1.5
   SpreadRecoil:
     serializedVersion: 2
     m_Curve:
