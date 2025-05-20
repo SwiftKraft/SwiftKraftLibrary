@@ -33,6 +33,7 @@ MonoBehaviour:
     - rid: 4744942044584345620
     - rid: 4744942044584345622
     - rid: 4744942044584345625
+    - rid: 4343724514249801729
   - parent: {fileID: 0}
     name: Oil Can
     package:
@@ -58,9 +59,36 @@ MonoBehaviour:
     properties:
     - rid: 4744942044584345621
     - rid: 4744942044584345623
+    - rid: 4343724514249801735
   references:
     version: 2
     RefIds:
+    - rid: 4343724514249801729
+      type: {class: AttachmentParticleChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Action: Attack
+        ParticlePrefab: {fileID: 6925547603790559054, guid: 0f86467d879dfec46baccdbe2c5d3554,
+          type: 3}
+    - rid: 4343724514249801735
+      type: {class: AttachmentDamageProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.1
+        type: 2
     - rid: 4744942044584345620
       type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}
