@@ -1,6 +1,7 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.NPCs
@@ -15,10 +16,18 @@ namespace SwiftKraft.Gameplay.NPCs
         {
             public NPCScannerBase Parent { get; private set; }
             public readonly List<KeyValuePair<ITargetable, Transform>> Targets = new();
+            public readonly List<KeyValuePair<ITargetable, Transform>> All = new();
+            public readonly List<KeyValuePair<ITargetable, Transform>> Friendlies = new();
 
             public void Init(NPCScannerBase scn) => Parent = scn;
 
-            public void Sort() => Targets.Sort((a, b) => (int)(Score(b.Key) - Score(a.Key)).GetSign());
+            public void Sort()
+            {
+                Targets.Sort((a, b) => (int)(Score(b.Key) - Score(a.Key)).GetSign());
+                Friendlies.Sort((a, b) => 
+                (int)((b.Key.GameObject.transform.position - Parent.transform.position).sqrMagnitude - 
+                (a.Key.GameObject.transform.position - Parent.transform.position).sqrMagnitude).GetSign());
+            }
 
             private float Score(ITargetable target) =>
                 CalculateTargetScore
@@ -39,6 +48,7 @@ namespace SwiftKraft.Gameplay.NPCs
         public readonly Package Data = new();
 
         public virtual bool HasTarget => Data.Targets.Count > 0;
+        public virtual bool HasFriendly => Data.Friendlies.Count > 0;
 
         public List<KeyValuePair<ITargetable, Transform>> Targets => Data.Targets;
 
@@ -66,11 +76,16 @@ namespace SwiftKraft.Gameplay.NPCs
             Dictionary<ITargetable, Transform> targets = AcquireTargets();
             foreach (KeyValuePair<ITargetable, Transform> target in targets)
             {
+                Data.All.Add(target);
                 if (ValidTarget(target.Key))
                     Data.Targets.Add(target);
+                else if (ValidFriendly(target.Key))
+                    Data.Friendlies.Add(target);
             }
             Data.Sort();
         }
+
+        public virtual bool ValidFriendly(ITargetable target) => target.Faction == Parent.Faction;
 
         public virtual bool ValidTarget(ITargetable target) => target.CanTarget && target.Faction != Parent.Faction;
 
