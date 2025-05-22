@@ -4368,14 +4368,14 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       Sounds:
-      - AnimationNames:
-        - ProtoPistol|ReloadTacticool
-        - ProtoPistol|ReloadTacticoolAim
+      - Animations:
+        - {fileID: 4298807583385619688, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+        - {fileID: -2193987365980645794, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
         Clips:
         - {fileID: 8300000, guid: d7bccddb7dfe4d04fa2b7b332d22aba2, type: 3}
-      - AnimationNames:
-        - ProtoPistol|ReloadTactical
-        - ProtoPistol|ReloadTacticalAim
+      - Animations:
+        - {fileID: 2971146141758270868, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+        - {fileID: -2237880809335247304, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
         Clips:
         - {fileID: 8300000, guid: ac098bb141bb69d459b177b3c8c64167, type: 3}
     - StateName: SecretReload

@@ -2513,7 +2513,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1046777007}
         m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Common.FPS.Demo.MenuOpen, Assembly-CSharp
         m_MethodName: BackToMain
         m_Mode: 1
@@ -5049,6 +5049,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1046777005}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1046777007 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6487582909317183467, guid: 2879634a47908bb4cb700ea060fb3b83,
+    type: 3}
+  m_PrefabInstance: {fileID: 1046777005}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb78775df982b6c4f8b40c457fc4ca15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1052697058
 PrefabInstance:
   m_ObjectHideFlags: 0

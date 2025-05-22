@@ -127,7 +127,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             }
             else
             {
-                currentGravity = -0.1f;
+                currentGravity = -3f;
                 coyoteTime.Reset();
             }
 
