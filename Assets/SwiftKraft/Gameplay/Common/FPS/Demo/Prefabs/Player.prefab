@@ -1464,11 +1464,12 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0.05
     StartEnded: 0
   RayPoint: {fileID: 4013005902616619962}
-  RayDistance: 0.22
+  RayDistance: 0.25
   RayMask:
     serializedVersion: 2
     m_Bits: 2049
-  BannedStates: 
+  LandingIgnoresBan: 1
+  BannedStates: 00000000
   Profiles: {fileID: 11400000, guid: ef83c24997001114f92c1c6cf61d896d, type: 2}
 --- !u!114 &9173360841550424576
 MonoBehaviour:
