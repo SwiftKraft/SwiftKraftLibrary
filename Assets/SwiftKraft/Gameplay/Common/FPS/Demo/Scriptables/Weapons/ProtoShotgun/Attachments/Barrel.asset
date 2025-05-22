@@ -35,6 +35,7 @@ MonoBehaviour:
     - rid: 4343724440603590658
     - rid: 4343724440603590660
     - rid: 4343724440603590662
+    - rid: 4343724514249801737
   references:
     version: 2
     RefIds:
@@ -76,3 +77,15 @@ MonoBehaviour:
           properties: []
         value: 1.05
         type: 3
+    - rid: 4343724514249801737
+      type: {class: AttachmentDamageProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.5
+        type: 2

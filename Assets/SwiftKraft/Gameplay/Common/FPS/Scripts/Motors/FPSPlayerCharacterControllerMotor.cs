@@ -38,7 +38,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public bool AllowSlide = true;
 
         readonly Timer coyoteTime = new(0.2f, false);
-        readonly Timer jumpTime = new(0.1f, false);
+        readonly Timer jumpTime = new(0.15f, false);
         readonly Trigger jumpInput = new();
         readonly Trigger slideInput = new();
         float currentGravity;
@@ -127,7 +127,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             }
             else
             {
-                currentGravity = -0.1f;
+                currentGravity = -3f;
                 coyoteTime.Reset();
             }
 

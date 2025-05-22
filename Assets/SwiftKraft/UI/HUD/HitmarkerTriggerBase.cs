@@ -23,7 +23,12 @@ namespace SwiftKraft.UI.HUD
             if (damage.Attacker != Target)
                 return;
 
-            Hitmarker.Trigger();
+            int id = 0;
+
+            if (target is IKillable killable && killable.IsDead)
+                id = 1;
+
+            Hitmarker.Trigger(id);
         }
     }
 }

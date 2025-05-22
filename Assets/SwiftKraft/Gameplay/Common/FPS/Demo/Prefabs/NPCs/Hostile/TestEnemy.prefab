@@ -288,6 +288,7 @@ MonoBehaviour:
       <CanDecay>k__BackingField: 1
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &6391053170963483088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +306,7 @@ MonoBehaviour:
     ParticleSystem: {fileID: 4475987755175711861}
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!1 &577158417110850108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,8 +1160,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.16886018
-  m_Center: {x: 1.4639198e-12, y: 0.08931034, z: 0.0000000013327435}
+  m_Radius: 0.19090268
+  m_Center: {x: 1.8418945e-12, y: 0.111352846, z: 0.0000000016614883}
 --- !u!54 &581730772895873841
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1791,6 +1793,7 @@ GameObject:
   - component: {fileID: 2455297538354820542}
   - component: {fileID: 3749455666820030302}
   - component: {fileID: 8396378012427590715}
+  - component: {fileID: 1252338604607047334}
   m_Layer: 9
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -1968,13 +1971,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.4
+  m_Height: 1.8
+  m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &4269728665191428399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2060,6 +2063,22 @@ MonoBehaviour:
   Range: 15
   AttackDot: 0.7
   AttackDotAxis: {x: 0, y: 0, z: 1}
+--- !u!208 &1252338604607047334
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727248630901589903}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.1, y: 0.9, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2893589357469343880
 GameObject:
   m_ObjectHideFlags: 0

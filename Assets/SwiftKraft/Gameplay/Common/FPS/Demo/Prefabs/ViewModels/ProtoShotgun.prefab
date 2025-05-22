@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
   Damage:
-    <BaseValue>k__BackingField: 15
+    <BaseValue>k__BackingField: 16
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
   - rid: 1893897059637133321
@@ -1252,7 +1252,7 @@ MonoBehaviour:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
           type: 3}
-        Amount: 6
+        Amount: 8
 --- !u!114 &2790031504580108237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1272,8 +1272,8 @@ MonoBehaviour:
   SpreadAimMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
-  Spread: 1.5
-  SpreadAim: 1
+  Spread: 2.5
+  SpreadAim: 2
   SpreadRecoil:
     serializedVersion: 2
     m_Curve:
@@ -1602,6 +1602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99b5fde23f8e064f8c6cd603e8d2d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventOverrides: []
 --- !u!114 &985517395273582322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1753,6 +1754,7 @@ MonoBehaviour:
       <CanDecay>k__BackingField: 1
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &509385651155450324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1770,6 +1772,7 @@ MonoBehaviour:
     ParticleSystem: {fileID: 1450271364616537299}
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &6399840945172612297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3253,7 +3256,16 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-      Sounds: []
+      Sounds:
+      - Animations:
+        - {fileID: -2951823348129993485, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        - {fileID: 3855487481780945818, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        - {fileID: 5073298101848787917, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        - {fileID: 2389790938593574948, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        - {fileID: 3205454310474280782, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        - {fileID: -1088237725023308565, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        Clips:
+        - {fileID: 8300000, guid: a9dc920b6498ce8499c03271a3979cdf, type: 3}
   - ID: Reload
     States:
     - StateName: StartReload

@@ -27,7 +27,7 @@ namespace SwiftKraft.Gameplay.Map
         protected virtual void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out IDamagable dmg))
-                dmg.Damage(new KillZoneData());
+                new KillZoneData().ApplyDamage(dmg);
         }
     }
 }
