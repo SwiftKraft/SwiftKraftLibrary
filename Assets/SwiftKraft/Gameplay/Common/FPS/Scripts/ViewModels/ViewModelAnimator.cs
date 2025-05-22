@@ -2,7 +2,6 @@ using SwiftKraft.Utils;
 using System;
 using System.Collections;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -37,7 +36,7 @@ namespace SwiftKraft.Gameplay.Weapons
             anim?.Play(Animator);
         }
 
-        public void PlaySound(AudioClip clip)
+        public void PlaySound(AudioClip clip, float startTime = 0f)
         {
             if (SoundSource == null)
                 return;
@@ -45,6 +44,8 @@ namespace SwiftKraft.Gameplay.Weapons
             SoundSource.clip = clip;
             SoundSource.pitch = Animator.speed * Time.timeScale;
             SoundSource.Play();
+            if (startTime > 0f)
+                SoundSource.time = startTime;
         }
 
         public void ResetAnimation(AnimationClip clip) => ResetAnimation(clip.name);
@@ -59,6 +60,8 @@ namespace SwiftKraft.Gameplay.Weapons
         [Serializable]
         public class Animation
         {
+            public static int Tries = 4;
+
             public ViewModelAnimator Parent { get; set; }
 
             public string ID;
@@ -76,16 +79,23 @@ namespace SwiftKraft.Gameplay.Weapons
 
                 anim.Update(0f);
 
-                Parent.StartCoroutine(sound(cur, anim));
+                Parent.StartCoroutine(sound());
 
-                IEnumerator sound(State cur, Animator anim)
+                IEnumerator sound()
                 {
-                    yield return new WaitForEndOfFrame();
-                    PlaySound(cur, anim);
+                    float norm = 0f;
+                    for (int i = 0; i < Tries; i++)
+                    {
+                        if (PlaySound(cur, anim, norm))
+                            break;
+
+                        norm += Time.deltaTime;
+                        yield return null;
+                    }
                 }
             }
 
-            public void PlaySound(State state, Animator anim)
+            public bool PlaySound(State state, Animator anim, float startTime = 0f)
             {
                 AnimatorClipInfo[] infos = anim.IsInTransition(0) ? anim.GetNextAnimatorClipInfo(0) : anim.GetCurrentAnimatorClipInfo(0);
 
@@ -93,7 +103,7 @@ namespace SwiftKraft.Gameplay.Weapons
                     infos = anim.IsInTransition(0) ? anim.GetCurrentAnimatorClipInfo(0) : anim.GetNextAnimatorClipInfo(0);
 
                 if (infos.Length <= 0)
-                    return;
+                    return false;
 
                 AnimatorClipInfo info = infos.Aggregate((i1, i2) => i1.weight > i2.weight ? i1 : i2);
 
@@ -101,10 +111,12 @@ namespace SwiftKraft.Gameplay.Weapons
                 {
                     if (sound.Animations.Contains(info.clip))
                     {
-                        Parent.PlaySound(sound.Clips.GetRandom());
-                        return;
+                        Parent.PlaySound(sound.Clips.GetRandom(), startTime);
+                        return true;
                     }
                 }
+
+                return true;
             }
 
             [Serializable]
