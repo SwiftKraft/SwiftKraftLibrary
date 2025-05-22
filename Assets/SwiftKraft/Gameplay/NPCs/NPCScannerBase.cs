@@ -21,13 +21,7 @@ namespace SwiftKraft.Gameplay.NPCs
 
             public void Init(NPCScannerBase scn) => Parent = scn;
 
-            public void Sort()
-            {
-                Targets.Sort((a, b) => (int)(Score(b.Key) - Score(a.Key)).GetSign());
-                Friendlies.Sort((a, b) => 
-                (int)((b.Key.GameObject.transform.position - Parent.transform.position).sqrMagnitude - 
-                (a.Key.GameObject.transform.position - Parent.transform.position).sqrMagnitude).GetSign());
-            }
+            public void Sort() => Targets.Sort((a, b) => (int)(Score(b.Key) - Score(a.Key)).GetSign());
 
             private float Score(ITargetable target) =>
                 CalculateTargetScore
@@ -73,6 +67,8 @@ namespace SwiftKraft.Gameplay.NPCs
         public void Scan()
         {
             Data.Targets.Clear();
+            Data.Friendlies.Clear();
+            Data.All.Clear();
             Dictionary<ITargetable, Transform> targets = AcquireTargets();
             foreach (KeyValuePair<ITargetable, Transform> target in targets)
             {
@@ -82,7 +78,7 @@ namespace SwiftKraft.Gameplay.NPCs
                 else if (ValidFriendly(target.Key))
                     Data.Friendlies.Add(target);
             }
-            Data.Sort();
+            Data.Sort(); // Rework for custom sorting
         }
 
         public virtual bool ValidFriendly(ITargetable target) => target.Faction == Parent.Faction;

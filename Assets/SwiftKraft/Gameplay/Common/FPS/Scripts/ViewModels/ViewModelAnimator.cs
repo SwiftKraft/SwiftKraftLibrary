@@ -1,6 +1,8 @@
 using SwiftKraft.Utils;
 using System;
+using System.Collections;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -74,7 +76,13 @@ namespace SwiftKraft.Gameplay.Weapons
 
                 anim.Update(0f);
 
-                PlaySound(cur, anim);
+                Parent.StartCoroutine(sound(cur, anim));
+
+                IEnumerator sound(State cur, Animator anim)
+                {
+                    yield return new WaitForEndOfFrame();
+                    PlaySound(cur, anim);
+                }
             }
 
             public void PlaySound(State state, Animator anim)
@@ -91,7 +99,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
                 foreach (SoundPair sound in state.Sounds)
                 {
-                    if (sound.AnimationNames.Contains(info.clip.name))
+                    if (sound.Animations.Contains(info.clip))
                     {
                         Parent.PlaySound(sound.Clips.GetRandom());
                         return;
@@ -113,7 +121,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 [Serializable]
                 public struct SoundPair
                 {
-                    public string[] AnimationNames;
+                    public AnimationClip[] Animations;
                     public AudioClip[] Clips;
                 }
             }
