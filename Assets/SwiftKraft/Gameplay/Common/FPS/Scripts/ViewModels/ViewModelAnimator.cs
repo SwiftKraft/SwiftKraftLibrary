@@ -60,7 +60,7 @@ namespace SwiftKraft.Gameplay.Weapons
         [Serializable]
         public class Animation
         {
-            public static int Tries = 4;
+            public static int Tries = 10;
 
             public ViewModelAnimator Parent { get; set; }
 
@@ -105,7 +105,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (infos.Length <= 0)
                     return false;
 
-                AnimatorClipInfo info = infos.Aggregate((i1, i2) => i1.weight > i2.weight ? i1 : i2);
+                AnimatorClipInfo info = infos.Aggregate((i1, i2) => i1.weight >= i2.weight ? i1 : i2);
 
                 foreach (SoundPair sound in state.Sounds)
                 {
