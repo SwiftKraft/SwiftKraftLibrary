@@ -1,98 +1,144 @@
 using UnityEngine;
 using System.Text;
-using System.Text.RegularExpressions;
-using SwiftKraft.Utils;
 
+using System;
 
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public class DeveloperComment : MonoBehaviour
+namespace SwiftKraft.Utils
 {
-    public const float ScalingDistance = 3.5f;
-
-    [Header("Comment")]
-    [TextArea(1, 100)]
-    public string Text;
-    public string Author;
-    public int CharCountWrap = 20;
-    public float MaxDistance = 50f;
-    [Header("Styling")]
-    public bool RichText = false;
-    public int FontSize = 14;
-    public Color FontColor = Color.white;
-    public FontStyle FontStyle = FontStyle.Normal;
-    public Font FontOverride;
-    public float FadeDistance = 3f;
-    [Header("Build Settings")]
-    public bool AutoDestroyInBuild = true;
-
-    private void Start()
+    public class DeveloperComment : MonoBehaviour
     {
-        if (!Application.isEditor && AutoDestroyInBuild)
-            Destroy(gameObject);
-    }
+        public const float ScalingDistance = 3.5f;
 
-    private void OnDrawGizmos()
-    {
+        [Header("Comment")]
+        [TextArea(1, 100)]
+        public string Text;
+        public string Author;
+        public int CharCountWrap = 20;
+        public float MaxDistance = 50f;
+        public bool ShowDate = true;
+        [Header("Styling")]
+        public bool RichText = false;
+        public int FontSize = 14;
+        public Color FontColor = Color.white;
+        public FontStyle FontStyle = FontStyle.Normal;
+        public Font FontOverride;
+        public float FadeDistance = 3f;
+        [Header("Build Settings")]
+        public bool AutoDestroyInBuild = true;
+
+        [HideInInspector]
+        public long Timestamp;
+        string cachedText;
+
+        private void Start()
+        {
+            if (!Application.isEditor && AutoDestroyInBuild)
+                Destroy(gameObject);
+        }
+
+        private void Reset() => UpdateTime(true);
+        private void OnValidate() => UpdateTime();
+
+        private void OnDrawGizmos()
+        {
 #if UNITY_EDITOR
 
-        Transform sceneCam = SceneView.lastActiveSceneView.camera.transform;
+            Transform sceneCam = SceneView.lastActiveSceneView.camera.transform;
 
-        if (string.IsNullOrWhiteSpace(Text))
-            return;
+            if (string.IsNullOrWhiteSpace(Text))
+                return;
 
-        StringBuilder builder = new();
+            StringBuilder builder = new();
 
-        string[] sep = Text.Split(' ');
+            string[] sep = Text.Split(' ');
 
-        int counter = 0;
-        for (int i = 0; i < sep.Length; i++)
-        {
-            if (string.IsNullOrWhiteSpace(sep[i]))
-                continue;
-
-            builder.Append(sep[i]);
-            builder.Append(' ');
-            counter += sep[i].Length(RichText);
-
-            if (sep[i].Contains('\n'))
-                counter = 0;
-            else if (counter >= CharCountWrap && i < sep.Length - 1)
+            int counter = 0;
+            for (int i = 0; i < sep.Length; i++)
             {
-                builder.Append('\n');
-                counter = 0;
+                if (string.IsNullOrWhiteSpace(sep[i]))
+                    continue;
+
+                builder.Append(sep[i]);
+                builder.Append(' ');
+                counter += sep[i].Length(RichText);
+
+                if (sep[i].Contains('\n'))
+                    counter = 0;
+                else if (counter >= CharCountWrap && i < sep.Length - 1)
+                {
+                    builder.Append('\n');
+                    counter = 0;
+                }
             }
-        }
 
-        if (!string.IsNullOrWhiteSpace(Author))
-        {
-            builder.Append("\n\n- ");
-            builder.Append(Author);
-        }
-
-        float sceneCamDist = (transform.position - sceneCam.position).magnitude;
-
-        if (sceneCamDist <= MaxDistance + FadeDistance)
-        {
-            GUIStyle style = new()
+            if (!string.IsNullOrWhiteSpace(Author))
             {
-                alignment = TextAnchor.MiddleLeft,
-                fontSize = FontSize,
-                richText = RichText,
-                fontStyle = FontStyle,
-                font = FontOverride
-            };
+                builder.Append("\n\n~ ");
+                builder.Append(Author);
+            }
 
-            Color currentColor = FontColor;
+            if (ShowDate)
+            {
+                if (!string.IsNullOrWhiteSpace(Author))
+                    builder.Append(", Modified ");
+                else
+                    builder.Append("\n\n Modified ");
 
-            currentColor.a *= Mathf.InverseLerp(MaxDistance + FadeDistance, MaxDistance, sceneCamDist);
+                builder.Append(new DateTime(Timestamp).ToLocalTime());
+            }
 
-            style.normal.textColor = currentColor;
+            float sceneCamDist = (transform.position - sceneCam.position).magnitude;
 
-            Handles.Label(transform.position + sceneCam.right * Mathf.Lerp(0f, 0.5f, Mathf.InverseLerp(0f, ScalingDistance, sceneCamDist)), builder.ToString(), style);
+            if (sceneCamDist <= MaxDistance + FadeDistance)
+            {
+                GUIStyle style = new()
+                {
+                    alignment = TextAnchor.MiddleLeft,
+                    fontSize = FontSize,
+                    richText = RichText,
+                    fontStyle = FontStyle,
+                    font = FontOverride
+                };
+
+                Color currentColor = FontColor;
+
+                currentColor.a *= Mathf.InverseLerp(MaxDistance + FadeDistance, MaxDistance, sceneCamDist);
+
+                style.normal.textColor = currentColor;
+
+                Handles.Label(transform.position + sceneCam.right * Mathf.Lerp(0f, 0.5f, Mathf.InverseLerp(0f, ScalingDistance, sceneCamDist)), builder.ToString(), style);
+            }
+#endif
+        }
+
+        private void UpdateTime(bool force = false)
+        {
+            if (Application.isPlaying || (!force && Text == cachedText))
+                return;
+
+            Timestamp = DateTime.Now.Ticks;
+            cachedText = Text;
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(this);
+#endif
+        }
+
+#if UNITY_EDITOR
+        [MenuItem("Tools/SwiftKraft/Add Comment")]
+        [MenuItem("GameObject/Add Comment #l")]
+        public static void AddComment()
+        {
+            Transform sceneCam = SceneView.lastActiveSceneView.camera.transform;
+
+            GameObject go = new("Developer Comment", typeof(DeveloperComment));
+            go.transform.position = sceneCam.position + sceneCam.forward * 3f;
+            Undo.RegisterCreatedObjectUndo(go, "Create Developer Comment");
+            Selection.activeObject = go;
         }
 #endif
     }
