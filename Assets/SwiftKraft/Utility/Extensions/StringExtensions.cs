@@ -2,10 +2,11 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SwiftKraft.Utils
 {
-    public static class StringCompressor
+    public static class StringExtensions
     {
         /// <summary>
         /// Compresses the string.
@@ -53,6 +54,22 @@ namespace SwiftKraft.Utils
             }
 
             return Encoding.UTF8.GetString(buffer);
+        }
+
+        public static readonly Regex RichTextRegex = new(@"<.*?>", RegexOptions.Compiled);
+
+        public static int Length(this string input, bool ignoreRichText = true)
+        {
+            if (string.IsNullOrEmpty(input))
+                return 0;
+
+            if (ignoreRichText)
+            {
+                // Strip rich text tags like <b>, </color>, <size=20>, etc.
+                input = RichTextRegex.Replace(input, "");
+            }
+
+            return input.Length;
         }
     }
 }

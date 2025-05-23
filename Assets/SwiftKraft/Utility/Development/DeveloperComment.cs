@@ -1,5 +1,9 @@
 using UnityEngine;
 using System.Text;
+using System.Text.RegularExpressions;
+using SwiftKraft.Utils;
+
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,7 +16,8 @@ public class DeveloperComment : MonoBehaviour
     [Header("Comment")]
     [TextArea(1, 100)]
     public string Text;
-    public int WordCountWrap = 8;
+    public string Author;
+    public int CharCountWrap = 20;
     public float MaxDistance = 50f;
     [Header("Styling")]
     public bool RichText = false;
@@ -36,22 +41,36 @@ public class DeveloperComment : MonoBehaviour
 
         Transform sceneCam = SceneView.lastActiveSceneView.camera.transform;
 
+        if (string.IsNullOrWhiteSpace(Text))
+            return;
+
         StringBuilder builder = new();
 
         string[] sep = Text.Split(' ');
 
         int counter = 0;
-        foreach (string s in sep)
+        for (int i = 0; i < sep.Length; i++)
         {
-            builder.Append(s);
-            builder.Append(' ');
-            counter++;
+            if (string.IsNullOrWhiteSpace(sep[i]))
+                continue;
 
-            if (counter >= WordCountWrap)
+            builder.Append(sep[i]);
+            builder.Append(' ');
+            counter += sep[i].Length(RichText);
+
+            if (sep[i].Contains('\n'))
+                counter = 0;
+            else if (counter >= CharCountWrap && i < sep.Length - 1)
             {
                 builder.Append('\n');
                 counter = 0;
             }
+        }
+
+        if (!string.IsNullOrWhiteSpace(Author))
+        {
+            builder.Append("\n\n- ");
+            builder.Append(Author);
         }
 
         float sceneCamDist = (transform.position - sceneCam.position).magnitude;
@@ -64,7 +83,7 @@ public class DeveloperComment : MonoBehaviour
                 fontSize = FontSize,
                 richText = RichText,
                 fontStyle = FontStyle,
-                font = FontOverride,
+                font = FontOverride
             };
 
             Color currentColor = FontColor;
