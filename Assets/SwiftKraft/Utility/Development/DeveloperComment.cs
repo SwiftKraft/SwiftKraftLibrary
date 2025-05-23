@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Text;
+using System.Globalization;
 
 using System;
 
@@ -89,7 +90,7 @@ namespace SwiftKraft.Utils
                 else
                     builder.Append("\n\n Modified ");
 
-                builder.Append(new DateTime(Timestamp).ToLocalTime());
+                builder.Append(new DateTime(Timestamp).ToLocalTime().ToString(CultureInfo.CurrentCulture));
             }
 
             float sceneCamDist = (transform.position - sceneCam.position).magnitude;
