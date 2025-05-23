@@ -948,6 +948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4664184785496646165}
   - component: {fileID: 1005616510785594389}
+  - component: {fileID: 8267179452519175162}
   m_Layer: 6
   m_Name: Shell
   m_TagString: Untagged
@@ -1096,6 +1097,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.013596763, y: -0.024283733, z: 0.0043884125}
     m_Extent: {x: 0.009758449, y: 0.006934493, z: 0.019439114}
   m_DirtyAABB: 0
+--- !u!114 &8267179452519175162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014519429643510190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  Scriptable: {fileID: 11400000, guid: 85f4ab92d1c9daf46bb0bb5f5e5b8a16, type: 2}
 --- !u!1 &2188737123759806702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,7 +1267,9 @@ MonoBehaviour:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
           type: 3}
-        Amount: 9
+        Amount:
+          <BaseValue>k__BackingField: 8
+          <Values>k__BackingField: []
 --- !u!114 &2790031504580108237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3348,6 +3365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParameterNameAmmo: Ammo
   ParameterNameReloading: Reloading
+  ParameterNameReloadSpeed: ReloadSpeedMultiplier
 --- !u!114 &1713166684888503834
 MonoBehaviour:
   m_ObjectHideFlags: 0

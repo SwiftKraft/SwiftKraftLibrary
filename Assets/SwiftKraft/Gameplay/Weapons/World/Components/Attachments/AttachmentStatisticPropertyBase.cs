@@ -10,15 +10,15 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public override void ApplyOverrides()
         {
-            overrider.Value = value;
             overrider.Type = type;
+            overrider.Value = value;
         }
 
         public override void Uninstall()
         {
             base.Uninstall();
-            overrider.Value = 0f;
             overrider.Type = ModifiableStatistic.ModifierType.Addition;
+            overrider.Value = 0f;
         }
     }
 }

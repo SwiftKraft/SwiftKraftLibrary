@@ -10,36 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f2d4cf98f1b1f044b7e22a5e6f767b3, type: 3}
-  m_Name: Barrel
+  m_Name: Shells
   m_EditorClassIdentifier: 
-  SlotName: Barrel
+  SlotName: Shells
   Attachments:
   - parent: {fileID: 0}
-    name: Standard Barrel
+    name: Buckshot
     package:
-      mesh: {fileID: 8108563764783910780, guid: 47551341c3a44a14e9ed3892759e6743,
+      mesh: {fileID: -4974468161004867859, guid: 47551341c3a44a14e9ed3892759e6743,
         type: 3}
       materials:
+      - {fileID: 2232875878998256659, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
       - {fileID: -239302050275881172, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
       - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
     properties: []
   - parent: {fileID: 0}
-    name: Extended Barrel
+    name: Slug
     package:
-      mesh: {fileID: 3828601404574971821, guid: 47551341c3a44a14e9ed3892759e6743,
+      mesh: {fileID: -4974468161004867859, guid: 47551341c3a44a14e9ed3892759e6743,
         type: 3}
       materials:
+      - {fileID: 2232875878998256659, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
       - {fileID: -239302050275881172, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
       - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
     properties:
-    - rid: 4343724573794762772
-    - rid: 4343724573794762773
-    - rid: 4343724573794762774
-    - rid: 4343724573794762775
+    - rid: 4343724574727208968
+    - rid: 4343724574727208970
+    - rid: 4343724574727208972
+    - rid: 4343724574727208974
   references:
     version: 2
     RefIds:
-    - rid: 4343724573794762772
+    - rid: 4343724574727208968
       type: {class: AttachmentDamageProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         parent:
@@ -49,22 +51,9 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 1.4
+        value: 5
         type: 2
-    - rid: 4343724573794762773
-      type: {class: AttachmentHipSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
-        asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 1.2
-        type: 3
-    - rid: 4343724573794762774
+    - rid: 4343724574727208970
       type: {class: AttachmentAimSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}
       data:
@@ -75,10 +64,11 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 1.5
+        value: 2
         type: 3
-    - rid: 4343724573794762775
-      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+    - rid: 4343724574727208972
+      type: {class: AttachmentHipSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
       data:
         parent:
           parent: {fileID: 0}
@@ -87,5 +77,19 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 1.1
-        type: 3
+        value: 3
+        type: 2
+    - rid: 4343724574727208974
+      type: {class: AttachmentAttackAmountProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1
+        type: 4
+        AttackModeIndex: 0
