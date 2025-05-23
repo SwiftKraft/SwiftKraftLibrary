@@ -1229,7 +1229,7 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 16
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
-  - rid: 1893897059637133321
+  - rid: 4343724573794762760
   PrefireDelay:
     <BaseValue>k__BackingField: 0
     <Values>k__BackingField: []
@@ -1246,13 +1246,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1893897059637133321
-      type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+    - rid: 4343724573794762760
+      type: {class: WeaponAttackBurst, ns: SwiftKraft.Gameplay.Weapons, asm: SwiftKraft}
       data:
         Parent: {fileID: 0}
-        Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
-          type: 3}
-        Amount: 8
+        Prefab: {fileID: 0}
+        Amount: 1
+        Count: 0
+        Delay: 0
 --- !u!114 &2790031504580108237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5011,6 +5012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5915513907278451308}
   - component: {fileID: 5707014718447032217}
+  - component: {fileID: 3944102923682412647}
   m_Layer: 6
   m_Name: Stock
   m_TagString: Untagged
@@ -5157,6 +5159,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.015062382, y: -0.010494532, z: 0.011166982}
     m_Extent: {x: 0.00718813, y: 0.009368176, z: 0.011559635}
   m_DirtyAABB: 0
+--- !u!114 &3944102923682412647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9083503745618951862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  Scriptable: {fileID: 11400000, guid: a0bf588d311a8d142b0e0a0cdf317df2, type: 2}
 --- !u!1001 &1710431733871431023
 PrefabInstance:
   m_ObjectHideFlags: 0

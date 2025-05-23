@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2d4cf98f1b1f044b7e22a5e6f767b3, type: 3}
+  m_Name: Stock
+  m_EditorClassIdentifier: 
+  SlotName: Barrel
+  Attachments:
+  - parent: {fileID: 0}
+    name: Standard Stock
+    package:
+      mesh: {fileID: 7946851307090103757, guid: 47551341c3a44a14e9ed3892759e6743,
+        type: 3}
+      materials:
+      - {fileID: -7098565394360792512, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+    properties: []
+  - parent: {fileID: 0}
+    name: Sawed Stock
+    package:
+      mesh: {fileID: 6732936034150080898, guid: 47551341c3a44a14e9ed3892759e6743,
+        type: 3}
+      materials:
+      - {fileID: -7098565394360792512, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+    properties:
+    - rid: 4343724573794762757
+    - rid: 4343724573794762759
+  references:
+    version: 2
+    RefIds:
+    - rid: 4343724573794762757
+      type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: SwiftKraft}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.75
+        type: 2
+    - rid: 4343724573794762759
+      type: {class: AttachmentRecoilProperty, ns: SwiftKraft.Gameplay.Weapons, asm: SwiftKraft}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 2.5
+        type: 2
