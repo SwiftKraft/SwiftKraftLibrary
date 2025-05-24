@@ -122,7 +122,7 @@ namespace SwiftKraft.Utils
             if (Application.isPlaying || (!force && Text == cachedText))
                 return;
 
-            Timestamp = DateTime.Now.Ticks;
+            Timestamp = DateTime.UtcNow.Ticks;
             cachedText = Text;
 #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
