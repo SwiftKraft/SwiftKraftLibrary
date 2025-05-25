@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 682911739140861939}
   - component: {fileID: 609099804317251974}
   - component: {fileID: 6458779792178021028}
+  - component: {fileID: 7241546701463082071}
   m_Layer: 6
   m_Name: Recoil
   m_TagString: Untagged
@@ -254,11 +255,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 682911739140861939}
-  Multiplier: 1
-  TiltMultiplier: -2
+  Multiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: -2
+    <Values>k__BackingField: []
   Maximum: 1
   TiltMaximum: 1.25
   SmoothTime: 0.1
+--- !u!114 &7241546701463082071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494483808487335652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fde7330803c47740ad3f1bcca147928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplier:
+    <BaseValue>k__BackingField: 0.2
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: 0.7
+    <Values>k__BackingField: []
 --- !u!1 &631380733960251861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,7 +1464,9 @@ MonoBehaviour:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
           type: 3}
-        Amount: 1
+        Amount:
+          <BaseValue>k__BackingField: 1
+          <Values>k__BackingField: []
 --- !u!114 &8029738550120293392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4440,6 +4465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParameterNameAmmo: Ammo
   ParameterNameReloading: Reloading
+  ParameterNameReloadSpeed: ReloadSpeedMultiplier
 --- !u!114 &1713166684888503834
 MonoBehaviour:
   m_ObjectHideFlags: 0

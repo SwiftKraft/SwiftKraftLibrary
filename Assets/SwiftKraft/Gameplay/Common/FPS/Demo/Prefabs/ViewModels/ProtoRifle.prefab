@@ -949,7 +949,9 @@ MonoBehaviour:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
           type: 3}
-        Amount: 1
+        Amount:
+          <BaseValue>k__BackingField: 1
+          <Values>k__BackingField: []
 --- !u!114 &2790031504580108237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,6 +1764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99b5fde23f8e064f8c6cd603e8d2d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventOverrides: []
 --- !u!114 &985517395273582322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1850,19 +1853,19 @@ MonoBehaviour:
     - Sound: {fileID: 8300000, guid: 2f84a7c771f56bf40a64debdffab9bf4, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.65
+      Volume: 0.3
       StereoPan: 0
       SpatialBlend: 1
     - Sound: {fileID: 8300000, guid: e563efaf275d5df40a075fce45ab5a54, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.65
+      Volume: 0.3
       StereoPan: 0
       SpatialBlend: 1
     - Sound: {fileID: 8300000, guid: f6f1cb610a708314aa5d84757d94ab50, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.65
+      Volume: 0.3
       StereoPan: 0
       SpatialBlend: 1
     VolumeMultiplier:
@@ -1913,6 +1916,7 @@ MonoBehaviour:
       <CanDecay>k__BackingField: 1
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &509385651155450324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,6 +1934,7 @@ MonoBehaviour:
     ParticleSystem: {fileID: 56711355422907227}
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &6399840945172612297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4195,6 +4200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParameterNameAmmo: Ammo
   ParameterNameReloading: Reloading
+  ParameterNameReloadSpeed: ReloadSpeedMultiplier
 --- !u!114 &1713166684888503834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5111,6 +5117,7 @@ GameObject:
   - component: {fileID: 5815484644316226888}
   - component: {fileID: 1623477736976801841}
   - component: {fileID: 4209454503977764653}
+  - component: {fileID: 4627573672655829046}
   m_Layer: 6
   m_Name: Recoil
   m_TagString: Untagged
@@ -5160,11 +5167,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 5815484644316226888}
-  Multiplier: 1
-  TiltMultiplier: -1.75
+  Multiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: -2
+    <Values>k__BackingField: []
   Maximum: 1.5
   TiltMaximum: 2
   SmoothTime: 0.15
+--- !u!114 &4627573672655829046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475394594618764928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fde7330803c47740ad3f1bcca147928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplier:
+    <BaseValue>k__BackingField: 0.2
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: 0.7
+    <Values>k__BackingField: []
 --- !u!1 &8488331807436290598
 GameObject:
   m_ObjectHideFlags: 0

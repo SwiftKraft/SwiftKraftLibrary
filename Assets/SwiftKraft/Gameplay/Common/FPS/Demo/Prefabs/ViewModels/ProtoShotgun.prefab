@@ -4537,6 +4537,7 @@ GameObject:
   - component: {fileID: 5815484644316226888}
   - component: {fileID: 1623477736976801841}
   - component: {fileID: 4209454503977764653}
+  - component: {fileID: 76531261098344251}
   m_Layer: 6
   m_Name: Recoil
   m_TagString: Untagged
@@ -4586,11 +4587,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 5815484644316226888}
-  Multiplier: 1
-  TiltMultiplier: -1.75
+  Multiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: -2
+    <Values>k__BackingField: []
   Maximum: 1.5
   TiltMaximum: 2
   SmoothTime: 0.15
+--- !u!114 &76531261098344251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475394594618764928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fde7330803c47740ad3f1bcca147928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplier:
+    <BaseValue>k__BackingField: 0.2
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: 0.7
+    <Values>k__BackingField: []
 --- !u!1 &8519351525268655872
 GameObject:
   m_ObjectHideFlags: 0
