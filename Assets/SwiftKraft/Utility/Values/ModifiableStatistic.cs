@@ -14,7 +14,11 @@ namespace SwiftKraft.Utils
         public List<Modifier> Values { get; private set; } = new();
 
         public event Action<float> OnUpdate;
-        public void UpdateValue() => OnUpdate?.Invoke(GetValue());
+        public void UpdateValue()
+        {
+            IsDirty = true;
+            OnUpdate?.Invoke(GetValue());
+        }
 
         public readonly List<ModifiableStatistic> Additives = new();
 
@@ -22,8 +26,14 @@ namespace SwiftKraft.Utils
 
         public ModifiableStatistic(float baseValue) { BaseValue = baseValue; }
 
+        public bool IsDirty { get; set; } = true;
+        float cache;
+
         public float GetValue()
         {
+            if (!IsDirty)
+                return cache;
+
             float value = BaseValue;
 
             if (Values.Count > 0)
@@ -35,6 +45,8 @@ namespace SwiftKraft.Utils
                     for (int j = 0; j < Additives[i].Values.Count; j++)
                         value = Additives[i].Values[j].Modify(value);
 
+            IsDirty = false;
+            cache = value;
             return value;
         }
 
@@ -75,6 +87,7 @@ namespace SwiftKraft.Utils
                 ModifierType.Subtraction => value - Value,
                 ModifierType.Division => value / Value,
                 ModifierType.Multiplication => value * Value,
+                ModifierType.Mutation => Value,
                 _ => value,
             };
         }
@@ -84,7 +97,8 @@ namespace SwiftKraft.Utils
             Addition,
             Subtraction,
             Multiplication,
-            Division
+            Division,
+            Mutation
         }
     }
 }

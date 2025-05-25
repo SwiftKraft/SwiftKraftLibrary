@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Damagables
 {
-    public class Hurtbox : MonoBehaviour, IDamagable, IFaction
+    public class Hurtbox : MonoBehaviour, IDamagable, IFaction, IKillable
     {
         public IDamagable Parent { get; private set; }
         public virtual string Faction
@@ -16,6 +16,8 @@ namespace SwiftKraft.Gameplay.Damagables
             }
         }
 
+        public bool IsDead => Parent is IKillable killable && killable.IsDead;
+
         protected virtual void Awake()
         {
             Parent = transform.parent.GetComponentInParent<IDamagable>();
@@ -24,6 +26,10 @@ namespace SwiftKraft.Gameplay.Damagables
                 Parent = null;
         }
 
-        public virtual void Damage(DamageDataBase data) => Parent?.Damage(data);
+        public virtual void Damage(DamageDataBase data)
+        {
+            if ((Object)Parent != null)
+                data.ApplyDamage(Parent);
+        }
     }
 }

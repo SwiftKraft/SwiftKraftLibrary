@@ -34,7 +34,9 @@ namespace SwiftKraft.Gameplay.Building
             if (BuildingManager.Instance == null || Prefab == null)
                 return null;
 
-            Linker = Object.Instantiate(Prefab, Transform.Position, Transform.Rotation).AddComponent<BuildLinker>();
+            GameObject go = Object.Instantiate(Prefab, Transform.Position, Transform.Rotation);
+
+            Linker = go.TryGetComponent(out BuildLinker bl) ? bl : go.AddComponent<BuildLinker>();
             Linker.Init(this);
             return Linker.gameObject;
         }

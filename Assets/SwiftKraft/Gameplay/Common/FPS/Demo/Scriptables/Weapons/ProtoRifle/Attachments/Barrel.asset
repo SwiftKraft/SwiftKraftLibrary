@@ -15,7 +15,7 @@ MonoBehaviour:
   SlotName: Barrel
   Attachments:
   - parent: {fileID: 0}
-    name: None
+    name: Standard Barrel
     package:
       mesh: {fileID: 8108563764783910780, guid: 5149efcf6938e4049989526f85b4fb8d,
         type: 3}
@@ -38,6 +38,7 @@ MonoBehaviour:
     - rid: 4744942044584345617
     - rid: 1893896724051918856
     - rid: 1893896724051918858
+    - rid: 4343724514249801733
   - parent: {fileID: 0}
     name: Suppressive Barrel
     package:
@@ -52,6 +53,7 @@ MonoBehaviour:
     - rid: 1893897132975325195
     - rid: 1893897132975325197
     - rid: 1893897132975325201
+    - rid: 4343724514249801731
   references:
     version: 2
     RefIds:
@@ -149,6 +151,32 @@ MonoBehaviour:
           Volume: 0.5
           StereoPan: 0
           SpatialBlend: 1
+    - rid: 4343724514249801731
+      type: {class: AttachmentParticleChangeProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        Action: Attack
+        ParticlePrefab: {fileID: 6925547603790559054, guid: 0f86467d879dfec46baccdbe2c5d3554,
+          type: 3}
+    - rid: 4343724514249801733
+      type: {class: AttachmentDamageProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.3
+        type: 2
     - rid: 4744942044584345616
       type: {class: AttachmentShootPointOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}

@@ -90,7 +90,6 @@ namespace SwiftKraft.Gameplay.Projectiles
             if (info.Object.TryGetComponent(out IDamagable dmg) && (dmg is not IFaction f || f.Faction != Faction))
             {
                 DamageDataBase data = GetDamageData(info);
-                dmg.Damage(data);
                 data.ApplyDamage(dmg);
             }
         }

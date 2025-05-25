@@ -21,8 +21,8 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
         public float RayDistance = 0.25f;
         public LayerMask RayMask;
 
+        public bool LandingIgnoresBan = true;
         public List<int> BannedStates;
-
 
         public FootstepCollection Profiles;
         public FootstepProfile[] StepProfiles => Profiles == null ? empty : Profiles.Profiles;
@@ -48,7 +48,17 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
 
         private void FixedUpdate()
         {
-            if (BannedStates.Contains(MotorBase.State))
+            bool inBannedState = BannedStates.Contains(MotorBase.State);
+
+            if (MotorBase is IGroundable groundable)
+            {
+                if ((LandingIgnoresBan || !inBannedState) && groundable.IsGrounded && !prevGrounded)
+                    Trigger();
+
+                prevGrounded = groundable.IsGrounded;
+            }
+
+            if (inBannedState)
                 return;
 
             RateLimit.Tick(Time.fixedDeltaTime);
@@ -59,14 +69,6 @@ namespace SwiftKraft.Gameplay.Motors.Miscellaneous
                 Trigger();
 
             prevFactor = factor;
-
-            if (MotorBase is IGroundable groundable)
-            {
-                if (groundable.IsGrounded && !prevGrounded)
-                    Trigger();
-
-                prevGrounded = groundable.IsGrounded;
-            }
         }
 
         public void Trigger()

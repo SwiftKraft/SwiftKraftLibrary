@@ -8,14 +8,13 @@ using UnityEngine;
 [CustomPropertyDrawer(typeof(SubclassAttribute))]
 public class SubclassPropertyDrawer : PropertyDrawer
 {
-    Dictionary<System.Type, SubclassSelector> m_selectorMap = new();
+    readonly Dictionary<System.Type, SubclassSelector> m_selectorMap = new();
 
     const float m_spacing = 2.0f;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         float lineSize = EditorGUIUtility.singleLineHeight;
-        float fieldSpacing = EditorGUIUtility.standardVerticalSpacing;
 
         EditorGUI.BeginProperty(position, label, property);
         {
@@ -32,8 +31,6 @@ public class SubclassPropertyDrawer : PropertyDrawer
             position.height -= m_spacing * 2.0f;
 
             SubclassAttribute propertyAtt = attribute as SubclassAttribute;
-
-            SubclassSelector selector = null;
 
             System.Type selectType = null;
 
@@ -55,14 +52,14 @@ public class SubclassPropertyDrawer : PropertyDrawer
                 }
             }
 
-            if (!m_selectorMap.TryGetValue(selectType, out selector))
+            if (!m_selectorMap.TryGetValue(selectType, out SubclassSelector selector))
             {
-                selector = new SubclassSelector(selectType, property.managedReferenceValue == null ? null : property.managedReferenceValue.GetType(), propertyAtt.IncludeSelf);
+                selector = new SubclassSelector(selectType, property.managedReferenceValue?.GetType(), propertyAtt.IncludeSelf);
                 m_selectorMap.Add(selectType, selector);
             }
             else
             {
-                selector.RefreshSelection(property.managedReferenceValue == null ? null : property.managedReferenceValue.GetType());
+                selector.RefreshSelection(property.managedReferenceValue?.GetType());
             }
 
             position.height = lineSize;
@@ -88,35 +85,27 @@ public class SubclassPropertyDrawer : PropertyDrawer
 
                 position.y += lineSize;
 
-                SerializedProperty lastProp = property.GetEndProperty();
-
                 if (property.hasVisibleChildren && property.isExpanded)
                 {
-                    SerializedProperty curProp = property;
+                    SerializedProperty curProp = property.Copy();
+                    SerializedProperty endProp = curProp.GetEndProperty();
+                    curProp.NextVisible(true); // Enter children
 
-                    if (curProp.NextVisible(true))
+                    int startIndent = EditorGUI.indentLevel;
+
+                    while (!SerializedProperty.EqualContents(curProp, endProp))
                     {
-                        while (!SerializedProperty.EqualContents(curProp, lastProp))
-                        {
-                            position.height = EditorGUI.GetPropertyHeight(curProp);
-                            EditorGUI.PropertyField(position, curProp);
+                        float height = EditorGUI.GetPropertyHeight(curProp, true);
+                        Rect propRect = new(position.x, position.y, position.width, height);
 
-                            position.y += fieldSpacing;
+                        EditorGUI.PropertyField(propRect, curProp, true);
+                        position.y += height + EditorGUIUtility.standardVerticalSpacing;
 
-                            if (curProp.hasChildren && !curProp.isArray && curProp.isExpanded)
-                            {
-                                position.y += lineSize;
-                            }
-                            else
-                            {
-                                float propHeight = EditorGUI.GetPropertyHeight(curProp);
-                                position.y += propHeight;
-                            }
-
-                            if (!curProp.NextVisible(!curProp.isArray && curProp.isExpanded))
-                                break;
-                        }
+                        if (!curProp.NextVisible(false))
+                            break;
                     }
+
+                    EditorGUI.indentLevel = startIndent;
                 }
 
                 if (indented)

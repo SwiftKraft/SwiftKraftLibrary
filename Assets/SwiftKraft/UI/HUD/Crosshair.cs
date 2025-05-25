@@ -4,7 +4,7 @@ namespace SwiftKraft.UI.HUD
 {
     public class Crosshair : MonoBehaviour
     {
-        public static Crosshair Instance;
+        public static Crosshair Instance { get; private set; }
 
         public RectTransform Transform { get; private set; }
 
@@ -21,9 +21,9 @@ namespace SwiftKraft.UI.HUD
             Canvas = GetComponentInParent<Canvas>();
         }
 
-        public void SetSize(float size) => Transform.sizeDelta = Vector2.one * size;
+        public virtual void SetSize(float size) => Transform.sizeDelta = Vector2.one * size;
 
-        public void SetDegrees(float degrees)
+        public virtual void SetDegrees(float degrees)
         {
             if (Camera.main == null || Canvas == null)
                 return;

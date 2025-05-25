@@ -74,7 +74,7 @@ namespace SwiftKraft.Gameplay.Weapons
         protected virtual void FixedUpdate()
         {
             Heat.CanDecay = !Component.Attacking;
-            Heat.Tick(DecayRate.Evaluate(Heat.CurrentValue) * DecayMultiplier * Time.fixedDeltaTime);
+            Heat.Tick(DecayRate.EvaluateSafe(Heat.CurrentValue) * DecayMultiplier * Time.fixedDeltaTime);
             if (Smooth && !Heat.CanDecay)
                 ApplyRecoil();
             DecayRecoil();

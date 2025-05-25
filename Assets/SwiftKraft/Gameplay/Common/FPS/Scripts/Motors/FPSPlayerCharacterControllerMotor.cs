@@ -38,7 +38,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         public bool AllowSlide = true;
 
         readonly Timer coyoteTime = new(0.2f, false);
-        readonly Timer jumpTime = new(0.1f, false);
+        readonly Timer jumpTime = new(0.15f, false);
         readonly Trigger jumpInput = new();
         readonly Trigger slideInput = new();
         float currentGravity;
@@ -53,7 +53,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
 
         public float CurrentSpeed => slideVelocity <= SlideMinVelocity ? (IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed)) : slideVelocity;
 
-        public override float MoveFactorMultiplier => IsSprinting ? SprintSpeed / 1.25f : (WishCrouch ? CrouchSpeed : MoveSpeed);
+        public override float MoveFactorRate => IsSprinting ? SprintSpeed : (WishCrouch ? CrouchSpeed : MoveSpeed);
+        public override float RawMoveFactorRate => MoveFactorRate / MoveSpeed;
 
         public float Height
         {
@@ -126,7 +127,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             }
             else
             {
-                currentGravity = -0.1f;
+                currentGravity = -3f;
                 coyoteTime.Reset();
             }
 

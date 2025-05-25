@@ -12,6 +12,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         public bool Attack;
         public Vector3 AttackCoordinates;
 
+        public NPCStateBase ExitState;
+
         NPCScannerBase scanner;
         NPCNavigator navigator;
         WeaponAmmo ammo;
@@ -67,7 +69,11 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                     navigator.Destination = NavMesh.SamplePosition(lastRemembered, out NavMeshHit hit, 5f, NavMesh.AllAreas) ? hit.position : lastRemembered;
 
             if ((lastRemembered - Core.transform.position).sqrMagnitude <= 9f)
+            {
                 lastRemembered = Attack ? AttackCoordinates : Core.transform.position;
+                if (lastRemembered == AttackCoordinates && (lastRemembered - Core.transform.position).sqrMagnitude <= 9f && ExitState != null)
+                    Core.CurrentState = ExitState;
+            }
         }
 
         public override void Update() { }

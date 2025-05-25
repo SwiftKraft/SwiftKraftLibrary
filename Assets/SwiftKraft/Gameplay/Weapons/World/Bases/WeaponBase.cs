@@ -66,6 +66,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public event Action<int> OnAttackModeUpdated;
         public event Action<string> OnStartAction;
         public event Action<string> OnAttemptAction;
+        public event Action<string> OnEvent;
         public event Action<GameObject[]> OnAttack;
         public event Action OnPreAttack;
         public event Action<GameObject> OnSpawn;
@@ -116,6 +117,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
             return status;
         }
+
+        public void SendEvent(string id) => OnEvent?.Invoke(id);
 
         public void AddAttack(WeaponAttackBase attack)
         {

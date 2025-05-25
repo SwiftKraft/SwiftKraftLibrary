@@ -61,11 +61,11 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual float GetSpread()
         {
             if (Aim != null && Recoil != null)
-                return Mathf.Lerp(SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue), SpreadAimRecoil.Evaluate(Recoil.Heat.CurrentValue), Aim.Aiming) * GetCurrentMultiplier();
+                return Mathf.Lerp(SpreadRecoil.EvaluateSafe(Recoil.Heat.CurrentValue), SpreadAimRecoil.EvaluateSafe(Recoil.Heat.CurrentValue), Aim.Aiming) * GetCurrentMultiplier();
             else if (Aim != null)
                 return Mathf.Lerp(Spread, SpreadAim, Aim.Aiming) * GetCurrentMultiplier();
             else if (Recoil != null)
-                return SpreadRecoil.Evaluate(Recoil.Heat.CurrentValue) * GetCurrentMultiplier();
+                return SpreadRecoil.EvaluateSafe(Recoil.Heat.CurrentValue) * GetCurrentMultiplier();
             return Spread * GetCurrentMultiplier();
         }
 

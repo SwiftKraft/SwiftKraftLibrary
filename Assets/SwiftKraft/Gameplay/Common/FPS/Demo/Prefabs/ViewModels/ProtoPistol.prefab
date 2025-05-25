@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 682911739140861939}
   - component: {fileID: 609099804317251974}
   - component: {fileID: 6458779792178021028}
+  - component: {fileID: 7241546701463082071}
   m_Layer: 6
   m_Name: Recoil
   m_TagString: Untagged
@@ -221,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 494483808487335652}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0864}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -254,11 +255,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 682911739140861939}
-  Multiplier: 1
-  TiltMultiplier: -2
+  Multiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: -2
+    <Values>k__BackingField: []
   Maximum: 1
   TiltMaximum: 1.25
   SmoothTime: 0.1
+--- !u!114 &7241546701463082071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494483808487335652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fde7330803c47740ad3f1bcca147928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplier:
+    <BaseValue>k__BackingField: 0.2
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: 0.7
+    <Values>k__BackingField: []
 --- !u!1 &631380733960251861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1331,7 @@ Transform:
   m_GameObject: {fileID: 2188737123759806702}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0864}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1441,7 +1464,9 @@ MonoBehaviour:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
           type: 3}
-        Amount: 1
+        Amount:
+          <BaseValue>k__BackingField: 1
+          <Values>k__BackingField: []
 --- !u!114 &8029738550120293392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1529,8 +1554,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.09919716
     - serializedVersion: 3
-      time: 5.773574
-      value: 1.2658502
+      time: 5.9123373
+      value: 1.5908624
       inSlope: 0.0040691127
       outSlope: 0.0040691127
       tangentMode: 0
@@ -1538,8 +1563,8 @@ MonoBehaviour:
       inWeight: 0.5096446
       outWeight: 0
     - serializedVersion: 3
-      time: 8.595709
-      value: 1.5386555
+      time: 8.417303
+      value: 1.4642575
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1547,8 +1572,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 12.151692
-      value: 1.3093765
+      time: 12.031636
+      value: 1.8039749
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1622,12 +1647,57 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   PositionalMultiplier:
-    <BaseValue>k__BackingField: 1
+    <BaseValue>k__BackingField: -0.1
     <Values>k__BackingField: []
   Positional:
     X:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.1354332
+        value: 0.0016759224
+        inSlope: 0.0016098245
+        outSlope: 0.0016098245
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.4180471
+      - serializedVersion: 3
+        time: 6.4912567
+        value: -0.0051414864
+        inSlope: -0.00014658232
+        outSlope: -0.00014658232
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 15.312309
+        value: 0.0013474198
+        inSlope: 0.00052366033
+        outSlope: 0.00052366033
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.4940881
+      - serializedVersion: 3
+        time: 22.662512
+        value: 0.00035756454
+        inSlope: -0.00036258335
+        outSlope: -0.00036258335
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.12997726
+        outWeight: 0.27097425
+      - serializedVersion: 3
+        time: 40.00657
+        value: -0.002686184
+        inSlope: -0.0001754923
+        outSlope: -0.0001754923
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1639,10 +1709,65 @@ MonoBehaviour:
       m_RotationOrder: 4
     Z:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.05
+        inSlope: 0.029999997
+        outSlope: 0.029999997
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.08
+        inSlope: 0.023867775
+        outSlope: 0.023867775
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.6621668
+        value: 0.091743894
+        inSlope: -0.00037977938
+        outSlope: -0.00037977938
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.1420264
+        value: 0.08286884
+        inSlope: 0.009155141
+        outSlope: 0.009155141
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.7957146
+        value: 0.10692809
+        inSlope: 0.01678013
+        outSlope: 0.01678013
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.4549775
+        value: 0.10478869
+        inSlope: -0.0032451348
+        outSlope: -0.0032451348
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  MaxRecoverSpeed: Infinity
 --- !u!114 &610497832379667108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,22 +1998,77 @@ MonoBehaviour:
   Positional:
     X:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     Y:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     Z:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  MaxRecoverSpeed: Infinity
 --- !u!114 &6654161302878027630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1910,6 +2090,7 @@ MonoBehaviour:
   ReloadStates:
   - Reload
   - SecretReload
+  ReloadSpeedParameterName: ReloadSpeedMultiplier
   FullEndReloadThreshold: 0.8
 --- !u!114 &7074702899465627531
 MonoBehaviour:
@@ -2108,6 +2289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99b5fde23f8e064f8c6cd603e8d2d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventOverrides: []
 --- !u!114 &2755448397234144751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2228,6 +2410,7 @@ MonoBehaviour:
       <CanDecay>k__BackingField: 1
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &6375449963085982268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2245,6 +2428,7 @@ MonoBehaviour:
     ParticleSystem: {fileID: 4959659516246844126}
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &1404826608180302344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4119,7 +4303,7 @@ Transform:
   m_GameObject: {fileID: 6382368516374574951}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0864}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4209,14 +4393,14 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       Sounds:
-      - AnimationNames:
-        - ProtoPistol|ReloadTacticool
-        - ProtoPistol|ReloadTacticoolAim
+      - Animations:
+        - {fileID: 4298807583385619688, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+        - {fileID: -2193987365980645794, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
         Clips:
         - {fileID: 8300000, guid: d7bccddb7dfe4d04fa2b7b332d22aba2, type: 3}
-      - AnimationNames:
-        - ProtoPistol|ReloadTactical
-        - ProtoPistol|ReloadTacticalAim
+      - Animations:
+        - {fileID: 2971146141758270868, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+        - {fileID: -2237880809335247304, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
         Clips:
         - {fileID: 8300000, guid: ac098bb141bb69d459b177b3c8c64167, type: 3}
     - StateName: SecretReload
@@ -4281,6 +4465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParameterNameAmmo: Ammo
   ParameterNameReloading: Reloading
+  ParameterNameReloadSpeed: ReloadSpeedMultiplier
 --- !u!114 &1713166684888503834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4306,7 +4491,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e45be7a78d5cda46aa9a11d0a675ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MultiplierName: MovementSpeedMultiplier
   ParameterName: Movement
+  Raw: 0
+  Multiplier: 0.2
+  StateMultipliers:
+  - State: 2
+    Multiplier: 0.75
 --- !u!114 &6275665443212960621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4321,7 +4512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 6041977976375274973}
   ReferenceTransform: {fileID: 682911739140861939}
-  AxisMultiplier: {x: -1, y: 0.75, z: 1, w: 1}
+  AxisMultiplier: {x: -0.5, y: 0.75, z: 1, w: 1}
 --- !u!1 &6402522133864380094
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ namespace SwiftKraft.Gameplay.Weapons
     public class WeaponAmmoAnimation : WeaponAmmo
     {
         public string[] ReloadStates = { "Reload" };
+        public string ReloadSpeedParameterName = "ReloadSpeedMultiplier";
         public float FullEndReloadThreshold = 0.9f;
 
         public Animator Animator
@@ -47,7 +48,7 @@ namespace SwiftKraft.Gameplay.Weapons
             CanShoot.Active = true;
             OnReloadUpdatedEvent(true);
             reloading = true;
-            Animator.speed = ReloadSpeedMultiplier;
+            Animator.SetFloatSafe(ReloadSpeedParameterName, ReloadSpeedMultiplier);
         }
 
         public override void EndReload(bool fullEnd)
@@ -56,7 +57,6 @@ namespace SwiftKraft.Gameplay.Weapons
             CanShoot.Active = false;
             OnReloadUpdatedEvent(false);
             reloading = false;
-            Animator.speed = 1f;
         }
     }
 }

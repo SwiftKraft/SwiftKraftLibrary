@@ -85,6 +85,9 @@ namespace SwiftKraft.Utils
 
         public static int WrapIndex(this Array values, int index) => index.Wrap(0, values.Length);
         public static int WrapIndex(this ICollection values, int index) => index.Wrap(0, values.Count);
+
+        public static T GetWrap<T>(this T[] values, int index) => values[values.WrapIndex(index)];
+
         public static int Wrap(this int number, int min, int max) => ((((number - min) % (max - min)) + (max - min)) % (max - min)) + min;
     }
 }

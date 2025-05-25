@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99b5fde23f8e064f8c6cd603e8d2d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventOverrides: []
 --- !u!95 &4815973248402429002
 Animator:
   serializedVersion: 5
@@ -378,6 +379,7 @@ MonoBehaviour:
     ParticleSystem: {fileID: 2564785623678880756}
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &6674710385775432710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +426,7 @@ MonoBehaviour:
       <CanDecay>k__BackingField: 1
     Repeat: 0
     RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &4324172739021947929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,6 +502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2368494299934063355}
+  - component: {fileID: 651944912243304714}
   - component: {fileID: 5780805148844510263}
   - component: {fileID: 3688197444578813778}
   - component: {fileID: 1784419905511200946}
@@ -530,6 +534,18 @@ Transform:
   - {fileID: 5207549671853191319}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651944912243304714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479035059698927783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb856f3dc6d0c444a04098d1a40e9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5780805148844510263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,7 +587,19 @@ MonoBehaviour:
   DestroyOnDeath: 1
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 651944912243304714}
+        m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Building.BuildLinker, Assembly-CSharp
+        m_MethodName: Remove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamage:
     m_PersistentCalls:
       m_Calls: []

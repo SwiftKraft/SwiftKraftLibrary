@@ -28,7 +28,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             get
             {
-                if (Item == null)
+                if (Item == null || Item.Instance == null)
                     return _currentAmmo;
 
                 if (data == null || data.Disposed)

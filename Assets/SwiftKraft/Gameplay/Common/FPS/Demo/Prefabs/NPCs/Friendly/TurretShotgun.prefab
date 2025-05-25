@@ -300,6 +300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6121088217556232541}
+  - component: {fileID: 4373293983805826594}
   - component: {fileID: 7426925035813604875}
   - component: {fileID: 3665694745784119476}
   - component: {fileID: 8315607675778097454}
@@ -331,6 +332,18 @@ Transform:
   - {fileID: 9055616519264168973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4373293983805826594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4123626917667536268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb856f3dc6d0c444a04098d1a40e9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7426925035813604875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,7 +385,19 @@ MonoBehaviour:
   DestroyOnDeath: 1
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4373293983805826594}
+        m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Building.BuildLinker, Assembly-CSharp
+        m_MethodName: Remove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -948,6 +973,7 @@ MonoBehaviour:
     ParticleSystem: {fileID: 6843763521937890179}
     Repeat: 1
     RepeatDelay: 0.2
+    UseEvent: 0
 --- !u!114 &5393295276712365848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,6 +1020,7 @@ MonoBehaviour:
       <CanDecay>k__BackingField: 1
     Repeat: 1
     RepeatDelay: 0.2
+    UseEvent: 0
 --- !u!114 &1133901596457848801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,6 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99b5fde23f8e064f8c6cd603e8d2d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventOverrides: []
 --- !u!1001 &6729825002959917631
 PrefabInstance:
   m_ObjectHideFlags: 0

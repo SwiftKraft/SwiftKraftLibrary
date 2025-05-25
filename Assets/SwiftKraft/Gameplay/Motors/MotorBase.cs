@@ -69,7 +69,8 @@ namespace SwiftKraft.Gameplay.Motors
 
         public MotorBase Vehicle { get; set; }
 
-        public virtual float MoveFactorMultiplier => 1f;
+        public virtual float MoveFactorRate => RawMoveFactorRate;
+        public virtual float RawMoveFactorRate => 1f;
 
         protected virtual void Awake() 
         { 
@@ -103,7 +104,7 @@ namespace SwiftKraft.Gameplay.Motors
                 Move(CurrentMoveDirection);
 
                 Moving = CurrentMoveDirection != Vector3.zero;
-                MoveFactor = Moving ? MoveFactor + Time.fixedDeltaTime * MoveFactorMultiplier : 0f;
+                MoveFactor = Moving ? MoveFactor + Time.fixedDeltaTime * MoveFactorRate : 0f;
             }
         }
 
