@@ -90,7 +90,7 @@ namespace SwiftKraft.Gameplay.Weapons
                             break;
 
                         norm += Time.deltaTime;
-                        yield return null;
+                        yield return new WaitForEndOfFrame();
                     }
                 }
             }

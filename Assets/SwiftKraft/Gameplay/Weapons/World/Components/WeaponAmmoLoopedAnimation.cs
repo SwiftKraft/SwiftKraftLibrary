@@ -52,12 +52,6 @@ namespace SwiftKraft.Gameplay.Weapons
                 WeaponAnimator.PlayAnimation(EndReloadAnimationID);
         }
 
-        protected override void Reload()
-        {
-            base.Reload();
-            Animator.speed = ReloadSpeedMultiplier;
-        }
-
         public override void MidReload()
         {
             base.MidReload();

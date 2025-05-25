@@ -11,21 +11,30 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         private void Awake()
         {
-            ParentComponent.OnLoopedAmmoChanged += OnLoopedAmmoUpdated;
+            ParentComponent.OnLoadedAmmoChanged += OnLoadedAmmoUpdated;
             ParentComponent.OnNextAmountChanged += OnNextAmountChanged;
+        }
+
+        private void Start()
+        {
+            OnNextAmountChanged(ParentComponent.NextAmount);
+            OnLoadedAmmoUpdated(ParentComponent.LoadedAmmo);
+        }
+
+        private void OnEnable()
+        {
+            OnNextAmountChanged(ParentComponent.NextAmount);
+            OnLoadedAmmoUpdated(ParentComponent.LoadedAmmo);
         }
 
         private void OnDestroy()
         {
-            ParentComponent.OnLoopedAmmoChanged -= OnLoopedAmmoUpdated;
+            ParentComponent.OnLoadedAmmoChanged -= OnLoadedAmmoUpdated;
             ParentComponent.OnNextAmountChanged -= OnNextAmountChanged;
         }
 
         private void OnNextAmountChanged(int amount) => Animator.SetFloatSafe(NextAmmoName, amount);
 
-        private void OnLoopedAmmoUpdated(int ammo)
-        {
-            Animator.SetFloatSafe(LoopedAmmoName, ammo);
-        }
+        private void OnLoadedAmmoUpdated(int ammo) => Animator.SetFloatSafe(LoopedAmmoName, ammo);
     }
 }

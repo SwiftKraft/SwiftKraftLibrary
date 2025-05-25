@@ -948,6 +948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4664184785496646165}
   - component: {fileID: 1005616510785594389}
+  - component: {fileID: 8267179452519175162}
   m_Layer: 6
   m_Name: Shell
   m_TagString: Untagged
@@ -1096,6 +1097,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.013596763, y: -0.024283733, z: 0.0043884125}
     m_Extent: {x: 0.009758449, y: 0.006934493, z: 0.019439114}
   m_DirtyAABB: 0
+--- !u!114 &8267179452519175162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014519429643510190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  Scriptable: {fileID: 11400000, guid: 85f4ab92d1c9daf46bb0bb5f5e5b8a16, type: 2}
 --- !u!1 &2188737123759806702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,7 +1244,7 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 16
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
-  - rid: 1893897059637133321
+  - rid: 4343724573794762765
   PrefireDelay:
     <BaseValue>k__BackingField: 0
     <Values>k__BackingField: []
@@ -1246,13 +1261,15 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1893897059637133321
+    - rid: 4343724573794762765
       type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
           type: 3}
-        Amount: 8
+        Amount:
+          <BaseValue>k__BackingField: 8
+          <Values>k__BackingField: []
 --- !u!114 &2790031504580108237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3348,6 +3365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParameterNameAmmo: Ammo
   ParameterNameReloading: Reloading
+  ParameterNameReloadSpeed: ReloadSpeedMultiplier
 --- !u!114 &1713166684888503834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4519,6 +4537,7 @@ GameObject:
   - component: {fileID: 5815484644316226888}
   - component: {fileID: 1623477736976801841}
   - component: {fileID: 4209454503977764653}
+  - component: {fileID: 76531261098344251}
   m_Layer: 6
   m_Name: Recoil
   m_TagString: Untagged
@@ -4568,11 +4587,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModifyTarget: {fileID: 5815484644316226888}
-  Multiplier: 1
-  TiltMultiplier: -1.75
+  Multiplier:
+    <BaseValue>k__BackingField: 1
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: -2
+    <Values>k__BackingField: []
   Maximum: 1.5
   TiltMaximum: 2
   SmoothTime: 0.15
+--- !u!114 &76531261098344251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475394594618764928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fde7330803c47740ad3f1bcca147928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplier:
+    <BaseValue>k__BackingField: 0.2
+    <Values>k__BackingField: []
+  TiltMultiplier:
+    <BaseValue>k__BackingField: 0.7
+    <Values>k__BackingField: []
 --- !u!1 &8519351525268655872
 GameObject:
   m_ObjectHideFlags: 0
@@ -5011,6 +5052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5915513907278451308}
   - component: {fileID: 5707014718447032217}
+  - component: {fileID: 3944102923682412647}
   m_Layer: 6
   m_Name: Stock
   m_TagString: Untagged
@@ -5157,6 +5199,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.015062382, y: -0.010494532, z: 0.011166982}
     m_Extent: {x: 0.00718813, y: 0.009368176, z: 0.011559635}
   m_DirtyAABB: 0
+--- !u!114 &3944102923682412647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9083503745618951862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  Scriptable: {fileID: 11400000, guid: a0bf588d311a8d142b0e0a0cdf317df2, type: 2}
 --- !u!1001 &1710431733871431023
 PrefabInstance:
   m_ObjectHideFlags: 0

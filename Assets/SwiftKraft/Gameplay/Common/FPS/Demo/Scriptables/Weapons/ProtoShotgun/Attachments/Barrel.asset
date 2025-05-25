@@ -32,14 +32,26 @@ MonoBehaviour:
       - {fileID: -239302050275881172, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
       - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
     properties:
-    - rid: 4343724440603590658
-    - rid: 4343724440603590660
-    - rid: 4343724440603590662
-    - rid: 4343724514249801737
+    - rid: 4343724573794762772
+    - rid: 4343724573794762773
+    - rid: 4343724573794762774
+    - rid: 4343724573794762775
   references:
     version: 2
     RefIds:
-    - rid: 4343724440603590658
+    - rid: 4343724573794762772
+      type: {class: AttachmentDamageProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+      data:
+        parent:
+          parent: {fileID: 0}
+          name: 
+          package:
+            mesh: {fileID: 0}
+            materials: []
+          properties: []
+        value: 1.4
+        type: 2
+    - rid: 4343724573794762773
       type: {class: AttachmentHipSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}
       data:
@@ -50,9 +62,9 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 1.5
+        value: 1.2
         type: 3
-    - rid: 4343724440603590660
+    - rid: 4343724573794762774
       type: {class: AttachmentAimSpreadProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}
       data:
@@ -65,7 +77,7 @@ MonoBehaviour:
           properties: []
         value: 1.5
         type: 3
-    - rid: 4343724440603590662
+    - rid: 4343724573794762775
       type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         parent:
@@ -75,17 +87,5 @@ MonoBehaviour:
             mesh: {fileID: 0}
             materials: []
           properties: []
-        value: 1.05
+        value: 1.1
         type: 3
-    - rid: 4343724514249801737
-      type: {class: AttachmentDamageProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
-      data:
-        parent:
-          parent: {fileID: 0}
-          name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
-          properties: []
-        value: 1.5
-        type: 2

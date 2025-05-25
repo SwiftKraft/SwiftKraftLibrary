@@ -1,5 +1,6 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Projectiles;
+using SwiftKraft.Utils;
 using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -15,16 +16,17 @@ namespace SwiftKraft.Gameplay.Weapons
         public WeaponBase Parent;
 
         public GameObject Prefab;
-        public int Amount = 1;
+        public ModifiableStatistic Amount = new(1);
 
         public virtual GameObject[] Spawn(Transform transform)
         {
-            if (Amount <= 0)
-                Amount = 1;
+            int amount = (int)Amount;
+            if (amount <= 0)
+                amount = 1;
 
-            GameObject[] res = new GameObject[Amount];
+            GameObject[] res = new GameObject[amount];
 
-            for (int i = 0; i < Amount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 Parent.PreSpawnEvent();
                 GameObject go = Object.Instantiate(Prefab, transform.position, transform.rotation);

@@ -35,7 +35,7 @@ namespace SwiftKraft.Gameplay.NPCs
         public float ScanRange = 50f;
         public float PriorityWeight = 0.7f;
 
-        public Timer ScanTimer;
+        public Timer ScanTimer = new(0.5f);
 
         public Transform SightPoint;
 

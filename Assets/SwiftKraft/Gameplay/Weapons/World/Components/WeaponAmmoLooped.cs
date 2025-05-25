@@ -36,12 +36,12 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (_loadedAmmo == value)
                     return;
 
-                OnLoopedAmmoChanged?.Invoke(value);
+                OnLoadedAmmoChanged?.Invoke(value);
                 _loadedAmmo = value;
             }
         }
         int _loadedAmmo;
-        public event Action<int> OnLoopedAmmoChanged;
+        public event Action<int> OnLoadedAmmoChanged;
 
         public bool MaxLoopedAmmoOnEmpty = true;
 
