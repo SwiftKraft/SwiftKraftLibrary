@@ -9827,7 +9827,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 369689273696691656, guid: aad9f277b35a11748a4006ea2563df6b, type: 3}
 --- !u!82 &7005028994962765350
@@ -9952,7 +9952,7 @@ Transform:
   m_GameObject: {fileID: 4976133066290141972}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000021073421, y: 0.7071069, z: 0.70710677, w: 0.00000021073424}
-  m_LocalPosition: {x: 0, y: 0.0355, z: 0.01192}
+  m_LocalPosition: {x: -0.000000020116566, y: 0.03875024, z: 0.01192}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10064,6 +10064,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2645592101679003874}
+  - component: {fileID: 4969605606421031633}
+  - component: {fileID: 6373856750675622532}
   - component: {fileID: 580424048489609255}
   - component: {fileID: 5006107108841497363}
   - component: {fileID: 6186026770784333632}
@@ -10093,6 +10095,31 @@ Transform:
   - {fileID: 7662751786904163686}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4969605606421031633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5951792838921628964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f6ab2f5eb61624fbc6e64b5d2fa4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Faction>k__BackingField: 
+--- !u!114 &6373856750675622532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5951792838921628964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf27701dd5f07646acbde1934b816ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &580424048489609255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10131,7 +10158,7 @@ MonoBehaviour:
       type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         Parent: {fileID: 0}
-        Prefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
+        Prefab: {fileID: 7389480120932224565, guid: b89fe449e7db5964fb01274c55714e19,
           type: 3}
         Amount:
           <BaseValue>k__BackingField: 1
@@ -20157,7 +20184,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3909233067320746374, guid: aad9f277b35a11748a4006ea2563df6b, type: 3}
 --- !u!95 &6265093962629731617

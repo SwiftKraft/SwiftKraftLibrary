@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Damagables;
 using SwiftKraft.Gameplay.Interfaces;
 using UnityEngine;
 

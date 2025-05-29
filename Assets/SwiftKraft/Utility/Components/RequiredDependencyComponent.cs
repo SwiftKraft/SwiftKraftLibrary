@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Utils
 {
-    public abstract class RequiredDependencyComponent<T> : MonoBehaviour where T : Component
+    public abstract class RequiredDependencyComponent<T> : MonoBehaviour
     {
         public T Component
         {

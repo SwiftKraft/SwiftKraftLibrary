@@ -14,13 +14,13 @@ namespace SwiftKraft.Utils
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(Tag))
+            if (string.IsNullOrEmpty(Tag) || other.CompareTag(Tag))
                 OnTriggerEnterEvent?.Invoke(other);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag(Tag))
+            if (string.IsNullOrEmpty(Tag) || other.CompareTag(Tag))
                 OnTriggerExitEvent?.Invoke(other);
         }
     }
