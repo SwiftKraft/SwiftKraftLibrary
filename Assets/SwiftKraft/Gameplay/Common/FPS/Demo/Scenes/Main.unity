@@ -3271,6 +3271,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtoPistol (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5964860817834573339, guid: deb06829bfd94bc4f9d8f3499216fb43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8858329871549845818, guid: deb06829bfd94bc4f9d8f3499216fb43,
         type: 3}
       propertyPath: m_Bones.Array.data[2]
@@ -6055,6 +6060,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ProtoBullpupItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852272558835464859, guid: d85a2e5948eb68e4aafb103b30219ed3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8860835096430983414, guid: d85a2e5948eb68e4aafb103b30219ed3,
         type: 3}
@@ -14065,6 +14075,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtoPistol (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5964860817834573339, guid: deb06829bfd94bc4f9d8f3499216fb43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8858329871549845818, guid: deb06829bfd94bc4f9d8f3499216fb43,
         type: 3}
       propertyPath: m_Bones.Array.data[2]
@@ -19969,6 +19984,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtoPistol (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5964860817834573339, guid: deb06829bfd94bc4f9d8f3499216fb43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8858329871549845818, guid: deb06829bfd94bc4f9d8f3499216fb43,
         type: 3}
       propertyPath: m_Bones.Array.data[2]
@@ -21860,6 +21880,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ProtoRifle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852272558835464859, guid: d1f49d6f34b25674fa3ea3965d0dfd1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8860835096430983414, guid: d1f49d6f34b25674fa3ea3965d0dfd1e,
         type: 3}
@@ -29411,6 +29436,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtoRifle (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5852272558835464859, guid: d1f49d6f34b25674fa3ea3965d0dfd1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8860835096430983414, guid: d1f49d6f34b25674fa3ea3965d0dfd1e,
         type: 3}
       propertyPath: StartType
@@ -30160,6 +30190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtoRifle (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5852272558835464859, guid: d1f49d6f34b25674fa3ea3965d0dfd1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8860835096430983414, guid: d1f49d6f34b25674fa3ea3965d0dfd1e,
         type: 3}
       propertyPath: StartType
@@ -30730,6 +30765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ProtoRifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852272558835464859, guid: d1f49d6f34b25674fa3ea3965d0dfd1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8860835096430983414, guid: d1f49d6f34b25674fa3ea3965d0dfd1e,
         type: 3}
@@ -38912,6 +38952,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtoShotgunItem
       objectReference: {fileID: 0}
+    - target: {fileID: 5852272558835464859, guid: 32d8677915521dc4eb6710a7cb5f4808,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8860835096430983414, guid: 32d8677915521dc4eb6710a7cb5f4808,
         type: 3}
       propertyPath: StartType
@@ -41470,6 +41515,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtoPistol
       objectReference: {fileID: 0}
+    - target: {fileID: 5964860817834573339, guid: deb06829bfd94bc4f9d8f3499216fb43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8858329871549845818, guid: deb06829bfd94bc4f9d8f3499216fb43,
         type: 3}
       propertyPath: m_Bones.Array.data[2]
@@ -41867,9 +41917,9 @@ SceneRoots:
   - {fileID: 204476508}
   - {fileID: 1129733847}
   - {fileID: 2083375388}
+  - {fileID: 323085999}
   - {fileID: 1219335243150050973}
   - {fileID: 784007964}
   - {fileID: 1691198031}
-  - {fileID: 323085999}
   - {fileID: 437584691}
   - {fileID: 10125399}
