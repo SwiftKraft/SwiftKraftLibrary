@@ -7,5 +7,7 @@ namespace SwiftKraft.Gameplay.Interfaces
         public Transform LookPoint { get; }
 
         public Quaternion WishLookRotation { get; set; }
+
+        public Quaternion CurrentLookRotation { get; }
     }
 }

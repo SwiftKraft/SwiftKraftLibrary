@@ -19,6 +19,8 @@ namespace SwiftKraft.Utils
             Rotation = rotation;
         }
 
+        public static implicit operator TransformData(Vector3 vec) => new(vec, Quaternion.identity);
+        public static implicit operator TransformData(Quaternion quat) => new(default, quat);
         public static implicit operator TransformDataScale(TransformData s) => new(s.Position, s.Rotation, Vector3.one);
     }
 

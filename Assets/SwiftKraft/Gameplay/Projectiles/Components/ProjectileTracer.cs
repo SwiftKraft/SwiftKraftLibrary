@@ -12,6 +12,9 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         public Timer Lifetime;
 
+        [HideInInspector]
+        public Vector3 HitPoint;
+
         public override void Init()
         {
             if (Projectile == null)
@@ -39,9 +42,10 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         protected virtual void Update() => Lifetime.Tick(Time.deltaTime);
 
-        public void Show()
+        public virtual void Show()
         {
-            Vector3[] positions = { VisualOrigin, Projectile.Hits.Length > 0 ? Projectile.Hits[Mathf.Min(Projectile.Pierce, Projectile.Hits.Length - 1)].point : transform.position + transform.forward * Projectile.Range };
+            HitPoint = Projectile.Hits.Length > 0 ? Projectile.Hits[Mathf.Min(Projectile.Pierce, Projectile.Hits.Length - 1)].point : transform.position + transform.forward * Projectile.Range;
+            Vector3[] positions = { VisualOrigin, HitPoint };
             Tracer.SetPositions(positions);
         }
 

@@ -66,12 +66,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 161029702014116550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406a659cd6657e444b03eacbd3b59e23, type: 3}
+  m_Script: {fileID: 11500000, guid: d5e4c9754baf8e34fa2473b172d8d6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime:
     <MaxValue>k__BackingField: 0.05
     StartEnded: 0
+  HitPoint: {x: 0, y: 0, z: 0}
+  LengthPercentage: 0.5
 --- !u!114 &616807426601634346
 MonoBehaviour:
   m_ObjectHideFlags: 0

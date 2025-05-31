@@ -118,6 +118,8 @@ namespace SwiftKraft.Gameplay.Weapons
             return status;
         }
 
+        public void InvokeStartAction(string id) => StartAction(id);
+
         public void SendEvent(string id) => OnEvent?.Invoke(id);
 
         public void AddAttack(WeaponAttackBase attack)
