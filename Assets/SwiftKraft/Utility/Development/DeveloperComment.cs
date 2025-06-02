@@ -32,8 +32,9 @@ namespace SwiftKraft.Utils
         [Header("Build Settings")]
         public bool AutoDestroyInBuild = true;
 
-        [HideInInspector]
-        public long Timestamp;
+        [SerializeField, HideInInspector]
+        long timestamp;
+        [SerializeField, HideInInspector]
         string cachedText;
 
         private void Start()
@@ -90,7 +91,7 @@ namespace SwiftKraft.Utils
                 else
                     builder.Append("\n\n Modified ");
 
-                builder.Append(new DateTime(Timestamp).ToLocalTime().ToString(CultureInfo.CurrentCulture));
+                builder.Append(new DateTime(timestamp).ToLocalTime().ToString(CultureInfo.CurrentCulture));
             }
 
             float sceneCamDist = (transform.position - sceneCam.position).magnitude;
@@ -122,7 +123,7 @@ namespace SwiftKraft.Utils
             if (Application.isPlaying || (!force && Text == cachedText))
                 return;
 
-            Timestamp = DateTime.UtcNow.Ticks;
+            timestamp = DateTime.UtcNow.Ticks;
             cachedText = Text;
 #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
