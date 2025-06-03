@@ -6,6 +6,13 @@ namespace SwiftKraft.Gameplay.Projectiles
     {
         public float LengthPercentage = 0.1f;
 
+        public override void Show()
+        {
+            base.Show();
+            float dist = (HitPoint - VisualOrigin).magnitude;
+            Lifetime.Reset(Lifetime.MaxValue * (dist / Projectile.Range));
+        }
+
         protected override void Update()
         {
             if (Tracer != null)
