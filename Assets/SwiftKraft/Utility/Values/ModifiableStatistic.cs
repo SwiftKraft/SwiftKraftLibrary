@@ -54,10 +54,15 @@ namespace SwiftKraft.Utils
         {
             Modifier modifier = new(this);
             Values.Add(modifier);
+            IsDirty = true;
             return modifier;
         }
 
-        public void RemoveOverride(object target) => Values.Remove((Modifier)target);
+        public void RemoveOverride(object target)
+        {
+            Values.Remove((Modifier)target);
+            IsDirty = true;
+        }
 
         public static implicit operator float(ModifiableStatistic stat) => stat.GetValue();
 
