@@ -30,6 +30,11 @@ namespace SwiftKraft.Gameplay.Weapons
             Animator.runtimeAnimatorController = OverrideController;
         }
 
+        protected virtual void Update()
+        {
+
+        }
+
         public void PlayAnimation(string id)
         {
             Animation anim = Animations.FirstOrDefault((s) => s.ID == id);
@@ -42,8 +47,8 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
 
             SoundSource.clip = clip;
-            SoundSource.pitch = Animator.speed * Time.timeScale;
-            SoundSource.Play();
+            SoundSource.pitch = Animator.speed * (Animator.IsInTransition(0) ? Animator.GetNextAnimatorStateInfo(0) : Animator.GetCurrentAnimatorStateInfo(0)).speedMultiplier * Time.timeScale;
+            SoundSource.Play(); // Needs rework.
             if (startTime > 0f)
                 SoundSource.time = startTime;
         }
