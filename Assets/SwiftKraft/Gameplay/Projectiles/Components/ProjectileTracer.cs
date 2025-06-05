@@ -15,6 +15,8 @@ namespace SwiftKraft.Gameplay.Projectiles
         [HideInInspector]
         public Vector3 HitPoint;
 
+        public bool Initialized { get; private set; } = false;
+
         public override void Init()
         {
             if (Projectile == null)
@@ -23,13 +25,6 @@ namespace SwiftKraft.Gameplay.Projectiles
             VisualOrigin = transform.position;
 
             Tracer = GetComponentInChildren<LineRenderer>();
-
-            Lifetime.Reset();
-
-            if (Lifetime.Ended)
-                Despawn();
-            else
-                Lifetime.OnTimerEnd += Despawn;
 
             Projectile.OnCast += Show;
         }
@@ -40,19 +35,41 @@ namespace SwiftKraft.Gameplay.Projectiles
             Projectile.OnCast -= Show;
         }
 
-        protected virtual void Update() => Lifetime.Tick(Time.deltaTime);
+        protected virtual void Update()
+        {
+            if (Initialized)
+                Lifetime.Tick(Time.deltaTime);
+        }
 
         public virtual void Show()
         {
             HitPoint = Projectile.Hits.Length > 0 ? Projectile.Hits[Mathf.Min(Projectile.Pierce, Projectile.Hits.Length - 1)].point : transform.position + transform.forward * Projectile.Range;
-            Vector3[] positions = { VisualOrigin, HitPoint };
-            Tracer.SetPositions(positions);
+            ShowLine(VisualOrigin, HitPoint);
+            Lifetime.Reset();
+            Initialized = true;
+
+            if (Lifetime.Ended)
+                Despawn();
+            else
+                Lifetime.OnTimerEnd += Despawn;
         }
 
         public virtual void Despawn()
         {
             Tracer.enabled = false;
             enabled = false;
+        }
+
+        public virtual void ShowLine(Vector3 position, Vector3 targetPosition)
+        {
+            float normalizedSpacing = 1f / (Tracer.positionCount - 1);
+
+            Vector3[] positions = new Vector3[Tracer.positionCount];
+            for (int i = 0; i < positions.Length - 1; i++)
+                positions[i] = Vector3.Lerp(position, targetPosition, normalizedSpacing * i);
+            positions[^1] = targetPosition;
+            
+            Tracer.SetPositions(positions);
         }
     }
 }

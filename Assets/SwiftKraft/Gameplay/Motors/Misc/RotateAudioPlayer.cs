@@ -5,8 +5,18 @@ using UnityEngine;
 namespace SwiftKraft.Gameplay.Motors
 {
     [RequireComponent(typeof(ILookable))]
-    public class RotateAudioPlayer : RequiredDependencyComponent<ILookable>
+    public class RotateAudioPlayer : MonoBehaviour
     {
+        public ILookable Component
+        {
+            get
+            {
+                _component ??= GetComponent<ILookable>();
+                return _component;
+            }
+        }
+        ILookable _component;
+
         public bool Rotating => Component.WishLookRotation != Component.CurrentLookRotation;
 
         public AudioSource Source;

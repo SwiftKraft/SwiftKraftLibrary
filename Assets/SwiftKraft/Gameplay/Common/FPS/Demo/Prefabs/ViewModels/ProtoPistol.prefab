@@ -2768,7 +2768,7 @@ Transform:
   m_GameObject: {fileID: 3225686122630008633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.00096, z: -0.0083}
+  m_LocalPosition: {x: 0, y: 0.00079, z: -0.0083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4403,6 +4403,11 @@ MonoBehaviour:
         - {fileID: -2237880809335247304, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
         Clips:
         - {fileID: 8300000, guid: ac098bb141bb69d459b177b3c8c64167, type: 3}
+      - Animations:
+        - {fileID: 5548249309397526510, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+        - {fileID: -843062872154862648, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+        Clips:
+        - {fileID: 8300000, guid: 95fba17b102583341a70b51799deefb1, type: 3}
     - StateName: SecretReload
       CrossFade: 0.05
       Weight: 1
