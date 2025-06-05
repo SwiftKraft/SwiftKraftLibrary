@@ -3336,12 +3336,7 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
-      Sounds:
-      - Animations:
-        - {fileID: -1587444724350435846, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
-        - {fileID: 3279978170624358072, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
-        Clips:
-        - {fileID: 8300000, guid: d13dec7808eae7541b69cc1a83a34ed4, type: 3}
+      Sounds: []
   SoundSource: {fileID: 2895807444976228756}
 --- !u!114 &6482029906544610366
 MonoBehaviour:

@@ -42,8 +42,8 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
 
             SoundSource.clip = clip;
-            SoundSource.pitch = Animator.speed * (Animator.IsInTransition(0) ? Animator.GetNextAnimatorStateInfo(0) : Animator.GetCurrentAnimatorStateInfo(0)).speedMultiplier * Time.timeScale;
-            SoundSource.Play(); // Needs rework.
+            SoundSource.pitch = Animator.speed * Time.timeScale;
+            SoundSource.Play();
             if (startTime > 0f)
                 SoundSource.time = startTime;
         }
