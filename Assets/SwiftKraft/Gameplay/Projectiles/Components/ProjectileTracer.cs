@@ -62,13 +62,12 @@ namespace SwiftKraft.Gameplay.Projectiles
 
         public virtual void ShowLine(Vector3 position, Vector3 targetPosition)
         {
-            float normalizedSpacing = 1f / Tracer.positionCount;
+            float normalizedSpacing = 1f / (Tracer.positionCount - 1);
 
             Vector3[] positions = new Vector3[Tracer.positionCount];
-            for (int i = 0; i < positions.Length; i++)
-            {
+            for (int i = 0; i < positions.Length - 1; i++)
                 positions[i] = Vector3.Lerp(position, targetPosition, normalizedSpacing * i);
-            }
+            positions[^1] = targetPosition;
             
             Tracer.SetPositions(positions);
         }
