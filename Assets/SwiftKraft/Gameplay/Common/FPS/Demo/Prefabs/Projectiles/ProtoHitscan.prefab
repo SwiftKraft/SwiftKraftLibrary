@@ -73,7 +73,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 1
     StartEnded: 0
   HitPoint: {x: 0, y: 0, z: 0}
-  LengthPercentage: 0.25
+  LengthPercentage: 0.4
 --- !u!114 &616807426601634346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,13 +177,13 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.57895124
-        inSlope: 1.3191615
-        outSlope: 1.3191615
+        value: 0.7308525
+        inSlope: 0.55621403
+        outSlope: 0.55621403
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.13564876
+        outWeight: 0.12431798
       - serializedVersion: 3
         time: 1
         value: 1

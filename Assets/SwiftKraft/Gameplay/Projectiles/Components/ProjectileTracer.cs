@@ -44,8 +44,7 @@ namespace SwiftKraft.Gameplay.Projectiles
         public virtual void Show()
         {
             HitPoint = Projectile.Hits.Length > 0 ? Projectile.Hits[Mathf.Min(Projectile.Pierce, Projectile.Hits.Length - 1)].point : transform.position + transform.forward * Projectile.Range;
-            Vector3[] positions = { VisualOrigin, HitPoint };
-            Tracer.SetPositions(positions);
+            ShowLine(VisualOrigin, HitPoint);
             Lifetime.Reset();
             Initialized = true;
 
@@ -59,6 +58,19 @@ namespace SwiftKraft.Gameplay.Projectiles
         {
             Tracer.enabled = false;
             enabled = false;
+        }
+
+        public virtual void ShowLine(Vector3 position, Vector3 targetPosition)
+        {
+            float normalizedSpacing = 1f / Tracer.positionCount;
+
+            Vector3[] positions = new Vector3[Tracer.positionCount];
+            for (int i = 0; i < positions.Length; i++)
+            {
+                positions[i] = Vector3.Lerp(position, targetPosition, normalizedSpacing * i);
+            }
+            
+            Tracer.SetPositions(positions);
         }
     }
 }
