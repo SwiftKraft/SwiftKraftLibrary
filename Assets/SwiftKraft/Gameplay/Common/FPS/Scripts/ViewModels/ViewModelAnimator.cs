@@ -30,11 +30,6 @@ namespace SwiftKraft.Gameplay.Weapons
             Animator.runtimeAnimatorController = OverrideController;
         }
 
-        protected virtual void Update()
-        {
-
-        }
-
         public void PlayAnimation(string id)
         {
             Animation anim = Animations.FirstOrDefault((s) => s.ID == id);
