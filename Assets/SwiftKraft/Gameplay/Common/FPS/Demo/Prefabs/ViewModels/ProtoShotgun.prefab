@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243808998322166224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b259e8bde484ab4ba595a94f31c48b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b7b6d16e354d9948b82dd6b9ae3677b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
@@ -1245,19 +1245,6 @@ MonoBehaviour:
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
   - rid: 4343724573794762765
-  PrefireDelay:
-    <BaseValue>k__BackingField: 0
-    <Values>k__BackingField: []
-  CooldownDelay:
-    <BaseValue>k__BackingField: 1
-    <Values>k__BackingField: []
-  Prefire:
-    <MaxValue>k__BackingField: 0
-    StartEnded: 0
-  Cooldown:
-    <MaxValue>k__BackingField: 0.1
-    StartEnded: 0
-  CancelPrefire: 0
   references:
     version: 2
     RefIds:
@@ -1269,6 +1256,12 @@ MonoBehaviour:
           type: 3}
         Amount:
           <BaseValue>k__BackingField: 8
+          <Values>k__BackingField: []
+        PrefireDelay:
+          <BaseValue>k__BackingField: 0
+          <Values>k__BackingField: []
+        CooldownDelay:
+          <BaseValue>k__BackingField: 1
           <Values>k__BackingField: []
 --- !u!114 &2790031504580108237
 MonoBehaviour:

@@ -18,6 +18,8 @@ namespace SwiftKraft.Gameplay.Weapons
         public GameObject Prefab;
         public ModifiableStatistic Amount = new(1);
 
+        public virtual bool Attacking => false;
+
         public virtual GameObject[] Spawn(Transform transform)
         {
             int amount = (int)Amount;
@@ -48,6 +50,10 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public abstract void Attack(Transform origin);
 
+        public virtual void Begin() { }
+
         public virtual void Tick() { }
+
+        public virtual void End() { }
     }
 }

@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243808998322166224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b259e8bde484ab4ba595a94f31c48b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b7b6d16e354d9948b82dd6b9ae3677b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
@@ -1046,19 +1046,6 @@ MonoBehaviour:
   <AttackModes>k__BackingField:
   - rid: 1446868373770600448
   - rid: 1893897059637133321
-  PrefireDelay:
-    <BaseValue>k__BackingField: 0
-    <Values>k__BackingField: []
-  CooldownDelay:
-    <BaseValue>k__BackingField: 0.09
-    <Values>k__BackingField: []
-  Prefire:
-    <MaxValue>k__BackingField: 0
-    StartEnded: 0
-  Cooldown:
-    <MaxValue>k__BackingField: 0.1
-    StartEnded: 0
-  CancelPrefire: 0
   references:
     version: 2
     RefIds:
@@ -1071,8 +1058,14 @@ MonoBehaviour:
         Amount:
           <BaseValue>k__BackingField: 1
           <Values>k__BackingField: []
+        PrefireDelay:
+          <BaseValue>k__BackingField: 0
+          <Values>k__BackingField: []
+        CooldownDelay:
+          <BaseValue>k__BackingField: 0.35
+          <Values>k__BackingField: []
         Count: 3
-        Delay: 0.05
+        Delay: 0.065
     - rid: 1893897059637133321
       type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
@@ -1081,6 +1074,12 @@ MonoBehaviour:
           type: 3}
         Amount:
           <BaseValue>k__BackingField: 1
+          <Values>k__BackingField: []
+        PrefireDelay:
+          <BaseValue>k__BackingField: 0
+          <Values>k__BackingField: []
+        CooldownDelay:
+          <BaseValue>k__BackingField: 0.09
           <Values>k__BackingField: []
 --- !u!114 &2790031504580108237
 MonoBehaviour:
@@ -1196,7 +1195,7 @@ MonoBehaviour:
   - {fileID: 8029738550120293392}
   RecoilTransformOverride: {fileID: 0}
   RecoilMultiplier:
-    <BaseValue>k__BackingField: 20
+    <BaseValue>k__BackingField: 1.5
     <Values>k__BackingField: []
   DecayMultiplier:
     <BaseValue>k__BackingField: 1
@@ -1223,8 +1222,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 11.804932
-      value: 1.9314785
+      time: 11.844994
+      value: 1.7177745
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1238,7 +1237,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: Infinity
     <DecayRate>k__BackingField: 7
     <CanDecay>k__BackingField: 1
-  Smooth: 1
+  Smooth: 0
   RecoverMultiplier:
     <BaseValue>k__BackingField: 3
     <Values>k__BackingField: []
