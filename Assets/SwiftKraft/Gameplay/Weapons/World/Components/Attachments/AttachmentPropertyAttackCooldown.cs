@@ -2,7 +2,7 @@ using SwiftKraft.Utils;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class AttachmentPropertyAttackCooldown : AttachmentStatisticPropertyBase<WeaponDelay>
+    public class AttachmentPropertyAttackCooldown : AttachmentStatisticPropertyBase<WeaponBase>
     {
         public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
             new AttachmentPropertyAttackCooldown()
@@ -11,10 +11,10 @@ namespace SwiftKraft.Gameplay.Weapons
                 type = type,
             };
 
-        public override ModifiableStatistic.Modifier CreateOverrider() => Component.CooldownDelay.AddModifier();
+        public override ModifiableStatistic.Modifier CreateOverrider() => Component.CurrentMode is WeaponAttackCooldown cooldown ? cooldown.CooldownDelay.AddModifier() : null;
     }
 
-    public class AttachmentPropertyAttackPrefire : AttachmentStatisticPropertyBase<WeaponDelay>
+    public class AttachmentPropertyAttackPrefire : AttachmentStatisticPropertyBase<WeaponBase>
     {
         public override WeaponAttachmentSlotScriptable.AttachmentProperty Clone() =>
             new AttachmentPropertyAttackPrefire()
@@ -23,6 +23,6 @@ namespace SwiftKraft.Gameplay.Weapons
                 type = type,
             };
 
-        public override ModifiableStatistic.Modifier CreateOverrider() => Component.PrefireDelay.AddModifier();
+        public override ModifiableStatistic.Modifier CreateOverrider() => Component.CurrentMode is WeaponAttackCooldown cooldown ? cooldown.PrefireDelay.AddModifier() : null;
     }
 }

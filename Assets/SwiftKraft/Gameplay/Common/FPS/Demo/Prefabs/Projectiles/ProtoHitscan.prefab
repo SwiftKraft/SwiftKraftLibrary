@@ -50,7 +50,7 @@ MonoBehaviour:
   Lifetime:
     <MaxValue>k__BackingField: 0.15
     StartEnded: 0
-  Range: 100
+  Range: 200
   Layers:
     serializedVersion: 2
     m_Bits: 2057
@@ -73,7 +73,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 1
     StartEnded: 0
   HitPoint: {x: 0, y: 0, z: 0}
-  LengthPercentage: 0.4
+  LengthPercentage: 0.2
 --- !u!114 &616807426601634346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +169,7 @@ LineRenderer:
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 2}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.035
@@ -177,21 +178,30 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.7308525
-        inSlope: 0.55621403
-        outSlope: 0.55621403
-        tangentMode: 0
+        value: 0.75
+        inSlope: 0.5
+        outSlope: 0.5
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.12431798
+        outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
+        time: 0.5
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0.75
+        inSlope: -0.5
+        outSlope: -0.5
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -200,7 +210,7 @@ LineRenderer:
       serializedVersion: 2
       key0: {r: 0, g: 1, b: 1, a: 0}
       key1: {r: 0, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -215,7 +225,7 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
+      atime1: 32768
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -225,7 +235,7 @@ LineRenderer:
       m_Mode: 0
       m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 1
     alignment: 0

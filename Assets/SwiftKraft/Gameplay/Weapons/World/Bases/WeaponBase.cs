@@ -43,7 +43,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public ModifiableStatistic Damage;
 
-        public virtual bool Attacking => false;
+        public virtual bool Attacking => CurrentMode.Attacking;
 
         public int CurrentModeIndex
         {
@@ -51,8 +51,10 @@ namespace SwiftKraft.Gameplay.Weapons
             private set
             {
                 value %= AttackModes.Count;
+                CurrentMode?.End();
                 OnAttackModeUpdated?.Invoke(value);
                 _currentMode = value;
+                CurrentMode?.Begin();
             }
         }
         int _currentMode;
@@ -81,10 +83,9 @@ namespace SwiftKraft.Gameplay.Weapons
                 attack.Parent = this;
         }
 
-        protected virtual void OnDestroy()
-        {
-            Actions.Remove(AttackAction);
-        }
+        protected virtual void OnDestroy() => Actions.Remove(AttackAction);
+
+        protected virtual void Start() => CurrentMode?.Begin();
 
         public WeaponAction AddAction(string id, Func<bool> func)
         {
@@ -165,9 +166,6 @@ namespace SwiftKraft.Gameplay.Weapons
             return false;
         }
 
-        protected virtual void FixedUpdate()
-        {
-            CurrentMode?.Tick();
-        }
+        protected virtual void FixedUpdate() => CurrentMode?.Tick();
     }
 }
