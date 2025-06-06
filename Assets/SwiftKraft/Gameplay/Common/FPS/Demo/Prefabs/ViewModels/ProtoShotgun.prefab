@@ -3284,7 +3284,12 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
-      Sounds: []
+      Sounds:
+      - Animations:
+        - {fileID: -242803540405255766, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        - {fileID: 6954920170519157295, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        Clips:
+        - {fileID: 8300000, guid: f78e67fc219ec8946bfc56d7e3164f3d, type: 3}
   - ID: Equip
     States:
     - StateName: Equip
@@ -3320,7 +3325,19 @@ MonoBehaviour:
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
-      Sounds: []
+      Sounds:
+      - Animations:
+        - {fileID: -2748535849520951658, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        Clips:
+        - {fileID: 8300000, guid: 431fe1bfd86eae843ab5166f3e3bd7ff, type: 3}
+        - {fileID: 8300000, guid: e53163b2ddeecb44aaa76db16eb478c6, type: 3}
+        - {fileID: 8300000, guid: 76dc512488fd81e44ac0b20da8b9782c, type: 3}
+      - Animations:
+        - {fileID: -2380010693814368398, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        Clips:
+        - {fileID: 8300000, guid: bb8c098ed81cb334d8d931a321efbe17, type: 3}
+        - {fileID: 8300000, guid: 5618c3415f3865d419d4ecf13c916e75, type: 3}
+        - {fileID: 8300000, guid: 334f2fe5a85a3a0428d6e6e0e2771068, type: 3}
   - ID: EndReload
     States:
     - StateName: EndReload
@@ -3335,6 +3352,11 @@ MonoBehaviour:
         - {fileID: 3279978170624358072, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
         Clips:
         - {fileID: 8300000, guid: d13dec7808eae7541b69cc1a83a34ed4, type: 3}
+      - Animations:
+        - {fileID: -4021307218443824029, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        - {fileID: 810587351463843699, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+        Clips:
+        - {fileID: 8300000, guid: e5419f84b7d39724cb4767dccd3ae427, type: 3}
   SoundSource: {fileID: 2895807444976228756}
 --- !u!114 &6482029906544610366
 MonoBehaviour:
