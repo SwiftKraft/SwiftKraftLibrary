@@ -36,13 +36,10 @@ namespace SwiftKraft.Gameplay.Weapons
             prefire.Tick(Time.fixedDeltaTime);
             cooldown.Tick(Time.fixedDeltaTime);
 
-            if (prefire.Ended && queueAttack.GetTrigger())
-            {
-                Attack();
-                cooldown.Reset();
-            }
+            if (prefire.Ended && queueAttack.GetTrigger() && Attack())
+                TriggerCooldown();
 
-            CanAttack.Active = !prefire.Ended || !cooldown.Ended;
+            UpdateCanAttack();
         }
 
         public override void End()
@@ -63,10 +60,14 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
             }
 
-            Attack();
-            cooldown.Reset();
+            if (Attack())
+                TriggerCooldown();
         }
 
-        public abstract void Attack();
+        public abstract bool Attack();
+
+        protected void TriggerCooldown() => cooldown.Reset();
+
+        protected void UpdateCanAttack() => CanAttack.Active = Attacking;
     }
 }
