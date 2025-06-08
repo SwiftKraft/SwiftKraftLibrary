@@ -35,6 +35,7 @@ namespace SwiftKraft.Gameplay.Weapons
         }
 
         public const string AttackAction = "Attack";
+        public const string SwitchAction = "SwitchMode";
 
         public readonly Dictionary<string, WeaponAction> Actions = new();
 
@@ -50,6 +51,9 @@ namespace SwiftKraft.Gameplay.Weapons
             get => _currentMode;
             private set
             {
+                if (AttackModes.Count <= 0)
+                    return;
+
                 value %= AttackModes.Count;
                 CurrentMode?.End();
                 OnAttackModeUpdated?.Invoke(value);
@@ -78,6 +82,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             Owner = transform.root.GetComponentInChildren<IPawn>();
             AddAction(AttackAction, Attack);
+            AddAction(SwitchAction, SwitchMode);
 
             foreach (WeaponAttackBase attack in AttackModes)
                 attack.Parent = this;
@@ -164,6 +169,14 @@ namespace SwiftKraft.Gameplay.Weapons
             }
 
             return false;
+        }
+
+        public virtual bool SwitchMode() => SwitchMode(CurrentModeIndex + 1);
+
+        public virtual bool SwitchMode(int index)
+        {
+            CurrentModeIndex = index;
+            return true;
         }
 
         protected virtual void FixedUpdate() => CurrentMode?.Tick();

@@ -1079,7 +1079,7 @@ MonoBehaviour:
           <BaseValue>k__BackingField: 0
           <Values>k__BackingField: []
         CooldownDelay:
-          <BaseValue>k__BackingField: 0.09
+          <BaseValue>k__BackingField: 0.0915
           <Values>k__BackingField: []
 --- !u!114 &2790031504580108237
 MonoBehaviour:
@@ -1853,6 +1853,12 @@ MonoBehaviour:
     Linger:
       <MaxValue>k__BackingField: 0
       StartEnded: 0
+  - ID: SwitchMode
+    Key: 98
+    Style: 0
+    Linger:
+      <MaxValue>k__BackingField: 0
+      StartEnded: 0
   Enabled: 1
 --- !u!114 &3348710002142049648
 MonoBehaviour:
@@ -2020,6 +2026,46 @@ MonoBehaviour:
     Repeat: 0
     RepeatDelay: 0
     UseEvent: 1
+  - Action: SwitchMode
+    Source: {fileID: 2895807444976228756}
+    Clips:
+    - Sound: {fileID: 8300000, guid: d06a3b20fc5ecac41903144b9d33c070, type: 3}
+      Priority: 128
+      Pitch: 1
+      Volume: 1
+      StereoPan: 0
+      SpatialBlend: 1
+    VolumeMultiplier:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    PlayedTimes:
+      <MaxValue>k__BackingField: 5
+      <DecayRate>k__BackingField: 7
+      <CanDecay>k__BackingField: 1
+    Repeat: 0
+    RepeatDelay: 0
+    UseEvent: 0
 --- !u!114 &509385651155450324
 MonoBehaviour:
   m_ObjectHideFlags: 0

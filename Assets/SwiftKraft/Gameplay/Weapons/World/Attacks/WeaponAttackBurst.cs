@@ -10,11 +10,9 @@ namespace SwiftKraft.Gameplay.Weapons
 
         private readonly Timer delay = new();
 
-        public override bool Attacking => base.Attacking || !delay.Ended || fireTrigger.Triggered;
+        public override bool Attacking => base.Attacking || !delay.Ended;
 
         public bool Firing { get; private set; }
-
-        readonly Trigger fireTrigger = new();
 
         int count;
 
@@ -22,7 +20,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             count = 0;
             Firing = true;
-            fireTrigger.SetTrigger();
+            FireBurst();
             return false;
         }
 
@@ -32,26 +30,36 @@ namespace SwiftKraft.Gameplay.Weapons
 
             delay.Tick(Time.fixedDeltaTime);
 
-            if (!Firing)
+            if (!Firing || !delay.Ended)
                 return;
-
-            fireTrigger.SetTrigger(false);
 
             UpdateCanAttack();
 
             if (count < Count && Parent.CanAttack)
-            {
-                if (delay.Ended && base.Attack())
-                {
-                    count++;
-                    delay.Reset(Delay);
-                }
-            }
+                FireBurst();
             else
+                StopBurst();
+
+            UpdateCanAttack();
+        }
+
+        private void StopBurst()
+        {
+            count = Count;
+            Firing = false;
+            TriggerCooldown();
+        }
+
+        private bool FireBurst()
+        {
+            if (base.Attack())
             {
-                Firing = false;
-                TriggerCooldown();
+                count++;
+                delay.Reset(Delay);
+                return true;
             }
+
+            return false;
         }
     }
 }
