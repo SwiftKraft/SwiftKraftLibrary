@@ -7,9 +7,9 @@ namespace SwiftKraft.Gameplay.Motors
     {
         public Vector3 WishMoveDirection { get; set; }
 
-        public Vector3 LocalWishMoveDirection => Quaternion.Inverse(transform.rotation) * WishMoveDirection;
+        public virtual Vector3 LocalWishMoveDirection => Quaternion.Inverse(transform.rotation) * WishMoveDirection;
 
-        public Vector3 WishMovePosition
+        public virtual Vector3 WishMovePosition
         {
             get => transform.position + WishMoveDirection;
             set => WishMoveDirection = (value - transform.position).normalized;
@@ -19,7 +19,7 @@ namespace SwiftKraft.Gameplay.Motors
 
         public Quaternion WishLookRotation { get; set; }
 
-        public Vector3 WishLookDirection
+        public virtual Vector3 WishLookDirection
         {
             get => WishLookRotation * Vector3.forward;
             set
@@ -33,7 +33,7 @@ namespace SwiftKraft.Gameplay.Motors
             }
         }
 
-        public Vector3 WishLookPosition
+        public virtual Vector3 WishLookPosition
         {
             get => LookPoint.position + WishLookDirection;
             set => WishLookDirection = value - LookPoint.position;

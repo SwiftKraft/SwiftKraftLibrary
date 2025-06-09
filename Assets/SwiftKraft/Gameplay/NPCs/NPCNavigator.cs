@@ -31,6 +31,7 @@ namespace SwiftKraft.Gameplay.NPCs
                     return;
 
                 _destination = value;
+
                 if (!CheckStop() && RepathTimer.Ended)
                 {
                     Repath();
@@ -70,7 +71,6 @@ namespace SwiftKraft.Gameplay.NPCs
             }
 
             RepathTimer.Tick(Time.fixedDeltaTime);
-            Motor.WishMovePosition = CurrentWaypoint;
 
             if (LookAtWaypoint)
                 Motor.WishLookPosition = CurrentWaypoint + Motor.LookPoint.localPosition;
