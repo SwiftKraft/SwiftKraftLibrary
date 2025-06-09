@@ -70,6 +70,7 @@ namespace SwiftKraft.Gameplay.NPCs
                 return;
             }
 
+            Motor.WishMovePosition = CurrentWaypoint;
             RepathTimer.Tick(Time.fixedDeltaTime);
 
             if (LookAtWaypoint)
