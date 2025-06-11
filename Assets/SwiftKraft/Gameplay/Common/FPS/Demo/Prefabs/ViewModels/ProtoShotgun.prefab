@@ -416,7 +416,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -239302050275881172, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
-  - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+  - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -794,7 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -993,7 +993,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2232875878998256659, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   - {fileID: -239302050275881172, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
-  - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+  - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4143,7 +4143,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: -239302050275881172, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   - {fileID: 2232875878998256659, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
-  - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+  - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   - {fileID: 3589333493158463532, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   - {fileID: -7098565394360792512, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
   m_StaticBatchInfo:
@@ -4496,7 +4496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
