@@ -123,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 529718149919608017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b259e8bde484ab4ba595a94f31c48b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b7b6d16e354d9948b82dd6b9ae3677b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 458719485348545059}
@@ -131,25 +131,12 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 5
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
-  - rid: 1893897177986760705
-  PrefireDelay:
-    <BaseValue>k__BackingField: 0
-    <Values>k__BackingField: []
-  CooldownDelay:
-    <BaseValue>k__BackingField: 0.1
-    <Values>k__BackingField: []
-  Prefire:
-    <MaxValue>k__BackingField: 0
-    StartEnded: 0
-  Cooldown:
-    <MaxValue>k__BackingField: 0
-    StartEnded: 0
-  CancelPrefire: 0
+  - rid: 1446868508588113920
   references:
     version: 2
     RefIds:
-    - rid: 1893897177986760705
-      type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+    - rid: 1446868508588113920
+      type: {class: WeaponAttackBurst, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: 103442b890dcee647bfe9e8b77ef9360,
@@ -157,6 +144,14 @@ MonoBehaviour:
         Amount:
           <BaseValue>k__BackingField: 1
           <Values>k__BackingField: []
+        PrefireDelay:
+          <BaseValue>k__BackingField: 0
+          <Values>k__BackingField: []
+        CooldownDelay:
+          <BaseValue>k__BackingField: 0.5
+          <Values>k__BackingField: []
+        Count: 4
+        Delay: 0.1
 --- !u!114 &1241681551958203808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,13 +165,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxAmmo>k__BackingField:
-    <BaseValue>k__BackingField: 4
+    <BaseValue>k__BackingField: 30
     <Values>k__BackingField: []
   <ReloadSpeedMultiplier>k__BackingField:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   ReloadTimer:
-    <MaxValue>k__BackingField: 0.6
+    <MaxValue>k__BackingField: 2
     StartEnded: 0
 --- !u!114 &8481076396486038775
 MonoBehaviour:
@@ -242,22 +237,22 @@ MonoBehaviour:
   - Action: Attack
     Source: {fileID: 5852023055265059739}
     Clips:
-    - Sound: {fileID: 8300000, guid: 2f84a7c771f56bf40a64debdffab9bf4, type: 3}
+    - Sound: {fileID: 8300000, guid: 764df0263502a6747b92c795751660ac, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.9
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: e563efaf275d5df40a075fce45ab5a54, type: 3}
+    - Sound: {fileID: 8300000, guid: 576043a810012314da242b4d22d2947d, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.9
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: f6f1cb610a708314aa5d84757d94ab50, type: 3}
+    - Sound: {fileID: 8300000, guid: 49fbbfa3752c83e46a2307b892da80d4, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.5
+      Volume: 0.9
       StereoPan: 0
       SpatialBlend: 1
     VolumeMultiplier:
@@ -290,7 +285,7 @@ MonoBehaviour:
       <CanDecay>k__BackingField: 1
     Repeat: 0
     RepeatDelay: 0
-    UseEvent: 0
+    UseEvent: 1
 --- !u!114 &6391053170963483088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +303,7 @@ MonoBehaviour:
     ParticleSystem: {fileID: 4475987755175711861}
     Repeat: 0
     RepeatDelay: 0
-    UseEvent: 0
+    UseEvent: 1
 --- !u!1 &577158417110850108
 GameObject:
   m_ObjectHideFlags: 0
