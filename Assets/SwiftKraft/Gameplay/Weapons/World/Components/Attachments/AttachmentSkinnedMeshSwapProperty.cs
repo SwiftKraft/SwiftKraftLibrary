@@ -32,7 +32,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.Uninstall();
 
-            meshSwapper.SwapMesh(null);
+            meshSwapper.ResetMesh();
         }
     }
 }
