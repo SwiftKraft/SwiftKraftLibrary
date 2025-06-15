@@ -16,11 +16,10 @@ namespace SwiftKraft.Gameplay.Weapons
         [Serializable]
         public class Attachment : ICloneable<Attachment>
         {
+            public string name;
+
             [HideInInspector]
             public WeaponAttachmentSlot parent;
-
-            public string name;
-            public Package package;
 
             [SerializeReference, Subclass]
             public AttachmentProperty[] properties;
@@ -56,7 +55,6 @@ namespace SwiftKraft.Gameplay.Weapons
                 {
                     parent = parent,
                     name = name,
-                    package = package,
                     properties = new AttachmentProperty[properties.Length]
                 };
 
