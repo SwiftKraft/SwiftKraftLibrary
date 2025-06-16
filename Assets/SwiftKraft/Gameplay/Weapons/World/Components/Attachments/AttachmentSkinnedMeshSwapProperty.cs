@@ -1,4 +1,8 @@
 using SwiftKraft.Utils;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
@@ -33,6 +37,24 @@ namespace SwiftKraft.Gameplay.Weapons
             base.Uninstall();
 
             meshSwapper.ResetMesh();
+        }
+
+        public Vector3 DebugMeshOffset;
+
+        public override void DrawGizmos(Transform root)
+        {
+            base.DrawGizmos(root);
+
+            if (Package.mesh == null || Package.materials.Length <= 0)
+                return;
+
+            int subMeshes = Package.mesh.subMeshCount;
+            for (int i = 0; i < Mathf.Min(subMeshes, Package.materials.Length); i++)
+            {
+                Material mat = Package.materials[i];
+                Gizmos.color = mat == null ? Color.white : mat.color;
+                Gizmos.DrawMesh(Package.mesh, i, root.position + root.rotation * DebugMeshOffset, root.rotation, root.lossyScale);
+            }
         }
     }
 }

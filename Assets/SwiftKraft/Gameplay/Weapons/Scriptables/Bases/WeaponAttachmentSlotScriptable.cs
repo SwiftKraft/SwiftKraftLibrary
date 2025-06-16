@@ -1,8 +1,6 @@
-using SwiftKraft.Utils;
 using SwiftKraft.Gameplay.Interfaces;
 using System;
 using UnityEngine;
-using static SwiftKraft.Utils.MeshSwapper;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
@@ -12,6 +10,14 @@ namespace SwiftKraft.Gameplay.Weapons
         public string SlotName;
 
         public Attachment[] Attachments;
+
+#if UNITY_EDITOR
+        public void DrawGizmos(Transform root)
+        {
+            for (int i = 0; i < Attachments.Length; i++)
+                Attachments[i]?.DrawGizmos(root);
+        }
+#endif
 
         [Serializable]
         public class Attachment : ICloneable<Attachment>
@@ -49,6 +55,14 @@ namespace SwiftKraft.Gameplay.Weapons
                     prop?.Destroy();
             }
 
+#if UNITY_EDITOR
+            public void DrawGizmos(Transform root)
+            {
+                for (int i = 0; i < properties.Length; i++)
+                    properties[i]?.DrawGizmos(root);
+            }
+#endif
+
             public Attachment Clone()
             {
                 Attachment clone = new()
@@ -78,6 +92,8 @@ namespace SwiftKraft.Gameplay.Weapons
             public virtual void Uninstall() { }
 
             public virtual void Destroy() { }
+
+            public virtual void DrawGizmos(Transform root) { }
 
             public abstract AttachmentProperty Clone();
         }

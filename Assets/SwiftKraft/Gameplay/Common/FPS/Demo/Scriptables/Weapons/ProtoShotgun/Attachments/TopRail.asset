@@ -37,9 +37,8 @@ MonoBehaviour:
           mesh: {fileID: 2594999250697716090, guid: 47551341c3a44a14e9ed3892759e6743,
             type: 3}
           materials:
-          - {fileID: 0}
-          - {fileID: 0}
-          - {fileID: 0}
+          - {fileID: 2100000, guid: 31e2c6e1cea57f84aae665ea80657fa6, type: 2}
+          - {fileID: 2100000, guid: 949c851ccdcaa5d459cd175f92e5e7c1, type: 2}
     - rid: 4343724440603590656
       type: {class: AttachmentAimOffsetProperty, ns: SwiftKraft.Gameplay.Weapons,
         asm: Assembly-CSharp}

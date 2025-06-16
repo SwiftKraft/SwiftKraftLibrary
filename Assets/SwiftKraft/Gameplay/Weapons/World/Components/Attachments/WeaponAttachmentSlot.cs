@@ -69,6 +69,12 @@ namespace SwiftKraft.Gameplay.Weapons
             if (DebugMode)
                 UpdateAttachment();
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (DebugMode && Scriptable != null)
+                Scriptable.DrawGizmos(transform);
+        }
 #endif
 
         public void RefreshAttachments()
