@@ -1,9 +1,7 @@
 using UnityEngine;
 using System.Text;
 using System.Globalization;
-
 using System;
-
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -49,6 +47,8 @@ namespace SwiftKraft.Utils
         private void OnDrawGizmos()
         {
 #if UNITY_EDITOR
+            if (SceneView.lastActiveSceneView == null)
+                return;
 
             Transform sceneCam = SceneView.lastActiveSceneView.camera.transform;
 
