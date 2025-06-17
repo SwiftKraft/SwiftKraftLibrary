@@ -1,5 +1,6 @@
 using SwiftKraft.Gameplay.Weapons;
 using SwiftKraft.Utils;
+using System.Linq;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
@@ -12,7 +13,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             if (Scriptable.Attachments.Length <= 0)
                 return;
 
-            SwapMesh(Scriptable.Attachments[index % Scriptable.Attachments.Length].package);
+            // temp fix
+            //SwapMesh(Scriptable.Attachments[index % Scriptable.Attachments.Length].properties.FirstOrDefault((f) => f is AttachmentSkinnedMeshSwapProperty) is not AttachmentSkinnedMeshSwapProperty prop ? default : prop.Package);
         }
     }
 }
