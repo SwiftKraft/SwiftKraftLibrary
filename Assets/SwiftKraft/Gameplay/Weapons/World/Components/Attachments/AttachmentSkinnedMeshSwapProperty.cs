@@ -53,7 +53,7 @@ namespace SwiftKraft.Gameplay.Weapons
             {
                 Material mat = Package.materials[i];
                 Gizmos.color = mat == null ? Color.white : mat.color;
-                Gizmos.DrawMesh(Package.mesh, i, root.position + root.rotation * DebugMeshOffset, root.rotation, root.lossyScale);
+                Gizmos.DrawMesh(Package.mesh, i, root.position + root.rotation * DebugMeshOffset, root.rotation, Vector3.one * 20f);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
                 return;
 
             // temp fix
-            SwapMesh(Scriptable.Attachments[index % Scriptable.Attachments.Length].properties.FirstOrDefault((f) => f is AttachmentSkinnedMeshSwapProperty) is not AttachmentSkinnedMeshSwapProperty prop ? default : prop.Package);
+            //SwapMesh(Scriptable.Attachments[index % Scriptable.Attachments.Length].properties.FirstOrDefault((f) => f is AttachmentSkinnedMeshSwapProperty) is not AttachmentSkinnedMeshSwapProperty prop ? default : prop.Package);
         }
     }
 }
