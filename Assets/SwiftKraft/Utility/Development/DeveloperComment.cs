@@ -11,8 +11,6 @@ namespace SwiftKraft.Utils
 {
     public class DeveloperComment : MonoBehaviour
     {
-        public const float ScalingDistance = 3.5f;
-
         [Header("Comment")]
         [TextArea(1, 100)]
         public string Text;
@@ -20,6 +18,10 @@ namespace SwiftKraft.Utils
         public int CharCountWrap = 20;
         public float MaxDistance = 50f;
         public bool ShowDate = true;
+        [Header("Spacing")]
+        public float SpacingDistance = 3.5f;
+        public float MinSpacing = 0f;
+        public float MaxSpacing = 1f;
         [Header("Styling")]
         public bool RichText = false;
         public int FontSize = 14;
@@ -113,7 +115,7 @@ namespace SwiftKraft.Utils
 
                 style.normal.textColor = currentColor;
 
-                Handles.Label(transform.position + sceneCam.right * Mathf.Lerp(0f, 0.5f, Mathf.InverseLerp(0f, ScalingDistance, sceneCamDist)), builder.ToString(), style);
+                Handles.Label(transform.position + sceneCam.right * Mathf.Lerp(MinSpacing, MaxSpacing, Mathf.InverseLerp(0f, SpacingDistance, sceneCamDist)), builder.ToString(), style);
             }
 #endif
         }
