@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
   Damage:
-    <BaseValue>k__BackingField: 25
+    <BaseValue>k__BackingField: 22
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
   - rid: 1446868373770600448
@@ -1066,7 +1066,7 @@ MonoBehaviour:
           <BaseValue>k__BackingField: 0.18
           <Values>k__BackingField: []
         Count: 3
-        Delay: 0.065
+        Delay: 0.05
     - rid: 1893897059637133321
       type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
@@ -1080,7 +1080,7 @@ MonoBehaviour:
           <BaseValue>k__BackingField: 0
           <Values>k__BackingField: []
         CooldownDelay:
-          <BaseValue>k__BackingField: 0.0915
+          <BaseValue>k__BackingField: 0.075
           <Values>k__BackingField: []
 --- !u!114 &2790031504580108237
 MonoBehaviour:
