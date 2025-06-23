@@ -14,24 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotName: Barrel
   Attachments:
-  - parent: {fileID: 0}
-    name: Standard Barrel
-    package:
-      mesh: {fileID: 8108563764783910780, guid: 47551341c3a44a14e9ed3892759e6743,
-        type: 3}
-      materials:
-      - {fileID: -239302050275881172, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
-      - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+  - name: Standard Barrel
+    parent: {fileID: 0}
     properties: []
-  - parent: {fileID: 0}
-    name: Extended Barrel
-    package:
-      mesh: {fileID: 3828601404574971821, guid: 47551341c3a44a14e9ed3892759e6743,
-        type: 3}
-      materials:
-      - {fileID: -239302050275881172, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
-      - {fileID: -7848952084472943420, guid: 47551341c3a44a14e9ed3892759e6743, type: 3}
+  - name: Extended Barrel
+    parent: {fileID: 0}
     properties:
+    - rid: 5783097287850328066
     - rid: 4343724573794762772
     - rid: 4343724573794762773
     - rid: 4343724573794762774
@@ -43,11 +32,8 @@ MonoBehaviour:
       type: {class: AttachmentDamageProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         value: 1.4
         type: 2
@@ -56,11 +42,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         value: 1.2
         type: 3
@@ -69,11 +52,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         value: 1.5
         type: 3
@@ -81,11 +61,22 @@ MonoBehaviour:
       type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         value: 1.1
         type: 3
+    - rid: 5783097287850328066
+      type: {class: AttachmentSkinnedMeshSwapProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          name: 
+          parent: {fileID: 0}
+          properties: []
+        Package:
+          mesh: {fileID: 3828601404574971821, guid: 47551341c3a44a14e9ed3892759e6743,
+            type: 3}
+          materials:
+          - {fileID: 2100000, guid: 7dec21175d4001741a4ce9c8925a2887, type: 2}
+          - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}

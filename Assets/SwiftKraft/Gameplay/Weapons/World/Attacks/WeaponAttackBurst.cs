@@ -6,25 +6,22 @@ namespace SwiftKraft.Gameplay.Weapons
     public class WeaponAttackBurst : WeaponAttackSingle
     {
         public int Count;
-
         public float Delay;
 
         private readonly Timer delay = new();
 
-        public bool Firing { get; private set; }
+        public override bool Attacking => base.Attacking || !delay.Ended;
 
-        Transform attackOrigin;
+        public bool Firing { get; private set; }
 
         int count;
 
-        public override void Attack(Transform origin)
+        public override bool Attack()
         {
-            if (!Parent.CanAttack)
-                return;
-
-            attackOrigin = origin;
             count = 0;
             Firing = true;
+            FireBurst();
+            return false;
         }
 
         public override void Tick()
@@ -33,17 +30,36 @@ namespace SwiftKraft.Gameplay.Weapons
 
             delay.Tick(Time.fixedDeltaTime);
 
-            if (Parent.CanAttack && Firing && count < Count)
-            {
-                if (delay.Ended)
-                {
-                    base.Attack(attackOrigin);
-                    count++;
-                    delay.Reset(Delay);
-                }
-            }
+            if (!Firing || !delay.Ended)
+                return;
+
+            UpdateCanAttack();
+
+            if (count < Count && Parent.CanAttack)
+                FireBurst();
             else
-                Firing = false;
+                StopBurst();
+
+            UpdateCanAttack();
+        }
+
+        private void StopBurst()
+        {
+            count = Count;
+            Firing = false;
+            TriggerCooldown();
+        }
+
+        private bool FireBurst()
+        {
+            if (base.Attack())
+            {
+                count++;
+                delay.Reset(Delay);
+                return true;
+            }
+
+            return false;
         }
     }
 }

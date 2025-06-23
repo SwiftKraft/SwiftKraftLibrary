@@ -14,38 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotName: Magazine
   Attachments:
-  - parent: {fileID: 0}
-    name: Default
-    package:
-      mesh: {fileID: -6318658350936181802, guid: 384f8faa6b87553429a38b543c2a4468,
-        type: 3}
-      materials:
-      - {fileID: -7098565394360792512, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+  - name: Default
+    parent: {fileID: 0}
     properties: []
-  - parent: {fileID: 0}
-    name: Extended Magazine
-    package:
-      mesh: {fileID: 1600944390240643706, guid: 384f8faa6b87553429a38b543c2a4468,
-        type: 3}
-      materials:
-      - {fileID: -7098565394360792512, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+  - name: Extended Magazine
+    parent: {fileID: 0}
     properties:
+    - rid: 1446868647654719503
     - rid: 5239458954478092289
     - rid: 5239458955840716801
   references:
     version: 2
     RefIds:
+    - rid: 1446868647654719503
+      type: {class: AttachmentSkinnedMeshSwapProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          name: 
+          parent: {fileID: 0}
+          properties: []
+        Package:
+          mesh: {fileID: 1600944390240643706, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          materials:
+          - {fileID: 2100000, guid: 7c9da0a8e86511742ba8778fdec8086b, type: 2}
+          - {fileID: 2100000, guid: 7dec21175d4001741a4ce9c8925a2887, type: 2}
+        DebugMeshOffset: {x: 0, y: 0, z: 0}
     - rid: 5239458954478092289
       type: {class: AttachmentMaxAmmoProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         value: 14
         type: 0
@@ -54,11 +55,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         Overrides:
         - OriginalClip: {fileID: 5548249309397526510, guid: 384f8faa6b87553429a38b543c2a4468,

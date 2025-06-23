@@ -1,14 +1,14 @@
 using SwiftKraft.Utils;
+using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
+    [Obsolete]
     public class WeaponDelay : WeaponBase
     {
         public override bool Attacking => !Prefire.Ended || !Cooldown.Ended;
 
-        public ModifiableStatistic PrefireDelay = new(0f);
-        public ModifiableStatistic CooldownDelay = new(0.1f);
 
         [HideInInspector]
         public Timer Prefire;
@@ -25,8 +25,6 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void Awake()
         {
             base.Awake();
-            Prefire.MaxValue = PrefireDelay;
-            Cooldown.MaxValue = CooldownDelay;
         }
 
         protected override void FixedUpdate()
@@ -51,8 +49,6 @@ namespace SwiftKraft.Gameplay.Weapons
             attackTrigger.SetTrigger();
             attackOrigin = origin;
 
-            if (!CancelPrefire)
-                Prefire.Reset(PrefireDelay);
 
             if (Prefire.Ended || CancelPrefire)
                 return PerformAttack(origin);
@@ -65,8 +61,6 @@ namespace SwiftKraft.Gameplay.Weapons
             bool status = base.Attack(origin);
             attackTrigger.SetTrigger(false);
 
-            if (status)
-                Cooldown.Reset(CooldownDelay);
 
             return status;
         }

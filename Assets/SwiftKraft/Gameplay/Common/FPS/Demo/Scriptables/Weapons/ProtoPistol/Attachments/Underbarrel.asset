@@ -14,52 +14,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotName: Underbarrel
   Attachments:
-  - parent: {fileID: 0}
-    name: None
-    package:
-      mesh: {fileID: 0}
-      materials: []
+  - name: None
+    parent: {fileID: 0}
     properties: []
-  - parent: {fileID: 0}
-    name: Holographic Sight
-    package:
-      mesh: {fileID: 2594999250697716090, guid: 384f8faa6b87553429a38b543c2a4468,
-        type: 3}
-      materials:
-      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2100000, guid: 002524d0c193d1a4fad5df8152d09e39, type: 2}
+  - name: Holographic Sight
+    parent: {fileID: 0}
     properties:
+    - rid: 1446868647654719493
     - rid: 4744942044584345607
     - rid: 4744942044584345619
     - rid: 4744942044584345618
-  - parent: {fileID: 0}
-    name: 2x Scope
-    package:
-      mesh: {fileID: 6101988875147511788, guid: 384f8faa6b87553429a38b543c2a4468,
-        type: 3}
-      materials:
-      - {fileID: -239302050275881172, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2232875878998256659, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: -7848952084472943420, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
-      - {fileID: 2100000, guid: 949c851ccdcaa5d459cd175f92e5e7c1, type: 2}
+  - name: 2x Scope
+    parent: {fileID: 0}
     properties:
+    - rid: 1446868647654719495
     - rid: 1893896724051918852
     - rid: 1893896724051918851
     - rid: 1893896724051918849
   references:
     version: 2
     RefIds:
+    - rid: 1446868647654719493
+      type: {class: AttachmentSkinnedMeshSwapProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          name: 
+          parent: {fileID: 0}
+          properties: []
+        Package:
+          mesh: {fileID: 2594999250697716090, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          materials:
+          - {fileID: 2100000, guid: 31e2c6e1cea57f84aae665ea80657fa6, type: 2}
+          - {fileID: 2100000, guid: 7dec21175d4001741a4ce9c8925a2887, type: 2}
+          - {fileID: 2100000, guid: 06af9b3fd4ce6c84e9a33db4865a0d9a, type: 2}
+        DebugMeshOffset: {x: 0, y: 0, z: 0}
+    - rid: 1446868647654719495
+      type: {class: AttachmentSkinnedMeshSwapProperty, ns: SwiftKraft.Gameplay.Weapons,
+        asm: Assembly-CSharp}
+      data:
+        parent:
+          name: 
+          parent: {fileID: 0}
+          properties: []
+        Package:
+          mesh: {fileID: 6101988875147511788, guid: 384f8faa6b87553429a38b543c2a4468,
+            type: 3}
+          materials:
+          - {fileID: 2100000, guid: 7dec21175d4001741a4ce9c8925a2887, type: 2}
+          - {fileID: 2100000, guid: 31e2c6e1cea57f84aae665ea80657fa6, type: 2}
+          - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
+          - {fileID: 2100000, guid: a5b93f46de22a4b4380a95ba70465be1, type: 2}
+        DebugMeshOffset: {x: 1, y: 0, z: 0}
     - rid: 1893896724051918849
       type: {class: AttachmentAimFOVProperty, ns: SwiftKraft.Gameplay.Common.FPS.ViewModels,
         asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         viewFOV: 1.5
         viewType: 3
@@ -69,11 +83,8 @@ MonoBehaviour:
       type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         value: 1.2
         type: 3
@@ -82,11 +93,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         TargetOffset: {x: 0, y: -0.0065, z: 0}
         TargetEulerOffset: {x: -0.34, y: 0, z: 0}
@@ -95,11 +103,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         TargetOffset: {x: 0, y: -0.0042, z: 0}
         TargetEulerOffset: {x: -0.34, y: 0, z: 0}
@@ -108,11 +113,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         viewFOV: 0
         viewType: 0
@@ -122,11 +124,8 @@ MonoBehaviour:
       type: {class: AttachmentAimSpeedProperty, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         parent:
-          parent: {fileID: 0}
           name: 
-          package:
-            mesh: {fileID: 0}
-            materials: []
+          parent: {fileID: 0}
           properties: []
         value: 1.05
         type: 3

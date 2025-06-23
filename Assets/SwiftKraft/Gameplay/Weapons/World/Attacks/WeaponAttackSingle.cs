@@ -2,16 +2,14 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class WeaponAttackSingle : WeaponAttackBase
+    public class WeaponAttackSingle : WeaponAttackCooldown
     {
-        public override void Attack(Transform origin)
+        public override bool Attack()
         {
-            if (!Parent.CanAttack)
-                return;
-
             Parent.PreAttackEvent();
-            GameObject[] go = Spawn(origin);
+            GameObject[] go = Spawn(CurrentAttackTransform);
             Parent.AttackEvent(go);
+            return true;
         }
     }
 }

@@ -35,6 +35,7 @@ namespace SwiftKraft.Gameplay.Weapons
         }
 
         public const string AttackAction = "Attack";
+        public const string SwitchAction = "SwitchMode";
 
         public readonly Dictionary<string, WeaponAction> Actions = new();
 
@@ -43,16 +44,21 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public ModifiableStatistic Damage;
 
-        public virtual bool Attacking => false;
+        public virtual bool Attacking => CurrentMode.Attacking;
 
         public int CurrentModeIndex
         {
             get => _currentMode;
             private set
             {
+                if (AttackModes.Count <= 0)
+                    return;
+
                 value %= AttackModes.Count;
+                CurrentMode?.End();
                 OnAttackModeUpdated?.Invoke(value);
                 _currentMode = value;
+                CurrentMode?.Begin();
             }
         }
         int _currentMode;
@@ -76,15 +82,15 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             Owner = transform.root.GetComponentInChildren<IPawn>();
             AddAction(AttackAction, Attack);
+            AddAction(SwitchAction, SwitchMode);
 
             foreach (WeaponAttackBase attack in AttackModes)
                 attack.Parent = this;
         }
 
-        protected virtual void OnDestroy()
-        {
-            Actions.Remove(AttackAction);
-        }
+        protected virtual void OnDestroy() => Actions.Remove(AttackAction);
+
+        protected virtual void Start() => CurrentMode?.Begin();
 
         public WeaponAction AddAction(string id, Func<bool> func)
         {
@@ -165,9 +171,14 @@ namespace SwiftKraft.Gameplay.Weapons
             return false;
         }
 
-        protected virtual void FixedUpdate()
+        public virtual bool SwitchMode() => SwitchMode(CurrentModeIndex + 1);
+
+        public virtual bool SwitchMode(int index)
         {
-            CurrentMode?.Tick();
+            CurrentModeIndex = index;
+            return true;
         }
+
+        protected virtual void FixedUpdate() => CurrentMode?.Tick();
     }
 }

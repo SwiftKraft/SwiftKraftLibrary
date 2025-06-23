@@ -1,9 +1,9 @@
-using SwiftKraft.Utils;
+using UnityEngine;
 using static SwiftKraft.Gameplay.Weapons.WeaponAttachmentSlotScriptable;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class WeaponAttachmentSlot : MeshSwapper
+    public class WeaponAttachmentSlot : MonoBehaviour
     {
 #if UNITY_EDITOR
         public bool DebugMode = false;
@@ -39,9 +39,8 @@ namespace SwiftKraft.Gameplay.Weapons
         }
         int _attachmentIndex;
 
-        protected override void Awake()
+        protected virtual void Awake()
         {
-            base.Awake();
             Parent = GetComponentInParent<WeaponAttachments>();
 
             if (Attachments.Length == 0)
@@ -70,6 +69,12 @@ namespace SwiftKraft.Gameplay.Weapons
             if (DebugMode)
                 UpdateAttachment();
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (DebugMode && Scriptable != null)
+                Scriptable.DrawGizmos(transform);
+        }
 #endif
 
         public void RefreshAttachments()
@@ -82,7 +87,6 @@ namespace SwiftKraft.Gameplay.Weapons
         public void UpdateAttachment()
         {
             Attachment att = Attachments[AttachmentIndex];
-            SwapMesh(att.package);
 
             att.Update();
             Parent.AttachmentsUpdated();

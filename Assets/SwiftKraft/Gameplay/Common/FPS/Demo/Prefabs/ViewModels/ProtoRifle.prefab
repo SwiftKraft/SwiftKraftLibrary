@@ -337,8 +337,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7805965318761107941, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: -9003920172004352368, guid: 8ba607972dc27664c9bb1f0764ec74a0, type: 3}
+  - {fileID: 2100000, guid: e3a41144c39120d43975e97ca5af24de, type: 2}
+  - {fileID: 2100000, guid: d7a56e43ee66dc2438685ed59f93a1fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -508,9 +508,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  - {fileID: 2100000, guid: 31e2c6e1cea57f84aae665ea80657fa6, type: 2}
+  - {fileID: 2100000, guid: 7dec21175d4001741a4ce9c8925a2887, type: 2}
+  - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -535,7 +535,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 3618710709962313328, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  m_Mesh: {fileID: 8108563764783910780, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
   m_Bones:
   - {fileID: 8108505491139896930}
   - {fileID: 4686873896396251278}
@@ -919,7 +919,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243808998322166224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b259e8bde484ab4ba595a94f31c48b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b7b6d16e354d9948b82dd6b9ae3677b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 3608207479672408995}
@@ -928,19 +928,6 @@ MonoBehaviour:
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
   - rid: 1893897059637133321
-  PrefireDelay:
-    <BaseValue>k__BackingField: 0
-    <Values>k__BackingField: []
-  CooldownDelay:
-    <BaseValue>k__BackingField: 0.1
-    <Values>k__BackingField: []
-  Prefire:
-    <MaxValue>k__BackingField: 0
-    StartEnded: 0
-  Cooldown:
-    <MaxValue>k__BackingField: 0.1
-    StartEnded: 0
-  CancelPrefire: 0
   references:
     version: 2
     RefIds:
@@ -952,6 +939,12 @@ MonoBehaviour:
           type: 3}
         Amount:
           <BaseValue>k__BackingField: 1
+          <Values>k__BackingField: []
+        PrefireDelay:
+          <BaseValue>k__BackingField: 0
+          <Values>k__BackingField: []
+        CooldownDelay:
+          <BaseValue>k__BackingField: 0.1
           <Values>k__BackingField: []
 --- !u!114 &2790031504580108237
 MonoBehaviour:
@@ -989,15 +982,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 5
       value: 1.0580102
-      inSlope: 0.0625
-      outSlope: 0.0625
+      inSlope: 0.051162653
+      outSlope: 0.051162653
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 15
-      value: 1.3080102
+      time: 13.202576
+      value: 1.0770837
       inSlope: 0.00037922597
       outSlope: 0.00037922597
       tangentMode: 0
@@ -1122,33 +1115,33 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 0.4070597
-      outSlope: 0.4070597
+      inSlope: 0.46425483
+      outSlope: 0.46425483
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9656185
-      value: 0.8930644
-      inSlope: 0.22074474
-      outSlope: 0.22074474
+      time: 1.2836269
+      value: 1.09593
+      inSlope: 0.22802052
+      outSlope: 0.22802052
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 3.773923
-      value: 0.9897537
-      inSlope: 0.047632962
-      outSlope: 0.047632962
+      time: 3.977048
+      value: 1.0738068
+      inSlope: 0.05024014
+      outSlope: 0.05024014
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 5.5607457
-      value: 1.0984571
+      value: 1.2459453
       inSlope: 0.034641527
       outSlope: 0.034641527
       tangentMode: 0
@@ -1157,7 +1150,7 @@ MonoBehaviour:
       outWeight: 0.09702628
     - serializedVersion: 3
       time: 8.2178955
-      value: 1.096689
+      value: 1.2441772
       inSlope: 0.0051371427
       outSlope: 0.0051371427
       tangentMode: 0
@@ -1176,15 +1169,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.010535936
-      outSlope: 0.010535936
+      inSlope: 0.03273158
+      outSlope: 0.03273158
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 6.7619324
-      value: 0.071243286
+      value: 0.22132874
       inSlope: 0.06240931
       outSlope: 0.06240931
       tangentMode: 0
@@ -1193,7 +1186,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 9.504583
-      value: 0.16166398
+      value: 0.31174943
       inSlope: -0.039256003
       outSlope: -0.039256003
       tangentMode: 0
@@ -1211,7 +1204,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 13.962343
-      value: -0.26025376
+      value: -0.36981535
       inSlope: 0.00724188
       outSlope: 0.00724188
       tangentMode: 0
@@ -1220,7 +1213,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 18.846472
-      value: -0.25790647
+      value: -0.36746806
       inSlope: 0.00575084
       outSlope: 0.00575084
       tangentMode: 0
@@ -1238,7 +1231,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 30.324633
-      value: 0.08699031
+      value: 0.21156035
       inSlope: 0.00045712874
       outSlope: 0.00045712874
       tangentMode: 0
@@ -1395,16 +1388,16 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 8.093888
-      value: 0.44540992
-      inSlope: -0.018809564
-      outSlope: -0.018809564
+      value: 0.624091
+      inSlope: -0.042014048
+      outSlope: -0.042014048
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 10.660123
-      value: -0.23591402
+      value: -0.452894
       inSlope: -0.032073814
       outSlope: -0.032073814
       tangentMode: 0
@@ -1413,7 +1406,7 @@ MonoBehaviour:
       outWeight: 0.553546
     - serializedVersion: 3
       time: 14.761033
-      value: -0.2394248
+      value: -0.45640478
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1422,7 +1415,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 15.579914
-      value: 0.4138776
+      value: 0.5925587
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1431,7 +1424,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 19.930134
-      value: 0.4392413
+      value: 0.61792237
       inSlope: -0.11060071
       outSlope: -0.11060071
       tangentMode: 0
@@ -1467,7 +1460,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 35.929985
-      value: 0.4507896
+      value: 0.6294707
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1476,7 +1469,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 41.564034
-      value: -0.37184617
+      value: -0.5888262
       inSlope: -0.03186545
       outSlope: -0.03186545
       tangentMode: 0
@@ -1485,7 +1478,7 @@ MonoBehaviour:
       outWeight: 0.78571403
     - serializedVersion: 3
       time: 45.430748
-      value: -0.38798133
+      value: -0.6049613
       inSlope: 0.016177857
       outSlope: 0.016177857
       tangentMode: 0
@@ -1579,7 +1572,61 @@ MonoBehaviour:
       m_RotationOrder: 4
     Y:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: -0.014846968
+        outSlope: -0.014846968
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33568534
+      - serializedVersion: 3
+        time: 1.2485952
+        value: -0.012660558
+        inSlope: -0.0033884265
+        outSlope: -0.0033884265
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4.0670333
+        value: -0.0031821826
+        inSlope: 0.0013127266
+        outSlope: 0.0013127266
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 7.344324
+        value: -0.0055993004
+        inSlope: -0.0008488544
+        outSlope: -0.0008488544
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.9690435
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 29.862986
+        value: -0.0035662074
+        inSlope: 0.000019833506
+        outSlope: 0.000019833506
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 58.647995
+        value: -0.005023241
+        inSlope: -0.000050617793
+        outSlope: -0.000050617793
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1634,8 +1681,26 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 3.4549775
         value: 0.10478869
-        inSlope: -0.0032451348
-        outSlope: -0.0032451348
+        inSlope: -0.01145301
+        outSlope: -0.01145301
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4.633336
+        value: 0.08162112
+        inSlope: -0.009480955
+        outSlope: -0.009480955
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6.937192
+        value: 0.08323146
+        inSlope: 0.00069897546
+        outSlope: 0.00069897546
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -1851,22 +1916,22 @@ MonoBehaviour:
   - Action: Attack
     Source: {fileID: 2895807444976228756}
     Clips:
-    - Sound: {fileID: 8300000, guid: 2f84a7c771f56bf40a64debdffab9bf4, type: 3}
+    - Sound: {fileID: 8300000, guid: 764df0263502a6747b92c795751660ac, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.3
+      Volume: 0.9
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: e563efaf275d5df40a075fce45ab5a54, type: 3}
+    - Sound: {fileID: 8300000, guid: 576043a810012314da242b4d22d2947d, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.3
+      Volume: 0.9
       StereoPan: 0
       SpatialBlend: 1
-    - Sound: {fileID: 8300000, guid: f6f1cb610a708314aa5d84757d94ab50, type: 3}
+    - Sound: {fileID: 8300000, guid: 49fbbfa3752c83e46a2307b892da80d4, type: 3}
       Priority: 128
       Pitch: 1
-      Volume: 0.3
+      Volume: 0.9
       StereoPan: 0
       SpatialBlend: 1
     VolumeMultiplier:
@@ -1891,8 +1956,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2
-        value: 0.42263326
+        time: 1.5899963
+        value: 0.38717183
         inSlope: -0.114793345
         outSlope: -0.114793345
         tangentMode: 0
@@ -2038,9 +2103,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: -2548980356893904593, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  - {fileID: 2100000, guid: 7dec21175d4001741a4ce9c8925a2887, type: 2}
+  - {fileID: 2100000, guid: 7c9da0a8e86511742ba8778fdec8086b, type: 2}
+  - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2866,10 +2931,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 2100000, guid: b62f1a38df52a6344bb3ee9a8fd10188, type: 2}
+  - {fileID: 2100000, guid: 31e2c6e1cea57f84aae665ea80657fa6, type: 2}
+  - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2894,7 +2957,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -3216440805686255927, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  m_Mesh: {fileID: 2183720242721537697, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
   m_Bones:
   - {fileID: 8108505491139896930}
   - {fileID: 4686873896396251278}
@@ -2985,7 +3048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e28cd206bdec0409b7de24bb7004ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugMode: 0
+  DebugMode: 1
   Scriptable: {fileID: 11400000, guid: f74430a9628f8a54184d216e7292da97, type: 2}
 --- !u!1 &4188797405681656713
 GameObject:
@@ -3103,7 +3166,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 95
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -3141,7 +3204,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3325,7 +3388,7 @@ GameObject:
   - component: {fileID: 3326454147153133614}
   - component: {fileID: 7811061780212954942}
   m_Layer: 6
-  m_Name: Siderail
+  m_Name: SideRail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3365,10 +3428,7 @@ SkinnedMeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3393,7 +3453,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 119302499102753868, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 8108505491139896930}
   - {fileID: 4686873896396251278}
@@ -4189,8 +4249,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6552053652233832684}
-  - {fileID: 8700902960715604388}
   - {fileID: 669591423469855771}
+  - {fileID: 8700902960715604388}
   - {fileID: 1640906062811428720}
   - {fileID: 8378484039491313257}
   - {fileID: 6320197154012818977}
@@ -4279,6 +4339,11 @@ MonoBehaviour:
         - {fileID: -7359621142371556409, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
         Clips:
         - {fileID: 8300000, guid: 8c8284b82276ed14fa83ef224291a14d, type: 3}
+      - Animations:
+        - {fileID: 2971146141758270868, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+        - {fileID: -5980902178953999703, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+        Clips:
+        - {fileID: 8300000, guid: 41efd70d313116443950dd508f4771b1, type: 3}
   - ID: Equip
     States:
     - StateName: Equip
@@ -4758,7 +4823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4963,7 +5028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -5666,11 +5731,11 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1390473120694543808, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 5941788908519513495, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: -2548980356893904593, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 4464311932973549014, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
-  - {fileID: 8175663850697150321, guid: 5149efcf6938e4049989526f85b4fb8d, type: 3}
+  - {fileID: 2100000, guid: 31e2c6e1cea57f84aae665ea80657fa6, type: 2}
+  - {fileID: 2100000, guid: 7dec21175d4001741a4ce9c8925a2887, type: 2}
+  - {fileID: 2100000, guid: 7c9da0a8e86511742ba8778fdec8086b, type: 2}
+  - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
+  - {fileID: 2100000, guid: ecb2e0de645d0884ab4ef25286fa45a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
