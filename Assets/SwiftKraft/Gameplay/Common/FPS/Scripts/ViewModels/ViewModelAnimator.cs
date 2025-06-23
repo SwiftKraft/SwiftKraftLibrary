@@ -43,7 +43,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
             SoundSource.clip = clip;
             SoundSource.pitch = Animator.speed * (Animator.IsInTransition(0) ? Animator.GetNextAnimatorStateInfo(0) : Animator.GetCurrentAnimatorStateInfo(0)).speedMultiplier * Time.timeScale;
-            SoundSource.Play(); // Needs rework.
+            SoundSource.Play();
             if (startTime > 0f)
                 SoundSource.time = startTime;
         }
@@ -60,7 +60,7 @@ namespace SwiftKraft.Gameplay.Weapons
         [Serializable]
         public class Animation
         {
-            public static int Tries = 10;
+            public const int Tries = 10;
 
             public ViewModelAnimator Parent { get; set; }
 
@@ -116,7 +116,7 @@ namespace SwiftKraft.Gameplay.Weapons
                     }
                 }
 
-                return true;
+                return false;
             }
 
             [Serializable]
