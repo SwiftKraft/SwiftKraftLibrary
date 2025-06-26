@@ -12,6 +12,9 @@ namespace SwiftKraft.Gameplay.Weapons
     [RequireComponent(typeof(Animator))]
     public class ViewModelAnimator : RequiredDependencyComponent<Animator>
     {
+        public string CustomClip = "Custom";
+        public string CustomState = "Custom";
+
         public Animation[] Animations;
 
         public Animator Animator => Component;
@@ -52,10 +55,33 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public void SwapAnimation(AnimationClip clip, AnimationClip overrider) => SwapAnimation(clip.name, overrider);
 
-        public void ResetAnimation(string clipName) => OverrideController[clipName] = null;
+        public void ResetAnimation(string clipName)
+        {
+            if (OverrideController.animationClips.Any((c) => c.name.Equals(clipName)))
+                OverrideController[clipName] = null;
+        }
 
-        public void SwapAnimation(string clipName, AnimationClip overrider) => OverrideController[clipName] = overrider;
+        public void SwapAnimation(string clipName, AnimationClip overrider)
+        {
+            if (OverrideController.animationClips.Any((c) => c.name.Equals(clipName)))
+                OverrideController[clipName] = overrider;
+        }
 
+        public void PlayCustom(AnimationClip clip, float transitionTime = 0.1f, AudioClip sound = null)
+        {
+            if (clip == null)
+                return;
+
+            SwapAnimation(CustomClip, clip);
+
+            if (transitionTime > 0f)
+                Animator.CrossFadeInFixedTime(CustomState, transitionTime);
+            else
+                Animator.Play(CustomState, 0, 0f);
+
+            if (sound != null)
+                PlaySound(sound);
+        }
 
         [Serializable]
         public class Animation
