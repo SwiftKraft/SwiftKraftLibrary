@@ -11,6 +11,8 @@ namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
         public ModifiableStatistic Acceleration = new(10f);
         public ModifiableStatistic MaxSpeed = new(5f);
 
+        public float GroundDrag = 12f;
+
         public float ReferenceFOV = 90f;
 
         SingleSetting<float> sensitivity;
@@ -30,6 +32,9 @@ namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
 
             SettingsManager.Current.TrySetting("Sensitivity", out sensitivity);
             SettingsManager.Current.TrySetting("AimSensitivity", out aimSensitivity);
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         protected override void Update()
@@ -47,7 +52,7 @@ namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
         protected override void FixedUpdate()
         {
             Vector2 inputMove = GetInputMove();
-            WishMoveDirection = new Vector3(inputMove.x, 0f, inputMove.y);
+            WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y);
 
             base.FixedUpdate();
         }
@@ -61,12 +66,8 @@ namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
 
         public override void Move(Vector3 direction)
         {
-            Vector3 horizontalVelocity = Component.velocity;
-            horizontalVelocity.y = 0f;
-            float perpendicularity = 1f - Mathf.Abs(Vector3.Dot(horizontalVelocity.normalized, direction.normalized));
             Component.velocity += direction
                 * (Acceleration
-                * (MaxSpeed * MaxSpeed <= horizontalVelocity.sqrMagnitude ? perpendicularity : 1f)
                 * Time.fixedDeltaTime);
         }
     }

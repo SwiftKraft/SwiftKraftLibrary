@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 99921355175201193}
   - component: {fileID: 7113736041993363246}
   - component: {fileID: 623447458078396032}
-  - component: {fileID: -4361878761603334877}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -139,7 +138,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
-  - {fileID: -4361878761603334877}
+  - {fileID: 7113736041993363246}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -185,9 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 99921355175201193}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 99921355175201193}
   _componentConfiguration: 2
   _synchronizeParent: 0
   _packing:
@@ -232,27 +231,12 @@ MonoBehaviour:
   <Enabled>k__BackingField: 1
   <LookInUpdate>k__BackingField: 1
   Acceleration:
-    <BaseValue>k__BackingField: 10
+    <BaseValue>k__BackingField: 30
     <Values>k__BackingField: []
   MaxSpeed:
     <BaseValue>k__BackingField: 5
     <Values>k__BackingField: []
   ReferenceFOV: 90
---- !u!114 &-4361878761603334877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971657702067336023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6a39c46bf52104ba8efe3100bce3f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 99921355175201193}
-  _networkObjectCache: {fileID: 99921355175201193}
 --- !u!1 &8533353971554734258
 GameObject:
   m_ObjectHideFlags: 0
