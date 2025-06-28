@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/SwiftKraft/Gameplay/Common/FPS-Networked/Demo/Scenes/Networked-FPS.unity
+    guid: 48f1f350ddeaad34ba9b28b2d8be2a90
+  - enabled: 0
     path: Assets/SwiftKraft/Gameplay/Common/FPS/Demo/Scenes/Main.unity
     guid: 25cdd488257141f4db4a2beeeb926535
-  - enabled: 1
+  - enabled: 0
     path: Assets/SwiftKraft/Gameplay/Common/FPS/Demo/Scenes/Defense.unity
     guid: 917ea067d059bff48a6963ddcafd02d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/SwiftKraft/Gameplay/Common/FPS/Demo/Scenes/Lab.unity
     guid: 989c769b6d31dc54d90f95d46b19e08e
   m_configObjects: {}

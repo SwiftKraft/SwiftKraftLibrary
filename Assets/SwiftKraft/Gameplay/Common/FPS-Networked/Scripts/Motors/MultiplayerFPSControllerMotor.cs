@@ -7,13 +7,14 @@ using UnityEngine;
 namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class MultiplayerFPSTacticalControllerMotor : PlayerMotorBase<Rigidbody>, IGroundable
+    public class MultiplayerFPSControllerMotor : PlayerMotorBase<Rigidbody>, IGroundable
     {
         public Transform GroundPoint;
         public float GroundRadius;
         public LayerMask GroundLayers;
 
         public ModifiableStatistic Acceleration = new(10f);
+        public ModifiableStatistic AirAcceleration = new(2f);
         public ModifiableStatistic MaxSpeed = new(5f);
         public ModifiableStatistic JumpSpeed = new(5f);
 
@@ -64,7 +65,7 @@ namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
         {
             IsGrounded = Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
-            Vector2 inputMove = GetInputMove();
+            Vector2 inputMove = GetInputMove().normalized;
             WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y);
 
             if (jumpTrigger.GetTrigger() && IsGrounded)
@@ -82,14 +83,12 @@ namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
 
         public override void Move(Vector3 direction)
         {
-            if (!IsGrounded)
-            {
+            if (!IsGrounded && direction == Vector3.zero)
                 return;
-            }
 
             Vector3 horiz = Component.velocity;
             horiz.y = 0f;
-            horiz = Vector3.MoveTowards(horiz, direction * MaxSpeed, Acceleration * Time.fixedDeltaTime);
+            horiz = Vector3.MoveTowards(horiz, direction * MaxSpeed, (IsGrounded ? Acceleration : AirAcceleration) * Time.fixedDeltaTime);
             Component.velocity = horiz + (Vector3.up * Component.velocity.y);
         }
     }
