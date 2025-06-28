@@ -20,6 +20,8 @@ namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
 
         public float ReferenceFOV = 90f;
 
+        public override float RawMoveFactorRate => Mathf.Max(MaxSpeed / 2f, Component.velocity.magnitude);
+
         SingleSetting<float> sensitivity;
         SingleSetting<float> aimSensitivity;
 
@@ -67,6 +69,9 @@ namespace SwiftKraft.Gameplay.Common.NetworkedFPS.Motors
 
             Vector2 inputMove = GetInputMove().normalized;
             WishMoveDirection = transform.rotation * new Vector3(inputMove.x, 0f, inputMove.y);
+
+            Moving = Component.velocity.magnitude > 0f;
+            State = Moving && IsGrounded ? 1 : 0;
 
             if (jumpTrigger.GetTrigger() && IsGrounded)
                 Component.velocity += Vector3.up * JumpSpeed;
