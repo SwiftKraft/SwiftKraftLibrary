@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405464602913034804}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CamRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 99921355175201193}
   - component: {fileID: 7113736041993363246}
   - component: {fileID: 623447458078396032}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,10 +230,18 @@ MonoBehaviour:
   <LookPoint>k__BackingField: {fileID: 405464602913034804}
   <Enabled>k__BackingField: 1
   <LookInUpdate>k__BackingField: 1
+  GroundPoint: {fileID: 8517420169795824022}
+  GroundRadius: 0.2
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 1
   Acceleration:
     <BaseValue>k__BackingField: 30
     <Values>k__BackingField: []
   MaxSpeed:
+    <BaseValue>k__BackingField: 5
+    <Values>k__BackingField: []
+  JumpSpeed:
     <BaseValue>k__BackingField: 5
     <Values>k__BackingField: []
   ReferenceFOV: 90
@@ -249,7 +257,7 @@ GameObject:
   - component: {fileID: 6222952746645070132}
   - component: {fileID: 1979262707950704839}
   - component: {fileID: 8397188477219736138}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
