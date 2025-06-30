@@ -17,7 +17,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             slots.Sort((a, b) => a.Scriptable.name.CompareTo(b.Scriptable.name));
 
             base.Init(parent);
-            if (!((ItemInstance)Parent.Item).TryGetData(WeaponAttachments.AttachmentSaveID, out data))
+            if (!((ItemInstance)Parent.ItemSerial).TryGetData(WeaponAttachments.AttachmentSaveID, out data))
             {
                 SetAttachments(new int[slots.Count]);
                 return;

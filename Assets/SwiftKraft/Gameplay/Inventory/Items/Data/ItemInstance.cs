@@ -7,8 +7,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class ItemInstance : SaveInstanceBase<ItemDataBase>
     {
-        [JsonProperty("guid")]
-        public readonly Guid Guid;
+        [JsonProperty("serial")]
+        public readonly uint Serial;
 
         public ItemType Type
         {
@@ -30,15 +30,15 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public event Action<ItemInstance, InventoryInstance> OnSwitchInventory;
 
         [JsonConstructor]
-        public ItemInstance(Guid guid, string typeId)
+        public ItemInstance(uint serial, string typeId)
         {
-            Guid = guid;
+            Serial = serial;
             this.typeId = typeId;
             if (!this.AddInstance())
                 Disposed = true;
         }
 
-        public ItemInstance(ItemType type) : this(Guid.NewGuid(), type.ID) => _type = type;
+        public ItemInstance(ItemType type) : this(ItemManager.SerialGenerator.NextSerial(), type.ID) => _type = type;
 
         public override void InitializeData<T>(T t)
         {
@@ -62,8 +62,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             this.RemoveInstance();
         }
 
-        public static implicit operator Guid(ItemInstance inst) => inst.Guid;
-        public static implicit operator ItemInstance(Guid guid) => ItemManager.TryGetInstance(guid, out ItemInstance inst) ? inst : null;
+        public static implicit operator uint(ItemInstance inst) => inst.Serial;
+        public static implicit operator ItemInstance(uint serial) => ItemManager.TryGetInstance(serial, out ItemInstance inst) ? inst : null;
 
         public static string ItemToJson(ItemInstance inst) => JsonConvert.SerializeObject(inst);
 

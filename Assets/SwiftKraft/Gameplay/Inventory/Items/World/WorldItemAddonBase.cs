@@ -7,7 +7,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     {
         public WorldItemBase Parent { get; private set; }
 
-        public ItemInstance Item => Parent != null ? Parent.Item : null;
+        public ItemInstance Item => Parent != null ? Parent.ItemSerial : null;
 
         public virtual void Init(WorldItemBase parent) => Parent = parent;
     }

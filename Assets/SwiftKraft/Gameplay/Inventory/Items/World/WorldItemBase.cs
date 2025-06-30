@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 using SwiftKraft.Gameplay.Interactions;
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
-using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
@@ -15,18 +14,18 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public ItemType StartType;
 
-        public Guid Item { get; private set; }
-        public ItemInstance Instance => Item;
+        public uint ItemSerial { get; private set; }
+        public ItemInstance Instance => ItemSerial;
 
         protected virtual void Awake()
         {
             if (StartType != null)
-                Init(new ItemInstance(StartType).Guid);
+                Init(new ItemInstance(StartType).Serial);
         }
 
-        public virtual void Init(Guid item)
+        public virtual void Init(uint itemSerial)
         {
-            Item = item;
+            ItemSerial = itemSerial;
 
             Instance.OnRefresh += OnRefresh;
 
@@ -43,7 +42,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         {
             if (interactor.TryGetComponent(out InventoryBase inv))
             {
-                inv.AddItem(Item);
+                inv.AddItem(ItemSerial);
                 Destroy(gameObject);
             }
         }

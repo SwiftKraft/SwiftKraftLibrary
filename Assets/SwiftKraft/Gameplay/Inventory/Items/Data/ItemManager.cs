@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using SwiftKraft.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -7,8 +8,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     public static class ItemManager
     {
         public static readonly Dictionary<string, ItemType> Registered = new();
+        public static readonly SerialGenerator SerialGenerator = new();
 
-        public static Dictionary<Guid, ItemInstance> Instances => CurrentScene.Instances;
+        public static Dictionary<uint, ItemInstance> Instances => CurrentScene.Instances;
         public static ItemScene CurrentScene 
         {
             get
@@ -38,32 +40,32 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public static bool AddInstance(this ItemInstance instance)
         {
-            if (!Instances.ContainsKey(instance.Guid))
+            if (!Instances.ContainsKey(instance.Serial))
             {
-                Instances.Add(instance.Guid, instance);
+                Instances.Add(instance.Serial, instance);
                 return true;
             }
             return false;
         }
 
-        public static void RemoveInstance(Guid id) => Instances.Remove(id);
+        public static void RemoveInstance(uint id) => Instances.Remove(id);
 
-        public static void RemoveInstance(this ItemInstance instance) => RemoveInstance(instance.Guid);
+        public static void RemoveInstance(this ItemInstance instance) => RemoveInstance(instance.Serial);
 
-        public static bool TryGetInstance(Guid id, out ItemInstance inst)
+        public static bool TryGetInstance(uint id, out ItemInstance inst)
         {
             inst = GetInstance(id);
             return inst != null;
         }
 
-        public static ItemInstance GetInstance(Guid id) => Instances.ContainsKey(id) ? Instances[id] : null;
+        public static ItemInstance GetInstance(uint id) => Instances.ContainsKey(id) ? Instances[id] : null;
     }
 
     [JsonObject(MemberSerialization.OptIn)]
     public class ItemScene
     {
         [JsonProperty]
-        public Dictionary<Guid, ItemInstance> Instances = new();
+        public Dictionary<uint, ItemInstance> Instances = new();
 
         public void Refresh()
         {
