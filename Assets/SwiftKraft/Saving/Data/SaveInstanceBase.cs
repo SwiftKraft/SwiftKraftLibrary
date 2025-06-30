@@ -8,7 +8,7 @@ namespace SwiftKraft.Saving.Data
     {
         public bool Disposed { get; protected set; }
 
-        [JsonProperty]
+        [JsonProperty("data")]
         public Dictionary<string, SaveDataBase> Data { get; private set; } = new();
 
         public virtual void InitializeData<T>(T t) where T : E { }

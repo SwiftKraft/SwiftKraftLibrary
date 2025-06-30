@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 using SwiftKraft.Gameplay.Interactions;
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
-using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
