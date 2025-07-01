@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory;
 using SwiftKraft.Gameplay.Inventory.Items;
 using System;
@@ -9,7 +10,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
     {
         public EquippableItemType[] DefaultItems;
 
-        public ItemEquipper Equipper { get; private set; }
+        public IItemEquipper Equipper { get; private set; }
 
         public SlotSelector[] Selectors;
 
@@ -22,7 +23,7 @@ namespace SwiftKraft.Gameplay.Common.FPS
 
         private void Awake()
         {
-            Equipper = GetComponentInChildren<ItemEquipper>();
+            Equipper = GetComponentInChildren<IItemEquipper>();
 
             foreach (EquippableItemType it in DefaultItems)
                 AddItem(new(it));

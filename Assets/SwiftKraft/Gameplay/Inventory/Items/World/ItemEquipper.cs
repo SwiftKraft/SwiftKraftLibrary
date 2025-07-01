@@ -1,10 +1,11 @@
+using SwiftKraft.Gameplay.Interfaces;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
-    public class ItemEquipper : MonoBehaviour
+    public class ItemEquipper : MonoBehaviour, IItemEquipper
     {
         public readonly List<EquippedItem> EquippedItemCache = new();
 
