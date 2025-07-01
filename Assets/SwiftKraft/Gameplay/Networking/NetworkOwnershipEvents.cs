@@ -1,9 +1,9 @@
 using FishNet.Object;
 using UnityEngine.Events;
 
-namespace SwiftKraft.Networking
+namespace SwiftKraft.Gameplay.Networking
 {
-    public class OwnershipEvents : NetworkBehaviour
+    public class NetworkOwnershipEvents : NetworkBehaviour
     {
         public UnityEvent OnOwner;
         public UnityEvent OnRemote;
