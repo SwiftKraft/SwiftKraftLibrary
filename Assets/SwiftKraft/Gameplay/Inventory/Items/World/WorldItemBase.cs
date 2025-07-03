@@ -28,6 +28,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             ItemSerial = itemSerial;
 
             Instance.OnRefresh += OnRefresh;
+            Instance.OnDespawn += OnDespawn;
 
             CurrentData = Instance.TryGetData(TransformDataID, out Data d) ? d : Instance.AddData<Data>(TransformDataID);
             CurrentData.Init(this);
@@ -35,6 +36,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             foreach (WorldItemAddonBase addon in GetComponents<WorldItemAddonBase>())
                 addon.Init(this);
         }
+
+        protected virtual void OnDespawn() => DestroyImmediate(gameObject, false);
 
         protected virtual void OnRefresh() => DestroyImmediate(gameObject, false);
 
@@ -51,6 +54,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         {
             Instance.RemoveData(TransformDataID);
             Instance.OnRefresh -= OnRefresh;
+            Instance.OnDespawn -= OnDespawn;
         }
 
         public class Data : ItemDataBase

@@ -25,7 +25,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         [JsonProperty("typeId")]
         private readonly string typeId;
 
-        public event Action OnDestroy;
+        public event Action OnDespawn;
         public event Action OnRefresh;
         public event Action<ItemInstance, InventoryInstance> OnSwitchInventory;
 
@@ -57,7 +57,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void Despawn()
         {
-            OnDestroy?.Invoke();
+            OnDespawn?.Invoke();
             Disposed = true;
             this.RemoveInstance();
         }
