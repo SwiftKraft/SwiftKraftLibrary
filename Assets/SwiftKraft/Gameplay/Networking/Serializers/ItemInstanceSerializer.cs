@@ -1,24 +1,34 @@
 using FishNet.Serializing;
+using Newtonsoft.Json;
 using SwiftKraft.Gameplay.Inventory.Items;
+using SwiftKraft.Saving.Data;
+using System.Collections.Generic;
 
-public static class ItemInstanceSerializer
+namespace SwiftKraft.Gameplay.Networking.Serializers
 {
-    public static void WriteItemInstance(this Writer writer, ItemInstance item)
+    public static class ItemInstanceSerializer
     {
-        writer.Write(item.Serial);
-        writer.Write(item.Type.ID);
+        public static void WriteItemInstance(this Writer writer, ItemInstance item)
+        {
+            writer.Write(item.Serial);
+            writer.Write(item.Type.ID);
+            string serialize = JsonConvert.SerializeObject(item.Data);
 
-        // Write data
-    }
+            writer.Write(serialize);
+        }
 
-    public static ItemInstance ReadItemInstance(this Reader reader)
-    {
-        uint serial = reader.Read<uint>();
-        string typeId = reader.Read<string>();
-        var inst = new ItemInstance(serial, typeId);
+        public static ItemInstance ReadItemInstance(this Reader reader)
+        {
+            uint serial = reader.Read<uint>();
+            string typeId = reader.Read<string>();
+            var inst = new ItemInstance(serial, typeId);
 
-        // Read data
+            Dictionary<string, SaveDataBase> data = JsonConvert.DeserializeObject<Dictionary<string, SaveDataBase>>(reader.Read<string>());
 
-        return inst;
+            foreach (var ent in data)
+                inst.Data.Add(ent.Key, ent.Value);
+
+            return inst;
+        }
     }
 }

@@ -41,14 +41,10 @@ namespace SwiftKraft.Gameplay.Networking.Inventory.Items
         /// <param name="inst"></param>
         public void ClientReceiveItem(ItemInstance inst)
         {
-            if (!ItemManager.Instances.ContainsKey(inst.Serial))
-                inst.AddInstance();
-            else
-            {
+            if (ItemManager.Instances.ContainsKey(inst.Serial))
                 ItemManager.Instances[inst.Serial].Despawn();
-                ItemManager.Instances[inst.Serial] = inst;
-            }
 
+            inst.AddInstance();
             inst.Refresh();
 
             OnReceiveItem?.Invoke(inst);
