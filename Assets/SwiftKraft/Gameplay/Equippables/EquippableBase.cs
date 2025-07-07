@@ -1,10 +1,14 @@
+using Newtonsoft.Json;
 using SwiftKraft.Utils;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Equippables
 {
     public abstract class EquippableBase : MonoBehaviour
     {
+        public readonly Dictionary<int, EquippableDataWrapper> Data;
+
         public EquippableStateBase CurrentState
         {
             get
@@ -62,12 +66,34 @@ namespace SwiftKraft.Gameplay.Equippables
         /// </summary>
         public EquippableStateBase[] AllStatesCache { get; private set; }
 
+        public T AddData<T>(int id) where T : EquippableDataBase, new()
+        {
+            T t = new();
+            Data.Add(id, t);
+            return t;
+        }
+
+        public bool RemoveData(int id) => Data.Remove(id);
+
         protected virtual void Awake() => AllStatesCache = AllStates;
 
         protected virtual void Start() => CurrentStateIndex = EntryState;
 
         protected virtual void FixedUpdate() => CurrentState?.Tick();
     }
+
+    public class EquippableDataWrapper
+    {
+        public readonly EquippableDataBase Base;
+
+        public EquippableDataWrapper(EquippableDataBase b) => Base = b;
+
+        public static implicit operator EquippableDataWrapper(EquippableDataBase b) => new(b);
+        public static implicit operator EquippableDataBase(EquippableDataWrapper w) => w.Base;
+    }
+
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    public abstract class EquippableDataBase { }
 
     public abstract class EquippableStateBase
     {
