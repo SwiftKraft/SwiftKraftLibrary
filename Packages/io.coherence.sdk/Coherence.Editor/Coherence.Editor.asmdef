@@ -1,0 +1,77 @@
+{
+    "name": "Coherence.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Coherence.Entities",
+        "Coherence.Brisk",
+        "Coherence.Toolkit",
+        "Coherence.ProtocolDef",
+        "Coherence",
+        "Coherence.Common",
+        "Coherence.UI",
+        "Coherence.Log",
+        "Coherence.Core",
+        "Coherence.Simulator",
+        "Unity.Addressables",
+        "Unity.Addressables.Editor",
+        "Coherence.Interpolation",
+        "Coherence.Brook",
+        "Coherence.Auth",
+        "Coherence.Utils",
+        "EasyEditor",
+        "Coherence.Serializer",
+        "Coherence.CodeGen",
+        "Coherence.ReplicationServer",
+        "ParrelSync",
+        "Unity.Multiplayer.Playmode.VirtualProjects.Editor",
+        "Coherence.Prefs",
+        "Coherence.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll",
+        "Antlr4.Runtime.Standard.dll",
+        "schema-csharp.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "io.coherence.sdk",
+            "expression": "0.1.0",
+            "define": "VSP"
+        },
+
+        {
+            "name": "com.unity.addressables",
+            "expression": "1.15.0",
+            "define": "HAS_ADDRESSABLES"
+        },
+        {
+            "name": "com.unity.ugui",
+            "expression": "1.0.0",
+            "define": "HAS_UGUI"
+        },
+        {
+            "name": "io.coherence.rsl",
+            "expression": "0.0.1",
+            "define": "COHERENCE_HAS_RSL"
+        },
+        {
+            "name": "com.veriorpies.parrelsync",
+            "expression": "0.0.1",
+            "define": "HAS_PARRELSYNC"
+        },
+        {
+            "name": "com.unity.multiplayer.playmode",
+            "expression": "0.6.0",
+            "define": "HAS_MPPM"
+        }
+    ],
+    "noEngineReferences": false
+}

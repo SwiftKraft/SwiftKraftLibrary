@@ -1,0 +1,59 @@
+input BoolInput [id "0"]
+  boolField Bool
+
+input IntInput [id "1"]
+  intField Int
+
+input FloatInput [id "2"]
+  floatField Float [compression "None"]
+
+input QuaternionInput [id "3"]
+  quaternionField Quaternion [bits "32"]
+
+input Vector2Input [id "4"]
+  vector2Field Vector2 [compression "None"]
+
+input Vector3Input [id "5"]
+  vector3Field Vector3 [compression "None"]
+
+input StringInput [id "6"]
+  stringField String
+
+input MultiInput [id "7"]
+  intField Int
+  floatField Float [compression "None"]
+  axisField Vector2 [compression "None"]
+  stringField String
+
+input CompressedInput [id "8"]
+  intField Int [range-min "0", range-max "10"]
+  floatField Float [compression "Truncated", bits "18"]
+  axisField Vector2 [compression "Truncated", bits "10"]
+  stringField String
+
+command EntityRefsCommand [id "9"]
+  entityRef1 Entity
+  entityRef2 Entity
+
+component ByteArrayTest [id "16"]
+  bytes Bytes
+
+component IntComponent [id "17"]
+  number Int
+
+component FloatComponent [id "18"]
+  number Float [compression "None"]
+
+component OrderedComp [id "19", send-ordered "True"]
+
+component Ordered2Comp [id "20", send-ordered "True"]
+
+component MultiComponent [id "21"]
+  intValue Int
+  floatValue0 Float [compression "None"]
+  floatValue1 Float [compression "None"]
+
+component SimFramesComponent [ id "22" ]
+  simFrameIntValue Int [sim-frames "true"]
+  floatValue Float [compression "None"]
+  simFrameFloatValue Float [compression "None", sim-frames "true"]

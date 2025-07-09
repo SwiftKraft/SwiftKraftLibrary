@@ -1,0 +1,65 @@
+{{~ for component in entityData.components ~}}
+	{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+	{{~ end ~}}
+    {{~ for member in component.members_info ~}}
+    {{~ cSharpType = resolveCsharpType member.binding_class_name member.property_csharp_type ~}}
+    [UnityEngine.Scripting.Preserve]
+    public class Binding_{{ entityData.asset_id }}_{{ member.binding_guid | string.replace "-" "_" }} : {{ member.binding_class_name }}
+    {   
+        private global::{{ component.unity_component_type }} CastedUnityComponent;
+
+        protected override void OnBindingCloned()
+        {
+    	    CastedUnityComponent = (global::{{component.unity_component_type }})UnityComponent;
+        }
+
+        public override global::System.Type CoherenceComponentType => typeof({{ component.component_name }});
+        public override string CoherenceComponentName => "{{ component.component_name }}";
+        public override uint FieldMask => 0b{{ member.property_bit_mask }};
+
+        public override {{ cSharpType }} Value
+        {
+            get { {{ member.property_getter }}; }
+            set { {{ member.property_setter }}; }
+        }
+
+        protected override ({{ cSharpType }} value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
+        {
+            var value = (({{ component.component_name }})coherenceComponent).{{ member.member_name_in_component_data }};
+        {{~ if member.binding_class_name == "PositionBinding" ~}}
+            if (!coherenceSync.HasParentWithCoherenceSync) { value += floatingOriginDelta; }
+        {{~ end ~}}
+
+            var simFrame = (({{ component.component_name }})coherenceComponent).{{ member.member_name_in_component_data }}SimulationFrame;
+            
+            return (value, simFrame);
+        }
+
+        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
+        {
+            var update = ({{ component.component_name }})coherenceComponent;
+            if (Interpolator.IsInterpolationNone)
+            {
+                update.{{ member.member_name_in_component_data }} = Value;
+            }
+            else
+            {
+                update.{{ member.member_name_in_component_data }} = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
+            }
+
+            update.{{ member.member_name_in_component_data }}SimulationFrame = simFrame;
+            
+            return update;
+        }
+
+        public override ICoherenceComponentData CreateComponentData()
+        {
+            return new {{ component.component_name }}();
+        }    
+    }
+    {{~ end ~}}
+	{{~ if component.bake_conditional != "" ~}}
+#endif // {{ component.bake_conditional }}
+	{{~ end ~}}
+{{~ end ~}} 

@@ -1,0 +1,6 @@
+component AssetId [id "16"]
+  value Int 
+  isFromGroup Bool 
+
+component GenericScale [id "17"]
+  value Vector3 [compression "None", sim-frames "true"]

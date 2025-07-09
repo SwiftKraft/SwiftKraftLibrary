@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39df2693899937a4494ba9dd2592dbf8, type: 3}
+  m_Name: Room Sample
+  m_EditorClassIdentifier: 
+  SampleDisplayName: 'Connect Dialog: Rooms'
+  PrefabFileName: Room Connection Dialog.prefab
+  Dependency: 1
+  SampleCategory: 0
+  CategoryDetail: Sample UI
+  Description: 'A Canvas UI Prefab to be able to browse, create and join Rooms hosted
+    in the coherence Cloud or in locally hosted Replication Servers.
+
+
+    When you
+    click Add To Scene, the Sample will be imported to your project, and the prefab
+    will be instanced in the active Scene.'
+  Preview: {fileID: 2800000, guid: a8dbcc80125a04ee3b355ddae1ad5eaa, type: 3}
+  Thumbnail: {fileID: 2800000, guid: 76772bb8f93e54c0c89af0356186e597, type: 3}
+  ExternalUrl: 
+  Priority: -5

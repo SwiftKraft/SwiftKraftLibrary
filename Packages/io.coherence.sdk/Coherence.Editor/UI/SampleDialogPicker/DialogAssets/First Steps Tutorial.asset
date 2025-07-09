@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39df2693899937a4494ba9dd2592dbf8, type: 3}
+  m_Name: First Steps Tutorial
+  m_EditorClassIdentifier: 
+  SampleDisplayName: First Steps
+  PrefabFileName: 
+  Dependency: 0
+  SampleCategory: 1
+  CategoryDetail: Sample Project
+  Description: "First Steps is a Unity project made up of 6 tiny Scenes, each one
+    demonstrating one or more features of coherence:\n\n\u2022 Basic syncing of variables
+    and movement\n\u2022 Messaging with Network Commands (RPCs)\n\u2022 Networking
+    animation\n\u2022 Networking complex hierarchies\n\u2022 Spatial queries and
+    optimisation\n\u2022 Using persistent world data\n\nIf you're a first time user
+    we suggest to go through the scenes in the established order, and to follow along
+    using the documentation."
+  Preview: {fileID: 2800000, guid: de35b7764832b45f0aa3528e04a5f20a, type: 3}
+  Thumbnail: {fileID: 2800000, guid: 9030fd5b3b65f4dbe82a8f5eb6b3df0e, type: 3}
+  ExternalUrl: https://docs.coherence.io/getting-started/samples-and-tutorials/first-steps-tutorial
+  Priority: -50

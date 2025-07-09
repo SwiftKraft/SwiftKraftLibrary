@@ -1,0 +1,27 @@
+{
+    "name": "Coherence.CodeGen",
+    "rootNamespace": "",
+    "references": [
+        "Coherence",
+        "Coherence.Log"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Coherence.Scriban.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "io.coherence.rsl",
+            "expression": "0.0.1",
+            "define": "COHERENCE_HAS_RSL"
+        }
+    ],
+    "noEngineReferences": false
+}

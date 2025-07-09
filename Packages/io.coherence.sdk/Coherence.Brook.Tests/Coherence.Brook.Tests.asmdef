@@ -1,0 +1,39 @@
+{
+    "name": "Coherence.Brook.Tests",
+    "rootNamespace": "",
+    "references": [
+        "Coherence.Brook",
+        "Coherence.Log",
+        "Coherence.Tests",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "HAS_UTF",
+        "HAS_MOQ"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.test-framework",
+            "expression": "1.4.4",
+            "define": "HAS_UTF"
+        },
+        {
+            "name": "nuget.moq",
+            "expression": "2.0.0",
+            "define": "HAS_MOQ"
+        }
+    ],
+    "noEngineReferences": false
+}

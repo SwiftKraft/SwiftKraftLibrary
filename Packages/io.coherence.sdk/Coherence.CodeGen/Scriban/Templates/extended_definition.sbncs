@@ -1,0 +1,520 @@
+
+    public class ExtendedDefinition : Definition, IExtendedDefinition
+    {
+#if UNITY_5_3_OR_NEWER
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+        static void OnRuntimeMethodLoad()
+        {
+            ExtendedDefinitionFetcher.GetExtendedDefinition = () => new ExtendedDefinition();
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+        static void OverrideRSL()
+        {
+            ReplicationServerOverride.LaunchRSLite = (config) => new ReplicationServerLite(new ExtendedDefinition(), config);
+        }
+#endif
+
+        public string SchemaHash()
+        {
+            return schemaId;
+        }
+
+        public ICoherenceComponentData CreateArchetypeComponent(uint index)
+        {
+            return new ArchetypeComponent()
+            {
+                index = (int)index,
+                FieldsMask = 0b1,
+            };
+        }
+
+        public ICoherenceComponentData CreateConnectedEntityComponent(Entity parent, Vector3 relativePos, Quaternion relativeRot, Vector3 relativeScale)
+        {
+            return new ConnectedEntity()
+            {
+                value = parent,
+                pos = relativePos,
+                rot = relativeRot,
+                scale = relativeScale,
+                FieldsMask = 0b1111,
+            };
+        }
+
+        public ICoherenceComponentData CreateConnectionComponent(ClientID clientID, ConnectionType connectionType)
+        {
+            return new Connection()
+            {
+                id = (uint)clientID,
+                type = (int)connectionType,
+                FieldsMask = 0b11,
+            };
+        }
+
+        public ICoherenceComponentData CreateConnectionSceneComponent(uint scene)
+        {
+            return new ConnectionScene()
+            {
+                value = scene,
+                FieldsMask = 0b1,
+            };
+        }
+
+        public ICoherenceComponentData CreateGlobalQueryComponent()
+        {
+            return new GlobalQuery();
+        }
+
+        public ICoherenceComponentData CreatePersistenceComponent()
+        {
+            return new Persistence();
+        }
+
+        public ICoherenceComponentData CreatePreserveChildrenComponent()
+        {
+            return new PreserveChildren();
+        }
+
+        public ICoherenceComponentData CreateSceneComponent(uint scene)
+        {
+            return new Scene()
+            {
+                value = scene,
+                FieldsMask = 0b1,
+            };
+        }
+
+        public ICoherenceComponentData CreateTagComponent(string tag)
+        {
+            return new Tag()
+            {
+                tag = tag,
+                FieldsMask = 0b1,
+            };
+        }
+
+        public ICoherenceComponentData CreateTagQueryComponent(string tag)
+        {
+            return new TagQuery()
+            {
+                tag = tag,
+                FieldsMask = 0b1,
+            };
+        }
+
+        public ICoherenceComponentData CreateUUIDComponent(string UUID)
+        {
+            return new UniqueID()
+            {
+                uuid = UUID,
+                FieldsMask = 0b1,
+            };
+        }
+
+        public ICoherenceComponentData CreateWorldPositionComponent(Vector3 pos, AbsoluteSimulationFrame simFrame)
+        {
+            return new WorldPosition()
+            {
+                value = pos,
+                valueSimulationFrame = simFrame,
+                FieldsMask = 0b1,
+            };
+        }
+
+        public ICoherenceComponentData CreateWorldRotationComponent(Quaternion rot, AbsoluteSimulationFrame simFrame)
+        {
+            return new WorldOrientation()
+            {
+                value = rot,
+                valueSimulationFrame = simFrame,
+                FieldsMask = 0b1,
+            };
+        }
+
+        public ICoherenceComponentData CreateWorldPositionQueryComponent(Vector3 center, float radius)
+        {
+            return new WorldPositionQuery()
+            {
+                position = center,
+                radius = radius,
+                FieldsMask = 0b11,
+            };
+        }
+
+        public bool IsAdoptOrphanCommand(uint compType)
+        {
+            return compType == Definition.InternalAdoptOrphan;
+        }
+
+        public bool IsAuthorityRequestCommand(uint compType)
+        {
+            return compType == Definition.InternalAuthorityRequest;
+        }
+
+        public bool IsAuthorityTransferCommand(uint compType)
+        {
+            return compType == Definition.InternalAuthorityTransfer;
+        }
+
+        public bool IsPersistenceReadyCommand(uint compType)
+        {
+            return compType == Definition.InternalPersistenceReady;
+        }
+
+        public bool CanRouteCommand(uint compType, MessageTarget target)
+        {
+            if (target != MessageTarget.AuthorityOnly)
+            {
+                var routing = Definition.CommandRoutingByType[compType];
+                if (routing == MessageTarget.AuthorityOnly)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool IsConnectedEntityComponent(uint compType)
+        {
+            return compType == Definition.InternalConnectedEntity;
+        }
+
+        public bool IsConnectionComponent(uint compType)
+        {
+            return compType == Definition.InternalConnection;
+        }
+
+        public bool IsGlobalComponent(uint compType)
+        {
+            return compType == Definition.InternalGlobal;
+        }
+
+        public bool IsGlobalQueryComponent(uint compType)
+        {
+            return compType == Definition.InternalGlobalQuery;
+        }
+
+        public bool IsPersistenceComponent(uint compType)
+        {
+            return compType == Definition.InternalPersistence;
+        }
+
+        public bool IsSceneComponent(uint compType)
+        {
+            return compType == Definition.InternalScene;
+        }
+
+        public bool IsTagComponent(uint compType)
+        {
+            return compType == Definition.InternalTag;
+        }
+
+        public bool IsTagQueryComponent(uint compType)
+        {
+            return compType == Definition.InternalTagQuery;
+        }
+
+        public bool IsUUIDComponent(uint compType)
+        {
+            return compType == Definition.InternalUniqueID;
+        }
+
+        public bool IsWorldPositionComponent(uint compType)
+        {
+            return compType == Definition.InternalWorldPosition;
+        }
+
+        public bool IsWorldPositionQueryComponent(uint compType)
+        {
+            return compType == Definition.InternalWorldPositionQuery;
+        }
+
+        public IEntityCommand CreateQuerySyncedCommand(Entity entity, bool liveQuerySynced, bool globalQuerySynced)
+        {
+            return new QuerySynced(entity, liveQuerySynced, globalQuerySynced);
+        }
+
+        public AuthorityType GetAuthorityTypeFromAuthorityRequestCommand(IEntityCommand command)
+        {
+            return (AuthorityType)((AuthorityRequest)command).authorityType;
+        }
+
+        public AuthorityType GetAuthorityTypeFromAuthorityTransferCommand(IEntityCommand command)
+        {
+            return (AuthorityType)((AuthorityTransfer)command).authorityType;
+        }
+
+        public ClientID GetAuthorityRequesterFromCommand(IEntityCommand command)
+        {
+            return (ClientID)((AuthorityRequest)command).requester;
+        }
+
+        public ClientID GetNewAuthorityFromAuthorityTransferCommmand(IEntityCommand command)
+        {
+            return (ClientID)((AuthorityTransfer)command).newAuthority;
+        }
+
+        public bool GetIsAcceptedFromAuthorityTransferCommand(IEntityCommand command)
+        {
+            return ((AuthorityTransfer)command).accepted;
+        }
+
+        public ICoherenceComponentData GetArchetypeComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalArchetypeComponent);
+        }
+
+        public int GetArchetypeIndexFromComponent(ICoherenceComponentData comp)
+        {
+            return ((ArchetypeComponent)comp).index;
+        }
+
+        public ICoherenceComponentData GetConnectedEntityComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalConnectedEntity);
+        }
+
+        public Entity GetConnectedEntityFromConnectedEntityComponent(ICoherenceComponentData comp)
+        {
+            return ((ConnectedEntity)comp).value;
+        }
+
+        public Vector3 GetRelativePosFromConnectedEntityComponent(ICoherenceComponentData comp)
+        {
+            return ((ConnectedEntity)comp).pos;
+        }
+
+        public Quaternion GetRelativeRotFromConnectedEntityComponent(ICoherenceComponentData comp)
+        {
+            return ((ConnectedEntity)comp).rot;
+        }
+
+        public ICoherenceComponentData GetConnectionComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalConnection);
+        }
+
+        public ICoherenceComponentData GetConnectionSceneComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalConnectionScene);
+        }
+
+        public uint GetConnectionSceneFromComponent(ICoherenceComponentData comp)
+        {
+            return ((ConnectionScene)comp).value;
+        }
+
+        public ICoherenceComponentData GetGlobalComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalGlobal);
+        }
+
+        public ICoherenceComponentData GetGlobalQueryComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalGlobalQuery);
+        }
+
+        public ICoherenceComponentData GetPersistenceComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalPersistence);
+        }
+
+        public ICoherenceComponentData GetPreserveChildrenComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalPreserveChildren);
+        }
+
+        public ICoherenceComponentData GetSceneComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalScene);
+        }
+
+        public uint GetSceneFromComponent(ICoherenceComponentData comp)
+        {
+            return ((Scene)comp).value;
+        }
+
+        public ICoherenceComponentData GetTagComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalTag);
+        }
+
+        public ICoherenceComponentData GetTagQueryComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalTagQuery);
+        }
+
+        public string GetTagFromTagComponent(ICoherenceComponentData comp)
+        {
+            return ((Tag)comp).tag;
+        }
+
+        public string GetTagFromTagQueryComponent(ICoherenceComponentData comp)
+        {
+            return ((TagQuery)comp).tag;
+        }
+
+        public ICoherenceComponentData GetUUIDComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.Get(Definition.InternalUniqueID);
+        }
+
+        public string GetUUIDFromComponent(ICoherenceComponentData comp)
+        {
+            return ((UniqueID)comp).uuid;
+        }
+
+        public (ICoherenceComponentData, int) GetWorldPositionComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.GetWithIndex(Definition.InternalWorldPosition);
+        }
+
+        public Vector3 GetWorldPositionFromComponent(ICoherenceComponentData comp)
+        {
+            return ((WorldPosition)comp).value;
+        }
+
+        public void SetWorldPosition(ref ICoherenceComponentData comp, Vector3 newPosition)
+        {
+            var wpComp = (WorldPosition)comp;
+            wpComp.value = newPosition;
+            comp = wpComp;
+        }
+
+        public (ICoherenceComponentData, int) GetWorldRotationComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.GetWithIndex(Definition.InternalWorldOrientation);
+        }
+
+        public Quaternion GetWorldRotationFromComponent(ICoherenceComponentData comp)
+        {
+            return ((WorldOrientation)comp).value;
+        }
+
+        public void SetWorldRotation(ref ICoherenceComponentData comp, Quaternion newRotation)
+        {
+            var wrComp = (WorldOrientation)comp;
+            wrComp.value = newRotation;
+            comp = wrComp;
+        }
+
+        public (ICoherenceComponentData, int) GetWorldPositionQueryComponent(ICoherenceComponentData[] comps)
+        {
+            return comps.GetWithIndex(Definition.InternalWorldPositionQuery);
+        }
+
+        public Vector3 GetWorldPositionQueryCenterFromComponent(ICoherenceComponentData comp)
+        {
+            return ((WorldPositionQuery)comp).position;
+        }
+
+        public float GetWorldPositionQueryRadiusFromComponent(ICoherenceComponentData comp)
+        {
+            return ((WorldPositionQuery)comp).radius;
+        }
+
+        public void SetWorldPositionQueryCenter(ref ICoherenceComponentData comp, Vector3 newCenter)
+        {
+            var wpComp = (WorldPositionQuery)comp;
+            wpComp.position = newCenter;
+            comp = wpComp;
+        }
+
+        public void RemoveComponentsInvalidatedByConnectedEntity(ref ICoherenceComponentData[] comps)
+        {
+            var invalidComps = new List<uint>()
+            {
+                Definition.InternalConnectedEntity,
+                Definition.InternalWorldPosition,
+                Definition.InternalWorldOrientation,
+                // Definition.InternalWorldScale,
+            };
+
+            comps = comps.Where(x => !invalidComps.Contains(x.GetComponentType())).ToArray();
+        }
+
+        // These are all a problem on the client now since they can be
+        // sent as null values but defaults will be set in the deserialized
+        // component which will lead to issues.
+        public bool HasValidConnectedEntityID(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (ConnectedEntity)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & ConnectedEntity.valueMask) != 0;
+        }
+
+        public bool HasValidConnectionScene(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (ConnectionScene)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & ConnectionScene.valueMask) != 0;
+        }
+
+        public bool HasValidWorldPositionQueryCenter(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (WorldPositionQuery)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & WorldPositionQuery.positionMask) != 0;
+        }
+
+        public bool HasValidWorldPositionQueryRadius(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (WorldPositionQuery)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & WorldPositionQuery.radiusMask) != 0;
+        }
+
+        public bool HasValidWorldPositionPosition(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (WorldPosition)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & WorldPosition.valueMask) != 0;
+        }
+
+        public bool HasValidUniqueIDUUID(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (UniqueID)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & UniqueID.uuidMask) != 0;
+        }
+
+        public bool HasValidArchetypeIndex(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (ArchetypeComponent)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & ArchetypeComponent.indexMask) != 0;
+        }
+
+        public bool HasValidTagQueryTag(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (TagQuery)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & TagQuery.tagMask) != 0;
+        }
+
+        public bool HasValidTagTag(ICoherenceComponentData comp)
+        {
+            var connectedEntityComp = (Tag)comp;
+            var mask = connectedEntityComp.FieldsMask;
+            return (mask & Tag.tagMask) != 0;
+        }
+
+
+        public uint GetArchetypeIndexByName(string name)
+        {
+            return (uint)Archetypes.IndexForName[name];
+        }
+
+        public bool GetEntityArchetype(uint index, out EntityArchetype archetype)
+        {
+            if (index >= Archetypes.Definitions.Count())
+            {
+                archetype = default;
+                return false;
+            }
+
+            archetype = Archetypes.Definitions[index];
+            return true;
+        }
+    }

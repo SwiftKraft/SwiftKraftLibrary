@@ -1,0 +1,26 @@
+{
+    "name": "Coherence.Core",
+    "rootNamespace": "",
+    "references": [
+        "Coherence.Entities",
+        "Coherence.Serializer",
+        "Coherence.Brisk",
+        "Coherence.SimulationFrame",
+        "Coherence.ProtocolDef",
+        "Coherence.Log",
+        "Coherence.Brook",
+        "Coherence.Stats",
+        "Coherence.Common",
+        "Coherence.Transport",
+        "Coherence.Auth"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

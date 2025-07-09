@@ -1,0 +1,22 @@
+{
+    "name": "Coherence.Serializer",
+    "rootNamespace": "",
+    "references": [
+        "Coherence.Entities",
+        "Coherence.Brook",
+        "Coherence.SimulationFrame",
+        "Coherence.Log",
+        "Coherence.ProtocolDef",
+        "Coherence.Cram",
+        "Coherence.Common"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

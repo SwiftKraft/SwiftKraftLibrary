@@ -1,0 +1,68 @@
+component WorldPosition [id "0", priority "high"]
+  value Vector3 [compression "None", sim-frames "true"]
+
+component WorldOrientation [id "1", priority "high"]
+  value Quaternion [bits "32", sim-frames "true"]
+
+component LocalUserComponent [id "2"]
+  localIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+component WorldPositionQuery [id "3"]
+  position Vector3 [compression "None"]
+  radius Float [compression "None"]
+
+component ArchetypeComponent [id "4"]
+  index Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+component Persistence [id "5"]
+
+component ConnectedEntity [id "6", order "-1", send-ordered "true"]
+  value Entity
+  pos Vector3 [compression "None"]
+  rot Quaternion [bits "32"]
+  scale Vector3 [compression "None"]
+
+component UniqueID [id "7"]
+  uuid String
+
+component Connection [id "8"]
+  id UInt [bits "31", range-min "0", range-max "2147483647"]
+  type Int [bits "3", range-min "0", range-max "8"]
+
+component ConnectionScene [id "9"]
+  value UInt [bits "32", range-min "0", range-max "4294967295"]
+
+component Global [id "10"]
+
+component GlobalQuery [id "11"]
+
+component Tag [id "12"]
+  tag String
+
+component TagQuery [id "13"]
+  tag String
+
+component PreserveChildren [id "14"]
+
+component Scene [id "15"]
+  value UInt [bits "32", range-min "0", range-max "2147483647"]
+
+command AuthorityRequest [id "0"]
+  requester UInt
+  authorityType Int [bits "2", range-min "0", range-max "4"]
+
+command AuthorityTransfer [id "1"]
+  newAuthority UInt
+  accepted Bool
+  authorityType Int [bits "2", range-min "0", range-max "4"]
+
+command QuerySynced [id "2"]
+  liveQuerySynced Bool
+  globalQuerySynced Bool
+
+command AdoptOrphan [id "3"]
+
+command PersistenceReady [id "4"]
+
+command SceneIndexChanged [id "5"]
+  sceneIndex Int

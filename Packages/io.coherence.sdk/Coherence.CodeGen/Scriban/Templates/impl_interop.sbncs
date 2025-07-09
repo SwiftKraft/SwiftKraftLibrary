@@ -1,0 +1,165 @@
+
+    public class DataInteropHandler : IDataInteropHandler
+    {
+        public unsafe ICoherenceComponentData GetComponent(UInt32 type, IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
+        {
+            switch(type)
+            {
+{{~ for component in project_schema.component_definitions ~}}
+	{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+	{{~ end ~}}
+                case {{ component.id }}: return {{ component.name }}.FromInterop(data, dataSize, simFrames, simFramesCount);
+	{{~ if component.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+{{~ for archetype in project_schema.archetype_definitions ~}}
+    {{~ for lod in archetype.lods ~}}
+        {{~ for component in lod.items ~}}
+        	{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+        	{{~ end ~}}
+                case {{ component.id }}: return {{ component.component_name }}.FromInteropArchetype{{ archetype.name }}_{{ component.component_name }}_LOD{{ lod.level }}(data, dataSize, simFrames, simFramesCount);
+        	{{~ if component.bake_conditional != "" ~}}
+#endif
+        	{{~ end ~}}
+        {{~ end ~}}
+    {{~ end ~}}
+{{~ end ~}}
+            }
+
+            throw new ArgumentException($"Unkown component type {type}", nameof(type));
+        }
+
+        public unsafe void UpdateComponent(INativeCoreComponentUpdater updater, InteropEntity entity, ICoherenceComponentData component)
+        {
+            var componentType = component.GetComponentType();
+            var frames = component.GetSimulationFrames();
+
+            switch (componentType)
+            {
+{{~ for component in project_schema.component_definitions ~}}
+	{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+	{{~ end ~}}
+                case {{ component.id }}:
+                {
+                    var orig = ({{component.name}})component;
+                    var val = new {{component.name}}.Interop();
+
+    {{~ for member in component.members ~}}
+                    {{ GetToInteropConversionBegin member.c_sharp_type_name member.variable_name }}
+    {{~ end ~}}
+
+                    updater.UpdateComponent(entity, componentType, val, {{ component.total_size }}, component.FieldsMask, component.StoppedMask, frames);
+
+    {{~ for member in component.members ~}}
+                    {{~ GetToInteropConversionEnd member.c_sharp_type_name ~}}
+    {{~ end ~}}
+                    return;
+                }
+	{{~ if component.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+            }
+
+            throw new NotImplementedException($"Failed to update a component with type {componentType}.");
+        }
+
+        public unsafe IEntityCommand GetCommand(UInt32 type, IntPtr data, Int32 dataSize)
+        {
+            switch (type)
+            {
+{{~ for command in project_schema.command_definitions ~}}
+	{{~ if command.bake_conditional != "" ~}}
+#if {{ command.bake_conditional }}
+	{{~ end ~}}
+                  case {{ command.id }}: return {{ command.name }}.FromInterop(data, dataSize);
+	{{~ if command.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+            }
+
+            throw new ArgumentException($"Unkown command type {type}", nameof(type));
+        }
+
+        public unsafe IEntityInput GetInput(UInt32 type, IntPtr data, Int32 dataSize)
+        {
+{{~ if project_schema.input_definitions.size > 0 ~}}
+            switch (type)
+            {
+    {{~ for input in project_schema.input_definitions ~}}
+                  case {{ input.id }}: return {{ input.name }}.FromInterop(data, dataSize);
+    {{~ end ~}}
+            }
+{{~ end ~}}
+            throw new ArgumentException($"Unknown input type {type}", nameof(type));
+        }
+
+        public unsafe bool SendCommand(INativeCoreCommandSender sender, InteropEntity entity, MessageTarget target, IEntityCommand command)
+        {
+            var type = command.GetComponentType();
+            switch (type)
+            {
+{{~ for command in project_schema.command_definitions ~}}
+	{{~ if command.bake_conditional != "" ~}}
+#if {{ command.bake_conditional }}
+	{{~ end ~}}
+                case {{ command.id }}:
+                {
+                    var orig = ({{command.name}})command;
+                    var val = new {{command.name}}.Interop();
+
+    {{~ for member in command.members ~}}
+                    {{ GetToInteropConversionBegin member.c_sharp_type_name member.c_sharp_variable_name }}
+    {{~ end ~}}
+
+                    return sender.SendCommand(entity, target, type, val, {{ command.total_size }});
+
+    {{~ for member in command.members ~}}
+                    {{~ GetToInteropConversionEnd member.c_sharp_type_name ~}}
+    {{~ end ~}}
+                }
+	{{~ if command.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+            }
+
+            throw new NotImplementedException($"Failed to send a command with type {type}.");
+        }
+
+        public unsafe void SendInput(INativeCoreInputSender sender, InteropEntity entity, long frame, IEntityInput input)
+        {
+            var type = input.GetComponentType();
+{{~ if project_schema.input_definitions.size > 0 ~}}
+            var inputData = (InputData)input;
+            switch (type)
+            {
+    {{~ for input in project_schema.input_definitions ~}}
+                case {{ input.id }}:
+                {
+                    var orig = ({{input.name}})inputData.Input;
+                    var val = new {{input.name}}.Interop();
+
+        {{~ for member in input.members ~}}
+                    {{ GetToInteropConversionBegin member.c_sharp_type_name member.variable_name }}
+        {{~ end ~}}
+
+                    sender.SendInput(entity, frame, type, val, {{ input.total_size }});
+
+        {{~ for member in input.members ~}}
+                    {{~ GetToInteropConversionEnd member.c_sharp_type_name ~}}
+        {{~ end ~}}
+                    return;
+                }
+    {{~ end ~}}
+            }
+{{~ end ~}}
+
+            throw new NotImplementedException($"Failed to send an input with type {type}.");
+        }
+    }

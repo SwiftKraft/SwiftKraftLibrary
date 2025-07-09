@@ -1,0 +1,34 @@
+    
+    public class CoherenceLiveQueryImpl
+    {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void OnRuntimeMethodLoad()
+        {
+            Impl.UpdateLiveQuery = UpdateLiveQuery;
+            Impl.RemoveLiveQuery = RemoveLiveQuery;
+        }
+
+        private static void UpdateLiveQuery(IClient client, Entity liveQuery, float radius, Vector3 pos, AbsoluteSimulationFrame simFrame)
+        {
+            var newWorldPositionQuery = new WorldPositionQuery
+            {
+                position = pos,
+                radius = radius,
+                positionSimulationFrame = simFrame,
+                radiusSimulationFrame = simFrame,
+                FieldsMask = 0b11,
+            };
+
+            var components = new ICoherenceComponentData[]
+            {
+                newWorldPositionQuery,
+            };
+
+            client.UpdateComponents(liveQuery, components);
+        }
+
+        private static void RemoveLiveQuery(IClient client, Entity liveQuery)
+        {
+            client.RemoveComponents(liveQuery, new []{Definition.InternalWorldPositionQuery});
+        }
+    }

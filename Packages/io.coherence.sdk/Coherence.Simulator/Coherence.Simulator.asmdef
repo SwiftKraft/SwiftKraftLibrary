@@ -1,0 +1,24 @@
+{
+    "name": "Coherence.Simulator",
+    "rootNamespace": "",
+    "references": [
+        "Coherence.Log",
+        "Coherence",
+        "Coherence.Toolkit",
+        "Coherence.Core",
+        "Coherence.Common",
+        "Coherence.Runtime",
+        "Coherence.Utils"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

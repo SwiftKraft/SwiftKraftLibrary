@@ -1,0 +1,30 @@
+{
+    "name": "Coherence.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "Coherence",
+        "Coherence.Prefs",
+        "Coherence.Log",
+        "Coherence.Common",
+        "Coherence.Auth",
+        "Coherence.Utils",
+        "Coherence.Switch.WebSocket"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "io.coherence.switchwebsocket",
+            "expression": "1.0.0",
+            "define": "COHERENCE_HAS_NN_WEBSOCKET"
+        }
+    ],
+    "noEngineReferences": false
+}

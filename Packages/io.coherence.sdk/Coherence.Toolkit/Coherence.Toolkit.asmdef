@@ -1,0 +1,51 @@
+{
+    "name": "Coherence.Toolkit",
+    "rootNamespace": "",
+    "references": [
+        "Coherence.Entities",
+        "Coherence.Core",
+        "Coherence.Core.Native",
+        "Coherence.Brisk",
+        "Coherence.ProtocolDef",
+        "Coherence.Brook",
+        "Coherence.SimulationFrame",
+        "Coherence.Serializer",
+        "Coherence",
+        "Coherence.Common",
+        "Coherence.Log",
+        "Coherence.Interpolation",
+        "Coherence.Cram",
+        "Coherence.Utils",
+        "Coherence.Runtime",
+        "Coherence.Stats",
+        "Unity.Addressables",
+        "Unity.ResourceManager",
+        "Unity.Profiling.Core",
+        "Coherence.Transport",
+        "Coherence.ReplicationServer",
+        "Coherence.Prefs",
+        "Coherence.Plugins"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.addressables",
+            "expression": "1.15.0",
+            "define": "HAS_ADDRESSABLES"
+        },
+        {
+            "name": "io.coherence.rsl",
+            "expression": "0.0.1",
+            "define": "COHERENCE_HAS_RSL"
+        }
+    ],
+    "noEngineReferences": false
+}

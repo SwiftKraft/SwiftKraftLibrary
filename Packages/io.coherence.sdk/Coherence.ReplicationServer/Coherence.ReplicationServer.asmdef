@@ -1,0 +1,23 @@
+{
+    "name": "Coherence.ReplicationServer",
+    "rootNamespace": "",
+    "references": [
+        "GUID:47450684110bc7845a39db4ddb54c84d",
+        "GUID:b706f3459e13d400bad721320f4dc48f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "io.coherence.rsl",
+            "expression": "0.0.1",
+            "define": "COHERENCE_HAS_RSL"
+        }
+    ],
+    "noEngineReferences": true
+}

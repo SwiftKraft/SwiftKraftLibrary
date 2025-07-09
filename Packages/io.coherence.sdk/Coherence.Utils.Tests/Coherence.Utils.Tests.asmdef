@@ -1,0 +1,42 @@
+{
+    "name": "Coherence.Utils.Tests",
+    "rootNamespace": "",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "UnityEditor.UI",
+        "UnityEngine.UI",
+        "Coherence.Utils",
+        "Coherence.Tests",
+        "Coherence.Common.Tests",
+        "Coherence.Log"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "HAS_UTF",
+        "HAS_MOQ"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.test-framework",
+            "expression": "1.4.4",
+            "define": "HAS_UTF"
+        },
+        {
+            "name": "nuget.moq",
+            "expression": "2.0.0",
+            "define": "HAS_MOQ"
+        }
+    ],
+    "noEngineReferences": false
+}

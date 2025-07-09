@@ -1,0 +1,56 @@
+using System;
+using Coherence.Toolkit;
+using UnityEngine;
+
+[DisplayName("MyCustomInstantiator", "Tooltip for My Custom Instantiator")]
+[Serializable]
+public class CustomInstantiator : INetworkObjectInstantiator
+{
+    // You can serialize the data you need to load your prefab from your workflow.
+    [SerializeField] private string customString;
+    
+    /// <summary>
+    ///     Called when a unique object instance was replaced.
+    /// </summary>
+    public void OnUniqueObjectReplaced(ICoherenceSync instance)
+    {
+    }
+    
+    /// <summary>
+    ///     Called when coherence needs to instantiate a CoherenceSync prefab, to link it to a new network entity.
+    /// </summary>
+    public ICoherenceSync Instantiate(SpawnInfo spawnInfo)
+    {
+        return null;
+    }
+
+    /// <summary>
+    ///     Called when coherence needs to instantiate a CoherenceSync prefab, to link it to a new network entity.
+    /// </summary>
+    public ICoherenceSync Instantiate(CoherenceBridge bridge, ICoherenceSync prefab, Vector3 position, Quaternion rotation)
+    {
+        return null;
+    }
+    
+    /// <summary>
+    ///     Called when coherence needs to destroy a prefab instance, when the related network entity is destroyed.
+    /// </summary>
+    public void Destroy(ICoherenceSync obj)
+    {
+    }
+    
+    /// <summary>
+    ///     Called from the Start method of a given CoherenceBridge instance. The related Provider is also given to be able to
+    ///     load the Object if you wish to do so. Consider deactivating the prefab before instantiating it if you wish to initiate an Object Pool.
+    /// </summary>
+    public void WarmUpInstantiator(CoherenceBridge bridge, CoherenceSyncConfig config, INetworkObjectProvider assetLoader)
+    {
+    }
+    
+    /// <summary>
+    ///     Called when the application exits.
+    /// </summary>
+    public void OnApplicationQuit()
+    {
+    }
+}

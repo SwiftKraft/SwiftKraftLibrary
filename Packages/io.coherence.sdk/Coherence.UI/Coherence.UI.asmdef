@@ -1,0 +1,30 @@
+{
+    "name": "Coherence.UI",
+    "rootNamespace": "",
+    "references": [
+        "Coherence.Stats",
+        "Coherence.Core",
+        "Coherence.Common",
+        "Coherence",
+        "Coherence.Toolkit",
+        "Coherence.Runtime",
+        "Coherence.Log"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "HAS_UGUI"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.ugui",
+            "expression": "1.0.0",
+            "define": "HAS_UGUI"
+        }
+    ],
+    "noEngineReferences": false
+}

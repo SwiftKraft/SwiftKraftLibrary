@@ -1,0 +1,30 @@
+    
+    public class CoherenceTagQueryImpl
+    {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void OnRuntimeMethodLoad()
+        {
+            Impl.UpdateTagQuery = UpdateTagQuery;
+            Impl.RemoveTagQuery = RemoveTagQuery;
+        }
+
+        private static void UpdateTagQuery(IClient client, Entity liveQuery, string tag, AbsoluteSimulationFrame simFrame)
+        {
+            var components = new ICoherenceComponentData[]
+            {
+                new TagQuery 
+                { 
+                    tag = tag,
+                    tagSimulationFrame = simFrame,
+                    FieldsMask = 0b1
+                }
+            };
+
+            client.UpdateComponents(liveQuery, components);
+        }
+
+        private static void RemoveTagQuery(IClient client, Entity liveQuery)
+        {
+            client.RemoveComponents(liveQuery, new []{Definition.InternalTagQuery});
+        }
+    }

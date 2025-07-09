@@ -1,0 +1,65 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/io.coherence.sdk/Coherence.Editor/WelcomeWindow/WelcomeWindow.uss?fileID=7433441132597879392&amp;guid=9cd3ec6a3cf48467ea41215247423e25&amp;type=3#WelcomeWindow" />
+    <ui:VisualElement name="LogoBar" style="display: none;">
+        <ui:VisualElement name="Logo" style="background-image: url(&quot;project://database/Packages/io.coherence.sdk/Coherence.Editor/Icons/d_Coherence.Logo.png?fileID=2800000&amp;guid=3eafcf404dc214727b0554095b628f05&amp;type=3#d_Coherence.Logo&quot;); width: 160px; height: auto;" />
+        <ui:VisualElement class="spacer" />
+        <ui:Label text="v9.9.9-preview" display-tooltip-when-elided="false" enable-rich-text="false" name="VersionLabel" class="coh-blue__text" />
+    </ui:VisualElement>
+    <ui:ScrollView>
+        <ui:VisualElement name="MainContent" style="flex-grow: 11;">
+            <ui:VisualElement name="UpdateMessage">
+                <ui:VisualElement class="panel" style="overflow: hidden; height: 102px;">
+                    <ui:Label text="coherence was updated from x to y" display-tooltip-when-elided="true" enable-rich-text="false" name="UpdateTitle" class="title-label" style="height: 18px;" />
+                    <ui:Label text="Please visit the documentation page to learn more about new features and fixes." display-tooltip-when-elided="true" enable-rich-text="false" style="white-space: normal; height: 18px; flex-wrap: wrap; flex-grow: 1;" />
+                    <ui:Button text="&lt;u&gt;Release Notes&lt;/u&gt;" display-tooltip-when-elided="true" name="ChangelogLink" class="hyperlink" style="padding-top: 1px; padding-right: 1px; padding-bottom: 1px; padding-left: 1px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                        <ui:VisualElement name="MiniIcon" class="hyperlink__icon" style="left: -14px;" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement name="MiniSpacerVert" class="mini-spacer__ver" />
+            </ui:VisualElement>
+            <ui:VisualElement name="WelcomeMessage">
+                <ui:Label text="Welcome to coherence" display-tooltip-when-elided="true" enable-rich-text="false" class="title-label" />
+                <ui:Label text="A network engine, SDK, and platform that lets you make and run scalable games in minutes." display-tooltip-when-elided="true" enable-rich-text="false" style="white-space: normal;" />
+                <ui:VisualElement name="MiniSpacerVert" class="mini-spacer__ver" />
+                <ui:Label text="How would you like to start?" display-tooltip-when-elided="true" enable-rich-text="false" style="white-space: normal;" />
+                <ui:VisualElement name="MiniSpacerVert" class="mini-spacer__ver" />
+            </ui:VisualElement>
+            <ui:VisualElement name="MainButtons">
+                <ui:VisualElement name="ButtonBox" class="main-button__box" style="background-image: url(&quot;project://database/Packages/io.coherence.sdk/Coherence.Editor/UIAssets/Docs.jpg?fileID=2800000&amp;guid=1cbf1476775b44bcd99bd7329d77954e&amp;type=3#Docs&quot;); border-top-right-radius: 2px; border-bottom-right-radius: 2px;">
+                    <ui:Button text="Quick Start&#10;on this Project" display-tooltip-when-elided="true" name="QuickStartButton" class="main-button main-button__blue" style="text-overflow: ellipsis; white-space: normal;">
+                        <ui:VisualElement name="MiniIcon" class="mini-icon" style="display: none;" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement name="MiniSpacer" class="mini-spacer__hor" />
+                <ui:VisualElement name="ButtonBox" class="main-button__box" style="background-image: url(&quot;project://database/Packages/io.coherence.sdk/Coherence.Editor/UIAssets/SampleScenes.jpg?fileID=2800000&amp;guid=c38a8813e13354abc91b3bb051f6beda&amp;type=3#SampleScenes&quot;); border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;">
+                    <ui:Button text="Import&#10;Sample Scenes" display-tooltip-when-elided="true" name="SampleScenesButton" class="main-button main-button__blue" style="-unity-background-scale-mode: scale-and-crop; white-space: normal; text-overflow: ellipsis;">
+                        <ui:VisualElement name="MiniIcon" class="mini-icon" style="background-image: url(&quot;project://database/Packages/io.coherence.sdk/Coherence.Editor/UIAssets/IconDownload.png?fileID=2800000&amp;guid=3c24a5503b7a049d49cb6466a38391e5&amp;type=3#IconDownload&quot;);" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement name="MiniSpacer" class="mini-spacer__hor" />
+                <ui:VisualElement name="ButtonBox" class="main-button__box" style="background-image: url(&quot;project://database/Packages/io.coherence.sdk/Coherence.Editor/UIAssets/VideoTutorials.jpg?fileID=2800000&amp;guid=063ae13754efa41ed9362a0631cfcd9d&amp;type=3#VideoTutorials&quot;); border-bottom-left-radius: 2px; border-top-left-radius: 2px;">
+                    <ui:Button text="Watch&#10;Video Tutorials" display-tooltip-when-elided="true" name="VideoTutorialsButton" class="main-button main-button__blue" style="-unity-background-scale-mode: scale-and-crop; text-overflow: ellipsis; white-space: normal;">
+                        <ui:VisualElement name="MiniIcon" class="mini-icon" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="SecondMessage" style="margin-bottom: 8px; flex-grow: 1; flex-shrink: 0;">
+                <ui:VisualElement name="MiniSpacerVert" class="mini-spacer__ver" />
+                <ui:Label text="More resources" display-tooltip-when-elided="true" enable-rich-text="false" class="title-label" />
+                <ui:Label text="Learn more about coherence on our complete Documentation website, or join the conversation in our Forums and our Discord!" display-tooltip-when-elided="true" enable-rich-text="false" style="white-space: normal;" />
+                <ui:VisualElement name="MiniSpacerVert" class="mini-spacer__ver" />
+                <ui:VisualElement name="LinksPanel" class="panel">
+                    <ui:Button text="&lt;u&gt;Documentation&lt;/u&gt;" display-tooltip-when-elided="true" name="DocsLink" class="hyperlink">
+                        <ui:VisualElement name="MiniIcon" class="hyperlink__icon" style="left: -14px;" />
+                    </ui:Button>
+                    <ui:Button text="&lt;u&gt;Visit our Forums&lt;/u&gt;" display-tooltip-when-elided="true" name="ForumsLink" class="hyperlink">
+                        <ui:VisualElement name="MiniIcon" class="hyperlink__icon" style="left: -14px;" />
+                    </ui:Button>
+                    <ui:Button text="&lt;u&gt;Join our Discord&lt;/u&gt;" display-tooltip-when-elided="true" name="DiscordLink" class="hyperlink">
+                        <ui:VisualElement name="MiniIcon" class="hyperlink__icon" style="left: -14px;" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

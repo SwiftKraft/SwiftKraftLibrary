@@ -1,0 +1,25 @@
+    
+    public class CoherenceGlobalQueryImpl
+    {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void OnRuntimeMethodLoad()
+        {
+            Impl.AddGlobalQuery = AddGlobalQuery;
+            Impl.RemoveGlobalQuery = RemoveGlobalQuery;
+        }
+
+        private static void AddGlobalQuery(IClient client, Entity query)
+        {
+            var components = new ICoherenceComponentData[] 
+            {
+                new GlobalQuery { }
+            };
+
+            client.UpdateComponents(query, components);
+        }
+
+        private static void RemoveGlobalQuery(IClient client, Entity query)
+        {
+            client.RemoveComponents(query, new []{Definition.InternalGlobalQuery});
+        }
+    }

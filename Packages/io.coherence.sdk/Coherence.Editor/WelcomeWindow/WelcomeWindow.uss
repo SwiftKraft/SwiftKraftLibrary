@@ -1,0 +1,240 @@
+#MainButtons {
+    flex-direction: row;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-left: -10px;
+    margin-right: -10px;
+    background-color: rgba(22, 23, 24, 0.34);
+}
+
+#MainContent {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+#UpdateMessage {
+    overflow: hidden;
+}
+
+#LogoBar {
+    height: 50px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(0, 0, 0);
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+#Logo {
+    width: 120px;
+    -unity-background-scale-mode: scale-to-fit;
+    height: auto;
+}
+
+#VersionLabel {
+    -unity-text-align: middle-center;
+    padding-top: 3px;
+}
+
+.coh-blue__text {
+    color: rgb(41, 171, 225);
+}
+
+.title-label {
+    -unity-font-style: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.main-button__box {
+    width: 33%;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-left-color: rgba(0, 0, 0, 0.15);
+    border-right-color: rgba(0, 0, 0, 0.15);
+    border-top-color: rgba(0, 0, 0, 0.15);
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 2px;
+    border-bottom-width: 0;
+    -unity-background-scale-mode: scale-and-crop;
+    flex-grow: 1;
+    height: 200px;
+}
+
+.main-button {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 1px;
+    -unity-font-style: bold;
+    font-size: 13px;
+    color: rgb(226, 226, 226);
+    border-bottom-color: rgb(35, 108, 140);
+    border-left-color: rgb(35, 108, 140);
+    border-right-color: rgb(35, 108, 140);
+    border-top-color: rgb(35, 108, 140);
+    background-color: rgb(0, 150, 214);
+    text-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.96);
+    flex-grow: 0;
+    flex-shrink: 0;
+    min-height: 80px;
+}
+
+.main-button:hover {
+    background-color: rgb(41, 169, 224);
+}
+
+.main-button:active {
+    background-color: rgb(0, 132, 188);
+}
+
+.secondary-button {
+    height: 22px;
+    flex-grow: 1;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 3px;
+    margin-bottom: 1px;
+    display: none;
+}
+
+.panel {
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: rgba(166, 166, 166, 0.11);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left-color: rgba(128, 128, 128, 0.29);
+    border-right-color: rgba(128, 128, 128, 0.29);
+    border-top-color: rgba(128, 128, 128, 0.29);
+    border-bottom-color: rgba(128, 128, 128, 0.29);
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.mini-spacer__hor {
+    width: 8px;
+    flex-shrink: 0;
+}
+
+.mini-spacer__ver {
+    flex-shrink: 0;
+    height: 12px;
+}
+
+.mini-icon {
+    background-image: url("project://database/Packages/io.coherence.sdk/Coherence.Editor/UIAssets/IconLink.png?fileID=2800000&guid=2a3a071b801204454979701df211d67c&type=3#IconLink");
+    height: 10px;
+    -unity-background-scale-mode: scale-to-fit;
+    width: 10px;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.77);
+    top: -5px;
+    left: -2px;
+    align-self: flex-end;
+}
+
+.hyperlink {
+    color: rgb(0, 143, 202);
+    margin-top: 0;
+    margin-bottom: 0;
+    justify-content: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-left: 2px;
+    -unity-text-align: middle-left;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 18px;
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.hyperlink__icon {
+    -unity-background-image-tint-color: rgb(14, 146, 202);
+    width: 10px;
+    height: 10px;
+    background-image: url("project://database/Packages/io.coherence.sdk/Coherence.Editor/UIAssets/IconLink.png?fileID=2800000&guid=2a3a071b801204454979701df211d67c&type=3#IconLink");
+}
+
+.hyperlink:hover {
+    color: rgb(41, 169, 224);
+}
+
+.hyperlink:active {
+    color: rgb(0, 132, 188);
+}
+
+.hyperlink:hover .hyperlink__icon {
+    -unity-background-image-tint-color: rgb(41, 169, 224);
+}
+
+.hyperlink:active .hyperlink__icon {
+    -unity-background-image-tint-color: rgb(0, 132, 188);
+}
+
+.hide {
+    height: 0;
+    display: none;
+}
+
+.show-expand-height {
+    height: 90px;
+    transition-property: height;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
+    transition-delay: 1s;
+    display: flex;
+}

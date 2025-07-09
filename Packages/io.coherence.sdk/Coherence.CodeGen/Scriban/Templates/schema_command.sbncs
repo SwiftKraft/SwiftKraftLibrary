@@ -1,0 +1,169 @@
+
+{{~ if commandDefinition.bake_conditional != "" ~}}
+#if {{ commandDefinition.bake_conditional }}
+{{~ end ~}}
+    public struct {{ commandDefinition.name }} : IEntityCommand
+    {
+        [StructLayout(LayoutKind.Explicit)]
+        public struct Interop
+        {
+{{~ for member in commandDefinition.members ~}}
+            [FieldOffset({{ member.field_offset }})]
+            public {{ GetInteropTypeFromCSharpType member.c_sharp_type_name }} {{ member.c_sharp_variable_name }};
+{{~ end ~}}
+        }
+
+        public static unsafe {{ commandDefinition.name }} FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        {
+            if (dataSize != {{ commandDefinition.total_size }}) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != {{ commandDefinition.total_size }}) " +
+                    "for command with ID {{ commandDefinition.id }}");
+            }
+
+            var orig = new {{commandDefinition.name}}();
+            var comp = (Interop*)data;
+{{~ for member in commandDefinition.members ~}}
+            orig.{{ member.c_sharp_variable_name }} = {{ GetFromInteropConversion member.c_sharp_type_name member.c_sharp_variable_name }};
+{{~ end ~}}
+            return orig;
+        }
+
+{{~ for member in commandDefinition.members ~}}
+        public {{ if no_unity_refs && member.c_sharp_type_name == "Color" }}Vector4{{ else }}{{ member.c_sharp_type_name }}{{ end }} {{ member.c_sharp_variable_name }};
+{{~ end ~}}
+        
+        public Entity Entity { get; set; }
+        public Coherence.ChannelID ChannelID { get; set; }
+        public MessageTarget Routing { get; set; }
+        public uint Sender { get; set; }
+        public uint GetComponentType() => {{ commandDefinition.id }};
+        
+        public IEntityMessage Clone()
+        {
+            // This is a struct, so we can safely return
+            // a struct copy.
+            return this;
+        }
+        
+        public IEntityMapper.Error MapToAbsolute(IEntityMapper mapper, Coherence.Log.Logger logger)
+        {
+            var err = mapper.MapToAbsoluteEntity(Entity, false, out var absoluteEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            Entity = absoluteEntity;
+{{~ for member in commandDefinition.members ~}}
+    {{~ if member.c_sharp_type_name == "Entity" ~}}
+            err = mapper.MapToAbsoluteEntity({{ member.c_sharp_variable_name }}, false, out absoluteEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.{{ member.c_sharp_variable_name }} = absoluteEntity;
+            
+    {{~ end ~}}
+{{~ end ~}}
+            return IEntityMapper.Error.None;
+        }
+        
+        public IEntityMapper.Error MapToRelative(IEntityMapper mapper, Coherence.Log.Logger logger)
+        {
+            var err = mapper.MapToRelativeEntity(Entity, false, out var relativeEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            Entity = relativeEntity;
+{{~ for member in commandDefinition.members ~}}
+    {{~ if member.c_sharp_type_name == "Entity" ~}}
+            err = mapper.MapToRelativeEntity({{ member.c_sharp_variable_name }}, false, out relativeEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.{{ member.c_sharp_variable_name }} = relativeEntity;
+            
+    {{~ end ~}}
+{{~ end ~}}
+            return IEntityMapper.Error.None;
+        }
+
+        public HashSet<Entity> GetEntityRefs() {
+{{~ if hasRefFields ~}}
+            return new HashSet<Entity> {
+    {{~ for member in commandDefinition.members ~}}
+        {{~ if member.c_sharp_type_name == "Entity" ~}}
+                this.{{ member.c_sharp_variable_name }},
+        {{~ end ~}}
+    {{~ end ~}}
+            };
+{{~ else ~}}
+            return default;
+{{~ end ~}}
+        }
+
+        public void NullEntityRefs(Entity entity) {
+{{~ for member in commandDefinition.members ~}}
+    {{~ if member.c_sharp_type_name == "Entity" ~}}
+            if (this.{{ member.c_sharp_variable_name }} == entity) {
+                this.{{ member.c_sharp_variable_name }} = Entity.InvalidRelative;
+            }
+    {{~ end ~}}
+{{~ end ~}}
+        }
+        
+{{~ if commandDefinition.members.size > 0 ~}}
+        public {{ commandDefinition.name }}(
+        Entity entity,
+    {{~ for member in commandDefinition.members ~}}
+        {{ if no_unity_refs && member.c_sharp_type_name == "Color" }}Vector4{{ else }}{{ member.c_sharp_type_name }}{{ end }} {{ member.c_sharp_variable_name }}{{ if !for.last }},{{ end }}
+    {{~ end ~}})
+        {
+            Entity = entity;
+            ChannelID = Coherence.ChannelID.Default;
+            Routing = MessageTarget.{{ commandDefinition.routing }};
+            Sender = 0;
+            
+    {{~ for member in commandDefinition.members ~}}
+            this.{{ member.c_sharp_variable_name }} = {{ member.c_sharp_variable_name }}; 
+    {{~ end ~}}
+        }
+{{~ end ~}}
+        
+        public static void Serialize({{ commandDefinition.name }} commandData, IOutProtocolBitStream bitStream)
+        {
+{{~ for member in commandDefinition.members ~}}
+    {{~ if !no_unity_refs && (member.c_sharp_type_name == "Vector2" || member.c_sharp_type_name == "Vector3" || member.c_sharp_type_name == "Color" || member.c_sharp_type_name == "Quaternion") ~}}
+            var converted_{{ member.c_sharp_variable_name }} = commandData.{{ member.c_sharp_variable_name }}.ToCore{{ GetSerializeMethod member.c_sharp_type_name }}();
+            bitStream.Write{{ GetSerializeMethod member.c_sharp_type_name }}(converted_{{ member.c_sharp_variable_name }}{{ GetSerializeParams member.c_sharp_type_name member.overrides true }});
+    {{~ else ~}}
+            bitStream.Write{{ GetSerializeMethod member.c_sharp_type_name }}(commandData.{{ member.c_sharp_variable_name }}{{ GetSerializeParams member.c_sharp_type_name member.overrides true }});
+    {{~ end ~}}
+{{~ end ~}}
+        }
+        
+        public static {{ commandDefinition.name }} Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        {
+{{~ for member in commandDefinition.members ~}}
+    {{~ if !no_unity_refs && (member.c_sharp_type_name == "Vector2" || member.c_sharp_type_name == "Vector3" || member.c_sharp_type_name == "Color" || member.c_sharp_type_name == "Quaternion") ~}}
+            var converted_{{ member.c_sharp_variable_name }} = bitStream.Read{{ GetSerializeMethod member.c_sharp_type_name }}({{ GetSerializeParams member.c_sharp_type_name member.overrides false }});
+            var data{{ member.c_sharp_variable_name }} = converted_{{ member.c_sharp_variable_name }}.ToUnity{{ GetSerializeMethod member.c_sharp_type_name }}();
+    {{~ else ~}}
+            var data{{ member.c_sharp_variable_name }} = bitStream.Read{{ GetSerializeMethod member.c_sharp_type_name }}({{ GetSerializeParams member.c_sharp_type_name member.overrides false }});
+    {{~ end ~}}
+{{~ end ~}}   
+    
+            return new {{ commandDefinition.name }}()
+            {
+                Entity = entity,
+                Routing = target,
+{{~ for member in commandDefinition.members ~}}
+                {{ member.c_sharp_variable_name }} = data{{ member.c_sharp_variable_name }}{{ if !for.last }},{{ end }}
+{{~ end ~}}
+            };   
+        }
+    }
+{{~ if commandDefinition.bake_conditional != "" ~}}
+#endif // {{ commandDefinition.bake_conditional }}
+{{~ end ~}}

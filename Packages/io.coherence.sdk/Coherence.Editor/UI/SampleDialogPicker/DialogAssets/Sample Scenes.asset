@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39df2693899937a4494ba9dd2592dbf8, type: 3}
+  m_Name: Sample Scenes
+  m_EditorClassIdentifier: 
+  SampleDisplayName: Sample Scenes
+  PrefabFileName: 
+  Dependency: 0
+  SampleCategory: 0
+  CategoryDetail: Sample Project
+  Description: "The absolute simplest way to familiarize yourself with the basics
+    of coherence.\n\nYou can import these self-contained Scenes directly into your
+    existing Unity project. The included Scenes cover:\n\n\u2022 Synchronizing a
+    capsule movement.\n\u2022 How to distribute authority of entities across the
+    current network session.\n\u2022 Synchronizing rigidbodies in a very simple physics
+    simulation.\n\u2022 How to use entity persistence.\n\u2022 Spawning each joining
+    player in a different spawn point.\n\u2022 Using LiveQueries to specify which
+    area of the networked world to sync.\n\nScenes are numbered in ascending difficulty,
+    so we recommend starting with the 1_CharacterMovement Scene and work it up from
+    there."
+  Preview: {fileID: 2800000, guid: 3a67e359ead904cd489ebd5dadbef70a, type: 3}
+  Thumbnail: {fileID: 2800000, guid: 6b5b6adb2c51a40fd8492c642c5d691d, type: 3}
+  ExternalUrl: 
+  Priority: -100

@@ -1,0 +1,52 @@
+    
+    public static class Archetypes
+    {
+{{~ for archetype in archetypes ~}}
+        public const int {{ archetype.name }}Index = {{ archetype.id }};
+{{~ end ~}}
+
+        public static readonly EntityArchetype[] Definitions =
+		{
+{{~ for archetype in archetypes ~}}
+            new EntityArchetype() // {{ archetype.name }}
+            {
+                LODs = new EntityArchetypeLOD[]
+                {
+    {{~ for lod in archetype.lods ~}}
+                    new EntityArchetypeLOD
+                    {
+                        Level = {{ lod.level }},
+                        Distance = {{ lod.distance }},
+                        ComponentReplacement = new Dictionary<uint, uint>
+                        {
+        {{~ for item in lod.items ~}}
+        	{{~ if item.bake_conditional != "" ~}}
+        #if {{ item.bake_conditional }}
+        	{{~ end ~}}
+                            { {{ item.base_component_id }}, Definition.InternalArchetype{{ archetype.name }}_{{ item.component_name }}_LOD{{ lod.level}} },
+        	{{~ if item.bake_conditional != "" ~}}
+        #endif
+        	{{~ end ~}}
+        {{~ end ~}}
+                        },
+                        ComponentsExcluded = new uint[] 
+                        {
+        {{~ for excluded in lod.excluded_component_names ~}}
+                            Definition.Internal{{ excluded }},         
+        {{~ end ~}}
+                        },
+                    },
+    {{~ end ~}}
+                },
+            },
+{{~ end ~}}
+		};
+    
+        public static Dictionary<string, int> IndexForName = new Dictionary<string, int>() 
+        {
+{{~ for archetype in archetypes ~}}
+            { "{{ archetype.name }}", {{ archetype.id }} },
+{{~ end ~}}
+        };
+    }     
+    

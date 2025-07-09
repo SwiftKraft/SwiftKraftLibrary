@@ -1,0 +1,418 @@
+
+{{ if !no_unity_refs }}
+    [UnityEngine.Scripting.Preserve]
+{{ end }}
+    public class Definition : IDefinition
+    {
+        public const string schemaId = "{{ schema_id }}";
+{{~ for component in project_schema.component_definitions ~}}
+	{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+	{{~ end ~}}
+        public const uint Internal{{ component.name }} = {{ component.id }};
+	{{~ if component.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+{{~ for archetype in project_schema.archetype_definitions ~}}
+    {{~ for lod in archetype.lods ~}}
+        {{~ for component in lod.items ~}}
+        public const uint InternalArchetype{{ archetype.name }}_{{ component.component_name }}_LOD{{ lod.level }} = {{ component.id }};
+        {{~ end ~}}
+    {{~ end ~}}
+{{~ end ~}}
+{{~ for command in project_schema.command_definitions ~}}
+        public const uint Internal{{ command.name }} = {{ command.id }};
+{{~ end ~}}
+{{~ for input in project_schema.input_definitions ~}}
+        public const uint Internal{{ input.name }} = {{ input.id }};
+{{~ end ~}}
+
+        private static readonly Dictionary<uint, string> componentNamesForTypeIds = new Dictionary<uint, string>()
+        {
+{{~ for component in project_schema.component_definitions ~}}
+	{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+	{{~ end ~}}
+            { {{ component.id }}, "{{ component.name }}" },
+	{{~ if component.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+{{~ for archetype in project_schema.archetype_definitions ~}}
+    {{~ for lod in archetype.lods ~}}
+        {{~ for component in lod.items ~}}
+			{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+			{{~ end ~}}
+            { {{ component.id }}, "Archetype{{ archetype.name }}_{{ component.component_name }}_LOD{{ lod.level }}" },
+			{{~ if component.bake_conditional != "" ~}}
+#endif
+			{{~ end ~}}
+        {{~ end ~}}
+    {{~ end ~}}
+{{~ end ~}}
+        };
+
+        public static string ComponentNameForTypeId(uint typeId)
+        {
+            if (componentNamesForTypeIds.TryGetValue(typeId, out string componentName))
+            {
+                return componentName;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static readonly Dictionary<uint, MessageTarget> CommandRoutingByType = new Dictionary<uint, MessageTarget>()
+        {
+{{~ for command in project_schema.command_definitions ~}}
+	{{~ if command.bake_conditional != "" ~}}
+#if {{ command.bake_conditional }}
+	{{~ end ~}}
+            { Definition.Internal{{ command.name }} , MessageTarget.{{ command.routing }} },
+	{{~ if command.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+        };
+
+        public ICoherenceComponentData ReadComponentUpdate(uint componentType, AbsoluteSimulationFrame referenceSimulationFrame,
+            IInBitStream bitStream, Logger logger)
+        {
+            var inProtocolStream = new InProtocolBitStream(bitStream);
+
+            switch (componentType)
+            {
+{{~ for component in project_schema.component_definitions ~}}
+	{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+	{{~ end ~}}
+                case Internal{{ component.name }}:
+                    return {{ component.name }}.Deserialize(referenceSimulationFrame, inProtocolStream);
+	{{~ if component.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+{{~ for archetype in project_schema.archetype_definitions ~}}
+    {{~ for lod in archetype.lods ~}}
+        {{~ for component in lod.items ~}}
+			{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+			{{~ end ~}}
+                case InternalArchetype{{ archetype.name }}_{{ component.component_name }}_LOD{{ lod.level }}:
+            {{~ if extended_def ~}}
+                    return {{ component.component_name }}{{ archetype.id }}_LOD{{ lod.level }}.Deserialize(referenceSimulationFrame, inProtocolStream);
+            {{~ else ~}}
+                    return {{ component.component_name }}.DeserializeArchetype{{ archetype.name }}_{{ component.component_name }}_LOD{{ lod.level }}(referenceSimulationFrame, inProtocolStream);
+            {{~ end ~}}
+			{{~ if component.bake_conditional != "" ~}}
+#endif
+			{{~ end ~}}
+        {{~ end ~}}
+    {{~ end ~}}
+{{~ end ~}}
+                default:
+                    throw new System.ArgumentOutOfRangeException(nameof(componentType),
+                        $"Missing serialization implementation for a component: {componentType}");
+            }
+        }
+
+        public uint WriteComponentUpdate(ICoherenceComponentData data, uint serializeAs, bool isRefSimFrameValid,
+            AbsoluteSimulationFrame referenceSimulationFrame, IOutProtocolBitStream protocolStream, Logger logger)
+        {
+            switch (serializeAs)
+            {
+{{~ for component in project_schema.component_definitions ~}}
+	{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+	{{~ end ~}}
+                case Internal{{ component.name }}:
+                    return {{ component.name }}.Serialize(({{ component.name }})data, isRefSimFrameValid, referenceSimulationFrame, protocolStream, logger);
+	{{~ if component.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+{{~ if extended_def ~}}
+    {{~ for archetype in project_schema.archetype_definitions ~}}
+        {{~ for lod in archetype.lods ~}}
+            {{~ for component in lod.items ~}}
+				{{~ if component.bake_conditional != "" ~}}
+#if {{ component.bake_conditional }}
+				{{~ end ~}}
+                case InternalArchetype{{ archetype.name }}_{{ component.component_name }}_LOD{{ lod.level }}:
+                    return {{ component.component_name }}{{ archetype.id }}_LOD{{ lod.level }}.Serialize(({{ component.component_name }})data, isRefSimFrameValid, referenceSimulationFrame, protocolStream, logger);
+				{{~ if component.bake_conditional != "" ~}}
+#endif
+				{{~ end ~}}
+            {{~ end ~}}
+        {{~ end ~}}
+    {{~ end ~}}
+{{~ end ~}}
+                default:
+                    logger.Error(Coherence.Log.Error.DefinitionMissingComponentImplementation, ("component", data.GetComponentType()));
+                    return 0;
+            }
+        }
+
+        private IEntityCommand ReadCommand(uint commandType, Entity entity, MessageTarget target, IInProtocolBitStream bitStream, Logger logger)
+        {
+            switch (commandType)
+            {
+{{~ for command in project_schema.command_definitions ~}}
+	{{~ if command.bake_conditional != "" ~}}
+#if {{ command.bake_conditional }}
+	{{~ end ~}}
+                case Definition.Internal{{ command.name }}:
+                    return {{ command.name }}.Deserialize(bitStream, entity, target);
+	{{~ if command.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+                default:
+                    throw new System.ArgumentOutOfRangeException(nameof(commandType),
+                        $"Missing serialization implementation for a command: {commandType}");
+            }
+        }
+
+        private IEntityInput ReadInput(uint inputType, Entity entity, long frame, IInProtocolBitStream bitStream, Logger logger)
+        {
+            switch (inputType)
+            {
+{{~ for input in project_schema.input_definitions ~}}
+                case Definition.Internal{{ input.name }}:
+                    return {{ input.name }}.Deserialize(bitStream, entity, frame);
+{{~ end ~}}
+                default:
+                    throw new System.ArgumentOutOfRangeException(nameof(inputType),
+                        $"Missing serialization implementation for an input: {inputType}");
+            }
+        }
+
+        public IEntityCommand[]	ReadCommands(IInBitStream bitStream, Logger logger)
+        {
+            var numMessages = bitStream.ReadUint8();
+
+            var commandData = new IEntityCommand[numMessages];
+
+            for (var i = 0; i < numMessages; i++)
+            {
+                var entityID = DeserializerTools.DeserializeEntity(bitStream);
+                var messageTarget = DeserializerTools.DeserializeMessageTarget(bitStream);
+                var componentType = DeserializerTools.DeserializeComponentTypeID(bitStream);
+                var inBitStream = new Coherence.Serializer.InProtocolBitStream(bitStream);
+                commandData[i] = ReadCommand(componentType, entityID, messageTarget, inBitStream, logger);
+            }
+
+            return commandData;
+        }
+
+        public IEntityInput[] ReadInputs(IInBitStream bitStream, Logger logger)
+        {
+            var numMessages = bitStream.ReadUint8();
+
+            var inputData = new IEntityInput[numMessages];
+
+            for (var i = 0; i < numMessages; i++)
+            {
+                var entityID = DeserializerTools.DeserializeEntity(bitStream);
+                var routing = DeserializerTools.DeserializeMessageTarget(bitStream);
+                var componentType = DeserializerTools.DeserializeComponentTypeID(bitStream);
+                var inBitStream = new Coherence.Serializer.InProtocolBitStream(bitStream);
+                var frame = (long)bitStream.ReadUint64();
+                var input = ReadInput(componentType, entityID, frame, inBitStream, logger);
+                input.Routing = routing;
+                inputData[i] = input;
+            }
+
+            return inputData;
+        }
+
+        public IEntityCommand ReadCommand(IInBitStream bitStream, Logger logger)
+        {
+            var entityID = DeserializerTools.DeserializeEntity(bitStream);
+            var messageTarget = DeserializerTools.DeserializeMessageTarget(bitStream);
+            var componentType = DeserializerTools.DeserializeComponentTypeID(bitStream);
+            var inBitStream = new Coherence.Serializer.InProtocolBitStream(bitStream);
+
+            return ReadCommand(componentType, entityID, messageTarget, inBitStream, logger);
+        }
+
+        public void WriteCommand(IEntityCommand data, uint commandType, IOutProtocolBitStream bitStream, Logger logger)
+        {
+            switch (commandType)
+            {
+{{~ for command in project_schema.command_definitions ~}}
+	{{~ if command.bake_conditional != "" ~}}
+#if {{ command.bake_conditional }}
+	{{~ end ~}}
+                case Definition.Internal{{ command.name }}:
+                    {{ command.name }}.Serialize(({{ command.name }})data, bitStream);
+                    break;
+	{{~ if command.bake_conditional != "" ~}}
+#endif
+	{{~ end ~}}
+{{~ end ~}}
+                default:
+                    logger.Error(Coherence.Log.Error.DefinitionMissingCommandImplementation, ("command", commandType));
+                    break;
+            }
+        }
+
+        public void WriteInput(IEntityInput data, uint inputType, IOutProtocolBitStream bitStream, Logger logger)
+        {
+            var inputData = (InputData)data;
+            bitStream.WriteLong(inputData.Frame);
+
+            switch (inputType)
+            {
+{{~ for input in project_schema.input_definitions ~}}
+                case Definition.Internal{{ input.name }}:
+                    {{ input.name }}.Serialize(({{ input.name }})inputData.Input, bitStream);
+                    break;
+{{~ end ~}}
+                default:
+                    logger.Error(Coherence.Log.Error.DefinitionMissingInputImplementation, ("input", inputType));
+                    break;
+            }
+        }
+
+        public IEntityCommand CreateAuthorityRequest(Entity entity, ClientID requester, AuthorityType authType)
+        {
+            return new AuthorityRequest(entity, (uint)requester, (int)authType);
+        }
+
+        public IEntityCommand CreateAdoptOrphanCommand()
+        {
+            return new AdoptOrphan();
+        }
+
+        public bool TryGetAuthorityRequestCommand(IEntityCommand entityCommand,
+            out ClientID requester, out AuthorityType authType)
+        {
+            if (entityCommand is AuthorityRequest request)
+            {
+                requester = (ClientID)request.requester;
+                authType = (AuthorityType)request.authorityType;
+
+                return true;
+            }
+
+            requester = default;
+            authType = default;
+
+            return false;
+        }
+
+        public IEntityCommand CreateAuthorityTransfer(Entity entity, ClientID newAuthority, bool accepted, AuthorityType authType)
+        {
+            return new AuthorityTransfer(entity, (uint)newAuthority, accepted, (int)authType);
+        }
+
+        public bool TryGetAuthorityTransferCommand(IEntityCommand entityCommand, out ClientID newAuthority,
+            out bool transferAccepted, out AuthorityType authType)
+        {
+            if (entityCommand is AuthorityTransfer transfer)
+            {
+                newAuthority = (ClientID)transfer.newAuthority;
+                transferAccepted = transfer.accepted;
+                authType = (AuthorityType)transfer.authorityType;
+
+                return true;
+            }
+
+            newAuthority = default;
+            transferAccepted = default;
+            authType = default;
+
+            return false;
+        }
+
+        public ICoherenceComponentData GeneratePersistenceData()
+        {
+            var persistence = new Persistence();
+
+            return persistence;
+        }
+
+        public ICoherenceComponentData GenerateCoherenceUUIDData(string uuid, AbsoluteSimulationFrame simFrame)
+        {
+            var uniqueID = new UniqueID();
+            uniqueID.uuid = uuid;
+            uniqueID.uuidSimulationFrame = simFrame;
+            uniqueID.FieldsMask = 0b1;
+
+            return uniqueID;
+        }
+
+        public ICoherenceComponentData CreateGlobalComponent()
+        {
+            return new Global();
+        }
+
+        public ICoherenceComponentData GenerateGlobalQueryComponent()
+        {
+            return new GlobalQuery();
+        }
+
+        public string ExtractCoherenceUUID(ICoherenceComponentData data)
+        {
+            var uniqueID = (UniqueID)data;
+            return uniqueID.uuid;
+        }
+
+        public bool IsConnectedEntity(ICoherenceComponentData data)
+        {
+            return data.GetComponentType() == Definition.InternalConnectedEntity;
+        }
+
+        public Entity ExtractConnectedEntityID(ICoherenceComponentData data)
+        {
+            var connectedEntity = (ConnectedEntity)data;
+
+            return connectedEntity.value;
+        }
+
+        public string ExtractCoherenceTag(ICoherenceComponentData data)
+        {
+            var tag = (Tag)data;
+            return tag.tag;
+        }
+
+        public bool TryGetSceneIndexChangedCommand(IEntityCommand entityCommand, out int sceneIndex)
+        {
+            if (entityCommand is SceneIndexChanged changed)
+            {
+                sceneIndex = (int)changed.sceneIndex;
+
+                return true;
+            }
+
+            sceneIndex = default;
+
+            return false;
+        }
+
+        public IEntityCommand CreateSceneIndexChangedCommand(Entity entity, int sceneIndex)
+        {
+            return new SceneIndexChanged(entity, sceneIndex);
+        }
+
+        public bool IsSendOrderedComponent(uint componentID)
+        {
+            switch(componentID)
+            {
+{{~ for component in project_schema.component_definitions ~}}
+    {{~ if component.overrides["send-ordered"] ~}}
+                case {{ component.id }}:
+                    return true;
+    {{~ end ~}}
+{{~ end ~}}
+                default:
+                    return false;
+            }
+        }
+}
+

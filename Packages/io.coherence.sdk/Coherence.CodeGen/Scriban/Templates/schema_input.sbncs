@@ -1,0 +1,146 @@
+
+    public struct {{ inputDefinition.name }} : IEntityInput, IEquatable<{{ inputDefinition.name }}>
+    {
+        [StructLayout(LayoutKind.Explicit)]
+        public struct Interop
+        {
+{{~ for member in inputDefinition.members ~}}
+            [FieldOffset({{ member.field_offset }})]
+            public {{ GetInteropTypeFromCSharpType member.c_sharp_type_name }} {{ member.variable_name }};
+{{~ end ~}}
+        }
+
+        public static unsafe {{ inputDefinition.name }} FromInterop(System.IntPtr data, System.Int32 dataSize)
+        {
+            if (dataSize != {{ inputDefinition.total_size }}) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != {{ inputDefinition.total_size }}) " +
+                    "for input with ID {{ inputDefinition.id }}");
+            }
+
+            var orig = new {{inputDefinition.name}}();
+            var comp = (Interop*)data;
+{{~ for member in inputDefinition.members ~}}
+            orig.{{ member.variable_name }} = {{ GetFromInteropConversion member.c_sharp_type_name member.variable_name }};
+{{~ end ~}}
+            return orig;
+        }
+
+        public uint GetComponentType() => {{ inputDefinition.id }};
+
+        public Entity Entity { get; set; }
+        public Coherence.ChannelID ChannelID { get; set; }
+        public MessageTarget Routing { get; set; }
+        public uint Sender { get; set; }
+        public long Frame { get; set; }
+        private bool isRemoteInput;
+
+{{~ for member in inputDefinition.members ~}}
+        public {{ member.c_sharp_type_name }} {{ member.variable_name }};
+{{~ end ~}}
+
+        public {{ inputDefinition.name }}(
+        Entity entity,
+        long frame,
+{{~ for member in inputDefinition.members ~}}
+        {{ member.c_sharp_type_name }} {{ member.variable_name }},
+{{~ end ~}}
+        bool isRemoteInput)
+        {
+            this.Entity = entity;
+            this.ChannelID = Coherence.ChannelID.Default;
+            this.Routing = MessageTarget.All;
+            this.Sender = 0;
+            this.Frame = frame;
+            this.isRemoteInput = isRemoteInput;
+{{~ for member in inputDefinition.members ~}}
+            this.{{ member.variable_name }} = {{ member.variable_name }};
+{{~ end ~}}
+        }
+
+        public override string ToString()
+        {
+            return $"Entity: {Entity}, Frame: {Frame}, Inputs: [{{ for member in inputDefinition.members ~}}
+             {{~ member.variable_name }}:{ {{~ member.variable_name ~}} }{{if !for.last}}, {{end}} {{~ end ~}}]";
+        }
+
+        public IEntityMessage Clone()
+        {
+            // This is a struct, so we can safely return
+            // a struct copy.
+            return this;
+        }
+
+        public IEntityMapper.Error MapToAbsolute(IEntityMapper mapper, Coherence.Log.Logger logger)
+        {
+            var err = mapper.MapToAbsoluteEntity(Entity, false, out var absoluteEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            Entity = absoluteEntity;
+            return IEntityMapper.Error.None;
+        }
+
+        public IEntityMapper.Error MapToRelative(IEntityMapper mapper, Coherence.Log.Logger logger)
+        {
+            var err = mapper.MapToRelativeEntity(Entity, false, out var relativeEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            Entity = relativeEntity;
+            return IEntityMapper.Error.None;
+        }
+
+        public HashSet<Entity> GetEntityRefs() => default;
+
+        public void NullEntityRefs(Entity entity) { }
+
+        public bool Equals({{ inputDefinition.name }} other)
+        {
+{{~ if inputDefinition.members.size == 0 ~}}
+            return true;
+{{~ else ~}}
+            return
+    {{~ for member in inputDefinition.members ~}}
+                this.{{ member.variable_name }} == other.{{ member.variable_name }}{{~ if !for.last ~}}&&{{~ else ~}};{{~ end }}
+    {{~ end ~}}
+{{~ end ~}}
+        }
+
+        public static void Serialize({{ inputDefinition.name }} inputData, IOutProtocolBitStream bitStream)
+        {
+{{~ for member in inputDefinition.members ~}}
+{{~ cSharpType = member.c_sharp_type_name ~}}
+    {{~ if !no_unity_refs && (cSharpType == "Vector2" || cSharpType == "Vector3" || cSharpType == "Color" || cSharpType == "Quaternion") ~}}
+            var converted_{{ member.variable_name }} = inputData.{{ member.variable_name }}.ToCore{{ GetSerializeMethod cSharpType }}();
+            bitStream.Write{{ GetSerializeMethod cSharpType }}(converted_{{ member.variable_name }}{{ GetSerializeParams cSharpType true }});
+    {{~ else ~}}
+            bitStream.Write{{ GetSerializeMethod cSharpType }}(inputData.{{ member.variable_name }}{{ GetSerializeParams cSharpType true }});
+    {{~ end ~}}
+{{~ end ~}}
+        }
+
+        public static {{ inputDefinition.name }} Deserialize(IInProtocolBitStream bitStream, Entity entity, long frame)
+        {
+{{~ for member in inputDefinition.members ~}}
+{{~ cSharpType = member.c_sharp_type_name ~}}
+    {{~ if !no_unity_refs && (cSharpType == "Vector2" || cSharpType == "Vector3" || cSharpType == "Color" || cSharpType == "Quaternion") ~}}
+            var converted_{{ member.variable_name }} = bitStream.Read{{ GetSerializeMethod cSharpType }}({{ GetSerializeParams cSharpType false }});
+            var data{{ member.variable_name }} = converted_{{ member.variable_name }}.ToUnity{{ GetSerializeMethod cSharpType }}();
+    {{~ else ~}}
+            var data{{ member.variable_name }} = bitStream.Read{{ GetSerializeMethod cSharpType }}({{ GetSerializeParams cSharpType false }});
+    {{~ end ~}}
+{{~ end ~}}
+
+            return new {{ inputDefinition.name }}()
+            {
+                Entity = entity,
+                Frame = frame,
+{{~ for member in inputDefinition.members ~}}
+                {{ member.variable_name }} = data{{ member.variable_name }},
+{{~ end ~}}
+                isRemoteInput = true
+            };
+        }
+    }

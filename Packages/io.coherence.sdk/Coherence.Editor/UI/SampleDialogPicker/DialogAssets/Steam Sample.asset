@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39df2693899937a4494ba9dd2592dbf8, type: 3}
+  m_Name: Steam Sample
+  m_EditorClassIdentifier: 
+  SampleDisplayName: Steam Integration
+  PrefabFileName: 
+  Dependency: 0
+  SampleCategory: 1
+  CategoryDetail: Sample Project
+  Description: "A sample integration for the Steam P2P Relay and coherence networking
+    for player-hosted servers.\n\nThe Steam Integration is using a combination of
+    the Steam relay servers and an implementation of ICoherenceRelay to enable Steam
+    users to connect and play with each other while avoiding NAT issues. The ICoherenceRelay
+    implementation allows for users to connect to the hosting client through Steam,
+    and have the client forward their data packets to the user-hosted Replication
+    Server.\n\n\xA92023 Valve Corporation. Steam and the Steam logo are trademarks
+    and/or registered trademarks of Valve Corporation in the U.S. and/or other countries."
+  Preview: {fileID: 2800000, guid: ab53956f9979a4eb6ba9b13cb4dbb7a4, type: 3}
+  Thumbnail: {fileID: 2800000, guid: 391447746cf324a4eb5920964589ce62, type: 3}
+  ExternalUrl: https://github.com/coherence/steam-integration-sample
+  Priority: 100

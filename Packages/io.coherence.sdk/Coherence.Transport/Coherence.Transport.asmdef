@@ -1,0 +1,23 @@
+{
+    "name": "Coherence.Transport",
+    "rootNamespace": "",
+    "references": [
+        "Coherence.Common",
+        "Coherence.Brook",
+        "Coherence.Stats",
+        "Coherence.Log",
+        "Coherence.Connection.Web",
+        "Coherence.Debugging"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

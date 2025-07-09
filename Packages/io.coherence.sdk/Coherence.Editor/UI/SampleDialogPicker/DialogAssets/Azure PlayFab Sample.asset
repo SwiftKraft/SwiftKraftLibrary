@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39df2693899937a4494ba9dd2592dbf8, type: 3}
+  m_Name: Azure PlayFab Sample
+  m_EditorClassIdentifier: 
+  Enabled: 0
+  SampleDisplayName: Azure PlayFab Online Integration
+  PrefabFileName: 
+  Dependency: 0
+  SampleCategory: 1
+  CategoryDetail: Sample Project
+  Description: "A sample integration for the PlayFab Party Transport and coherence
+    networking for player-hosted servers.\n\nThe PlayFab Integration is using a combination
+    of the PlayFab relay servers and an implementation of ICoherenceRelay to enable
+    PlayFab users to connect and play with each other while avoiding NAT issues.
+    The ICoherenceRelay implementation allows for users to connect to the hosting
+    client through PlayFab, and have the client forward their data packets to the
+    user-hosted Replication Server.\n\nPortions of this program \xA9 2023 Microsoft
+    Azure PlayFab"
+  Preview: {fileID: 2800000, guid: 424a034dba35dab42a137093e4b49a81, type: 3}
+  Thumbnail: {fileID: 2800000, guid: aa64290eedd37e54bb2a2ef494886a59, type: 3}
+  ExternalUrl: https://github.com/coherence/coherence-azure-playfab
+  Priority: 120

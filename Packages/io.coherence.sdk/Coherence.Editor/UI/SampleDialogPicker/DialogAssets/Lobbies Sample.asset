@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39df2693899937a4494ba9dd2592dbf8, type: 3}
+  m_Name: Lobbies Sample
+  m_EditorClassIdentifier: 
+  SampleDisplayName: 'Connect Dialog: Lobbies'
+  PrefabFileName: Lobbies Connection Dialog.prefab
+  Dependency: 1
+  SampleCategory: 0
+  CategoryDetail: Sample UI
+  Description: 'A Canvas UI Prefab to be able to browse, create and join Lobbies
+    hosted in the coherence Cloud.
+
+
+    Lobbies are a way to do matchmaking between
+    players for your game. They require a coherence Cloud account and having the
+    Persistent Accounts feature enabled in the Game Services section of your coherence
+    Dashboard.
+
+
+    When you click Add To Scene, the Sample will be imported to
+    your project, and the prefab will be instanced in the active Scene.'
+  Preview: {fileID: 2800000, guid: ef338a74163e2421283231a978922eb1, type: 3}
+  Thumbnail: {fileID: 2800000, guid: b3175eb2f20b84134bda6d4dfe31a847, type: 3}
+  ExternalUrl: 
+  Priority: -2
