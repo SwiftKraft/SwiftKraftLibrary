@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 249950487}
   - component: {fileID: 249950486}
   m_Layer: 0
-  m_Name: NPCmanager
+  m_Name: NPCManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22215,7 +22215,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 249950487}
   - {fileID: 616913338}
+  - {fileID: 1021333783}
   - {fileID: 1046777005}
   - {fileID: 295938056}
   - {fileID: 1031875004}
@@ -22229,7 +22231,6 @@ SceneRoots:
   - {fileID: 932922431}
   - {fileID: 594402251}
   - {fileID: 2067147668}
-  - {fileID: 1021333783}
   - {fileID: 1524423016}
   - {fileID: 1252613550}
   - {fileID: 540701137}
@@ -22240,4 +22241,3 @@ SceneRoots:
   - {fileID: 1025727361251744597}
   - {fileID: 484323909}
   - {fileID: 8129032287547911754}
-  - {fileID: 249950487}
