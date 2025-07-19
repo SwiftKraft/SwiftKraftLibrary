@@ -806,6 +806,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230169732}
   m_Mesh: {fileID: 385755300}
+--- !u!1 &249950485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 249950487}
+  - component: {fileID: 249950486}
+  m_Layer: 0
+  m_Name: NPCmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &249950486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249950485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c85437ebaa498c41be057758ae2bf35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &249950487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249950485}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.295334, y: -1.9442954, z: 11.770432}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &266500719
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,7 +3123,7 @@ PrefabInstance:
     - target: {fileID: 5066998382276675086, guid: 1125ccf60016297499b33f8b555bf53f,
         type: 3}
       propertyPath: m_SelectedEdges.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5066998382276675086, guid: 1125ccf60016297499b33f8b555bf53f,
         type: 3}
@@ -3089,12 +3133,17 @@ PrefabInstance:
     - target: {fileID: 5066998382276675086, guid: 1125ccf60016297499b33f8b555bf53f,
         type: 3}
       propertyPath: m_SelectedVertices.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5697986926996924626, guid: 1125ccf60016297499b33f8b555bf53f,
         type: 3}
       propertyPath: m_Name
       value: BasicSecDoorTemp (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697986926996924626, guid: 1125ccf60016297499b33f8b555bf53f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5784515630934791871, guid: 1125ccf60016297499b33f8b555bf53f,
         type: 3}
@@ -22009,6 +22058,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicSecDoorTemp
       objectReference: {fileID: 0}
+    - target: {fileID: 5697986926996924626, guid: 1125ccf60016297499b33f8b555bf53f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5784515630934791871, guid: 1125ccf60016297499b33f8b555bf53f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22137,6 +22191,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonActivatedSecurityDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5901889518107380042, guid: 6f99b9c81478f73439f1e438429f2bb4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6625624295151816220, guid: 6f99b9c81478f73439f1e438429f2bb4,
         type: 3}
       propertyPath: m_Mesh
@@ -22181,3 +22240,4 @@ SceneRoots:
   - {fileID: 1025727361251744597}
   - {fileID: 484323909}
   - {fileID: 8129032287547911754}
+  - {fileID: 249950487}
