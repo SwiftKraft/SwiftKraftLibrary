@@ -28,7 +28,7 @@ namespace SwiftKraft.Gameplay.Inventory
             inst.SwitchInventoryEvent(Data);
             inst.OnSwitchInventory += OnItemSwitch;
             Data.Items.Add(inst);
-            Data.Items.RemoveAll((it) => it == null);
+            Data.Items.RemoveAll((it) => it == 0);
         }
 
         public virtual void RemoveItem(ItemInstance inst)
@@ -38,7 +38,7 @@ namespace SwiftKraft.Gameplay.Inventory
 
             inst.OnSwitchInventory -= OnItemSwitch;
             Data.Items.Remove(inst);
-            Data.Items.RemoveAll((it) => it == null);
+            Data.Items.RemoveAll((it) => it == 0);
         }
 
         public virtual WorldItemBase DropItem(ItemInstance inst, Vector3 position, Quaternion rotation = default, Transform parent = null)
@@ -52,7 +52,7 @@ namespace SwiftKraft.Gameplay.Inventory
 
         public virtual void DropInventory(Vector3 position, Quaternion rotation = default, Transform parent = null)
         {
-            Guid[] items = Data.Items.ToArray();
+            uint[] items = Data.Items.ToArray();
             foreach (ItemInstance it in items)
                 DropItem(it, position, rotation, parent);
         }
@@ -70,7 +70,7 @@ namespace SwiftKraft.Gameplay.Inventory
     public class InventoryInstance
     {
         [JsonProperty]
-        public List<Guid> Items = new();
+        public List<uint> Items = new();
 
         public static string InventoryToJson(InventoryInstance inventory) => JsonConvert.SerializeObject(inventory);
         public static InventoryInstance JsonToInventory(string json) => JsonConvert.DeserializeObject<InventoryInstance>(json);
