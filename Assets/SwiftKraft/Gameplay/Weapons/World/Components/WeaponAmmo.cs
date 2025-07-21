@@ -12,6 +12,8 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             [JsonProperty]
             public int CurrentAmmo;
+            [JsonProperty]
+            public int ReserveAmmo;
         }
 
         public const string ReloadAction = "Reload";
@@ -23,6 +25,37 @@ namespace SwiftKraft.Gameplay.Weapons
         public ModifiableStatistic MaxAmmo { get; set; }
         [field: SerializeField]
         public ModifiableStatistic ReloadSpeedMultiplier { get; set; }
+
+        public int ReserveAmmo
+        {
+            get
+            {
+                if (Item == null || Item.Instance == null)
+                    return _reserveAmmo;
+
+                if (data == null || data.Disposed)
+                    Item.Instance.TryData(AmmoSaveID, out data);
+
+                return data.ReserveAmmo;
+            }
+            set
+            {
+                if (Item == null)
+                {
+                    OnAmmoUpdated?.Invoke(value);
+                    _reserveAmmo = value;
+                    return;
+                }
+
+                if (data == null || data.Disposed)
+                    Item.Instance.TryData(AmmoSaveID, out data);
+
+                OnAmmoUpdated?.Invoke(value);
+
+                data.ReserveAmmo = value;
+            }
+        }
+        int _reserveAmmo;
 
         public int CurrentAmmo
         {
@@ -141,7 +174,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public virtual bool StartReload()
         {
-            if (CanReload && CurrentAmmo < MaxAmmo && !Reloading && !Parent.Attacking)
+            if (CanReload && CurrentAmmo < MaxAmmo && ReserveAmmo > 0 && !Reloading && !Parent.Attacking)
             {
                 Reload();
                 return true;
@@ -153,7 +186,13 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual void EndReload(bool fullEnd)
         {
             if (CanReload && fullEnd)
-                CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
+            {
+                int max = Mathf.RoundToInt(MaxAmmo);
+                int exchange = max - CurrentAmmo;
+                int actual = Mathf.Min(exchange, ReserveAmmo);
+                CurrentAmmo += actual;
+                ReserveAmmo -= actual;
+            }
         }
     }
 }
