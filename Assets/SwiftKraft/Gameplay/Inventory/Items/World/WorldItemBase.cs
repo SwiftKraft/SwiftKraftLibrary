@@ -20,7 +20,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         protected virtual void Awake()
         {
             if (StartType != null)
-                Init(new ItemInstance(StartType).Serial);
+                Init(new ItemInstance(StartType));
         }
 
         public virtual void Init(uint itemSerial)

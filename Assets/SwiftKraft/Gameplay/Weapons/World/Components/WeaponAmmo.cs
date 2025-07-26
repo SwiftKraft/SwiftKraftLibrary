@@ -42,15 +42,12 @@ namespace SwiftKraft.Gameplay.Weapons
             {
                 if (Item == null)
                 {
-                    OnAmmoUpdated?.Invoke(value);
                     _reserveAmmo = value;
                     return;
                 }
 
                 if (data == null || data.Disposed)
                     Item.Instance.TryData(AmmoSaveID, out data);
-
-                OnAmmoUpdated?.Invoke(value);
 
                 data.ReserveAmmo = value;
             }

@@ -640,6 +640,7 @@ GameObject:
   - component: {fileID: 7212945400381485980}
   - component: {fileID: 8860835096430983414}
   - component: {fileID: 3230666657885042841}
+  - component: {fileID: 672996916303325462}
   m_Layer: 8
   m_Name: ProtoShotgunItem
   m_TagString: Untagged
@@ -736,6 +737,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b1f28b79eb5a34097ce9fa794a9a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &672996916303325462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5852272558835464859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76c009a6a6d07240af7790e9ba30eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialAmmo: 5
+  InitialReserve: 20
 --- !u!1 &6345738658369239539
 GameObject:
   m_ObjectHideFlags: 0

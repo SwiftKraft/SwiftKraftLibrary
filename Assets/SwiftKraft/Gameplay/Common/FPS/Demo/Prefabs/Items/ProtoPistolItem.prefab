@@ -785,6 +785,7 @@ GameObject:
   - component: {fileID: 5638258679784063825}
   - component: {fileID: 369432658084618824}
   - component: {fileID: 2172504179741062993}
+  - component: {fileID: 836973407360960484}
   m_Layer: 8
   m_Name: ProtoPistolItem
   m_TagString: Untagged
@@ -881,6 +882,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b1f28b79eb5a34097ce9fa794a9a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &836973407360960484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5964860817834573339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76c009a6a6d07240af7790e9ba30eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialAmmo: 18
+  InitialReserve: 90
 --- !u!1 &6070253145891102600
 GameObject:
   m_ObjectHideFlags: 0
