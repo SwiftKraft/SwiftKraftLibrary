@@ -93,7 +93,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public virtual void UpdateNextAmount()
         {
             foreach (int i in Amounts)
-                if (MaxAmmo - CurrentAmmo >= i)
+                if (MaxAmmo - CurrentAmmo >= i && ReserveAmmo >= i)
                 {
                     NextAmount = i;
                     return;
@@ -112,7 +112,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 ReserveAmmo -= exchange;
                 LoadedAmmo += NextAmount;
 
-                if (CurrentAmmo >= MaxAmmo)
+                if (CurrentAmmo >= MaxAmmo || ReserveAmmo <= 0)
                 {
                     OnReloadUpdatedEvent(false);
                     reloading = false;
