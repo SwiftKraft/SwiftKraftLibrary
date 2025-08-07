@@ -1,6 +1,6 @@
 namespace SwiftKraft.Gameplay.Motors
 {
-    public class MoonsHauntedController : CharacterControllerMotor
+    public class MoonsHauntedMotor : CharacterControllerMotor
     {
         public float SprintSpeed = 7f;
 
@@ -10,6 +10,7 @@ namespace SwiftKraft.Gameplay.Motors
         {
             base.FixedUpdate();
 
+            State += WishSprint ? 1 : 0;
         }
     }
 }

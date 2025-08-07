@@ -24,7 +24,7 @@ namespace SwiftKraft.Gameplay.Motors
 
         public virtual float CurrentSpeed => MoveSpeed;
 
-        float currentGravity;
+        protected float currentGravity;
 
         protected override void FixedUpdate()
         {

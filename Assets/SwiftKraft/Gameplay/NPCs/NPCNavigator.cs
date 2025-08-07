@@ -46,7 +46,7 @@ namespace SwiftKraft.Gameplay.NPCs
         [field: SerializeField]
         public bool LookAtWaypoint { get; set; }
 
-        public bool Stopped { get; set; }
+        public bool Stopped { get; set; } = true;
 
         protected Vector3[] Waypoints => Path?.corners;
 
@@ -57,6 +57,7 @@ namespace SwiftKraft.Gameplay.NPCs
             base.Awake();
             Motor = GetComponent<MotorBase>();
             Destination = transform.position;
+            Stopped = true;
             Path = new();
         }
 
