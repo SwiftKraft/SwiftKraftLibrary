@@ -22,6 +22,8 @@ namespace SwiftKraft.Gameplay.Motors
 
         public bool IsGrounded => Component.isGrounded;
 
+        public virtual float CurrentSpeed => MoveSpeed;
+
         float currentGravity;
 
         protected override void FixedUpdate()
@@ -31,9 +33,10 @@ namespace SwiftKraft.Gameplay.Motors
             if (!IsGrounded)
                 currentGravity -= Gravity * Time.fixedDeltaTime;
             else
-                currentGravity = 0;
+                currentGravity = -2f;
 
             Component.Move(Vector3.up * (currentGravity * Time.fixedDeltaTime));
+            State = WishMoveDirection != Vector3.zero ? 1 : 0;
         }
 
         public override Quaternion LookInterpolation() => Quaternion.RotateTowards(CurrentLookRotation, WishLookRotation, Time.fixedDeltaTime * TurnSpeed);
@@ -47,7 +50,7 @@ namespace SwiftKraft.Gameplay.Motors
 
         public override void Move(Vector3 direction)
         {
-            Vector3 vel = direction * (Time.fixedDeltaTime * MoveSpeed);
+            Vector3 vel = direction * (Time.fixedDeltaTime * CurrentSpeed);
             Component.Move(vel);
         }
     }
