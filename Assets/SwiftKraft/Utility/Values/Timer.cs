@@ -6,12 +6,12 @@ namespace SwiftKraft.Utils
     [Serializable]
     public class Timer : IValue<float>, ITickable
     {
+        public bool StartEnded;
+
         [field: SerializeField]
         public float MaxValue { get; set; }
 
         public float PrevTickTime { get; private set; }
-
-        public bool StartEnded;
 
         public virtual float CurrentValue
         {
