@@ -6,8 +6,10 @@ namespace SwiftKraft.Gameplay.Motors
     [RequireComponent(typeof(CharacterController))]
     public class CharacterControllerMotor : MotorBase<CharacterController>, IGroundable
     {
-        public float MoveSpeed = 5f;
-        public float TurnSpeed = 480f;
+        [field: SerializeField]
+        public float MoveSpeed { get; set; } = 5f;
+        [field: SerializeField]
+        public float TurnSpeed { get; set; } = 480f;
         public float Gravity = 9.81f;
 
         public float Height

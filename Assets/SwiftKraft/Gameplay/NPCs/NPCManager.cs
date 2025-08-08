@@ -1,33 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SwiftKraft.Gameplay.NPCs
 {
     public class NPCManager : MonoBehaviour
     {
-        public static NPCManager Instance
-        {
-            get
-            {
-                if (_instance == null && !destroyed)
-                    new GameObject("NPCManager").AddComponent<NPCManager>();
-
-                return _instance;
-            }
-            private set => _instance = value;
-        }
-        static NPCManager _instance;
-        static bool destroyed = false;
+        public static NPCManager Instance { get; private set; }
 
         public readonly List<NPCCore> NPCs = new();
 
         private void Awake()
         {
-            if (_instance == null)
-            {
+            if (Instance == null)
                 Instance = this;
-                destroyed = false;
-            }
             else
             {
                 Destroy(gameObject);
@@ -50,7 +36,5 @@ namespace SwiftKraft.Gameplay.NPCs
                 if (NPCs[i].enabled)
                     NPCs[i].Tick();
         }
-
-        private void OnDestroy() => destroyed = true;
     }
 }

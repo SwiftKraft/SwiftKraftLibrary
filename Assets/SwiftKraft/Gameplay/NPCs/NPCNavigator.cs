@@ -30,6 +30,7 @@ namespace SwiftKraft.Gameplay.NPCs
                 if (_destination == value)
                     return;
 
+                Debug.Log("Setting destination: " + value, gameObject);
                 _destination = value;
 
                 if (!CheckStop() && RepathTimer.Ended)
@@ -74,8 +75,11 @@ namespace SwiftKraft.Gameplay.NPCs
             Motor.WishMovePosition = CurrentWaypoint;
             RepathTimer.Tick(Time.fixedDeltaTime);
 
-            if (LookAtWaypoint)
-                Motor.WishLookPosition = CurrentWaypoint + Motor.LookPoint.localPosition;
+            if (LookAtWaypoint && (CurrentWaypoint - transform.position).sqrMagnitude > 1f)
+            {
+                Vector3 dir = CurrentWaypoint + Motor.LookPoint.localPosition - Motor.LookPoint.position;
+                Motor.WishLookDirection = dir;
+            }
 
             if (Vector3.Distance(transform.position, CurrentWaypoint) <= WaypointRadius)
             {
