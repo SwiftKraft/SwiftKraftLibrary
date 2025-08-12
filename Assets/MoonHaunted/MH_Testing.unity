@@ -650,7 +650,7 @@ PrefabInstance:
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0699997
+      value: -7.688999
       objectReference: {fileID: 0}
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
@@ -660,7 +660,7 @@ PrefabInstance:
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -45.55
+      value: -34.522
       objectReference: {fileID: 0}
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
@@ -947,6 +947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HallwayTile3way (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341524097438565814, guid: bd302581ab944034fba131e45e9c033f,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7343948711607305743, guid: bd302581ab944034fba131e45e9c033f,
         type: 3}
@@ -23069,7 +23074,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -23324,7 +23329,7 @@ PrefabInstance:
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8800001
+      value: -16.29
       objectReference: {fileID: 0}
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
@@ -23334,7 +23339,7 @@ PrefabInstance:
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -46.649998
+      value: -34.96
       objectReference: {fileID: 0}
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
@@ -26364,7 +26369,7 @@ PrefabInstance:
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.7
+      value: -16.57
       objectReference: {fileID: 0}
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
@@ -26374,7 +26379,7 @@ PrefabInstance:
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44
+      value: -44.18
       objectReference: {fileID: 0}
     - target: {fileID: 7773759771319714703, guid: 6e1c5f20da66dc4469a93a8368a4d35e,
         type: 3}
