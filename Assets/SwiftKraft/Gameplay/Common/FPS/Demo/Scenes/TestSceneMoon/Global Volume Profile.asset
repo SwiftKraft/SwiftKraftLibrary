@@ -207,7 +207,7 @@ MonoBehaviour:
     m_Value: 0.37
   bloomThreshold:
     m_OverrideState: 1
-    m_Value: 3.74
+    m_Value: 1.63
   bloomConservativeThreshold:
     m_OverrideState: 0
     m_Value: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
     m_Value: 1
   bloomQuickerBlur:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   bloomCustomize:
     m_OverrideState: 0
     m_Value: 0
@@ -465,10 +465,10 @@ MonoBehaviour:
     m_Value: 0.893
   lensDirtIntensity:
     m_OverrideState: 1
-    m_Value: 4.81
+    m_Value: 0.89
   lensDirtThreshold:
     m_OverrideState: 1
-    m_Value: 0.893
+    m_Value: 0.86
   lensDirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
