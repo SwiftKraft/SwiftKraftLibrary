@@ -20,4 +20,6 @@ public enum PointFlags : byte
     Defensive = 1 << 1,
     Offensive = 1 << 2,
     HidingSpot = 1 << 3,
+    HostileAngle = 1 << 4,
+    ChokePoint = 1 << 5,
 }
