@@ -30,7 +30,6 @@ namespace SwiftKraft.Gameplay.NPCs
                 if (_destination == value)
                     return;
 
-                Debug.Log("Setting destination: " + value, gameObject);
                 _destination = value;
 
                 if (!CheckStop() && RepathTimer.Ended)
@@ -48,6 +47,8 @@ namespace SwiftKraft.Gameplay.NPCs
         public bool LookAtWaypoint { get; set; }
 
         public bool Stopped { get; set; } = true;
+        public bool AtDestination => (_destination - transform.position).sqrMagnitude <= WaypointRadius * WaypointRadius;
+        public NavMeshPathStatus PathStatus => Path.status;
 
         protected Vector3[] Waypoints => Path?.corners;
 
@@ -96,7 +97,7 @@ namespace SwiftKraft.Gameplay.NPCs
 
         protected virtual bool CheckStop()
         {
-            Stopped = Vector3.Distance(_destination, transform.position) <= WaypointRadius;
+            Stopped = AtDestination;
             return Stopped;
         }
 
