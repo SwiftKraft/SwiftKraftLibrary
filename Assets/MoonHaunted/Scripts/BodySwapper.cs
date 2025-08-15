@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +11,7 @@ public class BodySwapper : MonoBehaviour
     public LayerMask RaycastLayers;
     public Transform RaycastPoint;
 
-    public bool CurrentControlled => PlayerInstance == this;
+    public bool PlayerControlled => PlayerInstance == this;
 
     public UnityEvent OnPlayerControl;
     public UnityEvent OnBotControl;
@@ -21,13 +22,18 @@ public class BodySwapper : MonoBehaviour
         SetControl(Instances[0] == this);
     }
 
-    private void OnDestroy() => Instances.Remove(this);
+    private void OnDestroy()
+    {
+        Instances.Remove(this);
+        if (PlayerControlled)
+            PlayerInstance = null;
+    }
 
     BodySwapper queued;
 
     private void Update()
     {
-        if (!CurrentControlled)
+        if (!PlayerControlled)
             return;
 
         if (Input.GetKeyDown(KeyCode.E) && Physics.Raycast(RaycastPoint.position, RaycastPoint.forward, out RaycastHit _hit, 500f, RaycastLayers, QueryTriggerInteraction.Collide) && _hit.collider.TryGetComponent(out BodySwapper swapper))
@@ -57,9 +63,6 @@ public class BodySwapper : MonoBehaviour
             PlayerInstance = this;
         }
         else
-        {
             OnBotControl?.Invoke();
-            PlayerInstance = null;
-        }
     }
 }
