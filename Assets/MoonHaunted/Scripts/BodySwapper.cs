@@ -1,5 +1,3 @@
-using SwiftKraft.Utils;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,11 +5,12 @@ using UnityEngine.Events;
 public class BodySwapper : MonoBehaviour
 {
     public readonly static List<BodySwapper> Instances = new();
+    public static BodySwapper PlayerInstance { get; private set; }
 
     public LayerMask RaycastLayers;
     public Transform RaycastPoint;
 
-    public bool CurrentControlled { get; private set; }
+    public bool CurrentControlled => PlayerInstance == this;
 
     public UnityEvent OnPlayerControl;
     public UnityEvent OnBotControl;
@@ -46,8 +45,8 @@ public class BodySwapper : MonoBehaviour
 
     public void SwitchControl(BodySwapper target)
     {
-        target.SetControl(true);
         SetControl(false);
+        target.SetControl(true);
     }
 
     public void SetControl(bool player)
@@ -55,12 +54,12 @@ public class BodySwapper : MonoBehaviour
         if (player)
         {
             OnPlayerControl?.Invoke();
-            CurrentControlled = true;
+            PlayerInstance = this;
         }
         else
         {
             OnBotControl?.Invoke();
-            CurrentControlled = false;
+            PlayerInstance = null;
         }
     }
 }
