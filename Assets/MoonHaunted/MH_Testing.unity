@@ -23401,6 +23401,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e1c5f20da66dc4469a93a8368a4d35e, type: 3}
+--- !u!1 &1141646139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1141646141}
+  - component: {fileID: 1141646140}
+  m_Layer: 0
+  m_Name: Poi (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1141646140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141646139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7f08e9499912d4eb681c60b30eb4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Flags>k__BackingField: 2
+--- !u!4 &1141646141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141646139}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -53.75, y: 0.25, z: -3.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1213175978
 GameObject:
   m_ObjectHideFlags: 0
@@ -24796,7 +24841,7 @@ Transform:
   m_GameObject: {fileID: 1692554674}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -51, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -24814,7 +24859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7f08e9499912d4eb681c60b30eb4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Flags: 0
+  <Flags>k__BackingField: 2
 --- !u!1 &1777061455
 GameObject:
   m_ObjectHideFlags: 0
@@ -26628,3 +26673,4 @@ SceneRoots:
   - {fileID: 172938175}
   - {fileID: 848397041}
   - {fileID: 1692554675}
+  - {fileID: 1141646141}

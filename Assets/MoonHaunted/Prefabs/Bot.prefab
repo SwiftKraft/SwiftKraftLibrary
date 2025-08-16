@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c0e4ad78f7c504b896a44c1694b4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: {fileID: 11400000, guid: 2d43168fb2b47464192f8175a56ec15b, type: 2}
+  startingState: {fileID: 11400000, guid: 380147e9564428640add6d2fe7d2f9cd, type: 2}
 --- !u!114 &8795836024414065437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,7 +1428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaypointRadius: 0.25
   RepathTimer:
-    <MaxValue>k__BackingField: 0.5
+    <MaxValue>k__BackingField: 0.2
     StartEnded: 0
   <LookAtWaypoint>k__BackingField: 1
 --- !u!114 &3175375332146824246
