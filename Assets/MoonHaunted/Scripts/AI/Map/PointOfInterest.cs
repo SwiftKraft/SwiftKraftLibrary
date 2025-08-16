@@ -1,12 +1,13 @@
 using SwiftKraft.Gameplay.NPCs;
+using SwiftKraft.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointOfInterest : MonoBehaviour
+public class PointOfInterest : MonoBehaviour, IWeight
 {
-    public static readonly HashSet<PointOfInterest> AllPoints = new();
-    public static readonly HashSet<PointOfInterest> VacantPoints = new();
+    public static readonly SortedSet<PointOfInterest> AllPoints = new(Comparer<PointOfInterest>.Create((a, b) => b.Weight.CompareTo(a.Weight)));
+    public static readonly SortedSet<PointOfInterest> VacantPoints = new(Comparer<PointOfInterest>.Create((a, b) => b.Weight.CompareTo(a.Weight)));
 
     public bool Vacant
     {
@@ -35,6 +36,10 @@ public class PointOfInterest : MonoBehaviour
             Vacant = takenBy == null;
         }
     }
+
+    [field: SerializeField]
+    public int Weight { get; set; }
+
     private NPCCore takenBy;
 
     private void Awake()
