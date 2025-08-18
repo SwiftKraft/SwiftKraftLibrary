@@ -10,6 +10,7 @@ namespace SwiftKraft.Gameplay.Common.Characters
         public string XMovement = "MoveX";
         public string ZMovement = "MoveZ";
         public float SmoothTime = 0.1f;
+        public Quaternion RotationOffset = Quaternion.identity;
 
         public Vector2 TargetDirection { get; set; }
         public Vector2 CurrentDirection { get; private set; }
@@ -26,8 +27,8 @@ namespace SwiftKraft.Gameplay.Common.Characters
         {
             if (Motor != null)
             {
-                Vector3 localDir = Motor.LocalWishMoveDirection;
-                TargetDirection = new Vector2(Mathf.Round(localDir.x), Mathf.Round(localDir.z)) * GetStateMultiplier(Motor.State);
+                Vector3 localDir = RotationOffset * Quaternion.Inverse(transform.rotation) * Motor.WishMoveDirection;
+                TargetDirection = new Vector2(localDir.x, localDir.z).CircleToSquare() * GetStateMultiplier(Motor.State);
             }
 
             CurrentDirection = (CurrentDirection - TargetDirection).magnitude <= 0.0001f
