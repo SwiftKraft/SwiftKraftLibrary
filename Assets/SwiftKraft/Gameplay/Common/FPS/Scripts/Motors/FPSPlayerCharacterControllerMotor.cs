@@ -185,7 +185,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             }
         }
 
-        public override Vector2 GetInputLook() => new(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        public override Vector2 GetInputLook() => new(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
 
         public override Vector2 GetInputMove() => new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
@@ -193,7 +193,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
         {
             Vector3 euler = rotation.eulerAngles;
             transform.localRotation = Quaternion.Euler(0f, euler.y, 0f);
-            LookPoint.localRotation = Quaternion.Euler(-euler.x, 0f, 0f);
+            LookPoint.localRotation = Quaternion.Euler(euler.x, 0f, 0f);
         }
 
         public override void Move(Vector3 direction)
