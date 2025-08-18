@@ -18,8 +18,10 @@ namespace SwiftKraft.Gameplay.Common.Characters
 
         public Bone[] Bones;
 
-        public float AdjustAngle = 35f;
+        public float AdjustAngleMin = -50f;
+        public float AdjustAngleMax = 50f;
         public float AdjustTime = 0.1f;
+        public float AdjustOffset = 15f;
 
         public Vector2 LookRotation => Motor.CurrentLookRotation.eulerAngles;
         public float BottomRotationOffset { get; private set; }
@@ -48,8 +50,9 @@ namespace SwiftKraft.Gameplay.Common.Characters
 
             transform.rotation = Quaternion.Euler(0f, CurrentBottomRotation, 0f);
 
-            if (Mathf.Abs(BottomRotationOffset + LookRotation.y - TargetBottomRotation) >= AdjustAngle || Motor.Moving)
-                TargetBottomRotation = BottomRotationOffset + LookRotation.y;
+            float curAngDelta = BottomRotationOffset + LookRotation.y - TargetBottomRotation;
+            if (curAngDelta >= AdjustAngleMax || curAngDelta <= AdjustAngleMin || Motor.Moving)
+                TargetBottomRotation = BottomRotationOffset + LookRotation.y + AdjustOffset;
 
             foreach (Bone bone in Bones)
             {
