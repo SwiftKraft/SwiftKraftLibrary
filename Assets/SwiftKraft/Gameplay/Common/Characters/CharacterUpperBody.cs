@@ -10,8 +10,7 @@ namespace SwiftKraft.Gameplay.Common.Characters
         public class Bone
         {
             public Transform Reference;
-            public float XInfluence;
-            public float YInfluence;
+            public float Influence;
         }
 
         public MotorBase Motor { get; private set; }
@@ -55,23 +54,7 @@ namespace SwiftKraft.Gameplay.Common.Characters
                 TargetBottomRotation = BottomRotationOffset + LookRotation.y + AdjustOffset;
 
             foreach (Bone bone in Bones)
-            {
-                // Get delta between current and target
-                Quaternion delta = Motor.CurrentLookRotation * Quaternion.Inverse(bone.Reference.rotation);
-
-                // Extract euler from delta
-                Vector3 deltaEuler = delta.eulerAngles;
-
-                // Apply influence only to X and Y
-                float newX = Mathf.LerpAngle(0, deltaEuler.x, bone.XInfluence);
-                float newY = Mathf.LerpAngle(0, deltaEuler.y, bone.YInfluence);
-
-                // Build partial delta back
-                Quaternion partialDelta = Quaternion.Euler(newX, newY, 0);
-
-                // Apply to reference
-                bone.Reference.rotation = partialDelta * bone.Reference.rotation;
-            }
+                bone.Reference.rotation = Quaternion.SlerpUnclamped(bone.Reference.rotation, Motor.CurrentLookRotation, bone.Influence);
         }
     }
 }
