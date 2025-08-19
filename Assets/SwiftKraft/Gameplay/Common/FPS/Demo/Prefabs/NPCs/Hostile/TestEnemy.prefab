@@ -171,8 +171,8 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   ReloadTimer:
-    <MaxValue>k__BackingField: 2
     StartEnded: 0
+    <MaxValue>k__BackingField: 2
 --- !u!114 &8481076396486038775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2022,8 +2022,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaypointRadius: 0.2
   RepathTimer:
-    <MaxValue>k__BackingField: 0.5
     StartEnded: 0
+    <MaxValue>k__BackingField: 0.5
   <LookAtWaypoint>k__BackingField: 0
 --- !u!114 &3749455666820030302
 MonoBehaviour:
@@ -2043,8 +2043,8 @@ MonoBehaviour:
   ScanRange: 15
   PriorityWeight: 0.7
   ScanTimer:
-    <MaxValue>k__BackingField: 0.5
     StartEnded: 0
+    <MaxValue>k__BackingField: 0.5
   SightPoint: {fileID: 2025195663804695605}
 --- !u!114 &8396378012427590715
 MonoBehaviour:
@@ -2093,8 +2093,8 @@ MonoBehaviour:
   Source: {fileID: 3266989216467481560}
   Rate: 2
   RateLimit:
-    <MaxValue>k__BackingField: 0.05
     StartEnded: 0
+    <MaxValue>k__BackingField: 0.05
   RayPoint: {fileID: 7131237615712856340}
   RayDistance: 0.25
   RayMask:
@@ -2836,6 +2836,7 @@ GameObject:
   - component: {fileID: 6231635575507825073}
   - component: {fileID: 3063566725194088613}
   - component: {fileID: 1129893696626315561}
+  - component: {fileID: 8400093387326802817}
   m_Layer: 0
   m_Name: YBot
   m_TagString: Untagged
@@ -2897,6 +2898,7 @@ MonoBehaviour:
   XMovement: MoveX
   ZMovement: MoveZ
   SmoothTime: 0.1
+  RotationOffset: {x: 0, y: 0, z: 0, w: 1}
   StateMultipliers:
   - {x: 2, y: 2}
 --- !u!114 &1129893696626315561
@@ -2916,6 +2918,32 @@ MonoBehaviour:
   DestroyTime: 3
   <RagdollLayer>k__BackingField: 10
   <OriginalLayer>k__BackingField: 0
+--- !u!114 &8400093387326802817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226891880910162574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf02167c7db7c794ab94d75594d969fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bones:
+  - Reference: {fileID: 6440528099715808736}
+    XInfluence: 0.1
+    YInfluence: 0.2
+  - Reference: {fileID: 1517609424576662151}
+    XInfluence: 0.5
+    YInfluence: 0.5
+  - Reference: {fileID: 1696584214397325987}
+    XInfluence: 0.7
+    YInfluence: 1
+  AdjustAngleMin: -45
+  AdjustAngleMax: 100
+  AdjustTime: 0.1
+  AdjustOffset: -30
 --- !u!1 &4243804631740996821
 GameObject:
   m_ObjectHideFlags: 0
