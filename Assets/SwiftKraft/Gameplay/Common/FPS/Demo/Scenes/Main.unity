@@ -35494,6 +35494,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AutoTriggerCannon (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8248185647501095364, guid: ed8b54fd988e10540a1ab7c685d8c981,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -42010,6 +42015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AutoTriggerCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8248185647501095364, guid: ed8b54fd988e10540a1ab7c685d8c981,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
