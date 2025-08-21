@@ -12,9 +12,6 @@ public abstract class BotStateBase : NPCStateBase
         get => currentPoint;
         protected set
         {
-            if (currentPoint == value)
-                return;
-
             if (currentPoint != null)
                 currentPoint.TakenBy = null;
             currentPoint = value;

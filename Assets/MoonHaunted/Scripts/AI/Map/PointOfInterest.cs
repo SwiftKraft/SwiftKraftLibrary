@@ -44,6 +44,8 @@ public class PointOfInterest : MonoBehaviour, IWeight
 
     private void Awake()
     {
+        VacantPoints.RemoveWhere(n => n == null);
+        AllPoints.RemoveWhere(n => n == null);
         AllPoints.Add(this);
         Vacant = true;
     }
