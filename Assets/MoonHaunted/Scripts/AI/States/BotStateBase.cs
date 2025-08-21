@@ -41,4 +41,6 @@ public abstract class BotStateBase : NPCStateBase
         poi = GetVacantPointWithinDistance(flag, dist);
         return poi != null;
     }
+
+    public override void End() => CurrentPoint = null;
 }
