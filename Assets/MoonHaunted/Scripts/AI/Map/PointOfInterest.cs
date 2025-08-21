@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class PointOfInterest : MonoBehaviour, IWeight
 {
-    public static readonly SortedSet<PointOfInterest> AllPoints = new(Comparer<PointOfInterest>.Create((a, b) => b.Weight.CompareTo(a.Weight)));
-    public static readonly SortedSet<PointOfInterest> VacantPoints = new(Comparer<PointOfInterest>.Create((a, b) => b.Weight.CompareTo(a.Weight)));
+    public static readonly List<PointOfInterest> AllPoints = new();
+    public static readonly List<PointOfInterest> VacantPoints = new();
+
+    public static readonly Comparer<PointOfInterest> Comparer = Comparer<PointOfInterest>.Create((a, b) => b.Weight.CompareTo(a.Weight));
 
     public bool Vacant
     {
@@ -18,7 +20,10 @@ public class PointOfInterest : MonoBehaviour, IWeight
                 return;
 
             if (value)
+            {
                 VacantPoints.Add(this);
+                VacantPoints.Sort(Comparer);
+            }
             else
                 VacantPoints.Remove(this);
         }
@@ -44,9 +49,10 @@ public class PointOfInterest : MonoBehaviour, IWeight
 
     private void Awake()
     {
-        VacantPoints.RemoveWhere(n => n == null);
-        AllPoints.RemoveWhere(n => n == null);
+        VacantPoints.RemoveAll(n => n == null);
+        AllPoints.RemoveAll(n => n == null);
         AllPoints.Add(this);
+        AllPoints.Sort(Comparer);
         Vacant = true;
     }
 
