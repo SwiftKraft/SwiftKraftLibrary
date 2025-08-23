@@ -35,7 +35,8 @@ public class MoonsHauntedPlayerController : MonoBehaviour
 
     public void OverrideLook()
     {
-        if (Motor != null) {
+        if (Motor != null)
+        {
             Vector3 euler = Motor.CurrentLookRotation.eulerAngles;
             euler.x = euler.x.NormalizeAngle();
             currentLook = euler;

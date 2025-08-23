@@ -3119,6 +3119,7 @@ MonoBehaviour:
   <TurnSpeed>k__BackingField: 480
   Gravity: 9.81
   SprintSpeed: 5
+  <RequestedVelocityDecay>k__BackingField: 10
 --- !u!114 &3757916283661880344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3433,6 +3434,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 859159011092694926}
+        m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Motors.MoonsHauntedMotor, Assembly-CSharp
+        m_MethodName: set_CanBePushed
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: Infinity
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnBotControl:
     m_PersistentCalls:
       m_Calls:
@@ -3508,6 +3521,18 @@ MonoBehaviour:
           m_FloatArgument: 180
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 859159011092694926}
+        m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Motors.MoonsHauntedMotor, Assembly-CSharp
+        m_MethodName: set_CanBePushed
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 180
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &8209834131775479917
 GameObject:
