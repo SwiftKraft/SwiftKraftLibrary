@@ -27,7 +27,11 @@ public class MoonsHauntedPlayerController : MonoBehaviour
         Motor.WishLookRotation = Quaternion.Euler(currentLook);
     }
 
-    private void FixedUpdate() => Motor.WishMoveDirection = transform.rotation * new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+    private void FixedUpdate()
+    {
+        Motor.WishSprint = Input.GetKey(KeyCode.LeftShift);
+        Motor.WishMoveDirection = transform.rotation * new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+    }
 
     public void OverrideLook()
     {
