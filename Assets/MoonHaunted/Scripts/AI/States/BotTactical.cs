@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Gameplay.NPCs;
 using UnityEngine;
 
@@ -7,13 +8,6 @@ public class BotTactical : BotStateBase
     public float AreaRadius = 15f;
     public float FollowRadius = 3f;
 
-    private NPCNavigator navigator;
-
-    public override void Begin()
-    {
-        navigator = Core.GetComponent<NPCNavigator>();
-    }
-
     public override void End() { }
 
     public override void Tick()
@@ -22,7 +16,7 @@ public class BotTactical : BotStateBase
             return;
 
         if (CurrentPoint != null)
-            navigator.Destination = CurrentPoint.transform.position;
+            Navigator.Destination = CurrentPoint.transform.position;
 
         if (WithinDistance(AreaRadius))
         {
@@ -30,21 +24,26 @@ public class BotTactical : BotStateBase
                 return;
 
             if (TryGetVacantPointWithinDistance(PointFlags.Defensive, AreaRadius, out PointOfInterest poi))
+            {
                 CurrentPoint = poi;
+                SetSprintState(true);
+            }
             else
             {
+                bool outOfRadius = !WithinDistance(FollowRadius);
                 CurrentPoint = null;
-                if (!WithinDistance(FollowRadius))
-                    navigator.Destination = Player.transform.position;
-                else
-                    navigator.Destination = Core.transform.position;
+
+                SetSprintState(outOfRadius && Player.Controller.Motor.WishSprint);
+                Navigator.Destination = outOfRadius ? Player.transform.position : Core.transform.position;
             }
         }
         else
         {
             CurrentPoint = null;
-            if (navigator.Stopped)
-                navigator.Destination = Player.transform.position;
+            if (Navigator.Stopped)
+                Navigator.Destination = Player.transform.position;
+
+            SetSprintState(true);
         }
     }
 

@@ -44,7 +44,7 @@ namespace SwiftKraft.Gameplay.Motors
             base.Move(direction);
 
             if (CanBePushed)
-                Component.Move(RequestedVelocity);
+                Component.Move(RequestedVelocity * Time.fixedDeltaTime);
 
             if (direction.sqrMagnitude > 0f)
                 PushOthers();

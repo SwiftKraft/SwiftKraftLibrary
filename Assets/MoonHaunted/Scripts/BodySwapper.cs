@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Motors;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class BodySwapper : MonoBehaviour
 {
     public readonly static List<BodySwapper> Instances = new();
     public static BodySwapper PlayerInstance { get; private set; }
+
+    public MoonsHauntedPlayerController Controller { get; private set; }
 
     public LayerMask RaycastLayers;
     public Transform RaycastPoint;
@@ -19,6 +22,7 @@ public class BodySwapper : MonoBehaviour
     private void Awake()
     {
         Instances.Add(this);
+        Controller = GetComponent<MoonsHauntedPlayerController>();
         SetControl(Instances[0] == this);
     }
 

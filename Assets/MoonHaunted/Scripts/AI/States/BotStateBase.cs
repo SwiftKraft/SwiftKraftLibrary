@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Gameplay.NPCs;
 using System;
 using System.Linq;
@@ -21,7 +22,16 @@ public abstract class BotStateBase : NPCStateBase
     }
     private PointOfInterest currentPoint;
 
+    public NPCNavigator Navigator { get; private set; }
+    public MoonsHauntedMotor Motor { get; private set; }
+
     public float PlayerDistance => Player != null ? (Player.transform.position - Core.transform.position).magnitude : Mathf.Infinity;
+
+    public override void Begin()
+    {
+        Navigator = Core.GetComponent<NPCNavigator>();
+        Motor = Navigator.Motor as MoonsHauntedMotor;
+    }
 
     public bool WithinDistance(Vector3 pos, float dist) => Player != null && (Player.transform.position - pos).sqrMagnitude <= dist * dist;
     public bool WithinDistance(float dist) => WithinDistance(Core.transform.position, dist);
@@ -40,6 +50,12 @@ public abstract class BotStateBase : NPCStateBase
     {
         poi = GetVacantPointWithinDistance(flag, dist);
         return poi != null;
+    }
+
+    public void SetSprintState(bool state)
+    {
+        if (Motor != null)
+            Motor.WishSprint = state;
     }
 
     public override void End() => CurrentPoint = null;
