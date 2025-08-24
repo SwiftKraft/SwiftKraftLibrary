@@ -16,7 +16,7 @@ public class BotTactical : BotStateBase
             return;
 
         if (CurrentPoint != null)
-            Navigator.Destination = CurrentPoint.transform.position;
+            Navigator.Destination = CurrentPoint.transform.position; // use point behaviors
 
         if (WithinDistance(AreaRadius))
         {
