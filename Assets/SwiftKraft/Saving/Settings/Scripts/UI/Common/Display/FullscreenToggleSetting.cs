@@ -20,7 +20,6 @@ namespace SwiftKraft.Saving.Settings.UI
 
             public override void Start()
             {
-                base.Start();
                 if (Parent is SingleSetting<bool> setting)
                     SetFullscreen(setting.Value);
             }

@@ -32,7 +32,6 @@ namespace SwiftKraft.Saving.Settings.UI
 
             public override void Start()
             {
-                base.Start();
                 if (Parent is SingleSetting<int> setting)
                     SetFullscreenMode((FullScreenMode)setting.Value);
             }
