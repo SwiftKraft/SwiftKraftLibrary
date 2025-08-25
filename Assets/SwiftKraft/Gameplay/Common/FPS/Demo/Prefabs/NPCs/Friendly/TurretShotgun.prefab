@@ -325,7 +325,7 @@ Transform:
   m_GameObject: {fileID: 4123626917667536268}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 15}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -492,8 +492,8 @@ MonoBehaviour:
   ScanRange: 21
   PriorityWeight: 0.7
   ScanTimer:
-    <MaxValue>k__BackingField: 0.25
     StartEnded: 0
+    <MaxValue>k__BackingField: 0.25
   SightPoint: {fileID: 1673541585384226742}
 --- !u!1 &4565535673941449763
 GameObject:
@@ -867,6 +867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb7d7c59295a73418cf6f9304a18de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CustomClip: Custom
+  CustomState: Custom
   Animations:
   - ID: Attack
     States:

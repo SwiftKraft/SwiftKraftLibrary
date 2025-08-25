@@ -1808,7 +1808,7 @@ Transform:
   m_GameObject: {fileID: 2727248630901589903}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 14}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2932,14 +2932,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bones:
   - Reference: {fileID: 6440528099715808736}
-    XInfluence: 0.1
-    YInfluence: 0.2
+    Influence: 0
   - Reference: {fileID: 1517609424576662151}
-    XInfluence: 0.5
-    YInfluence: 0.5
+    Influence: 0
   - Reference: {fileID: 1696584214397325987}
-    XInfluence: 0.7
-    YInfluence: 1
+    Influence: 0
   AdjustAngleMin: -45
   AdjustAngleMax: 100
   AdjustTime: 0.1
