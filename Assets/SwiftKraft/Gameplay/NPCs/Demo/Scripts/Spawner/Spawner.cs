@@ -33,7 +33,13 @@ namespace SwiftKraft.Gameplay.NPCs.Demo
 
         private void Update()
         {
-            if (Prefab == null || InputBlocker.Blocked)
+            if (InputBlocker.Blocked)
+                return;
+
+            if (Input.GetKeyDown(KeyCode.Return))
+                Time.timeScale = Time.timeScale == 1f ? 0f : 1f;
+
+            if (Prefab == null)
             {
                 IndicatorCube.SetActive(false);
                 return;

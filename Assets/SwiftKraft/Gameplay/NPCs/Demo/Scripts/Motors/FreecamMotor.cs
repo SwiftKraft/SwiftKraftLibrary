@@ -48,20 +48,21 @@ namespace SwiftKraft.Gameplay.NPCs.Demo
             base.Update();
 
             CurrentSpeed = Mathf.Clamp(CurrentSpeed + Input.mouseScrollDelta.y, MinSpeed, MaxSpeed);
+
+            Vector2 move = GetInputMove();
+            WishMoveDirection = transform.rotation * new Vector3(move.x, GetVerticalMove(), move.y).normalized;
+
+            CurrentMoveDirection = MoveInterpolation();
+            Move(CurrentMoveDirection);
+
+            Moving = CurrentMoveDirection != Vector3.zero;
+            MoveFactor = Moving ? MoveFactor + Time.unscaledDeltaTime * MoveFactorRate : 0f;
         }
 
-        protected override void FixedUpdate()
-        {
-            if (InputBlocker.Blocked)
-                return;
-
-            Vector2 vector2 = GetInputMove();
-            WishMoveDirection = transform.rotation * new Vector3(vector2.x, GetVerticalMove(), vector2.y).normalized;
-            base.FixedUpdate();
-        }
+        protected override void FixedUpdate() { }
 
         public override void Look(Quaternion rotation) => Component.rotation = rotation;
 
-        public override void Move(Vector3 direction) => Component.position += direction.normalized * (Time.fixedUnscaledDeltaTime * CurrentSpeed * (Input.GetKey(KeyCode.LeftShift) ? 2f : 1f));
+        public override void Move(Vector3 direction) => Component.position += direction.normalized * (Time.unscaledDeltaTime * CurrentSpeed * (Input.GetKey(KeyCode.LeftShift) ? 2f : 1f));
     }
 }

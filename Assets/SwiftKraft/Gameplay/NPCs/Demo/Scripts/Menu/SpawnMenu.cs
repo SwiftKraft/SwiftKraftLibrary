@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Inventory.Items;
 using SwiftKraft.UI.Menus;
 using SwiftKraft.Utils;
 using System;
@@ -17,6 +18,7 @@ namespace SwiftKraft.Gameplay.NPCs.Demo
         BooleanLock.Lock cursorLock;
 
         private void Awake() => cursorLock = CursorManager.Unlocked.AddLock();
+
         private void Start()
         {
             for (int i = 0; i < Prefabs.Length; i++)
@@ -37,6 +39,8 @@ namespace SwiftKraft.Gameplay.NPCs.Demo
             base.ActiveChanged(active);
             cursorLock.Active = !CursorManager.DefaultUnlocked && active;
         }
+
+        public void SetPause(bool status) => Time.timeScale = status ? 0f : 1f;
 
         [Serializable]
         public struct Prefab

@@ -131,12 +131,12 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 5
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
-  - rid: 1446868508588113920
+  - rid: 3768913162116268032
   references:
     version: 2
     RefIds:
-    - rid: 1446868508588113920
-      type: {class: WeaponAttackBurst, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
+    - rid: 3768913162116268032
+      type: {class: WeaponAttackSingle, ns: SwiftKraft.Gameplay.Weapons, asm: Assembly-CSharp}
       data:
         Parent: {fileID: 0}
         Prefab: {fileID: 161029702014116550, guid: 103442b890dcee647bfe9e8b77ef9360,
@@ -148,10 +148,8 @@ MonoBehaviour:
           <BaseValue>k__BackingField: 0
           <Values>k__BackingField: []
         CooldownDelay:
-          <BaseValue>k__BackingField: 0.5
+          <BaseValue>k__BackingField: 0.1
           <Values>k__BackingField: []
-        Count: 4
-        Delay: 0.1
 --- !u!114 &1241681551958203808
 MonoBehaviour:
   m_ObjectHideFlags: 0
