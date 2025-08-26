@@ -1792,6 +1792,7 @@ GameObject:
   - component: {fileID: 8396378012427590715}
   - component: {fileID: 1252338604607047334}
   - component: {fileID: 2617272560536589740}
+  - component: {fileID: 5673602597501810921}
   m_Layer: 9
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -2103,6 +2104,21 @@ MonoBehaviour:
   LandingIgnoresBan: 1
   BannedStates: 
   Profiles: {fileID: 11400000, guid: ef83c24997001114f92c1c6cf61d896d, type: 2}
+--- !u!114 &5673602597501810921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727248630901589903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c757970e1f1fab54d8da11d4f7c8ce94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <LookPoint>k__BackingField: {fileID: 0}
+  <Enabled>k__BackingField: 1
+  <LookInUpdate>k__BackingField: 1
 --- !u!1 &2893589357469343880
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,6 +39,11 @@ namespace SwiftKraft.Gameplay.NPCs.Demo
                 return;
             }
 
+            if (Input.GetKeyDown(KeyCode.Q))
+                Rotation *= Quaternion.Euler(0f, 15f, 0f);
+            else if (Input.GetKeyDown(KeyCode.E))
+                Rotation *= Quaternion.Euler(0f, -15f, 0f);
+
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, Mathf.Infinity, RayLayers, QueryTriggerInteraction.Ignore))
             {
                 IndicatorCube.SetActive(true);
