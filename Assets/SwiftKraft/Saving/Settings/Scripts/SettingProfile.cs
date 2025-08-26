@@ -116,7 +116,7 @@ namespace SwiftKraft.Saving.Settings
 
         public Startup(Setting parent) => Parent = parent;
 
-        public virtual void Start() => Parent.Reset();
+        public abstract void Start();
     }
 
     /// <summary>

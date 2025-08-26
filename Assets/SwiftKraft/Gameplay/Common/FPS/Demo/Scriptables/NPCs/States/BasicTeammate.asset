@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BasicTeammate
   m_EditorClassIdentifier: 
   Attack: 1
-  AttackCoordinates: {x: 0, y: 0, z: 43}
+  AttackCoordinates: {x: 0, y: 0, z: 0}
+  ExitState: {fileID: 0}
   minRange: 2
   maxRange: 5
   minStrafeTimer: 3

@@ -43,7 +43,5 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                 }
             }
         }
-
-        public override void Update() { }
     }
 }

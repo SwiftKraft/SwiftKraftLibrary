@@ -23,15 +23,10 @@ namespace SwiftKraft.Gameplay.NPCs
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Update()
-        {
-            for (int i = 0; i < NPCs.Count; i++)
-                if (NPCs[i].enabled)
-                    NPCs[i].Frame();
-        }
-
         private void FixedUpdate()
         {
+            if (NPCs.Count == 0) return;
+
             for (int i = 0; i < NPCs.Count; i++)
                 if (NPCs[i].enabled)
                     NPCs[i].Tick();

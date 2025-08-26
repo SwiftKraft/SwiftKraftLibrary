@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System;
 using System.Collections.Generic;
 
@@ -80,6 +81,8 @@ namespace SwiftKraft.Utils
             bool _active;
 
             public event Action OnChanged;
+
+            public void Dispose() => Parent.RemoveLock(this);
 
             public Lock(BooleanLock parent) => Parent = parent;
 

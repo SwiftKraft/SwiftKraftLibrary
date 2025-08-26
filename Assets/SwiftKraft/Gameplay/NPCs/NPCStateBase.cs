@@ -9,7 +9,6 @@ namespace SwiftKraft.Gameplay.NPCs
         public virtual void Init(NPCCore core) => Core = core;
 
         public abstract void Begin();
-        public abstract void Update();
         public abstract void Tick();
         public abstract void End();
     }

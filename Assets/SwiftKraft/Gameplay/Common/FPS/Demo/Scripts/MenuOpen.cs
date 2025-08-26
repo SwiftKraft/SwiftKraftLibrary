@@ -1,4 +1,5 @@
 using SwiftKraft.Gameplay.Motors;
+using SwiftKraft.Utils;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,10 +14,11 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         public GameObject MenuObject;
 
-        private void Start()
-        {
-            SetMenu(false);
-        }
+        BooleanLock.Lock cursor;
+
+        private void Awake() => cursor = CursorManager.Unlocked.AddLock();
+
+        private void Start() => SetMenu(false);
 
         private void Update()
         {
@@ -26,11 +28,12 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             }
         }
 
+        private void OnDestroy() => cursor.Dispose();
+
         public void SetMenu(bool active)
         {
             MenuObject.SetActive(active);
-            Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = active;
+            cursor.Active = !CursorManager.DefaultUnlocked && active;
             IsOpen = active;
             UpdateOpen?.Invoke(IsOpen);
         }

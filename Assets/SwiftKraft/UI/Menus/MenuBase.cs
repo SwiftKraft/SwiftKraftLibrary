@@ -15,11 +15,14 @@ namespace SwiftKraft.UI.Menus
 
                 _active = value;
                 gameObject.SetActive(value);
+                ActiveChanged(value);
                 OnActiveChanged?.Invoke();
             }
         }
         bool _active = true;
 
         public event Action OnActiveChanged;
+
+        protected virtual void ActiveChanged(bool active) { }
     }
 }
