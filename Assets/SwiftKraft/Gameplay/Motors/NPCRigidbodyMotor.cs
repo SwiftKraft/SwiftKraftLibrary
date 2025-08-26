@@ -20,14 +20,22 @@ namespace SwiftKraft.Gameplay.Motors
             base.FixedUpdate();
         }
 
+        public override Quaternion LookInterpolation() => Quaternion.RotateTowards(CurrentLookRotation, WishLookRotation, (LookInUpdate ? Time.deltaTime : Time.fixedDeltaTime) * TurnSpeed);
+
         public override void Look(Quaternion rotation)
         {
-
+            Vector3 euler = rotation.eulerAngles;
+            Component.rotation = Quaternion.Euler(0f, euler.y, 0f);
+            LookPoint.localRotation = Quaternion.Euler(euler.x, 0f, 0f);
         }
 
         public override void Move(Vector3 direction)
         {
-
+            direction *= MoveSpeed;
+            Vector3 vel = Component.velocity;
+            vel.x = direction.x;
+            vel.z = direction.z;
+            Component.velocity = vel;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace SwiftKraft.Gameplay.Motors
             Component.Move(Vector3.up * (currentGravity * Time.fixedDeltaTime));
         }
 
-        public override Quaternion LookInterpolation() => Quaternion.RotateTowards(CurrentLookRotation, WishLookRotation, Time.fixedDeltaTime * TurnSpeed);
+        public override Quaternion LookInterpolation() => Quaternion.RotateTowards(CurrentLookRotation, WishLookRotation, (LookInUpdate ? Time.deltaTime : Time.fixedDeltaTime) * TurnSpeed);
 
         public override void Look(Quaternion rotation)
         {

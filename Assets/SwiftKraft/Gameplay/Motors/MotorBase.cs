@@ -95,8 +95,11 @@ namespace SwiftKraft.Gameplay.Motors
             if (!Enabled)
                 return;
 
-            CurrentLookRotation = LookInterpolation();
-            Look(CurrentLookRotation);
+            if (!LookInUpdate)
+            {
+                CurrentLookRotation = LookInterpolation();
+                Look(CurrentLookRotation);
+            }
 
             if (Vehicle == null)
             {

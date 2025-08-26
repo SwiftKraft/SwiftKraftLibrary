@@ -75,7 +75,5 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                     Core.CurrentState = ExitState;
             }
         }
-
-        public override void Update() { }
     }
 }

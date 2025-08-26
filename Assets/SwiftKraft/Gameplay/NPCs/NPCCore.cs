@@ -37,16 +37,6 @@ namespace SwiftKraft.Gameplay.NPCs
 
         protected virtual void Start() => CurrentState = startingState;
 
-        public virtual void Frame()
-        {
-            if (CurrentState != null)
-                CurrentState.Update();
-
-            foreach (NPCModuleBase mod in Modules.Values)
-                if (mod.enabled)
-                    mod.Frame();
-        }
-
         public virtual void Tick()
         {
             if (CurrentState != null)
@@ -72,8 +62,6 @@ namespace SwiftKraft.Gameplay.NPCs
             Parent = GetComponent<NPCCore>();
             Parent.Modules.Add(ID, this);
         }
-
-        public virtual void Frame() { }
 
         public virtual void Tick() { }
 

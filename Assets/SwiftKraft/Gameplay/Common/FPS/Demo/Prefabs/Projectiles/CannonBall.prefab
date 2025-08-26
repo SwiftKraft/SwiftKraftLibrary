@@ -184,7 +184,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7848952084472943420, guid: aad9f277b35a11748a4006ea2563df6b, type: 3}
+  - {fileID: 2100000, guid: 33f367756ea5c35489eb84c6deffabd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -267,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime:
-    <MaxValue>k__BackingField: 10
     StartEnded: 0
+    <MaxValue>k__BackingField: 10
   Speed: {x: 0, y: 0, z: 180}
   Bounces: 0
   ConstantMotion: 0
