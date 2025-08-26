@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors
 {
-    public class NPCRigidbodyMotor : CachePositionMotorBase<Rigidbody>, IGroundable
+    public class NPCRigidbodyMotor : MotorBase<Rigidbody>, IGroundable
     {
         public float MoveSpeed = 5f;
         public float TurnSpeed = 480f;
@@ -31,10 +31,9 @@ namespace SwiftKraft.Gameplay.Motors
 
         public override void Move(Vector3 direction)
         {
-            direction *= MoveSpeed;
             Vector3 vel = Component.velocity;
-            vel.x = direction.x;
-            vel.z = direction.z;
+            vel.x = direction.x * MoveSpeed;
+            vel.z = direction.z * MoveSpeed;
             Component.velocity = vel;
         }
     }
