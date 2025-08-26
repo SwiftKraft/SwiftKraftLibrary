@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Motors
 {
-    public class NPCRigidbodyMotor : MotorBase<Rigidbody>, IGroundable
+    public class NPCRigidbodyMotor : CachePositionMotorBase<Rigidbody>, IGroundable
     {
         public float MoveSpeed = 5f;
         public float TurnSpeed = 480f;
@@ -12,6 +12,12 @@ namespace SwiftKraft.Gameplay.Motors
         public LayerMask GroundLayers;
 
         public bool IsGrounded { get; set; }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Component.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        }
 
         protected override void FixedUpdate()
         {
