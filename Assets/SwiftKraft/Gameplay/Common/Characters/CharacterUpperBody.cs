@@ -11,6 +11,7 @@ namespace SwiftKraft.Gameplay.Common.Characters
         {
             public Transform Reference;
             public float Influence;
+            public Vector3 AngleOffset;
         }
 
         public MotorBase Motor { get; private set; }
@@ -54,7 +55,7 @@ namespace SwiftKraft.Gameplay.Common.Characters
                 TargetBottomRotation = BottomRotationOffset + LookRotation.y + AdjustOffset;
 
             foreach (Bone bone in Bones)
-                bone.Reference.rotation = Quaternion.SlerpUnclamped(bone.Reference.rotation, Motor.CurrentLookRotation, bone.Influence);
+                bone.Reference.rotation = Quaternion.SlerpUnclamped(bone.Reference.rotation, Motor.CurrentLookRotation, bone.Influence) * Quaternion.Euler(bone.AngleOffset);
         }
     }
 }

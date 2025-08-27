@@ -3336,7 +3336,7 @@ MonoBehaviour:
   XMovement: MoveX
   ZMovement: MoveZ
   SmoothTime: 0.1
-  RotationOffset: {x: 0, y: 0, z: 0, w: 1}
+  RotationOffset: {x: 0, y: 0.33380687, z: 0, w: 0.9426415}
   StateMultipliers:
   - {x: 2, y: 2}
 --- !u!114 &8367047569426330312
@@ -3353,14 +3353,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bones:
   - Reference: {fileID: 2896399995523481591}
-    XInfluence: 0.1
-    YInfluence: 0.2
+    Influence: 0.1
+    AngleOffset: {x: 0, y: 15, z: 0}
   - Reference: {fileID: 7181718344385625165}
-    XInfluence: 0.5
-    YInfluence: 0.5
+    Influence: 0.5
+    AngleOffset: {x: 0, y: 25, z: 0}
   - Reference: {fileID: 4289626655935878842}
-    XInfluence: 0.7
-    YInfluence: 1
+    Influence: 0.7
+    AngleOffset: {x: 20, y: 23, z: 0}
+  - Reference: {fileID: 3754932224798799551}
+    Influence: 1
+    AngleOffset: {x: 0, y: 0, z: 0}
   AdjustAngleMin: -45
   AdjustAngleMax: 100
   AdjustTime: 0.1

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AttackOrigin>k__BackingField: {fileID: 458719485348545059}
   Damage:
-    <BaseValue>k__BackingField: 5
+    <BaseValue>k__BackingField: 25
     <Values>k__BackingField: []
   <AttackModes>k__BackingField:
   - rid: 3768913162116268032
@@ -1954,6 +1954,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 8400093387326802817}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3063566725194088613}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -2971,11 +2995,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bones:
   - Reference: {fileID: 6440528099715808736}
-    Influence: 0
+    Influence: 0.1
+    AngleOffset: {x: 0, y: 15, z: 0}
   - Reference: {fileID: 1517609424576662151}
-    Influence: 0
+    Influence: 0.5
+    AngleOffset: {x: 0, y: 25, z: 0}
   - Reference: {fileID: 1696584214397325987}
-    Influence: 0
+    Influence: 0.7
+    AngleOffset: {x: 20, y: 23, z: 0}
+  - Reference: {fileID: 3915270636665376546}
+    Influence: 1
+    AngleOffset: {x: 0, y: 0, z: 0}
   AdjustAngleMin: -45
   AdjustAngleMax: 100
   AdjustTime: 0.1

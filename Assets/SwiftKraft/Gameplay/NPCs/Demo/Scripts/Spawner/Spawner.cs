@@ -38,6 +38,8 @@ namespace SwiftKraft.Gameplay.NPCs.Demo
 
             if (Input.GetKeyDown(KeyCode.Return))
                 Time.timeScale = Time.timeScale == 1f ? 0f : 1f;
+            if (Input.GetKeyDown(KeyCode.R))
+                Time.timeScale = Time.timeScale == 1f ? 0.5f : 1f;
 
             if (Prefab == null)
             {
