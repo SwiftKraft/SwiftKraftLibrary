@@ -25,6 +25,12 @@ namespace SwiftKraft.Gameplay.Weapons
         bool reloading;
         float reloadNormalizedTime;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            _animator = GetComponentInChildren<Animator>();
+        }
+
         protected virtual void Update()
         {
             if (Animator.IsInTransition(0))

@@ -17,5 +17,10 @@ namespace SwiftKraft.Utils
             }
         }
         T _parentComponent;
+
+        protected virtual void Awake()
+        {
+            _parentComponent = GetComponentInParent<T>();
+        }
     }
 }

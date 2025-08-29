@@ -1605,8 +1605,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8561670057579328745}
-  - component: {fileID: 1066802442168072948}
-  - component: {fileID: 4436246281324685146}
   m_Layer: 3
   m_Name: ViewModelWorkspace
   m_TagString: Untagged
@@ -1629,39 +1627,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8094216060440069429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1066802442168072948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4296117564711383046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e61ba12cccd97d9428eb76852e3b471b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainCamera: {fileID: 194970226958524215}
-  ViewModelCamera: {fileID: 1770114924931237763}
-  CameraAnimations: {fileID: 1364037050397893103}
-  ZoomTime: 0.1
-  ViewModelFOV:
-    Original: 90
-  MainCameraFOV:
-    Original: 90
---- !u!114 &4436246281324685146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4296117564711383046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 364e14d399f6f614abf942f1aa28ffab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Workspace: {fileID: 8561670057579328745}
 --- !u!1 &4369277407358546855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3004,6 +2969,7 @@ GameObject:
   - component: {fileID: 3175375332146824246}
   - component: {fileID: 5358874460008546985}
   - component: {fileID: 5610568226518439506}
+  - component: {fileID: 1697853700510881262}
   m_Layer: 3
   m_Name: Bot
   m_TagString: Player
@@ -3595,6 +3561,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Workspace: {fileID: 7773759771319714703}
+--- !u!114 &1697853700510881262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7855128607081139760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61ba12cccd97d9428eb76852e3b471b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 194970226958524215}
+  ViewModelCamera: {fileID: 1770114924931237763}
+  CameraAnimations: {fileID: 1364037050397893103}
+  ZoomTime: 0.1
+  ViewModelFOV:
+    Original: 90
+  MainCameraFOV:
+    Original: 90
 --- !u!1 &8209834131775479917
 GameObject:
   m_ObjectHideFlags: 0
