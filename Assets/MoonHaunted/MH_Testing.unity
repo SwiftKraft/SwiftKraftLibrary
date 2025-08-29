@@ -23889,6 +23889,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1129558301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1129558303}
+  - component: {fileID: 1129558302}
+  m_Layer: 0
+  m_Name: Developer Comment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1129558302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129558301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de309c27bb69754eb11e6712195f84c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: 'TODO
+
+
+    - Create new weapon view models prefabs fitted for FP and TP
+
+    -
+    TP animation script'
+  Author: 
+  CharCountWrap: 47
+  MaxDistance: 50
+  ShowDate: 1
+  SpacingDistance: 3.5
+  MinSpacing: 0.33
+  MaxSpacing: 0.39
+  RichText: 0
+  FontSize: 14
+  FontColor: {r: 1, g: 1, b: 1, a: 1}
+  FontStyle: 0
+  FontOverride: {fileID: 0}
+  FadeDistance: 3
+  AutoDestroyInBuild: 1
+  timestamp: 638920747565028810
+  cachedText: 'TODO
+
+
+    - Create new weapon view models prefabs fitted for FP and
+    TP
+
+    - TP animation script'
+--- !u!4 &1129558303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129558301}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.1381865, y: 2.6572442, z: 45.608955}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1141646139
 GameObject:
   m_ObjectHideFlags: 0
@@ -27405,3 +27478,4 @@ SceneRoots:
   - {fileID: 1099545414}
   - {fileID: 1141646141}
   - {fileID: 997543869}
+  - {fileID: 1129558303}
