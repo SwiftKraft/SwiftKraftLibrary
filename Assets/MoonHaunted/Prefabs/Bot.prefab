@@ -2176,6 +2176,7 @@ Transform:
   m_Children:
   - {fileID: 7352508561911044739}
   - {fileID: 5797867394508855066}
+  - {fileID: 2385165672860475189}
   m_Father: {fileID: 1949573907772923210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6438053845808507348
@@ -2616,6 +2617,37 @@ Transform:
   - {fileID: 5820204951771519771}
   m_Father: {fileID: 947138306988164616}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7039192228998779837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2385165672860475189}
+  m_Layer: 0
+  m_Name: TP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2385165672860475189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7039192228998779837}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2095314133198398967}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7073539383032240150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,7 +3069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DropOnDestroy: 0
   DefaultItems:
-  - {fileID: 11400000, guid: 0b987ad9ae1721f4ca7696aa91b571e6, type: 2}
+  - {fileID: 11400000, guid: cb2784cd9df7b4a4d97ecf66c5afe050, type: 2}
   Selectors:
   - Key: 49
     Slot: 0
@@ -3548,6 +3580,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FPWorkspace: {fileID: 8561670057579328745}
+  TPWorkspace: {fileID: 2385165672860475189}
 --- !u!114 &5610568226518439506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3560,7 +3594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364e14d399f6f614abf942f1aa28ffab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Workspace: {fileID: 8561670057579328745}
+  Workspace: {fileID: 7773759771319714703}
 --- !u!1 &8209834131775479917
 GameObject:
   m_ObjectHideFlags: 0

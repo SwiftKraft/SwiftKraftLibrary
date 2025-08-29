@@ -1,6 +1,4 @@
-using SwiftKraft.Gameplay.Motors;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +16,9 @@ public class BodySwapper : MonoBehaviour
 
     public UnityEvent OnPlayerControl;
     public UnityEvent OnBotControl;
+
+    public Transform FPWorkspace;
+    public Transform TPWorkspace;
 
     private void Awake()
     {

@@ -17,13 +17,13 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public Transform CameraTarget;
         public Transform ReferenceTarget;
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            Parent = GetComponentInParent<CameraManager>();
+            Parent = transform.root.GetComponentInChildren<CameraManager>();
             Initialize();
         }
 
-        private void OnEnable() => Initialize();
+        protected virtual void OnEnable() => Initialize();
 
         public void Initialize()
         {
