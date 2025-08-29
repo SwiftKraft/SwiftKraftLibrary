@@ -16,6 +16,8 @@ public class MoonsHauntedPlayerController : MonoBehaviour
     {
         Motor = GetComponent<MoonsHauntedMotor>();
         SettingsManager.Current.TrySetting("Sensitivity", out sensitivity);
+
+        CursorManager.DefaultUnlocked = false;
     }
 
     private void Update()

@@ -33,8 +33,11 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (Item == null || Item.Instance == null)
                     return _reserveAmmo;
 
-                if (data == null || data.Disposed)
-                    Item.Instance.TryData(AmmoSaveID, out data);
+                if ((data == null || data.Disposed) && !Item.Instance.TryGetData(AmmoSaveID, out data) && Item.Instance.TryAddData(AmmoSaveID, out data))
+                {
+                    data.CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
+                    data.ReserveAmmo = data.CurrentAmmo * 3;
+                }
 
                 return data.ReserveAmmo;
             }
@@ -61,8 +64,11 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (Item == null || Item.Instance == null)
                     return _currentAmmo;
 
-                if (data == null || data.Disposed)
-                    Item.Instance.TryData(AmmoSaveID, out data);
+                if ((data == null || data.Disposed) && !Item.Instance.TryGetData(AmmoSaveID, out data) && Item.Instance.TryAddData(AmmoSaveID, out data))
+                {
+                    data.CurrentAmmo = Mathf.RoundToInt(MaxAmmo);
+                    data.ReserveAmmo = data.CurrentAmmo * 3;
+                }
 
                 return data.CurrentAmmo;
             }

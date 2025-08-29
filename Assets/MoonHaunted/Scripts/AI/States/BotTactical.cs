@@ -46,8 +46,6 @@ public class BotTactical : BotStateBase
             SetSprintState(true);
         }
     }
-
-    public override void Update() { }
 }
 
 // AI will pathfind to player if out of range.

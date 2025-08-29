@@ -2192,8 +2192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EquipTimer:
-    <MaxValue>k__BackingField: 0.4
     StartEnded: 0
+    <MaxValue>k__BackingField: 0.4
 --- !u!114 &2449021304951186053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2207,8 +2207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnequipTimer:
-    <MaxValue>k__BackingField: 0.5
     StartEnded: 0
+    <MaxValue>k__BackingField: 0.5
 --- !u!114 &4498251446266001856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,32 +2239,32 @@ MonoBehaviour:
     Key: 323
     Style: 0
     Linger:
-      <MaxValue>k__BackingField: 0.21
       StartEnded: 0
+      <MaxValue>k__BackingField: 0.21
   - ID: Reload
     Key: 114
     Style: 0
     Linger:
-      <MaxValue>k__BackingField: 0.05
       StartEnded: 0
+      <MaxValue>k__BackingField: 0.05
   - ID: Unequip
     Key: 103
     Style: 0
     Linger:
-      <MaxValue>k__BackingField: 0.05
       StartEnded: 0
+      <MaxValue>k__BackingField: 0.05
   - ID: Aim
     Key: 324
     Style: 2
     Linger:
-      <MaxValue>k__BackingField: 0
       StartEnded: 0
+      <MaxValue>k__BackingField: 0
   - ID: Inspect
     Key: 105
     Style: 0
     Linger:
-      <MaxValue>k__BackingField: 0
       StartEnded: 0
+      <MaxValue>k__BackingField: 0
   Enabled: 1
 --- !u!114 &3348710002142049648
 MonoBehaviour:
@@ -4350,6 +4350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb7d7c59295a73418cf6f9304a18de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CustomClip: Custom
+  CustomState: Custom
   Animations:
   - ID: Attack
     States:
