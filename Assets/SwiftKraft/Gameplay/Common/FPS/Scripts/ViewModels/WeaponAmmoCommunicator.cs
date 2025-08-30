@@ -10,8 +10,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public string ParameterNameReloading = "Reloading";
         public string ParameterNameReloadSpeed = "ReloadSpeedMultiplier";
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             ParentComponent.OnAmmoUpdated += OnAmmoUpdated;
             ParentComponent.OnReloadUpdated += OnReloadUpdated;
             ParentComponent.ReloadSpeedMultiplier.OnUpdate += OnReloadSpeedUpdate;

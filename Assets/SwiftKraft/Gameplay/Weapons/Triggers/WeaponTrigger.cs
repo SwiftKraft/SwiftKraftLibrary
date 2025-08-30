@@ -12,10 +12,16 @@ namespace SwiftKraft.Gameplay.Weapons.Triggers
         public readonly Dictionary<string, Action> Overrides = new();
 
         public bool Enabled = true;
+        BodySwapper swapper;
+
+        private void Awake()
+        {
+            swapper = GetComponentInParent<BodySwapper>();
+        }
 
         private void Update()
         {
-            if (!Enabled || InputBlocker.Blocked)
+            if (!Enabled || InputBlocker.Blocked || !swapper.PlayerControlled)
                 return;
 
             foreach (Action a in Actions)

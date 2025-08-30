@@ -2417,6 +2417,7 @@ GameObject:
   - component: {fileID: 6738357242480698232}
   - component: {fileID: 2610633906388709697}
   - component: {fileID: 6282543507283347060}
+  - component: {fileID: 8458963935099971602}
   m_Layer: 0
   m_Name: Armature
   m_TagString: Untagged
@@ -2518,6 +2519,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParameterName: Grounded
   SmoothTime: 0.1
+--- !u!114 &8458963935099971602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6757682700779214048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db79976fbb379254d9b41c8ff38b4990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OverrideAnimationIdle: {fileID: 7400000, guid: ed48a51024cf6574a888ba9936d3ef70,
+    type: 2}
+  OverrideAnimationCustom: {fileID: 7400000, guid: c10ed396b666be841ad54aafa9c2fbdf,
+    type: 2}
 --- !u!1 &6783707996872862440
 GameObject:
   m_ObjectHideFlags: 0

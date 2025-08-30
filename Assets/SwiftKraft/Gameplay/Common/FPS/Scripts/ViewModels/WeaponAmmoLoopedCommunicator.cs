@@ -9,8 +9,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         public string LoopedAmmoName = "LoopedAmmo";
         public string NextAmmoName = "NextAmmo";
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             ParentComponent.OnLoadedAmmoChanged += OnLoadedAmmoUpdated;
             ParentComponent.OnNextAmountChanged += OnNextAmountChanged;
         }
