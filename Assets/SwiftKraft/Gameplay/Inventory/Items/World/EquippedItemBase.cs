@@ -28,9 +28,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public virtual void Unequip() => OnUnequip?.Invoke();
 
         /// <summary>
-        /// Runs every tick where it tries to unequip; if it returns true, it will unequip.
+        /// Runs every tick where it tries to unequip; if it returns <b>true</b>, it will unequip.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Whether the unequip is allowed.</returns>
         public virtual bool AttemptUnequip() => true;
     }
 }

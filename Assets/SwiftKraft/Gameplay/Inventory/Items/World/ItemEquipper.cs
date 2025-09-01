@@ -24,7 +24,19 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         protected virtual void FixedUpdate()
         {
-            if (WishEquip != Current.Instance && Current.AttemptUnequip())
+            if (Current == null)
+            {
+                if (WishEquip == null)
+                    return;
+
+                if (TryEquip(WishEquip, out EquippedItemBase b))
+                {
+                    Current = b;
+                    return;
+                }
+            }
+
+            if ((WishEquip != Current.Instance) && Current.AttemptUnequip())
             {
                 ForceUnequip();
                 if (TryEquip(WishEquip, out EquippedItemBase it))
