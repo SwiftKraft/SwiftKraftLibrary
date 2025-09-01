@@ -7,23 +7,23 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 {
     public class ItemEquipper : MonoBehaviour, IItemEquipper
     {
-        public readonly List<EquippedItem> EquippedItemCache = new();
+        public readonly List<EquippedItemBase> EquippedItemCache = new();
 
         public Transform Workspace;
 
-        public event Action<EquippedItem> OnEquip;
+        public event Action<EquippedItemBase> OnEquip;
 
-        public EquippedItem Current { get; private set; }
+        public EquippedItemBase Current { get; private set; }
         ItemInstance tryEquip;
 
         private void Awake()
         {
-            EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItem>());
+            EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItemBase>());
 
             ResetAll();
         }
 
-        public bool TryEquip(ItemInstance inst, out EquippedItem it)
+        public bool TryEquip(ItemInstance inst, out EquippedItemBase it)
         {
             it = null;
             if (inst == null || inst.Type is not EquippableItemType ty || (!HasEquippedItem(ty, out it) && !AddEquippedItem(ty, out it)))
@@ -33,9 +33,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             return true;
         }
 
-        public bool HasEquippedItem(EquippableItemType inst, out EquippedItem it)
+        public bool HasEquippedItem(EquippableItemType inst, out EquippedItemBase it)
         {
-            foreach (EquippedItem item in EquippedItemCache)
+            foreach (EquippedItemBase item in EquippedItemCache)
                 if (item.Item == inst)
                 {
                     it = item;
@@ -45,9 +45,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             return false;
         }
 
-        public bool AddEquippedItem(EquippableItemType ty, out EquippedItem it)
+        public bool AddEquippedItem(EquippableItemType ty, out EquippedItemBase it)
         {
-            if (ty == null || !ty.EquippedPrefab.TryGetComponent(out EquippedItem item))
+            if (ty == null || !ty.EquippedPrefab.TryGetComponent(out EquippedItemBase item))
             {
                 it = null;
                 return false;
@@ -63,7 +63,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void ResetAll()
         {
-            foreach (EquippedItem item in EquippedItemCache)
+            foreach (EquippedItemBase item in EquippedItemCache)
                 item.gameObject.SetActive(false);
         }
 
@@ -89,7 +89,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         {
             if (Current != null)
                 Current.Unequip();
-            else if (TryEquip(tryEquip, out EquippedItem eq))
+            else if (TryEquip(tryEquip, out EquippedItemBase eq))
             {
                 if (eq != null)
                     OnEquip?.Invoke(eq);

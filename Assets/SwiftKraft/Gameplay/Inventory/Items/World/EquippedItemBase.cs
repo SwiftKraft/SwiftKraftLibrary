@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
-    public class EquippedItem : MonoBehaviour
+    public class EquippedItemBase : MonoBehaviour
     {
         public ItemEquipper Parent { get; private set; }
 
@@ -19,13 +19,13 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public readonly BooleanLock CanUnequip = new();
 
-        public void Equip(ItemInstance inst)
+        public virtual void Equip(ItemInstance inst)
         {
             Instance = inst;
             OnEquip?.Invoke();
         }
 
-        public void Unequip(bool resetWishEquip = false)
+        public virtual void Unequip(bool resetWishEquip = false)
         {
             OnUnequip?.Invoke();
 
@@ -35,6 +35,6 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             FinishUnequip(resetWishEquip);
         }
 
-        public void FinishUnequip(bool resetWishEquip = false) => Parent.ForceUnequip(resetWishEquip);
+        public virtual void FinishUnequip(bool resetWishEquip = false) => Parent.ForceUnequip(resetWishEquip);
     }
 }

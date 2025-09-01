@@ -4,8 +4,8 @@ namespace SwiftKraft.Gameplay.Interfaces
 {
     public interface IItemEquipper
     {
-        public EquippedItem Current { get; }
-        public bool TryEquip(ItemInstance inst, out EquippedItem it);
+        public EquippedItemBase Current { get; }
+        public bool TryEquip(ItemInstance inst, out EquippedItemBase it);
         public void ForceUnequip(bool resetWishEquip = false);
         public void Equip(ItemInstance item);
     }
