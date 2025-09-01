@@ -14,13 +14,25 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public event Action<EquippedItemBase> OnEquip;
 
         public EquippedItemBase Current { get; private set; }
-        ItemInstance tryEquip;
+        public ItemInstance WishEquip { get; private set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItemBase>());
-
             ResetAll();
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            if (WishEquip != Current.Instance && Current.AttemptUnequip())
+            {
+                ForceUnequip();
+                if (TryEquip(WishEquip, out EquippedItemBase it))
+                {
+                    Current = it;
+                    OnEquip?.Invoke(Current);
+                }
+            }
         }
 
         public bool TryEquip(ItemInstance inst, out EquippedItemBase it)
@@ -28,6 +40,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             it = null;
             if (inst == null || inst.Type is not EquippableItemType ty || (!HasEquippedItem(ty, out it) && !AddEquippedItem(ty, out it)))
                 return false;
+            ResetAll();
             it.gameObject.SetActive(true);
             it.Equip(inst);
             return true;
@@ -35,12 +48,13 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public bool HasEquippedItem(EquippableItemType inst, out EquippedItemBase it)
         {
-            foreach (EquippedItemBase item in EquippedItemCache)
-                if (item.Item == inst)
+            for (int i = 0; i < EquippedItemCache.Count; i++)
+                if (EquippedItemCache[i].Item == inst)
                 {
-                    it = item;
+                    it = EquippedItemCache[i];
                     return true;
                 }
+
             it = null;
             return false;
         }
@@ -63,17 +77,18 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void ResetAll()
         {
-            foreach (EquippedItemBase item in EquippedItemCache)
-                item.gameObject.SetActive(false);
+            for (int i = 0; i < EquippedItemCache.Count; i++)
+                EquippedItemCache[i].gameObject.SetActive(false);
         }
 
         public void ForceUnequip(bool resetWishEquip = false)
         {
+            if (Current != null)
+                Current.Unequip();
             ResetAll();
             Current = null;
             if (resetWishEquip)
-                tryEquip = null;
-            UpdateEquip();
+                WishEquip = null;
         }
 
         public void Equip(ItemInstance item)
@@ -81,21 +96,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             if (Current != null && Current.Instance == item)
                 return;
 
-            tryEquip = item;
-            UpdateEquip();
-        }
-
-        protected void UpdateEquip()
-        {
-            if (Current != null)
-                Current.Unequip();
-            else if (TryEquip(tryEquip, out EquippedItemBase eq))
-            {
-                if (eq != null)
-                    OnEquip?.Invoke(eq);
-
-                Current = eq;
-            }
+            WishEquip = item;
         }
     }
 }

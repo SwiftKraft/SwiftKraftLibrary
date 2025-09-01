@@ -25,16 +25,12 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             OnEquip?.Invoke();
         }
 
-        public virtual void Unequip(bool resetWishEquip = false)
-        {
-            OnUnequip?.Invoke();
+        public virtual void Unequip() => OnUnequip?.Invoke();
 
-            if (!CanUnequip)
-                return;
-
-            FinishUnequip(resetWishEquip);
-        }
-
-        public virtual void FinishUnequip(bool resetWishEquip = false) => Parent.ForceUnequip(resetWishEquip);
+        /// <summary>
+        /// Runs every tick where it tries to unequip; if it returns true, it will unequip.
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool AttemptUnequip() => true;
     }
 }
