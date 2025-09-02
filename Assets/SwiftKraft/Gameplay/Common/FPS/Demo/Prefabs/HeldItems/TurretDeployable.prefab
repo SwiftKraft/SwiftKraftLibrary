@@ -1124,7 +1124,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995731337002744253}
-  - component: {fileID: 1038956214323763383}
   - component: {fileID: 6238401704681797382}
   - component: {fileID: 393758558517150040}
   - component: {fileID: 1530256112923973074}
@@ -1151,18 +1150,6 @@ Transform:
   - {fileID: 7554106450986972374}
   m_Father: {fileID: 5676855162424657495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1038956214323763383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4345545842508385163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10905300e5220d94488e076131f6cebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6238401704681797382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,14 +1194,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35f9fae976f21c4588318334327fef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModifyTarget: {fileID: 995731337002744253}
-  Multiplier:
-    <BaseValue>k__BackingField: 1
+  ModifyTarget: {fileID: 7554106450986972374}
+  HorizontalMultiplier:
+    <BaseValue>k__BackingField: -1
+    <Values>k__BackingField: []
+  VerticalMultiplier:
+    <BaseValue>k__BackingField: -1
     <Values>k__BackingField: []
   TiltMultiplier:
     <BaseValue>k__BackingField: -2
     <Values>k__BackingField: []
-  Maximum: 5
+  HorizontalMaximum: 5
+  VerticalMaximum: 3
   TiltMaximum: 2
   SmoothTime: 0.15
 --- !u!1 &4900544099550391134
@@ -2003,6 +1994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7554106450986972374}
+  - component: {fileID: 9033893216477553552}
   - component: {fileID: 1532612399011198317}
   - component: {fileID: 1948899356845034811}
   - component: {fileID: 5338421906542451486}
@@ -2030,6 +2022,18 @@ Transform:
   - {fileID: 7100014879415017901}
   m_Father: {fileID: 995731337002744253}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &9033893216477553552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178248968623681132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10905300e5220d94488e076131f6cebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1532612399011198317
 Animator:
   serializedVersion: 5
@@ -2207,6 +2211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5676855162424657495}
   - component: {fileID: 4537192145855249539}
+  - component: {fileID: 1423288449812423635}
   m_Layer: 0
   m_Name: TurretDeployable
   m_TagString: Untagged
@@ -2243,6 +2248,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a8d8ef91878b4488d4d1f26989bf47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EquipState:
+    WaitTimer:
+      StartEnded: 0
+      <MaxValue>k__BackingField: 0.5
+    OnStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1948899356845034811}
+          m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Weapons.ViewModelAnimator,
+            Assembly-CSharp
+          m_MethodName: PlayAnimation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Equip
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  UnequipState:
+    WaitTimer:
+      StartEnded: 0
+      <MaxValue>k__BackingField: 0.5
+    OnStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1948899356845034811}
+          m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Weapons.ViewModelAnimator,
+            Assembly-CSharp
+          m_MethodName: PlayAnimation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Unequip
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  Prefab: {fileID: 6479035059698927783, guid: 31f34f826528b4445b9e2fef9028c918, type: 3}
+--- !u!114 &1423288449812423635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883230097517581639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b623c8727de723143a1163fb2994365e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ValidMaterial: {fileID: 2100000, guid: 3069d89ef27294c48877ec8a334441b8, type: 2}
+  InvalidMaterial: {fileID: 2100000, guid: 19611734af2b175479f983be6766dafb, type: 2}
+  CastPoint: {fileID: 995731337002744253}
+  SnapGrid: {x: 0.5, y: 0.5, z: 0.5}
+  SnapGridOffset: {x: 0, y: 0, z: 0}
+  CastRange: 5
+  CastLayers:
+    serializedVersion: 2
+    m_Bits: 4097
+  UseNormal: 1
 --- !u!1 &8097201676185234949
 GameObject:
   m_ObjectHideFlags: 0

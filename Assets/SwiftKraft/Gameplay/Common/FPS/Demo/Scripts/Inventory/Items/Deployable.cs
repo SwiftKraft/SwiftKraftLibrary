@@ -1,9 +1,27 @@
+using SwiftKraft.Gameplay.Building;
 using SwiftKraft.Gameplay.Inventory.Items;
+using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.Demo
 {
-    public class Deployable : EquippedItemBase
+    [RequireComponent(typeof(RaycastBuilder))]
+    public class Deployable : EquippedItemDrawTime
     {
+        public EquippedItemWaitState EquipState;
+        public EquippedItemWaitState UnequipState;
 
+        public RaycastBuilder Builder { get; private set; }
+
+        public GameObject Prefab;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Builder = GetComponent<RaycastBuilder>();
+            Builder.Prefab = Prefab;
+
+            EquipStateInstance = EquipState;
+            UnequipStateInstance = UnequipState;
+        }
     }
 }

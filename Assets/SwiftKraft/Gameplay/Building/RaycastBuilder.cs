@@ -16,18 +16,15 @@ namespace SwiftKraft.Gameplay.Building
         public float CastRange = 5f;
         public LayerMask CastLayers;
 
-        public GameObject test;
-
         public bool UseNormal;
 
         public GameObject Prefab
         {
             get => _prefab;
-            private set
+            set
             {
                 RemoveBlueprint();
                 _prefab = value;
-                UpdateBlueprint();
                 CreateBlueprint(aimedPoint, currentRotation);
             }
         }
@@ -39,25 +36,20 @@ namespace SwiftKraft.Gameplay.Building
         Quaternion currentRotation = Quaternion.identity;
         bool canBuild;
 
-        private void Start()
-        {
-            Prefab = test;
-        }
-
-        private void Update()
-        {
-            UpdateBlueprint();
-
-            if (currentBlueprint == null)
-                return;
-
-            if (Input.GetKeyDown(KeyCode.Mouse0) && canBuild)
-                Build();
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-                RemoveBlueprint();
-        }
+        private void Update() => UpdateBlueprint();
 
         private void OnDestroy() => RemoveBlueprint();
+
+        public bool TryBuild()
+        {
+            if (canBuild)
+            {
+                Build();
+                return true;
+            }
+
+            return false;
+        }
 
         public void Build()
         {

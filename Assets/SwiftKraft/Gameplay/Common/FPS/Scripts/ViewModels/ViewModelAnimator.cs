@@ -35,6 +35,9 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public void PlayAnimation(string id)
         {
+            if (!Animator.isActiveAndEnabled)
+                return;
+
             Animation anim = Animations.FirstOrDefault((s) => s.ID == id);
             anim?.Play(Animator);
         }
@@ -73,6 +76,9 @@ namespace SwiftKraft.Gameplay.Weapons
                 return;
 
             SwapAnimation(CustomClip, clip);
+
+            if (!Animator.isActiveAndEnabled)
+                return;
 
             if (transitionTime > 0f)
                 Animator.CrossFadeInFixedTime(CustomState, transitionTime);
