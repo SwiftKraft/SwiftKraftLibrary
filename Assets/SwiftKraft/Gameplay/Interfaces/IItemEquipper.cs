@@ -2,7 +2,7 @@ using SwiftKraft.Gameplay.Inventory.Items;
 
 namespace SwiftKraft.Gameplay.Interfaces
 {
-    public interface IItemEquipper
+    public interface IItemEquipper : IPet
     {
         public EquippedItemBase Current { get; }
         public ItemInstance WishEquip { get; set; }

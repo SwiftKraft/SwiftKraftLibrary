@@ -1,5 +1,4 @@
 using SwiftKraft.Gameplay.NPCs;
-using SwiftKraft.Gameplay.Weapons;
 using SwiftKraft.Utils;
 using UnityEngine;
 using UnityEngine.AI;
@@ -66,7 +65,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                     lastRemembered = Attack ? AttackCoordinates : scanner.Targets[0].Value.position;
             }
             else if (navigator.Stopped)
-                    navigator.Destination = NavMesh.SamplePosition(lastRemembered, out NavMeshHit hit, 5f, NavMesh.AllAreas) ? hit.position : lastRemembered;
+                navigator.Destination = NavMesh.SamplePosition(lastRemembered, out NavMeshHit hit, 5f, NavMesh.AllAreas) ? hit.position : lastRemembered;
 
             if ((lastRemembered - Core.transform.position).sqrMagnitude <= 9f)
             {

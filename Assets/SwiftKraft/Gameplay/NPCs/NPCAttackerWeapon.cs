@@ -1,5 +1,4 @@
 using SwiftKraft.Gameplay.Interfaces;
-using SwiftKraft.Gameplay.Weapons;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.NPCs

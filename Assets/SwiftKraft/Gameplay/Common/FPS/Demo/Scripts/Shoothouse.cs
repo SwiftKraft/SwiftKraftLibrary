@@ -1,6 +1,5 @@
 using SwiftKraft.Gameplay.Damagables;
 using SwiftKraft.Gameplay.Map;
-using SwiftKraft.Gameplay.Weapons;
 using SwiftKraft.Utils;
 using System;
 using System.Collections.Generic;

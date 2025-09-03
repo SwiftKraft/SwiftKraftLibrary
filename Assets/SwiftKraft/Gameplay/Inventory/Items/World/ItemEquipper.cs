@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
-    public class ItemEquipper : MonoBehaviour, IItemEquipper
+    public class ItemEquipper : PetBehaviourBase, IItemEquipper
     {
         public readonly List<EquippedItemBase> EquippedItemCache = new();
 
@@ -18,6 +19,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         protected virtual void Awake()
         {
+            Owner = GetComponent<IPawn>();
             EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItemBase>());
             ResetAll();
         }
@@ -94,6 +96,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
             if (Current != null)
                 Current.Unequip();
+
             ResetAll();
             Current = null;
         }

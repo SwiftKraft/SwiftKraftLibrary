@@ -1,11 +1,11 @@
+using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using System;
-using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
-    public class EquippedItemBase : MonoBehaviour
+    public class EquippedItemBase : PetBehaviourBase
     {
         public IItemEquipper Parent { get; private set; }
 
@@ -13,7 +13,11 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public EquippableItemType Item => Instance.Type is EquippableItemType eq ? eq : null;
 
-        public void Init(IItemEquipper parent) => Parent = parent;
+        public void Init(IItemEquipper parent)
+        {
+            Parent = parent;
+            Owner = parent.GetRootOwner();
+        }
 
         public event Action OnUnequip;
         public event Action OnEquip;
