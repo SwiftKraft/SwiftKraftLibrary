@@ -17,6 +17,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public event Action OnUnequip;
         public event Action OnEquip;
+        public event Action OnObjectEnable;
+        public event Action OnObjectDisable;
 
         public readonly BooleanLock CanUnequip = new();
 
@@ -57,6 +59,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             if (Instance != null)
                 Instance.OnDestroy -= OnInstanceDestroyed;
         }
+
+        protected virtual void OnEnable() => OnObjectEnable?.Invoke();
+        protected virtual void OnDisable() => OnObjectDisable?.Invoke();
 
         protected virtual void OnInstanceDestroyed()
         {

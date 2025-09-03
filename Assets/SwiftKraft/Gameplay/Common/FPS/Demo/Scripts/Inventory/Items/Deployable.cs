@@ -30,11 +30,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             if (Input.GetKeyDown(KeyCode.G))
                 Parent.WishEquip = null;
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Builder.TryBuild();
+            if (Input.GetKeyDown(KeyCode.Mouse0) && Builder.TryBuild())
                 Instance.Despawn();
-            }
         }
     }
 }

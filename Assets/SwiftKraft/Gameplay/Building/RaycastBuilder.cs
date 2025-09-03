@@ -40,6 +40,18 @@ namespace SwiftKraft.Gameplay.Building
 
         private void OnDestroy() => RemoveBlueprint();
 
+        private void OnDisable()
+        {
+            if (currentBlueprint != null)
+                currentBlueprint.gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            if (currentBlueprint != null)
+                currentBlueprint.gameObject.SetActive(true);
+        }
+
         public bool TryBuild()
         {
             if (canBuild)
@@ -108,6 +120,7 @@ namespace SwiftKraft.Gameplay.Building
             go.transform.SetPositionAndRotation(position, rotation);
             currentBlueprint = go;
             go.ChangeMaterial(canBuild ? ValidMaterial : InvalidMaterial);
+            go.gameObject.SetActive(isActiveAndEnabled);
         }
 
         public void RemoveBlueprint()

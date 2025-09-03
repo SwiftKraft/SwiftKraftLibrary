@@ -2550,6 +2550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7100014879415017901}
   - component: {fileID: 316598865839805315}
+  - component: {fileID: 3127576039389238636}
   m_Layer: 6
   m_Name: ProtoHandsModel
   m_TagString: Untagged
@@ -2616,7 +2617,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4861938068866656573, guid: ca459c4617768b94bb635f59651d8e3f, type: 3}
   m_Bones:
@@ -2690,3 +2691,16 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00039295992, y: -0.0022450492, z: -0.00197721}
     m_Extent: {x: 0.0019297213, y: 0.0015767755, z: 0.0017436364}
   m_DirtyAABB: 0
+--- !u!114 &3127576039389238636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218438393128485039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a128109172a7aa45a5cea78e9958970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwapperPackage: {fileID: 11400000, guid: 8dd083bbd172baa44b57e64e55ed475b, type: 2}
