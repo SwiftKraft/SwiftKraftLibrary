@@ -57,19 +57,14 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             WaitTimer.Reset();
             WaitTimer.OnTimerEnd += OnTimerEnd;
         }
-
         public override void Begin()
         {
             WaitTimer.Reset();
             OnStart?.Invoke();
         }
-
         public override void End() { }
-
         public override void Frame() { }
-
         public override void Tick() => WaitTimer.Tick(Time.fixedDeltaTime);
-
         protected virtual void OnTimerEnd() => OnEnd?.Invoke();
     }
 }

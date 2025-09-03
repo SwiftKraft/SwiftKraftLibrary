@@ -32,6 +32,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && Builder.TryBuild())
                 Instance.Despawn();
+
+            Builder.enabled = CurrentState == IdleStateInstance;
         }
     }
 }

@@ -49,7 +49,10 @@ namespace SwiftKraft.Gameplay.Building
         private void OnEnable()
         {
             if (currentBlueprint != null)
+            {
+                UpdateBlueprint();
                 currentBlueprint.gameObject.SetActive(true);
+            }
         }
 
         public bool TryBuild()
