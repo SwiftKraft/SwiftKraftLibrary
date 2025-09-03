@@ -9,8 +9,23 @@ namespace SwiftKraft.Gameplay.Inventory.Items
     {
         public EquippedItemWaitState EquipStateInstance { get; protected set; }
         public EquippedItemWaitState UnequipStateInstance { get; protected set; }
+        public EquippedItemState IdleStateInstance { get; protected set; }
 
-        protected virtual void Start() => CurrentState = EquipStateInstance;
+        protected virtual void Start()
+        {
+            EquipStateInstance.Init(this);
+            UnequipStateInstance.Init(this);
+
+            EquipStateInstance.OnEnd.AddListener(SetIdle);
+        }
+
+        public override void Equip(ItemInstance inst)
+        {
+            base.Equip(inst);
+            CurrentState = EquipStateInstance;
+        }
+
+        public void SetIdle() => CurrentState = IdleStateInstance;
 
         public override bool AttemptUnequip()
         {

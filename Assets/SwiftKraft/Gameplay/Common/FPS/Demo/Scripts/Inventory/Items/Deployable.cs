@@ -23,5 +23,12 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             EquipStateInstance = EquipState;
             UnequipStateInstance = UnequipState;
         }
+
+        protected override void Update()
+        {
+            base.Update();
+            if (Input.GetKeyDown(KeyCode.G))
+                Parent.WishEquip = null;
+        }
     }
 }

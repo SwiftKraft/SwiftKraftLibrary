@@ -14,7 +14,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public event Action<EquippedItemBase> OnEquip;
 
         public EquippedItemBase Current { get; private set; }
-        public ItemInstance WishEquip { get; private set; }
+        public ItemInstance WishEquip { get; set; }
 
         protected virtual void Awake()
         {
@@ -32,6 +32,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
                 if (TryEquip(WishEquip, out EquippedItemBase b))
                 {
                     Current = b;
+                    Debug.Log("Current: " + Current.Instance.Serial);
+                    OnEquip?.Invoke(Current);
                     return;
                 }
             }
@@ -39,11 +41,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             if ((WishEquip != Current.Instance) && Current.AttemptUnequip())
             {
                 ForceUnequip();
-                if (TryEquip(WishEquip, out EquippedItemBase it))
-                {
-                    Current = it;
-                    OnEquip?.Invoke(Current);
-                }
+                Debug.Log("WishEquip: " + WishEquip.Serial);
             }
         }
 
