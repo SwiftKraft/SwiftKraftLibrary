@@ -32,8 +32,12 @@ namespace SwiftKraft.Gameplay.Common.FPS
         private void Update()
         {
             foreach (SlotSelector sel in Selectors)
-                if (Input.GetKeyDown(sel.Key) && Data.Items.Count > sel.Slot && Data.Items[sel.Slot] > 0)
-                    Equipper.Equip(Data.Items[sel.Slot]);
+                if (Input.GetKeyDown(sel.Key))
+                {
+                    RemoveInvalid();
+                    if (Data.Items.Count > sel.Slot && Data.Items[sel.Slot] > 0)
+                        Equipper.Equip(Data.Items[sel.Slot]);
+                }
 
             if (Input.GetKeyDown(DropKey) && Equipper.Current != null)
             {

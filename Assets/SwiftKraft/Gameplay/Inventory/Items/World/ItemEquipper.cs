@@ -26,23 +26,19 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         {
             if (Current == null)
             {
-                if (WishEquip == null)
+                if (WishEquip == null || WishEquip.Disposed)
                     return;
 
                 if (TryEquip(WishEquip, out EquippedItemBase b))
                 {
                     Current = b;
-                    Debug.Log("Current: " + Current.Instance.Serial);
                     OnEquip?.Invoke(Current);
                     return;
                 }
             }
 
             if ((WishEquip != Current.Instance) && Current.AttemptUnequip())
-            {
                 ForceUnequip();
-                Debug.Log("WishEquip: " + WishEquip.Serial);
-            }
         }
 
         public bool TryEquip(ItemInstance inst, out EquippedItemBase it)
@@ -93,12 +89,13 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void ForceUnequip(bool resetWishEquip = false)
         {
+            if (resetWishEquip)
+                WishEquip = null;
+
             if (Current != null)
                 Current.Unequip();
             ResetAll();
             Current = null;
-            if (resetWishEquip)
-                WishEquip = null;
         }
 
         public void Equip(ItemInstance item)

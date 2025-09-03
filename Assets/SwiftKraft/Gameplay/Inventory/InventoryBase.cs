@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using SwiftKraft.Gameplay.Inventory.Items;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +27,7 @@ namespace SwiftKraft.Gameplay.Inventory
             inst.SwitchInventoryEvent(Data);
             inst.OnSwitchInventory += OnItemSwitch;
             Data.Items.Add(inst);
-            Data.Items.RemoveAll((it) => it == 0);
+            RemoveInvalid();
         }
 
         public virtual void RemoveItem(ItemInstance inst)
@@ -38,12 +37,14 @@ namespace SwiftKraft.Gameplay.Inventory
 
             inst.OnSwitchInventory -= OnItemSwitch;
             Data.Items.Remove(inst);
-            Data.Items.RemoveAll((it) => it == 0);
+            RemoveInvalid();
         }
+
+        public virtual void RemoveInvalid() => Data.Items.RemoveAll((it) => it == 0 || !ItemManager.TryGetInstance(it, out ItemInstance inst) || inst.Disposed);
 
         public virtual WorldItemBase DropItem(ItemInstance inst, Vector3 position, Quaternion rotation = default, Transform parent = null)
         {
-            if (inst == null || !Data.Items.Contains(inst) || inst.Type == null || inst.Type.WorldPrefab == null)
+            if (inst == null || inst.Disposed || !Data.Items.Contains(inst) || inst.Type == null || inst.Type.WorldPrefab == null)
                 return null;
 
             RemoveItem(inst);

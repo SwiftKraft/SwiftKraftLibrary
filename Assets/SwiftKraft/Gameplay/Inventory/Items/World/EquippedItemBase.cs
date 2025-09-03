@@ -34,7 +34,10 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public virtual void Equip(ItemInstance inst)
         {
+            if (Instance != null)
+                Instance.OnDestroy -= OnInstanceDestroyed;
             Instance = inst;
+            Instance.OnDestroy += OnInstanceDestroyed;
             OnEquip?.Invoke();
         }
 
@@ -49,6 +52,17 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         protected virtual void Awake() { }
         protected virtual void FixedUpdate() => CurrentState?.Tick();
         protected virtual void Update() => CurrentState?.Frame();
+        protected virtual void OnDestroy()
+        {
+            if (Instance != null)
+                Instance.OnDestroy -= OnInstanceDestroyed;
+        }
+
+        protected virtual void OnInstanceDestroyed()
+        {
+            if (Parent.Current == this)
+                Parent.ForceUnequip(true);
+        }
     }
 
     public abstract class EquippedItemState
