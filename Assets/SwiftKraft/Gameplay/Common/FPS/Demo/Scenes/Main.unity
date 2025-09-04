@@ -2004,7 +2004,7 @@ MonoBehaviour:
   EquipState:
     WaitTimer:
       StartEnded: 0
-      <MaxValue>k__BackingField: 0
+      <MaxValue>k__BackingField: 0.25
     OnStart:
       m_PersistentCalls:
         m_Calls: []
@@ -2014,13 +2014,15 @@ MonoBehaviour:
   UnequipState:
     WaitTimer:
       StartEnded: 0
-      <MaxValue>k__BackingField: 0
+      <MaxValue>k__BackingField: 0.25
     OnStart:
       m_PersistentCalls:
         m_Calls: []
     OnEnd:
       m_PersistentCalls:
         m_Calls: []
+  ProjectilePrefab: {fileID: 0}
+  ShootPoint: {fileID: 174738339}
 --- !u!1 &185896695
 GameObject:
   m_ObjectHideFlags: 0

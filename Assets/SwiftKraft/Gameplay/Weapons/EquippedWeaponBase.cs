@@ -1,4 +1,7 @@
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
@@ -7,26 +10,32 @@ namespace SwiftKraft.Gameplay.Weapons
         public EquippedItemWaitState EquipState;
         public EquippedItemWaitState UnequipState;
 
-        public class Idle : EquippedItemState<EquippedWeaponBase>
+        public GameObject ProjectilePrefab;
+
+        public Transform ShootPoint;
+
+        public virtual void Attack()
         {
+            GameObject go = Instantiate(ProjectilePrefab, ShootPoint.position, ShootPoint.rotation);
+            if (go.TryGetComponent(out IPet pet))
+                pet.Owner = Owner;
+        }
+
+        public class AttackState : EquippedItemWaitState
+        {
+            public new EquippedWeaponBase Item => base.Item as EquippedWeaponBase;
+
             public override void Begin()
             {
-                throw new System.NotImplementedException();
+                base.Begin();
+                Item.Attack();
             }
 
-            public override void End()
+            protected override void OnTimerEnd()
             {
-                throw new System.NotImplementedException();
-            }
-
-            public override void Frame()
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public override void Tick()
-            {
-                throw new System.NotImplementedException();
+                base.OnTimerEnd();
+                if (Item != null)
+                    Item.SetIdle();
             }
         }
     }
