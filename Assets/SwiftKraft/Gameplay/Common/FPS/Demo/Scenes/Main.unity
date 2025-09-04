@@ -1966,6 +1966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 174738339}
+  - component: {fileID: 174738340}
   m_Layer: 6
   m_Name: ProtoPistol
   m_TagString: Untagged
@@ -1988,6 +1989,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &174738340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174738338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45884f4bb1856734fa639fecf0d36ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipState:
+    WaitTimer:
+      StartEnded: 0
+      <MaxValue>k__BackingField: 0
+    OnStart:
+      m_PersistentCalls:
+        m_Calls: []
+    OnEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  UnequipState:
+    WaitTimer:
+      StartEnded: 0
+      <MaxValue>k__BackingField: 0
+    OnStart:
+      m_PersistentCalls:
+        m_Calls: []
+    OnEnd:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &185896695
 GameObject:
   m_ObjectHideFlags: 0
