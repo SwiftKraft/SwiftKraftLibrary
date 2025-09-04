@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Value: 0
   sharpenIntensity:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 13.5
   sharpenDepthThreshold:
     m_OverrideState: 0
     m_Value: 0.035
@@ -154,35 +154,35 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   tonemap:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 3
   tonemapAGXGamma:
-    m_OverrideState: 0
-    m_Value: 1.78
+    m_OverrideState: 1
+    m_Value: 1.6
   tonemapMaxInputBrightness:
-    m_OverrideState: 0
-    m_Value: 2.46
+    m_OverrideState: 1
+    m_Value: 1000
   tonemapExposurePre:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   tonemapBrightnessPost:
-    m_OverrideState: 0
-    m_Value: 1.31
+    m_OverrideState: 1
+    m_Value: 1
   saturate:
-    m_OverrideState: 0
-    m_Value: 2.79
+    m_OverrideState: 1
+    m_Value: 3
   brightness:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   contrast:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   daltonize:
     m_OverrideState: 0
     m_Value: 0
   sepia:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   tintColor:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 0}
