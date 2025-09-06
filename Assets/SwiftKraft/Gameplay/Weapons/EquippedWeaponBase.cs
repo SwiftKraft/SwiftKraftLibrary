@@ -2,18 +2,15 @@ using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class EquippedWeaponBase : EquippedItemDrawTime
+    public abstract class EquippedWeaponBase : EquippedItemDrawTime
     {
         public EquippedItemWaitState EquipState;
         public EquippedItemWaitState UnequipState;
 
-        public GameObject ProjectilePrefab;
-
-        public Transform ShootPoint;
+        public EquippedItemState AttackStateInstance { get; protected set; }
 
         protected override void Awake()
         {
@@ -22,15 +19,13 @@ namespace SwiftKraft.Gameplay.Weapons
             UnequipStateInstance = UnequipState;
         }
 
-        public virtual void Attack()
-        {
-            GameObject go = Instantiate(ProjectilePrefab, ShootPoint.position, ShootPoint.rotation);
-            if (go.TryGetComponent(out IPet pet))
-                pet.Owner = Owner;
-        }
+        public virtual void Attack() => CurrentState = AttackStateInstance;
 
-        public class AttackState : EquippedItemWaitState
+        public class BasicAttack : EquippedItemWaitState
         {
+            public GameObject ProjectilePrefab;
+            public Transform ShootPoint;
+
             public new EquippedWeaponBase Item => base.Item as EquippedWeaponBase;
 
             public UnityEvent OnAttack;
@@ -38,7 +33,7 @@ namespace SwiftKraft.Gameplay.Weapons
             public override void Begin()
             {
                 base.Begin();
-                Item.Attack();
+                SpawnProjectile();
                 OnAttack?.Invoke();
             }
 
@@ -47,6 +42,13 @@ namespace SwiftKraft.Gameplay.Weapons
                 base.OnTimerEnd();
                 if (Item != null)
                     Item.SetIdle();
+            }
+
+            public virtual void SpawnProjectile()
+            {
+                GameObject go = Instantiate(ProjectilePrefab, ShootPoint.position, ShootPoint.rotation);
+                if (go.TryGetComponent(out IPet pet))
+                    pet.Owner = Item.Owner;
             }
         }
     }
