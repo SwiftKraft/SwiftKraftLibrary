@@ -1,6 +1,7 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -14,6 +15,13 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public Transform ShootPoint;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            EquipStateInstance = EquipState;
+            UnequipStateInstance = UnequipState;
+        }
+
         public virtual void Attack()
         {
             GameObject go = Instantiate(ProjectilePrefab, ShootPoint.position, ShootPoint.rotation);
@@ -25,10 +33,13 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             public new EquippedWeaponBase Item => base.Item as EquippedWeaponBase;
 
+            public UnityEvent OnAttack;
+
             public override void Begin()
             {
                 base.Begin();
                 Item.Attack();
+                OnAttack?.Invoke();
             }
 
             protected override void OnTimerEnd()
