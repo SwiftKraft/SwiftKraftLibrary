@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725977df340a9d44da6f2f13f35287af, type: 3}
+  m_Name: Grease
+  m_EditorClassIdentifier: 
+  ID: Grease
+  WorldPrefab: {fileID: 5852272558835464859, guid: 32d8677915521dc4eb6710a7cb5f4808,
+    type: 3}
+  EquippedPrefab: {fileID: 2243808998322166224, guid: 41a49c239dde9ff479cc0b4820f53925,
+    type: 3}

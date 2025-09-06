@@ -3876,7 +3876,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DropOnDestroy: 0
-  DefaultItems: []
+  DefaultItems:
+  - {fileID: 11400000, guid: bb915fac8176a094c98f6265cf5fad23, type: 2}
   Selectors:
   - Key: 49
     Slot: 0

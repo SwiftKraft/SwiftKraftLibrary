@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime:
-    <MaxValue>k__BackingField: 0.1
     StartEnded: 0
+    <MaxValue>k__BackingField: 0.1
   Range: 100
   Layers:
     serializedVersion: 2
@@ -70,10 +70,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime:
-    <MaxValue>k__BackingField: 0.5
     StartEnded: 0
+    <MaxValue>k__BackingField: 0.5
   HitPoint: {x: 0, y: 0, z: 0}
-  LengthPercentage: 0.1
+  LengthPercentage: 0.4
 --- !u!114 &616807426601634346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,8 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawners:
   - <Weight>k__BackingField: 1
-    Spawnees:
-    - {fileID: 5711120889907251023, guid: 620d53f5edbbcea458c1ff999e153113, type: 3}
+    Spawnees: []
   InHierarchy: 1
 --- !u!1 &2948527090044799934
 GameObject:
