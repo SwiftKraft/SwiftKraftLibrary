@@ -1,5 +1,6 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,6 +22,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public virtual void Attack() => CurrentState = AttackStateInstance;
 
+        [Serializable]
         public class BasicAttack : EquippedItemWaitState
         {
             public GameObject ProjectilePrefab;
