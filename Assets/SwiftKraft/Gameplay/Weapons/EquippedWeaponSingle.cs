@@ -7,7 +7,7 @@ namespace SwiftKraft.Gameplay.Weapons
     public class EquippedWeaponSingle : EquippedWeaponBase
     {
         public BasicAttack AttackState;
-        public Idle IdleState;
+        public Idle IdleState = new();
 
         protected override void Awake()
         {

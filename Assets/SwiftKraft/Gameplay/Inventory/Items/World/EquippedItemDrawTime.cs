@@ -13,8 +13,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         protected virtual void Start()
         {
-            EquipStateInstance.Init(this);
-            UnequipStateInstance.Init(this);
+            EquipStateInstance?.Init(this);
+            UnequipStateInstance?.Init(this);
+            IdleStateInstance?.Init(this);
 
             EquipStateInstance.OnEnd.AddListener(SetIdle);
         }

@@ -20,6 +20,12 @@ namespace SwiftKraft.Gameplay.Weapons
             UnequipStateInstance = UnequipState;
         }
 
+        protected override void Start()
+        {
+            base.Start();
+            AttackStateInstance?.Init(this);
+        }
+
         public virtual void Attack() => CurrentState = AttackStateInstance;
 
         [Serializable]
