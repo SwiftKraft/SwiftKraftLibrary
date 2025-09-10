@@ -105,7 +105,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
                 anim.Update(0f);
 
-                Parent.StartCoroutine(sound());
+                if (Parent.isActiveAndEnabled)
+                    Parent.StartCoroutine(sound());
 
                 IEnumerator sound()
                 {

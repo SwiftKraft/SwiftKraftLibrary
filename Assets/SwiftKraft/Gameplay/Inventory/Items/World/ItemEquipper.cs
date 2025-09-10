@@ -12,9 +12,19 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         public Transform Workspace;
 
         public event Action<EquippedItem> OnEquip;
+        public event Action<EquippedItem> OnCurrentChanged;
 
-        public EquippedItem Current { get; private set; }
+        public EquippedItem Current
+        {
+            get => current;
+            private set
+            {
+                current = value;
+                OnCurrentChanged?.Invoke(current);
+            }
+        }
         ItemInstance tryEquip;
+        EquippedItem current;
 
         private void Awake()
         {

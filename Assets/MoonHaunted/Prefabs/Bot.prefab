@@ -2985,6 +2985,7 @@ GameObject:
   - component: {fileID: 708618974225749178}
   - component: {fileID: 8795836024414065437}
   - component: {fileID: 3175375332146824246}
+  - component: {fileID: 5787637762266358786}
   - component: {fileID: 5358874460008546985}
   - component: {fileID: 5610568226518439506}
   - component: {fileID: 1697853700510881262}
@@ -3336,6 +3337,22 @@ MonoBehaviour:
     StartEnded: 0
     <MaxValue>k__BackingField: 0.5
   SightPoint: {fileID: 6277556696743273170}
+--- !u!114 &5787637762266358786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7855128607081139760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f131529d6da025a478dfb05fa1d3fcfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapon: {fileID: 0}
+  Range: 30
+  AttackDot: 0.7
+  AttackDotAxis: {x: 0, y: 0, z: 1}
 --- !u!114 &5358874460008546985
 MonoBehaviour:
   m_ObjectHideFlags: 0
