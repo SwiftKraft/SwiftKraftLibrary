@@ -6,8 +6,11 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class EquippedWeaponSingle : EquippedWeaponBase
     {
-        public BasicAttack AttackState;
+        public Shoot AttackState;
         public Idle IdleState = new();
+
+        public int MaxAmmo = 10;
+        public Ammo AmmoData = new();
 
         protected override void Awake()
         {
@@ -16,7 +19,30 @@ namespace SwiftKraft.Gameplay.Weapons
             IdleStateInstance = IdleState;
         }
 
-        public class Idle : EquippedItemState<EquippedWeaponBase>
+        public override void Equip(ItemInstance inst)
+        {
+            base.Equip(inst);
+            Instance.TryData("Ammo", out AmmoData, n => n.CurrentAmmo = MaxAmmo);
+        }
+
+        public class Ammo : ItemDataBase
+        {
+            public int CurrentAmmo;
+        }
+
+        [Serializable]
+        public class Shoot : BasicAttack
+        {
+            public new EquippedWeaponSingle Item => base.Item as EquippedWeaponSingle;
+
+            public override void Begin()
+            {
+                base.Begin();
+                Item.AmmoData.CurrentAmmo--;
+            }
+        }
+
+        public class Idle : EquippedItemState<EquippedWeaponSingle>
         {
             public override void Begin() { }
 
@@ -24,7 +50,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public override void Frame()
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (Input.GetKeyDown(KeyCode.Mouse0) && Item.AmmoData.CurrentAmmo > 0)
                     Item.Attack();
             }
 

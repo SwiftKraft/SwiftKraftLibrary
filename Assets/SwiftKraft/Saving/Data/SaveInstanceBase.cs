@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace SwiftKraft.Saving.Data
@@ -13,20 +14,21 @@ namespace SwiftKraft.Saving.Data
 
         public virtual void InitializeData<T>(T t) where T : E { }
 
-        public T AddData<T>(string id) where T : E, new()
+        public T AddData<T>(string id, Action<T> initAction = null) where T : E, new()
         {
             if (Data.ContainsKey(id))
                 return null;
 
             T t = new();
             InitializeData(t);
+            initAction?.Invoke(t);
             Data.Add(id, t);
             return t;
         }
 
-        public bool TryAddData<T>(string id, out T dat) where T : E, new()
+        public bool TryAddData<T>(string id, out T dat, Action<T> initAction = null) where T : E, new()
         {
-            dat = AddData<T>(id);
+            dat = AddData<T>(id, initAction);
             return dat != null;
         }
 
@@ -38,7 +40,7 @@ namespace SwiftKraft.Saving.Data
             return dat != null;
         }
 
-        public bool TryData<T>(string id, out T dat) where T : E, new() => TryGetData(id, out dat) || TryAddData(id, out dat);
+        public bool TryData<T>(string id, out T dat, Action<T> initAction = null) where T : E, new() => TryGetData(id, out dat) || TryAddData(id, out dat, initAction);
 
         public bool RemoveData(string id) => Data.Remove(id);
     }
