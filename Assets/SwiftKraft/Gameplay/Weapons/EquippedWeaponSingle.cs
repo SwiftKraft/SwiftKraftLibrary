@@ -1,16 +1,20 @@
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
 using System;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class EquippedWeaponSingle : EquippedWeaponBase
+    public class EquippedWeaponSingle : EquippedWeaponBase, IAmmo
     {
         public Shoot AttackState;
         public Idle IdleState = new();
 
-        public int MaxAmmo = 10;
+        [field: SerializeField]
+        public int MaxAmmo { get; set; } = 10;
         public Ammo AmmoData = new();
+
+        public int CurrentAmmo => AmmoData != null ? AmmoData.CurrentAmmo : 0;
 
         protected override void Awake()
         {

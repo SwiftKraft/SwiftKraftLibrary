@@ -2815,6 +2815,7 @@ MonoBehaviour:
     OnAttack:
       m_PersistentCalls:
         m_Calls: []
+  <MaxAmmo>k__BackingField: 10
 --- !u!1 &6512778785226364503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3021,6 +3022,7 @@ GameObject:
   - component: {fileID: 7466739221878732527}
   - component: {fileID: 1339599122694686364}
   - component: {fileID: 6892240242858961533}
+  - component: {fileID: 1778051820372118520}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -3169,6 +3171,20 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.1
     SnapRange: 0.00001
+--- !u!114 &1778051820372118520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8051414410936804523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1813ab99d6c360b41ae8dd2d50556ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 0}
+  VariableName: Ammo
 --- !u!1 &8158608167812810534
 GameObject:
   m_ObjectHideFlags: 0
