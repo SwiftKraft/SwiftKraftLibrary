@@ -55,8 +55,12 @@ namespace SwiftKraft.Gameplay.Weapons
             public virtual void SpawnProjectile()
             {
                 GameObject go = Instantiate(ProjectilePrefab, ShootPoint.position, ShootPoint.rotation);
+
                 if (go.TryGetComponent(out IPet pet))
                     pet.Owner = Item.Owner;
+
+                if (go.TryGetComponent(out IVisualOrigin origin) && (Item is IVisualOrigin source || Item.TryGetComponent(out source)))
+                    origin.VisualOrigin = source.VisualOrigin;
             }
         }
     }

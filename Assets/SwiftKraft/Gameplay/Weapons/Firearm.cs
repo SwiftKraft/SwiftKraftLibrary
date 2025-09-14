@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class EquippedWeaponSingle : EquippedWeaponBase, IAmmo
+    public class Firearm : EquippedWeaponBase, IAmmo
     {
         public Shoot AttackState;
         public Idle IdleState = new();
@@ -34,10 +34,33 @@ namespace SwiftKraft.Gameplay.Weapons
             public int CurrentAmmo;
         }
 
+        public class Reload : EquippedItemState<Firearm>
+        {
+            public override void Begin()
+            {
+
+            }
+
+            public override void End()
+            {
+
+            }
+
+            public override void Frame()
+            {
+
+            }
+
+            public override void Tick()
+            {
+
+            }
+        }
+
         [Serializable]
         public class Shoot : BasicAttack
         {
-            public new EquippedWeaponSingle Item => base.Item as EquippedWeaponSingle;
+            public new Firearm Item => base.Item as Firearm;
 
             public override void Begin()
             {
@@ -46,7 +69,7 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
-        public class Idle : EquippedItemState<EquippedWeaponSingle>
+        public class Idle : EquippedItemState<Firearm>
         {
             public override void Begin() { }
 
