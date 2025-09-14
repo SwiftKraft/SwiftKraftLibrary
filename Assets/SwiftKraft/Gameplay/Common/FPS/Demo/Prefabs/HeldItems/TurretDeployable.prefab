@@ -2108,6 +2108,12 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.1
     SnapRange: 0.00001
+  SpeedParameterName: MovementMultiplier
+  Raw: 0
+  Multiplier: 0.2
+  StateMultipliers:
+  - State: 2
+    Multiplier: 0.75
 --- !u!1 &7377464682088073085
 GameObject:
   m_ObjectHideFlags: 0

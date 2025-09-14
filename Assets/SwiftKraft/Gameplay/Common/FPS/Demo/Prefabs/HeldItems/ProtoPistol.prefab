@@ -3173,12 +3173,10 @@ MonoBehaviour:
     SnapRange: 0.00001
   SpeedParameterName: MovementMultiplier
   Raw: 0
-  Multiplier: 1
+  Multiplier: 0.2
   StateMultipliers:
-  - State: 1
-    Multiplier: 0.2
   - State: 2
-    Multiplier: 1
+    Multiplier: 0.75
 --- !u!114 &1778051820372118520
 MonoBehaviour:
   m_ObjectHideFlags: 0
