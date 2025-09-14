@@ -1,7 +1,9 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
+using SwiftKraft.Utils;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
@@ -9,18 +11,28 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public Shoot AttackState;
         public Idle IdleState = new();
+        public Reload ReloadState = new();
 
         [field: SerializeField]
         public int MaxAmmo { get; set; } = 10;
         public Ammo AmmoData = new();
 
-        public int CurrentAmmo => AmmoData != null ? AmmoData.CurrentAmmo : 0;
+        public int CurrentAmmo
+        {
+            get => AmmoData != null ? AmmoData.CurrentAmmo : 0; 
+            set
+            {
+                if (AmmoData != null)
+                    AmmoData.CurrentAmmo = value;
+            }
+        }
 
         protected override void Awake()
         {
             base.Awake();
             AttackStateInstance = AttackState;
             IdleStateInstance = IdleState;
+            ReloadState.Init(this);
         }
 
         public override void Equip(ItemInstance inst)
@@ -34,26 +46,83 @@ namespace SwiftKraft.Gameplay.Weapons
             public int CurrentAmmo;
         }
 
+        [Serializable]
         public class Reload : EquippedItemState<Firearm>
         {
+            [Serializable]
+            public class ReloadProfile
+            {
+                public float TotalTime = 3f;
+                public float FillTime = 1f;
+            }
+
+            [Serializable]
+            public class ReloadProfileOverride : ReloadProfile
+            {
+                public int AmmoCount = 30;
+            }
+
+            public UnityEvent OnReload;
+
+            public ReloadProfile Default;
+            public ReloadProfileOverride[] Overrides;
+
+            public readonly Timer CurrentTimer = new();
+
+            private float fillRemain;
+            private bool filled;
+
+            public ReloadProfile FindProfile()
+            {
+                ReloadProfile prof = Default;
+                for (int i = 0; i < Overrides.Length; i++)
+                {
+                    if (Overrides[i].AmmoCount < Item.CurrentAmmo)
+                        break;
+                    prof = Overrides[i];
+                }
+                return prof;
+            }
+
+            public void SetProfile(ReloadProfile prof)
+            {
+                CurrentTimer.Reset(prof.TotalTime);
+                fillRemain = CurrentTimer.MaxValue - prof.FillTime;
+                filled = false;
+            }
+
+            public virtual void FillAmmo() => Item.CurrentAmmo = Item.MaxAmmo;
+
+            public override void Init(EquippedItemBase t)
+            {
+                base.Init(t);
+                Array.Sort(Overrides, (a, b) => a.AmmoCount.CompareTo(b.AmmoCount));
+            }
+
             public override void Begin()
             {
-
+                SetProfile(FindProfile());
+                OnReload?.Invoke();
             }
 
             public override void End()
             {
-
+                if (filled)
+                    FillAmmo();
+                filled = false;
             }
 
-            public override void Frame()
-            {
-
-            }
+            public override void Frame() { }
 
             public override void Tick()
             {
+                CurrentTimer.Tick(Time.fixedDeltaTime);
 
+                if (!filled && CurrentTimer.CurrentValue <= fillRemain)
+                    filled = true;
+
+                if (CurrentTimer.Ended)
+                    Item.SetIdle();
             }
         }
 
@@ -77,8 +146,11 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public override void Frame()
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0) && Item.AmmoData.CurrentAmmo > 0)
+                if (Input.GetKeyDown(KeyCode.Mouse0) && Item.CurrentAmmo > 0)
                     Item.Attack();
+
+                if (Input.GetKeyDown(KeyCode.R) && Item.CurrentAmmo < Item.MaxAmmo)
+                    Item.CurrentState = Item.ReloadState;
             }
 
             public override void Tick() { }
