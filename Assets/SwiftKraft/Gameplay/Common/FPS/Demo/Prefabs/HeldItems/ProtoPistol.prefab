@@ -3171,6 +3171,14 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.1
     SnapRange: 0.00001
+  SpeedParameterName: MovementMultiplier
+  Raw: 0
+  Multiplier: 1
+  StateMultipliers:
+  - State: 1
+    Multiplier: 0.2
+  - State: 2
+    Multiplier: 1
 --- !u!114 &1778051820372118520
 MonoBehaviour:
   m_ObjectHideFlags: 0
