@@ -20,6 +20,7 @@ namespace SwiftKraft.Gameplay.Weapons
         protected override void Awake()
         {
             base.Awake();
+
             EquipStateInstance = EquipState;
             UnequipStateInstance = UnequipState;
         }
@@ -34,6 +35,7 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             if (ExposedStats.ContainsKey(key))
                 return false;
+
             ExposedStats.Add(key, stat);
             return true;
         }
