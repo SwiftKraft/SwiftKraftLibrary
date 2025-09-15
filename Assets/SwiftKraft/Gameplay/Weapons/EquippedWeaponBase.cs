@@ -1,6 +1,8 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
+using SwiftKraft.Utils;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +10,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public abstract class EquippedWeaponBase : EquippedItemDrawTime
     {
+        public readonly Dictionary<string, ModifiableStatistic> ExposedStats = new();
+
         public EquippedItemWaitState EquipState;
         public EquippedItemWaitState UnequipState;
 
@@ -24,6 +28,24 @@ namespace SwiftKraft.Gameplay.Weapons
         {
             base.Start();
             AttackStateInstance?.Init(this);
+        }
+
+        public bool ExposeStat(string key, ModifiableStatistic stat)
+        {
+            if (ExposedStats.ContainsKey(key))
+                return false;
+            ExposedStats.Add(key, stat);
+            return true;
+        }
+
+        public bool ConcealStat(string key) => ExposedStats.Remove(key);
+
+        public ModifiableStatistic GetStat(string key) => ExposedStats.ContainsKey(key) ? ExposedStats[key] : null;
+
+        public bool TryGetStat(string key, out ModifiableStatistic stat)
+        {
+            stat = GetStat(key);
+            return stat != null;
         }
 
         public virtual void Attack() => CurrentState = AttackStateInstance;
