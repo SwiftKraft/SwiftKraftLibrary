@@ -2,6 +2,7 @@ using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
@@ -39,7 +40,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
                 }
             }
 
-            if ((WishEquip != Current.Instance) && Current.AttemptUnequip())
+            if ((WishEquip != Current.Instance || Current.Instance.Disposed) && Current.AttemptUnequip())
                 ForceUnequip();
         }
 

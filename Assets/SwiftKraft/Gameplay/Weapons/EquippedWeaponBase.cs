@@ -62,11 +62,27 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public UnityEvent OnAttack;
 
+            protected BooleanLock.Lock canUnequip;
+
+            public override void Init(EquippedItemBase t)
+            {
+                base.Init(t);
+                canUnequip = Item.CanUnequip.AddLock();
+                canUnequip.Active = false;
+            }
+
             public override void Begin()
             {
                 base.Begin();
                 SpawnProjectile();
                 OnAttack?.Invoke();
+                canUnequip.Active = true;
+            }
+
+            public override void End()
+            {
+                base.End();
+                canUnequip.Active = false;
             }
 
             protected override void OnTimerEnd()

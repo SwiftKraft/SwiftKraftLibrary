@@ -27,11 +27,12 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         protected override void Update()
         {
             base.Update();
-            if (Input.GetKeyDown(KeyCode.G))
-                Parent.WishEquip = null;
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && Builder.TryBuild())
                 Instance.Despawn();
+
+            if (Input.GetKeyDown(KeyCode.G))
+                Parent.WishEquip = null;
 
             Builder.enabled = CurrentState == IdleStateInstance;
         }

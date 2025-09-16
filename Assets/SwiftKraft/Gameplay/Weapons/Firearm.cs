@@ -69,6 +69,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public readonly Timer CurrentTimer = new();
 
+            protected BooleanLock.Lock canUnequip;
+
             private float fillRemain;
             private bool filled;
 
@@ -97,12 +99,15 @@ namespace SwiftKraft.Gameplay.Weapons
             {
                 base.Init(t);
                 Array.Sort(Overrides, (a, b) => a.AmmoCount.CompareTo(b.AmmoCount));
+                canUnequip = Item.CanUnequip.AddLock();
+                canUnequip.Active = false;
             }
 
             public override void Begin()
             {
                 SetProfile(FindProfile());
                 OnReload?.Invoke();
+                canUnequip.Active = true;
             }
 
             public override void End()
@@ -110,6 +115,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (filled)
                     FillAmmo();
                 filled = false;
+                canUnequip.Active = false;
             }
 
             public override void Frame() { }
@@ -151,6 +157,9 @@ namespace SwiftKraft.Gameplay.Weapons
 
                 if (Input.GetKeyDown(KeyCode.R) && Item.CurrentAmmo < Item.MaxAmmo)
                     Item.CurrentState = Item.ReloadState;
+
+                if (Input.GetKeyDown(KeyCode.G))
+                    Item.Parent.WishEquip = null;
             }
 
             public override void Tick() { }

@@ -33,13 +33,13 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             if (CurrentState == EquipStateInstance || (CurrentState == UnequipStateInstance && !UnequipStateInstance.Ended))
                 return false;
 
-            if (UnequipStateInstance != null && UnequipStateInstance.WaitTimer.MaxValue > 0f && CurrentState != UnequipStateInstance)
+            if (base.AttemptUnequip() && UnequipStateInstance != null && UnequipStateInstance.WaitTimer.MaxValue > 0f && CurrentState != UnequipStateInstance)
             {
                 CurrentState = UnequipStateInstance;
                 return false;
             }
 
-            return true;
+            return base.AttemptUnequip();
         }
     }
 

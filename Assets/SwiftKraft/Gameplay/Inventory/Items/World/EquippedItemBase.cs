@@ -2,6 +2,7 @@ using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using System;
+using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
@@ -53,11 +54,12 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         /// Runs every tick where it tries to unequip; if it returns <b>true</b>, it will unequip.
         /// </summary>
         /// <returns>Whether the unequip is allowed.</returns>
-        public virtual bool AttemptUnequip() => true;
+        public virtual bool AttemptUnequip() => CanUnequip;
 
         protected virtual void Awake() { }
         protected virtual void FixedUpdate() => CurrentState?.Tick();
         protected virtual void Update() => CurrentState?.Frame();
+
         protected virtual void OnDestroy()
         {
             if (Instance != null)
