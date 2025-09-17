@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Common.FPS.ViewModels;
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
 using SwiftKraft.Utils;
@@ -7,7 +8,7 @@ using UnityEngine.Events;
 
 namespace SwiftKraft.Gameplay.Weapons
 {
-    public class Firearm : EquippedWeaponBase, IAmmo
+    public class Firearm : EquippedWeaponBase, IAmmo, IAimable
     {
         public Shoot AttackState;
         public Idle IdleState = new();
@@ -27,12 +28,49 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
+        public CameraManager CameraManager { get; private set; }
+        [Header("Aiming")]
+        public float CameraFOV = 70f;
+        public float ViewModelFOV = 45f;
+
+        public bool WishAim => Input.GetKey(KeyCode.Mouse1);
+
+        public float AimProgress => AimInterpolater.CurrentValue;
+
+        public SmoothDampInterpolater AimInterpolater;
+
+        CameraManager.FOVOverride.Override mainCamOverride;
+        CameraManager.FOVOverride.Override viewModelOverride;
+
         protected override void Awake()
         {
             base.Awake();
+
             AttackStateInstance = AttackState;
             IdleStateInstance = IdleState;
+
+            CameraManager = GetComponentInParent<CameraManager>();
+
+            mainCamOverride = CameraManager.MainCameraFOV.AddOverride(CameraFOV);
+            viewModelOverride = CameraManager.ViewModelFOV.AddOverride(ViewModelFOV);
+
+            mainCamOverride.Active = false;
+            viewModelOverride.Active = false;
+
             ReloadState.Init(this);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            bool wishAim = WishAim;
+
+            AimInterpolater.MaxValue = wishAim ? 1f : 0f;
+            AimInterpolater.Tick(Time.deltaTime);
+
+            mainCamOverride.Active = wishAim;
+            viewModelOverride.Active = wishAim;
         }
 
         public override void Equip(ItemInstance inst)
