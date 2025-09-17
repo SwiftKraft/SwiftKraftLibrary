@@ -3229,6 +3229,67 @@ MonoBehaviour:
   firstPerson: 1
   FPOrigin: {fileID: 275678322790986811}
   TPOrigin: {fileID: 4184123982594293025}
+--- !u!1 &6494425084311927146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5547838785624197408}
+  - component: {fileID: 4092845577971319451}
+  - component: {fileID: 5379953759456742396}
+  m_Layer: 6
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5547838785624197408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494425084311927146}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7275439935395020305}
+  m_Father: {fileID: 8055390241929806041}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4092845577971319451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494425084311927146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10905300e5220d94488e076131f6cebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5379953759456742396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494425084311927146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40c5861f5dfa104991aa12dc402a8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModifyTarget: {fileID: 5547838785624197408}
+  RelativeTarget: {fileID: 7275439935395020305}
+  Offset: {x: 0, y: 0, z: 0}
 --- !u!1 &6512778785226364503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,7 +3491,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7275439935395020305}
-  - component: {fileID: 4042772521221269645}
   - component: {fileID: 663488232264736137}
   - component: {fileID: 7466739221878732527}
   - component: {fileID: 1339599122694686364}
@@ -3452,8 +3512,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8051414410936804523}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.454}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3464,20 +3524,8 @@ Transform:
   - {fileID: 2656902478325090043}
   - {fileID: 6555318543794220379}
   - {fileID: 7974269869472131946}
-  m_Father: {fileID: 8055390241929806041}
+  m_Father: {fileID: 5547838785624197408}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &4042772521221269645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8051414410936804523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10905300e5220d94488e076131f6cebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &663488232264736137
 Animator:
   serializedVersion: 5
@@ -3557,7 +3605,7 @@ MonoBehaviour:
     States:
     - StateName: Reload
       CrossFade: 0.1
-      Weight: 4
+      Weight: 0
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
@@ -3579,7 +3627,7 @@ MonoBehaviour:
         - {fileID: 8300000, guid: 95fba17b102583341a70b51799deefb1, type: 3}
     - StateName: SecretReload
       CrossFade: 0.1
-      Weight: 0
+      Weight: 4
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
@@ -4137,7 +4185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 7275439935395020305}
+  - {fileID: 5547838785624197408}
   - {fileID: 540188654378022447}
   m_Father: {fileID: 7792533232607691567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4185,12 +4233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35f9fae976f21c4588318334327fef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModifyTarget: {fileID: 7275439935395020305}
+  ModifyTarget: {fileID: 5547838785624197408}
   HorizontalMultiplier:
     <BaseValue>k__BackingField: 1
     <Values>k__BackingField: []
   VerticalMultiplier:
-    <BaseValue>k__BackingField: 1
+    <BaseValue>k__BackingField: -1
     <Values>k__BackingField: []
   TiltMultiplier:
     <BaseValue>k__BackingField: -2
