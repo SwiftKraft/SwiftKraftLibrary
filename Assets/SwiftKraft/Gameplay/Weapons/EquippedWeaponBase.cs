@@ -17,6 +17,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public EquippedItemState AttackStateInstance { get; protected set; }
 
+        public event Action OnAttack;
+
         protected override void Awake()
         {
             base.Awake();
@@ -50,7 +52,11 @@ namespace SwiftKraft.Gameplay.Weapons
             return stat != null;
         }
 
-        public virtual void Attack() => CurrentState = AttackStateInstance;
+        public virtual void Attack()
+        {
+            CurrentState = AttackStateInstance;
+            OnAttack?.Invoke();
+        }
 
         [Serializable]
         public class BasicAttack : EquippedItemWaitState
