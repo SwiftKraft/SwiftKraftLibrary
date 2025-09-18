@@ -1797,6 +1797,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 628200835666029395}
+  - component: {fileID: 4466708561517483598}
+  - component: {fileID: 7573710572197443734}
   m_Layer: 3
   m_Name: Recoil
   m_TagString: Untagged
@@ -1821,6 +1823,30 @@ Transform:
   - {fileID: 6061017516257229357}
   m_Father: {fileID: 1289007188879271878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4466708561517483598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3376507255105469170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10905300e5220d94488e076131f6cebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7573710572197443734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3376507255105469170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64254f54f6982004a942936a4362adba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3405941615749716295
 GameObject:
   m_ObjectHideFlags: 0
