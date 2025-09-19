@@ -64,11 +64,14 @@ namespace SwiftKraft.Gameplay.Weapons
             public GameObject ProjectilePrefab;
             public Transform ShootPoint;
 
+            public float QueueTime = 0.2f;
+
             public new EquippedWeaponBase Item => base.Item as EquippedWeaponBase;
 
             public UnityEvent OnAttack;
 
             protected BooleanLock.Lock canUnequip;
+            protected bool queued;
 
             public override void Init(EquippedItemBase t)
             {
@@ -85,6 +88,13 @@ namespace SwiftKraft.Gameplay.Weapons
                 canUnequip.Active = true;
             }
 
+            public override void Frame()
+            {
+                base.Frame();
+                if (WaitTimer.CurrentValue <= QueueTime && CheckQueue())
+                    queued = true;
+            }
+
             public override void End()
             {
                 base.End();
@@ -95,8 +105,18 @@ namespace SwiftKraft.Gameplay.Weapons
             {
                 base.OnTimerEnd();
                 if (Item != null)
-                    Item.SetIdle();
+                {
+                    if (queued)
+                    {
+                        Item.Attack();
+                        queued = false;
+                    }
+                    else
+                        Item.SetIdle();
+                }
             }
+
+            public virtual bool CheckQueue() => false;
 
             public virtual void SpawnProjectile()
             {

@@ -180,6 +180,8 @@ namespace SwiftKraft.Gameplay.Weapons
                 base.Begin();
                 Item.AmmoData.CurrentAmmo--;
             }
+
+            public override bool CheckQueue() => Input.GetKeyDown(KeyCode.Mouse0) && Item.CurrentAmmo > 0;
         }
 
         public class Idle : EquippedItemState<Firearm>
