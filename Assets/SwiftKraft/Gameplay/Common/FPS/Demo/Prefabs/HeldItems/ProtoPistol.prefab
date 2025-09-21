@@ -4256,6 +4256,7 @@ MonoBehaviour:
     ProjectilePrefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
       type: 3}
     ShootPoint: {fileID: 8055390241929806041}
+    QueueTime: 0.2
     OnAttack:
       m_PersistentCalls:
         m_Calls:
@@ -5440,7 +5441,7 @@ MonoBehaviour:
     States:
     - StateName: Reload
       CrossFade: 0.1
-      Weight: 0
+      Weight: 5
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
@@ -5462,11 +5463,16 @@ MonoBehaviour:
         - {fileID: 8300000, guid: 95fba17b102583341a70b51799deefb1, type: 3}
     - StateName: SecretReload
       CrossFade: 0.1
-      Weight: 4
+      Weight: 1
       OnPlay:
         m_PersistentCalls:
           m_Calls: []
-      Sounds: []
+      Sounds:
+      - Animations:
+        - {fileID: 2971146141758270868, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+        - {fileID: -2237880809335247304, guid: 384f8faa6b87553429a38b543c2a4468, type: 3}
+        Clips:
+        - {fileID: 8300000, guid: ac098bb141bb69d459b177b3c8c64167, type: 3}
   SoundSource: {fileID: 5368125901487255950}
 --- !u!114 &1339599122694686364
 MonoBehaviour:

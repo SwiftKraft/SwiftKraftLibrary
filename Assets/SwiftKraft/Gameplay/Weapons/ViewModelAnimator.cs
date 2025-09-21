@@ -127,12 +127,12 @@ namespace SwiftKraft.Gameplay.Weapons
                 }
             }
 
-            public bool PlaySound(State state, Animator anim, float startTime = 0f)
+            public bool PlaySound(State state, Animator anim, float startTime = 0f, int layer = 0)
             {
-                AnimatorClipInfo[] infos = anim.IsInTransition(0) ? anim.GetNextAnimatorClipInfo(0) : anim.GetCurrentAnimatorClipInfo(0);
+                AnimatorClipInfo[] infos = anim.IsInTransition(layer) ? anim.GetNextAnimatorClipInfo(layer) : anim.GetCurrentAnimatorClipInfo(layer);
 
                 if (infos.Length <= 0)
-                    infos = anim.IsInTransition(0) ? anim.GetCurrentAnimatorClipInfo(0) : anim.GetNextAnimatorClipInfo(0);
+                    infos = anim.IsInTransition(layer) ? anim.GetCurrentAnimatorClipInfo(layer) : anim.GetNextAnimatorClipInfo(layer);
 
                 if (infos.Length <= 0)
                     return false;
@@ -141,11 +141,12 @@ namespace SwiftKraft.Gameplay.Weapons
 
                 foreach (SoundPair sound in state.Sounds)
                 {
-                    if (sound.Animations.Contains(info.clip))
-                    {
-                        Parent.PlaySound(sound.Clips.GetRandom(), startTime);
-                        return true;
-                    }
+                    foreach (AnimationClip clip in sound.Animations)
+                        if (clip.name.Equals(info.clip.name))
+                        {
+                            Parent.PlaySound(sound.Clips.GetRandom(), startTime);
+                            return true;
+                        }
                 }
 
                 return false;
@@ -163,7 +164,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 int IWeight.Weight => Weight;
 
                 [Serializable]
-                public struct SoundPair
+                public class SoundPair
                 {
                     public AnimationClip[] Animations;
                     public AudioClip[] Clips;
