@@ -1,11 +1,10 @@
+using SwiftKraft.Gameplay.Common.FPS.Interfaces;
 using SwiftKraft.Gameplay.Weapons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 {
-    public class FPSWeaponOrigin : WeaponOrigin
+    public class FPSWeaponOrigin : WeaponOrigin, IFirstPersonSwitchable
     {
         public CameraManager CameraManager { get; set; }
         public bool FirstPerson
@@ -32,6 +31,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
             base.Awake();
             CameraManager = GetComponentInParent<CameraManager>();
             FirstPerson = firstPerson;
+
+            foreach (IFirstPersonSwitcher switcher in GetComponentsInParent<IFirstPersonSwitcher>())
+                switcher.Switchables.Add(this);
         }
     }
 }

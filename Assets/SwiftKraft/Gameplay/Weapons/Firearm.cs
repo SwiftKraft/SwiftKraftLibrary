@@ -15,6 +15,11 @@ namespace SwiftKraft.Gameplay.Weapons
         public Reload ReloadState = new();
 
         [field: SerializeField]
+        public bool Automatic { get; set; }
+
+        [field: SerializeField]
+        public int BulletCount { get; set; } = 1;
+        [field: SerializeField]
         public int MaxAmmo { get; set; } = 10;
         public Ammo AmmoData = new();
 
