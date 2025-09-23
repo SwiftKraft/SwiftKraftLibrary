@@ -2,12 +2,14 @@ using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using System;
-using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
     public class EquippedItemBase : PetBehaviourBase
     {
+        public const string EquipAction = "Equip";
+        public const string UnequipAction = "Unequip";
+
         public IItemEquipper Parent { get; private set; }
 
         public ItemInstance Instance { get; private set; }
@@ -19,6 +21,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             Parent = parent;
             Owner = parent.GetRootOwner();
         }
+
+        public event Action<string> OnStartAction;
+        public void StartActionEvent(string actionId) => OnStartAction?.Invoke(actionId);
 
         public event Action OnUnequip;
         public event Action OnEquip;
@@ -46,9 +51,14 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             Instance = inst;
             Instance.OnDestroy += OnInstanceDestroyed;
             OnEquip?.Invoke();
+            StartActionEvent(EquipAction);
         }
 
-        public virtual void Unequip() => OnUnequip?.Invoke();
+        public virtual void Unequip()
+        {
+            OnUnequip?.Invoke();
+            StartActionEvent(UnequipAction);
+        }
 
         /// <summary>
         /// Runs every tick where it tries to unequip; if it returns <b>true</b>, it will unequip.
