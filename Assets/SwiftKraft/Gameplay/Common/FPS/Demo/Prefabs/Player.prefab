@@ -2711,8 +2711,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45cbcea0e8dc1546a7a0192a45f3052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OverrideAnimationIdle: {fileID: 0}
-  OverrideAnimationCustom: {fileID: 0}
+  OverrideAnimationIdle: {fileID: 7400000, guid: b90e7bd02be20a44ca2e0afb54274af2,
+    type: 2}
+  OverrideAnimationCustom: {fileID: 7400000, guid: 1fcb5934bb66a404f9d6d455e4a32606,
+    type: 2}
 --- !u!1 &5836839548211993181
 GameObject:
   m_ObjectHideFlags: 0
