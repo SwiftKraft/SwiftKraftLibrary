@@ -22,9 +22,6 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             Owner = parent.GetRootOwner();
         }
 
-        public event Action<string> OnStartAction;
-        public void StartActionEvent(string actionId) => OnStartAction?.Invoke(actionId);
-
         public event Action OnUnequip;
         public event Action OnEquip;
         public event Action OnObjectEnable;
@@ -51,14 +48,9 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             Instance = inst;
             Instance.OnDestroy += OnInstanceDestroyed;
             OnEquip?.Invoke();
-            StartActionEvent(EquipAction);
         }
 
-        public virtual void Unequip()
-        {
-            OnUnequip?.Invoke();
-            StartActionEvent(UnequipAction);
-        }
+        public virtual void Unequip() => OnUnequip?.Invoke();
 
         /// <summary>
         /// Runs every tick where it tries to unequip; if it returns <b>true</b>, it will unequip.

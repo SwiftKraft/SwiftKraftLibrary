@@ -2605,6 +2605,7 @@ GameObject:
   - component: {fileID: 5918433638275433769}
   - component: {fileID: 799955013550556657}
   - component: {fileID: 8367047569426330312}
+  - component: {fileID: 4966608344497912347}
   m_Layer: 0
   m_Name: YBot
   m_TagString: Untagged
@@ -2698,6 +2699,20 @@ MonoBehaviour:
   AdjustAngleMax: 100
   AdjustTime: 0.1
   AdjustOffset: -30
+--- !u!114 &4966608344497912347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794953493469811206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45cbcea0e8dc1546a7a0192a45f3052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OverrideAnimationIdle: {fileID: 0}
+  OverrideAnimationCustom: {fileID: 0}
 --- !u!1 &5836839548211993181
 GameObject:
   m_ObjectHideFlags: 0

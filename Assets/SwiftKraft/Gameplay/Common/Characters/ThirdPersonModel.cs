@@ -1,4 +1,3 @@
-using SwiftKraft.Gameplay.Inventory.Items;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -7,7 +6,6 @@ namespace SwiftKraft.Gameplay.Common.Characters
 {
     public class ThirdPersonModel : MonoBehaviour
     {
-        public EquippedItemBase EquippedItem { get; private set; }
         public ThirdPersonAnimator Animator { get; private set; }
 
         public AnimationClip Idle;
@@ -17,12 +15,6 @@ namespace SwiftKraft.Gameplay.Common.Characters
         string queuedAction;
         bool initialized;
 
-        private void Awake()
-        {
-            EquippedItem = GetComponentInParent<EquippedItemBase>();
-            EquippedItem.OnStartAction += OnStartAction;
-        }
-
         private void Start()
         {
             Animator = GetComponentInParent<ThirdPersonAnimator>();
@@ -30,7 +22,7 @@ namespace SwiftKraft.Gameplay.Common.Characters
             Animator.Idle = Idle;
             Animator.UpdateCustom();
             if (!string.IsNullOrEmpty(queuedAction))
-                OnStartAction(queuedAction);
+                PlayAnimation(queuedAction);
         }
 
         private void OnEnable()
@@ -51,7 +43,7 @@ namespace SwiftKraft.Gameplay.Common.Characters
             Animator.UpdateCustom();
         }
 
-        private void OnStartAction(string obj)
+        public void PlayAnimation(string obj)
         {
             if (!isActiveAndEnabled)
                 return;
@@ -66,8 +58,6 @@ namespace SwiftKraft.Gameplay.Common.Characters
             if (anim != null)
                 Animator.PlayCustom(anim.Clip, anim.TransitionDuration);
         }
-
-        private void OnDestroy() => EquippedItem.OnStartAction -= OnStartAction;
 
         [Serializable]
         public class Animation

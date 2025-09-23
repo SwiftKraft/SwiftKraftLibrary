@@ -2,7 +2,6 @@ using SwiftKraft.Utils;
 using System;
 using System.Collections;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using static SwiftKraft.Gameplay.Weapons.ViewModelAnimator.Animation.State;
