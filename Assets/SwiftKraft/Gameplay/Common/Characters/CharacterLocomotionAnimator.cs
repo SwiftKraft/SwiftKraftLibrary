@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Utils;
 using UnityEngine;
@@ -17,11 +18,23 @@ namespace SwiftKraft.Gameplay.Common.Characters
 
         public Vector2[] StateMultipliers;
 
+        [Header("Grounding")]
+        public string Grounded = "Grounded";
+
         public MotorBase Motor { get; private set; }
 
-        Vector2 vel;
+        public IGroundable GroundableCache { get; private set; }
 
-        private void Awake() => Motor = GetComponentInParent<MotorBase>();
+        public float CurrentGrounded { get; private set; }
+
+        Vector2 vel;
+        float velGround;
+
+        private void Awake()
+        {
+            Motor = GetComponentInParent<MotorBase>();
+            GroundableCache = Motor as IGroundable;
+        }
 
         private void Update()
         {
@@ -35,8 +48,13 @@ namespace SwiftKraft.Gameplay.Common.Characters
                 ? TargetDirection
                 : Vector2.SmoothDamp(CurrentDirection, TargetDirection, ref vel, SmoothTime);
 
+            CurrentGrounded = Mathf.SmoothDamp(CurrentGrounded, GroundableCache.IsGrounded ? 1f : 0f, ref velGround, SmoothTime);
+
             Component.SetFloatSafe(XMovement, CurrentDirection.x);
             Component.SetFloatSafe(ZMovement, CurrentDirection.y);
+
+            if ((Object)GroundableCache != null)
+                Component.SetFloatSafe(Grounded, CurrentGrounded);
         }
 
         public float GetStateMultiplier(int state)

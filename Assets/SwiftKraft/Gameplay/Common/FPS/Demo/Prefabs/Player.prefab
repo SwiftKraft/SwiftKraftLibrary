@@ -2621,16 +2621,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5794953493469811206}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.33380687, z: 0, w: 0.94264156}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2937891887512518457}
   - {fileID: 1468744597368592379}
   - {fileID: 807466738994965061}
   m_Father: {fileID: 8454196924467969413}
-  m_LocalEulerAnglesHint: {x: 0, y: 39, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5918433638275433769
 Animator:
   serializedVersion: 5
@@ -2640,8 +2640,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5794953493469811206}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0337b2e492833f94bbd6fff841d745d6, type: 3}
-  m_Controller: {fileID: 9100000, guid: f2183aa7bbdaefb46aabec1633643c28, type: 2}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a067f0e0cdf04a40a116adaa1508fec, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2667,9 +2667,11 @@ MonoBehaviour:
   XMovement: MoveX
   ZMovement: MoveZ
   SmoothTime: 0.1
-  RotationOffset: {x: 0, y: 0.33380687, z: 0, w: 0.9426415}
+  RotationOffset: {x: 0, y: 0, z: 0, w: 1}
   StateMultipliers:
+  - {x: 0, y: 0}
   - {x: 2, y: 2}
+  Grounded: Grounded
 --- !u!114 &8367047569426330312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2685,20 +2687,20 @@ MonoBehaviour:
   Bones:
   - Reference: {fileID: 2896399995523481591}
     Influence: 0.1
-    AngleOffset: {x: 0, y: 15, z: 0}
+    AngleOffset: {x: 0, y: 0, z: 0}
   - Reference: {fileID: 7181718344385625165}
     Influence: 0.5
-    AngleOffset: {x: 0, y: 25, z: 0}
+    AngleOffset: {x: 0, y: 0, z: 0}
   - Reference: {fileID: 4289626655935878842}
     Influence: 0.7
-    AngleOffset: {x: 20, y: 23, z: 0}
+    AngleOffset: {x: 0, y: 0, z: 0}
   - Reference: {fileID: 3754932224798799551}
     Influence: 1
     AngleOffset: {x: 0, y: 0, z: 0}
   AdjustAngleMin: -45
-  AdjustAngleMax: 100
+  AdjustAngleMax: 45
   AdjustTime: 0.1
-  AdjustOffset: -30
+  AdjustOffset: 0
 --- !u!114 &4966608344497912347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4215,7 +4217,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 6.1181255e-11, y: 0.0000013934977, z: -0.000043904813, w: 1}
   m_LocalPosition: {x: 0.00000006757011, y: 0.9979194, z: 0.000000484474}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6828449380030677249}
