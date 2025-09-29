@@ -80,8 +80,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Motors
             originalCameraHeight = LookPointHeight;
             originalHeight = Height;
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            CursorManager.DefaultUnlocked = false;
 
             SettingsManager.Current.TrySetting("Sensitivity", out sensitivity);
             SettingsManager.Current.TrySetting("AimSensitivity", out aimSensitivity);

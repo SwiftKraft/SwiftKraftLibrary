@@ -35,8 +35,7 @@ namespace SwiftKraft.Utils
 
         protected virtual void Awake()
         {
-            MultiModify = ModifyTarget.GetComponent<MultiModifyTransform>();
-            if (MultiModify != null)
+            if (ModifyTarget.TryGetComponent(out MultiModify))
                 Modifier = MultiModify.AddModifier();
         }
     }

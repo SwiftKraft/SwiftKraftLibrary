@@ -57,8 +57,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void Despawn()
         {
-            OnDestroy?.Invoke();
             Disposed = true;
+            OnDestroy?.Invoke();
             this.RemoveInstance();
         }
 

@@ -1,53 +1,76 @@
+using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
-    public class ItemEquipper : MonoBehaviour, IItemEquipper
+    public class ItemEquipper : PetBehaviourBase, IItemEquipper
     {
-        public readonly List<EquippedItem> EquippedItemCache = new();
+        public readonly List<EquippedItemBase> EquippedItemCache = new();
 
         public Transform Workspace;
 
-        public event Action<EquippedItem> OnEquip;
+        public event Action<EquippedItemBase> OnEquip;
 
-        public EquippedItem Current { get; private set; }
-        ItemInstance tryEquip;
+        public EquippedItemBase Current { get; private set; }
+        public ItemInstance WishEquip { get; set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItem>());
-
+            Owner = GetComponent<IPawn>();
+            EquippedItemCache.AddRange(GetComponentsInChildren<EquippedItemBase>());
             ResetAll();
         }
 
-        public bool TryEquip(ItemInstance inst, out EquippedItem it)
+        protected virtual void FixedUpdate()
+        {
+            if (Current == null)
+            {
+                if (WishEquip == null || WishEquip.Disposed)
+                    return;
+
+                if (TryEquip(WishEquip, out EquippedItemBase b))
+                {
+                    Current = b;
+                    OnEquip?.Invoke(Current);
+                    return;
+                }
+            }
+
+            if ((WishEquip != Current.Instance || Current.Instance.Disposed) && Current.AttemptUnequip())
+                ForceUnequip();
+        }
+
+        public bool TryEquip(ItemInstance inst, out EquippedItemBase it)
         {
             it = null;
             if (inst == null || inst.Type is not EquippableItemType ty || (!HasEquippedItem(ty, out it) && !AddEquippedItem(ty, out it)))
                 return false;
+            ResetAll();
             it.gameObject.SetActive(true);
             it.Equip(inst);
             return true;
         }
 
-        public bool HasEquippedItem(EquippableItemType inst, out EquippedItem it)
+        public bool HasEquippedItem(EquippableItemType inst, out EquippedItemBase it)
         {
-            foreach (EquippedItem item in EquippedItemCache)
-                if (item.Item == inst)
+            for (int i = 0; i < EquippedItemCache.Count; i++)
+                if (EquippedItemCache[i].Item == inst)
                 {
-                    it = item;
+                    it = EquippedItemCache[i];
                     return true;
                 }
+
             it = null;
             return false;
         }
 
-        public bool AddEquippedItem(EquippableItemType ty, out EquippedItem it)
+        public bool AddEquippedItem(EquippableItemType ty, out EquippedItemBase it)
         {
-            if (ty == null || !ty.EquippedPrefab.TryGetComponent(out EquippedItem item))
+            if (ty == null || !ty.EquippedPrefab.TryGetComponent(out EquippedItemBase item))
             {
                 it = null;
                 return false;
@@ -63,17 +86,20 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void ResetAll()
         {
-            foreach (EquippedItem item in EquippedItemCache)
-                item.gameObject.SetActive(false);
+            for (int i = 0; i < EquippedItemCache.Count; i++)
+                EquippedItemCache[i].gameObject.SetActive(false);
         }
 
         public void ForceUnequip(bool resetWishEquip = false)
         {
+            if (resetWishEquip)
+                WishEquip = null;
+
+            if (Current != null)
+                Current.Unequip();
+
             ResetAll();
             Current = null;
-            if (resetWishEquip)
-                tryEquip = null;
-            UpdateEquip();
         }
 
         public void Equip(ItemInstance item)
@@ -81,21 +107,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
             if (Current != null && Current.Instance == item)
                 return;
 
-            tryEquip = item;
-            UpdateEquip();
-        }
-
-        protected void UpdateEquip()
-        {
-            if (Current != null)
-                Current.Unequip();
-            else if (TryEquip(tryEquip, out EquippedItem eq))
-            {
-                if (eq != null)
-                    OnEquip?.Invoke(eq);
-
-                Current = eq;
-            }
+            WishEquip = item;
         }
     }
 }

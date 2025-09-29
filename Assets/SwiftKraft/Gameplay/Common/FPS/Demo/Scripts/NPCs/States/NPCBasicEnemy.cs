@@ -1,5 +1,4 @@
 using SwiftKraft.Gameplay.NPCs;
-using SwiftKraft.Gameplay.Weapons;
 using SwiftKraft.Utils;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,7 +15,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         NPCScannerBase scanner;
         NPCNavigator navigator;
-        WeaponAmmo ammo;
+        //WeaponAmmo ammo;
 
         Vector3 lastRemembered;
 
@@ -36,7 +35,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         {
             scanner = Core.Modules.Get<NPCScannerBase>();
             navigator = Core.Modules.Get<NPCNavigator>();
-            ammo = Core.Modules.Get<NPCAttackerWeapon>().Weapon.GetComponent<WeaponAmmo>();
+            //ammo = Core.Modules.Get<NPCAttackerWeapon>().Weapon.GetComponent<WeaponAmmo>();
             lastRemembered = Attack ? AttackCoordinates : Core.transform.position;
         }
 
@@ -44,8 +43,8 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         public override void Tick()
         {
-            if (!ammo.Reloading && ammo.CurrentAmmo <= 0)
-                ammo.StartReload();
+            //if (!ammo.Reloading && ammo.CurrentAmmo <= 0)
+            //    ammo.StartReload();
 
             navigator.LookAtWaypoint = !scanner.HasTarget;
 
@@ -66,7 +65,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
                     lastRemembered = Attack ? AttackCoordinates : scanner.Targets[0].Value.position;
             }
             else if (navigator.Stopped)
-                    navigator.Destination = NavMesh.SamplePosition(lastRemembered, out NavMeshHit hit, 5f, NavMesh.AllAreas) ? hit.position : lastRemembered;
+                navigator.Destination = NavMesh.SamplePosition(lastRemembered, out NavMeshHit hit, 5f, NavMesh.AllAreas) ? hit.position : lastRemembered;
 
             if ((lastRemembered - Core.transform.position).sqrMagnitude <= 9f)
             {

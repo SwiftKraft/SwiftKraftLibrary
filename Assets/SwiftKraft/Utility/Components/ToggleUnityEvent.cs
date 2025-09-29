@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,11 +14,15 @@ public class ToggleUnityEvent : MonoBehaviour
 
             _currentState = value;
             (value ? True : False)?.Invoke();
+            Dynamic?.Invoke(_currentState);
+            Inverted?.Invoke(!_currentState);
         }
     }
 
     public UnityEvent True;
     public UnityEvent False;
+    public UnityEvent<bool> Dynamic;
+    public UnityEvent<bool> Inverted;
 
     bool _currentState;
 
