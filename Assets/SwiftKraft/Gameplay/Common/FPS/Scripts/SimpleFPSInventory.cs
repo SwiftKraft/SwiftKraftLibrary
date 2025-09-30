@@ -19,7 +19,6 @@ namespace SwiftKraft.Gameplay.Common.FPS
         public Vector3 DropOffset;
         public float ThrowStrength = 10f;
 
-
         public KeyCode DropKey;
 
         private void Awake()
