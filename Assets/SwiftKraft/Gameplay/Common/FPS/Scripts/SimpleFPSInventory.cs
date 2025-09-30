@@ -1,6 +1,7 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory;
 using SwiftKraft.Gameplay.Inventory.Items;
+using SwiftKraft.Utils;
 using System;
 using UnityEngine;
 
@@ -33,15 +34,27 @@ namespace SwiftKraft.Gameplay.Common.FPS
         {
             foreach (SlotSelector sel in Selectors)
                 if (Input.GetKeyDown(sel.Key) && Data.Items.Count > sel.Slot && Data.Items[sel.Slot] > 0)
-                    Equipper.Equip(Data.Items[sel.Slot]);
+                    Equip(sel.Slot);
 
-            if (Input.GetKeyDown(DropKey) && Equipper.Current != null)
-            {
-                WorldItemBase wib = DropItem(Equipper.Current.Instance, DropTransform.position + DropTransform.rotation * DropOffset, DropTransform.rotation);
-                Equipper.ForceUnequip(true);
-                if (wib.TryGetComponent(out Rigidbody rb))
-                    rb.AddForce(DropTransform.forward * ThrowStrength, ForceMode.Impulse);
-            }
+            if (Input.GetKeyDown(DropKey))
+                Drop();
+        }
+
+        public void Equip(int index)
+        {
+            if (Data.Items.InRange(index))
+                Equipper.Equip(Data.Items[index]);
+        }
+
+        public void Drop()
+        {
+            if (Equipper.Current == null)
+                return;
+
+            WorldItemBase wib = DropItem(Equipper.Current.Instance, DropTransform.position + DropTransform.rotation * DropOffset, DropTransform.rotation);
+            Equipper.ForceUnequip(true);
+            if (wib.TryGetComponent(out Rigidbody rb))
+                rb.AddForce(DropTransform.forward * ThrowStrength, ForceMode.Impulse);
         }
 
         public void DropInventory() => DropInventory(DropTransform.position + DropTransform.rotation * DropOffset, DropTransform.rotation);
