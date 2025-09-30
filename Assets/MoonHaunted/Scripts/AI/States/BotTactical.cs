@@ -1,5 +1,3 @@
-using SwiftKraft.Gameplay.Motors;
-using SwiftKraft.Gameplay.NPCs;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "MoonHaunt/AI/Tactical")]
@@ -14,6 +12,8 @@ public class BotTactical : BotStateBase
     {
         if (Player == null)
             return;
+
+        Navigator.LookAtWaypoint = !Scanner.HasTarget;
 
         if (CurrentPoint != null)
             Navigator.Destination = CurrentPoint.transform.position; // use point behaviors

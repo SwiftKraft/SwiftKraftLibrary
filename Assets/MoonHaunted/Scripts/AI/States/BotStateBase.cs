@@ -1,3 +1,4 @@
+using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Gameplay.NPCs;
 using System;
@@ -23,6 +24,8 @@ public abstract class BotStateBase : NPCStateBase
     private PointOfInterest currentPoint;
 
     public NPCNavigator Navigator { get; private set; }
+    public NPCScannerBase Scanner { get; private set; }
+    public SimpleFPSInventory Inventory { get; private set; }
     public MoonsHauntedMotor Motor { get; private set; }
 
     public float PlayerDistance => Player != null ? (Player.transform.position - Core.transform.position).magnitude : Mathf.Infinity;
@@ -30,6 +33,8 @@ public abstract class BotStateBase : NPCStateBase
     public override void Begin()
     {
         Navigator = Core.GetComponent<NPCNavigator>();
+        Scanner = Core.GetComponent<NPCScannerBase>();
+        Inventory = Core.GetComponent<SimpleFPSInventory>();
         Motor = Navigator.Motor as MoonsHauntedMotor;
     }
 
