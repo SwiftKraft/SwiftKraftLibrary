@@ -7,6 +7,7 @@ namespace SwiftKraft.Gameplay.Motors
     {
         public float MoveSpeed = 5f;
         public float TurnSpeed = 480f;
+        public float JumpSpeed = 5f;
         public float GroundRadius = 0.1f;
         public Transform GroundPoint;
         public LayerMask GroundLayers;
@@ -31,11 +32,22 @@ namespace SwiftKraft.Gameplay.Motors
 
         public override void Move(Vector3 direction)
         {
+            if (!IsGrounded)
+                return;
+
             direction *= MoveSpeed;
             Vector3 vel = Component.velocity;
             vel.x = direction.x;
             vel.z = direction.z;
             Component.velocity = vel;
+        }
+
+        public virtual void Jump(float speedOverride = -1f)
+        {
+            if (!IsGrounded)
+                return;
+
+            Component.velocity += Vector3.up * (speedOverride > 0f ? speedOverride : JumpSpeed);
         }
     }
 }

@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public abstract class BotStateBase : NPCStateBase
+public abstract class BotStateBase : MoonNPCStateBase
 {
     public BodySwapper Player => BodySwapper.PlayerInstance;
 
@@ -38,24 +38,7 @@ public abstract class BotStateBase : NPCStateBase
         Motor = Navigator.Motor as MoonsHauntedMotor;
     }
 
-    public bool WithinDistance(Vector3 pos, float dist) => Player != null && (Player.transform.position - pos).sqrMagnitude <= dist * dist;
-    public bool WithinDistance(float dist) => WithinDistance(Core.transform.position, dist);
-
-    public PointOfInterest GetVacantPoint(PointFlags flag, Func<PointOfInterest, bool> additionalFunction = null) => PointOfInterest.VacantPoints.FirstOrDefault(n => n.Flags.HasFlag(flag) && (additionalFunction == null || additionalFunction.Invoke(n)));
-
-    public bool TryGetVacantPoint(PointFlags flag, out PointOfInterest poi, Func<PointOfInterest, bool> additionalFunction = null)
-    {
-        poi = GetVacantPoint(flag, additionalFunction);
-        return poi != null;
-    }
-
-    public PointOfInterest GetVacantPointWithinDistance(PointFlags flag, float dist) => GetVacantPoint(flag, n => WithinDistance(n.transform.position, dist));
-
-    public bool TryGetVacantPointWithinDistance(PointFlags flag, float dist, out PointOfInterest poi)
-    {
-        poi = GetVacantPointWithinDistance(flag, dist);
-        return poi != null;
-    }
+    public bool WithinDistance(float dist) => WithinDistance(Player.transform.position, dist);
 
     public void SetSprintState(bool state)
     {
