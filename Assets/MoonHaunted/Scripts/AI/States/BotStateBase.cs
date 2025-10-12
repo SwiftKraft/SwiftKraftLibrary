@@ -1,27 +1,11 @@
 using SwiftKraft.Gameplay.Common.FPS;
 using SwiftKraft.Gameplay.Motors;
 using SwiftKraft.Gameplay.NPCs;
-using System;
-using System.Linq;
 using UnityEngine;
 
 public abstract class BotStateBase : MoonNPCStateBase
 {
     public BodySwapper Player => BodySwapper.PlayerInstance;
-
-    public PointOfInterest CurrentPoint
-    {
-        get => currentPoint;
-        protected set
-        {
-            if (currentPoint != null)
-                currentPoint.TakenBy = null;
-            currentPoint = value;
-            if (currentPoint != null)
-                currentPoint.TakenBy = Core;
-        }
-    }
-    private PointOfInterest currentPoint;
 
     public NPCNavigator Navigator { get; private set; }
     public NPCScannerBase Scanner { get; private set; }

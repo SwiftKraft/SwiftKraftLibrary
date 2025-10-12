@@ -69,4 +69,5 @@ public enum PointFlags : byte
     HidingSpot = 1 << 3,
     HostileAngle = 1 << 4,
     ChokePoint = 1 << 5,
+    Nest = 1 << 6
 }

@@ -47,6 +47,7 @@ namespace SwiftKraft.Gameplay.Motors
             if (!IsGrounded)
                 return;
 
+            Move(WishMoveDirection);
             Component.velocity += Vector3.up * (speedOverride > 0f ? speedOverride : JumpSpeed);
         }
     }
