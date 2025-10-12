@@ -10,10 +10,26 @@ public class CrawlerCombat : CrawlerStateBase
     public PointFlags RetreatFlags;
     public float RetreatDistance = 60f;
 
+    bool lunging;
+    Vector3 lungeVel;
+
     public override void End() { }
 
     public override void Tick()
     {
+        if (lunging)
+        {
+            Vector3 vel = Motor.Component.velocity;
+            vel.x = lungeVel.x;
+            vel.z = lungeVel.z;
+            Motor.Component.velocity = vel;
+
+            if (!Motor.IsGrounded)
+                lunging = false;
+
+            return;
+        }
+
         if (!Scanner.HasTarget || !Motor.IsGrounded)
             return;
 
@@ -22,8 +38,13 @@ public class CrawlerCombat : CrawlerStateBase
         if (!LungeCooldown.Ended)
         {
             LungeCooldown.Tick(Time.fixedDeltaTime);
-            if (CurrentPoint == null && TryGetVacantPointWithinDistance(RetreatFlags, RetreatDistance, out PointOfInterest poi))
-                CurrentPoint = poi;
+            if (CurrentPoint == null)
+            {
+                if (TryGetVacantPointWithinDistance(RetreatFlags, RetreatDistance, out PointOfInterest poi))
+                    CurrentPoint = poi;
+                else if (Navigator.Stopped)
+                    Navigator.Destination = RandomPoint(RetreatDistance);
+            }
         }
         else
         {
@@ -41,7 +62,9 @@ public class CrawlerCombat : CrawlerStateBase
 
     public void Lunge(Vector3 dir)
     {
-        Motor.WishMoveDirection = dir.normalized;
+        lunging = true;
+        dir.y = 0f;
+        lungeVel = dir.normalized * LungeSpeed;
         Motor.Jump();
     }
 }

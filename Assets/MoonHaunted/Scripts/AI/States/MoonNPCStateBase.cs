@@ -2,6 +2,7 @@ using SwiftKraft.Gameplay.NPCs;
 using System;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class MoonNPCStateBase : NPCStateBase
 {
@@ -36,5 +37,11 @@ public abstract class MoonNPCStateBase : NPCStateBase
     {
         poi = GetVacantPointWithinDistance(flag, dist);
         return poi != null;
+    }
+
+    public Vector3 RandomPoint(float range)
+    {
+        Vector2 vec = Random.insideUnitCircle * range;
+        return new Vector3(vec.x, 0f, vec.y) + Core.transform.position;
     }
 }

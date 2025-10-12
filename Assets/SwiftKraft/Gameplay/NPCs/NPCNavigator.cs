@@ -13,7 +13,7 @@ namespace SwiftKraft.Gameplay.NPCs
         public MotorBase Motor { get; private set; }
 
         public float WaypointRadius = 0.25f;
-        public Timer RepathTimer;
+        public Timer RepathTimer = new(0.25f);
 
         public int CurrentWaypointIndex
         {

@@ -102,6 +102,8 @@ namespace SwiftKraft.Gameplay.NPCs
             return false;
         }
 
+        protected virtual void OnDrawGizmosSelected() { }
+
         protected virtual void OnDrawGizmos()
         {
             if (Data.Targets.Count <= 0)
