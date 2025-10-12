@@ -45,6 +45,12 @@ public class CrawlerCombat : CrawlerStateBase
                 else if (Navigator.Stopped)
                     Navigator.Destination = RandomPoint(RetreatDistance);
             }
+            else
+            {
+                Navigator.Destination = CurrentPoint.transform.position;
+                if (Navigator.Stopped)
+                    LungeCooldown.Tick(LungeCooldown.CurrentValue);
+            }
         }
         else
         {

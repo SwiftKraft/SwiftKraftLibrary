@@ -1791,7 +1791,6 @@ GameObject:
   - component: {fileID: 2455297538354820542}
   - component: {fileID: 3749455666820030302}
   - component: {fileID: 8396378012427590715}
-  - component: {fileID: 1252338604607047334}
   - component: {fileID: 2617272560536589740}
   m_Layer: 9
   m_Name: TestEnemy
@@ -1999,9 +1998,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 2
 --- !u!114 &4269728665191428399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2019,6 +2018,7 @@ MonoBehaviour:
   <LookInUpdate>k__BackingField: 0
   MoveSpeed: 4
   TurnSpeed: 360
+  JumpSpeed: 5
   GroundRadius: 0.1
   GroundPoint: {fileID: 7131237615712856340}
   GroundLayers:
@@ -2091,22 +2091,6 @@ MonoBehaviour:
   Range: 15
   AttackDot: 0.7
   AttackDotAxis: {x: 0, y: 0, z: 1}
---- !u!208 &1252338604607047334
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2727248630901589903}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.1, y: 0.9, z: 0.1}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &2617272560536589740
 MonoBehaviour:
   m_ObjectHideFlags: 0
