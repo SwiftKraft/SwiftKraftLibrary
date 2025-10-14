@@ -12,6 +12,8 @@ namespace SwiftKraft.Gameplay.NPCs
         public override string ID => "Essentials.Navigator";
         public MotorBase Motor { get; private set; }
 
+        public SerializedAgentType AgentTypeID = 0;
+
         public float WaypointRadius = 0.25f;
         public Timer RepathTimer = new(0.25f);
 
@@ -103,7 +105,7 @@ namespace SwiftKraft.Gameplay.NPCs
 
         public void Repath()
         {
-            Stopped = !NavMesh.CalculatePath(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas) ? hit.position : transform.position, Destination, NavMesh.AllAreas, Path);
+            Stopped = !NavMesh.CalculatePath(NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1f, new NavMeshQueryFilter() { areaMask = NavMesh.AllAreas, agentTypeID = AgentTypeID }) ? hit.position : transform.position, Destination, NavMesh.AllAreas, Path);
             CurrentWaypointIndex = 0;
         }
 
