@@ -32,6 +32,8 @@ namespace SwiftKraft.Gameplay.Dynamics
 
         protected Animator animator;
 
+        bool initializedRagdollData;
+
         protected virtual void Awake()
         {
             Rigidbodies = GetComponentsInChildren<Rigidbody>();
@@ -72,6 +74,13 @@ namespace SwiftKraft.Gameplay.Dynamics
 
         public void ResetTransform()
         {
+            if (!initializedRagdollData)
+            {
+                initializedRagdollData = true;
+                RecordTransform();
+                return;
+            }
+
             for (int i = 0; i < Rigidbodies.Length; i++)
                 Rigidbodies[i].transform.SetLocalPositionAndRotation(PreRagdollData[i].Position, PreRagdollData[i].Rotation);
         }

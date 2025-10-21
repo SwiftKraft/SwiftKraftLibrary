@@ -2068,6 +2068,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 551838749118147952}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &2943388651412016923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2970867613494433255}
+  - component: {fileID: 5377765130302579512}
+  m_Layer: 6
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2970867613494433255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2943388651412016923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7792533232607691567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5377765130302579512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2943388651412016923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea904766b15635243aebb2ec483a2399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorkspaceName: ShootPoint
 --- !u!1 &2994708819865772051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,7 +3450,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Idle: {fileID: 7400000, guid: 3932acd5adc2c23438a8ae159b2cffd0, type: 2}
-  Animations: []
+  Animations:
+  - ID: Reload
+    Clip: {fileID: 7400000, guid: c31caaa4c1a15024aa338d3df6e21f57, type: 2}
+    TransitionDuration: 0.1
 --- !u!1 &5867147403936595016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4185,6 +4233,7 @@ Transform:
   m_Children:
   - {fileID: 8055390241929806041}
   - {fileID: 8800210859008380305}
+  - {fileID: 2970867613494433255}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3166869404018688174
@@ -4270,7 +4319,7 @@ MonoBehaviour:
         m_Calls: []
     ProjectilePrefab: {fileID: 161029702014116550, guid: a333fb38178fe884b86e1a33bcc96e38,
       type: 3}
-    ShootPoint: {fileID: 8055390241929806041}
+    ShootPoint: {fileID: 2970867613494433255}
     QueueTime: 0.2
     OnAttack:
       m_PersistentCalls:
@@ -4305,6 +4354,19 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 7466739221878732527}
           m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Weapons.ViewModelAnimator,
+            Assembly-CSharp
+          m_MethodName: PlayAnimation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Reload
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8526310996866061579}
+          m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Common.Characters.ThirdPersonModel,
             Assembly-CSharp
           m_MethodName: PlayAnimation
           m_Mode: 5

@@ -1,11 +1,13 @@
 using SwiftKraft.Gameplay.Interfaces;
+using SwiftKraft.Gameplay.Weapons;
+using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.NPCs
 {
     public class NPCAttackerWeapon : NPCSingleTargetAttacker
     {
-        //public WeaponBase Weapon;
+        public EquippedWeaponBase EquippedWeapon;
 
         public float Range = 30f;
         public float AttackDot = 0.7f;
@@ -17,8 +19,6 @@ namespace SwiftKraft.Gameplay.NPCs
         {
             base.Awake();
             Lookable = Parent.GetComponent<ILookable>();
-            //if (Weapon == null)
-            //    Weapon = GetComponentInChildren<WeaponBase>();
         }
 
         public override void Attack()
@@ -26,8 +26,8 @@ namespace SwiftKraft.Gameplay.NPCs
             Vector3 direction = (CurrentTarget.Value.position - Lookable.LookPoint.position).normalized;
             Lookable.WishLookRotation = Quaternion.LookRotation(direction, transform.up);
 
-            //if (Vector3.Dot(direction, Lookable.LookPoint.rotation * AttackDotAxis.normalized) >= AttackDot)
-            //    Weapon.StartAction(WeaponBase.AttackAction);
+            if (EquippedWeapon != null || this.TryGetComponentInChildren(out EquippedWeapon))
+                EquippedWeapon.Attack();
         }
     }
 }

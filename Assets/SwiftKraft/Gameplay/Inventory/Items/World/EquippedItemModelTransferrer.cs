@@ -18,7 +18,15 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public void Transfer(EquippedItemModel model)
         {
-            model.transform.parent = Workspaces.FirstOrDefault(n => n.Name == model.WorkspaceName).Reference;
+            Transform trans = Workspaces.FirstOrDefault(n => n.Name == model.WorkspaceName).Reference;
+
+            if (trans == null)
+            {
+                model.gameObject.SetActive(false);
+                return;
+            }
+
+            model.transform.parent = trans;
             model.transform.SetLocalPositionAndRotation(default, Quaternion.identity);
         }
     }
