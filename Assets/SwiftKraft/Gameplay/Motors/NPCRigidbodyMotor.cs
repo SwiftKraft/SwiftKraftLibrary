@@ -23,6 +23,8 @@ namespace SwiftKraft.Gameplay.Motors
         {
             IsGrounded = Physics.CheckSphere(GroundPoint.position, GroundRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
+            State = WishMoveDirection.sqrMagnitude > 0 ? 1 : 0;
+
             base.FixedUpdate();
         }
 
