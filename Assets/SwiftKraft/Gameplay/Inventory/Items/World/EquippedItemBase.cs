@@ -2,6 +2,7 @@ using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Utils;
 using System;
+using System.Collections.Generic;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
 {
