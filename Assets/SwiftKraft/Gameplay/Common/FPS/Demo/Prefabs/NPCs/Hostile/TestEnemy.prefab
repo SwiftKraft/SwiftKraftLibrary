@@ -1090,6 +1090,7 @@ GameObject:
   - component: {fileID: 2617272560536589740}
   - component: {fileID: 3552518451666053710}
   - component: {fileID: 2536462663273870231}
+  - component: {fileID: 3134010286646403503}
   m_Layer: 9
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -1479,6 +1480,19 @@ MonoBehaviour:
     Reference: {fileID: 0}
   - Name: ShootPoint
     Reference: {fileID: 2025195663804695605}
+--- !u!114 &3134010286646403503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727248630901589903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea44bbea99e032418ddae17bcc106a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingItem: {fileID: 11400000, guid: 0b987ad9ae1721f4ca7696aa91b571e6, type: 2}
 --- !u!1 &2775602218642517283
 GameObject:
   m_ObjectHideFlags: 0

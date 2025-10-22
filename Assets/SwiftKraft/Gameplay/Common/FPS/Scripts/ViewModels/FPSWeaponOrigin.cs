@@ -30,7 +30,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
         {
             base.Awake();
             CameraManager = GetComponentInParent<CameraManager>();
-            FirstPerson = firstPerson;
+            FirstPerson = firstPerson && CameraManager != null;
 
             foreach (IFirstPersonSwitcher switcher in GetComponentsInParent<IFirstPersonSwitcher>())
                 switcher.Switchables.Add(this);

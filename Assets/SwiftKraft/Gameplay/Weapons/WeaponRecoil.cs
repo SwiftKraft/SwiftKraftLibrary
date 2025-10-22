@@ -49,6 +49,13 @@ namespace SwiftKraft.Gameplay.Weapons
         protected virtual void Awake()
         {
             RecoilTransform = transform.root.GetComponentInChildren<RecoilTransform>();
+
+            if (RecoilTransform == null)
+            {
+                enabled = false;
+                return;
+            }
+
             Component.OnAttack += OnAttack;
 
             if (CurrentRecoilTransform.TryGetComponent(out MultiModifyTransform tr))

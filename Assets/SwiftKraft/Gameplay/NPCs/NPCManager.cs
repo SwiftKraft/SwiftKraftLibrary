@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,7 +44,12 @@ namespace SwiftKraft.Gameplay.NPCs
 
             for (int i = 0; i < NPCs.Count; i++)
                 if (NPCs[i].enabled)
-                    NPCs[i].Tick();
+                {
+                    try
+                    {
+                        NPCs[i].Tick();
+                    } catch (Exception e) { Debug.LogException(e); }
+                }
         }
 
         private void OnDestroy() => destroyed = true;

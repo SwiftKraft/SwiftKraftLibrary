@@ -47,6 +47,8 @@ namespace SwiftKraft.Gameplay.Weapons
         CameraManager.FOVOverride.Override mainCamOverride;
         CameraManager.FOVOverride.Override viewModelOverride;
 
+        bool hasCamera;
+
         protected override void Awake()
         {
             base.Awake();
@@ -56,11 +58,16 @@ namespace SwiftKraft.Gameplay.Weapons
 
             CameraManager = GetComponentInParent<CameraManager>();
 
-            mainCamOverride = CameraManager.MainCameraFOV.AddOverride(CameraFOV);
-            viewModelOverride = CameraManager.ViewModelFOV.AddOverride(ViewModelFOV);
+            hasCamera = CameraManager != null;
 
-            mainCamOverride.Active = false;
-            viewModelOverride.Active = false;
+            if (hasCamera)
+            {
+                mainCamOverride = CameraManager.MainCameraFOV.AddOverride(CameraFOV);
+                viewModelOverride = CameraManager.ViewModelFOV.AddOverride(ViewModelFOV);
+
+                mainCamOverride.Active = false;
+                viewModelOverride.Active = false;
+            }
 
             ReloadState.Init(this);
         }
@@ -74,8 +81,11 @@ namespace SwiftKraft.Gameplay.Weapons
             AimInterpolater.MaxValue = wishAim ? 1f : 0f;
             AimInterpolater.Tick(Time.deltaTime);
 
-            mainCamOverride.Active = wishAim;
-            viewModelOverride.Active = wishAim;
+            if (hasCamera)
+            {
+                mainCamOverride.Active = wishAim;
+                viewModelOverride.Active = wishAim;
+            }
         }
 
         public override void Equip(ItemInstance inst)

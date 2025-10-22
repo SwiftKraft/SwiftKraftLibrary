@@ -27,6 +27,9 @@ namespace SwiftKraft.Gameplay.Common.FPS.ViewModels
 
         public void Initialize()
         {
+            if (Parent == null)
+                return;
+
             Parent.SetViewModelFOV(FOV, true);
             Parent.CameraAnimations.TargetTransform = CameraTarget;
             Parent.CameraAnimations.ReferenceTransform = ReferenceTarget;
