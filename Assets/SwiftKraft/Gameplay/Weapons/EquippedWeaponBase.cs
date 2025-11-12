@@ -54,6 +54,8 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public virtual void Attack()
         {
+            if (CurrentState != IdleStateInstance)
+                return;
             CurrentState = AttackStateInstance;
             OnAttack?.Invoke();
         }
@@ -106,13 +108,12 @@ namespace SwiftKraft.Gameplay.Weapons
                 base.OnTimerEnd();
                 if (Item != null)
                 {
+                    Item.SetIdle();
                     if (queued)
                     {
                         Item.Attack();
                         queued = false;
                     }
-                    else
-                        Item.SetIdle();
                 }
             }
 

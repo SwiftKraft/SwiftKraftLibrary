@@ -2,7 +2,6 @@ using SwiftKraft.Gameplay.Bases;
 using SwiftKraft.Gameplay.Interfaces;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items
@@ -17,6 +16,8 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
         public EquippedItemBase Current { get; private set; }
         public ItemInstance WishEquip { get; set; }
+
+        public bool IsPlayer;
 
         protected virtual void Awake()
         {
@@ -78,6 +79,7 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 
             it = Instantiate(item, Workspace);
             it.Init(this);
+            it.PlayerControlled = IsPlayer;
 
             EquippedItemCache.Add(it);
 

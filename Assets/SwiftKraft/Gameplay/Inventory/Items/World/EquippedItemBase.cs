@@ -8,14 +8,15 @@ namespace SwiftKraft.Gameplay.Inventory.Items
 {
     public class EquippedItemBase : PetBehaviourBase
     {
-        public const string EquipAction = "Equip";
-        public const string UnequipAction = "Unequip";
+        public readonly Dictionary<string, Func<bool>> RegisteredActions = new();
 
         public IItemEquipper Parent { get; private set; }
 
         public ItemInstance Instance { get; private set; }
 
         public EquippableItemType Item => Instance.Type is EquippableItemType eq ? eq : null;
+
+        public bool PlayerControlled { get; set; }
 
         public void Init(IItemEquipper parent)
         {
@@ -58,6 +59,16 @@ namespace SwiftKraft.Gameplay.Inventory.Items
         /// </summary>
         /// <returns>Whether the unequip is allowed.</returns>
         public virtual bool AttemptUnequip() => CanUnequip;
+
+        public bool RegisterAction(string actionName, Func<bool> action)
+        {
+            if (RegisteredActions.ContainsKey(actionName))
+                return false;
+            RegisteredActions.Add(actionName, action);
+            return true;
+        }
+
+        public bool PerformAction(string actionName) => RegisteredActions.ContainsKey(actionName) && RegisteredActions[actionName]();
 
         protected virtual void Awake() { }
         protected virtual void FixedUpdate() => CurrentState?.Tick();

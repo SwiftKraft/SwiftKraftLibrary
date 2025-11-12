@@ -207,14 +207,17 @@ namespace SwiftKraft.Gameplay.Weapons
 
             public override void Frame()
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0) && Item.CurrentAmmo > 0)
-                    Item.Attack();
+                if (Item.PlayerControlled)
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0) && Item.CurrentAmmo > 0)
+                        Item.Attack();
 
-                if (Input.GetKeyDown(KeyCode.R) && Item.CurrentAmmo < Item.MaxAmmo)
-                    Item.CurrentState = Item.ReloadState;
+                    if (Input.GetKeyDown(KeyCode.R) && Item.CurrentAmmo < Item.MaxAmmo)
+                        Item.CurrentState = Item.ReloadState;
 
-                if (Input.GetKeyDown(KeyCode.G))
-                    Item.Parent.WishEquip = null;
+                    if (Input.GetKeyDown(KeyCode.G))
+                        Item.Parent.WishEquip = null;
+                }
             }
 
             public override void Tick() { }
