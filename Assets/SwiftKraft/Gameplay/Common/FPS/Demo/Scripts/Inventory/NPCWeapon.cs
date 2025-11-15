@@ -2,8 +2,6 @@ using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
 using SwiftKraft.Gameplay.NPCs;
 using SwiftKraft.Gameplay.Weapons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Common.FPS.Demo
