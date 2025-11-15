@@ -79,7 +79,7 @@ namespace SwiftKraft.Gameplay.NPCs
             {
                 Vector3 lookPos = CurrentWaypoint + Motor.LookPointHeight * Vector3.up;
                 if ((lookPos - Motor.LookPoint.position).sqrMagnitude > MinLookWaypointDistance * MinLookWaypointDistance)
-                Motor.WishLookPosition = lookPos;
+                    Motor.WishLookPosition = lookPos;
             }
 
             if (Vector3.Distance(transform.position, CurrentWaypoint) <= WaypointRadius)
