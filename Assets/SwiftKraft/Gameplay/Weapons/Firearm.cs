@@ -88,6 +88,8 @@ namespace SwiftKraft.Gameplay.Weapons
             }
         }
 
+        public override bool Attack() => CurrentAmmo > 0 && CurrentState == IdleStateInstance && base.Attack();
+
         public override void Equip(ItemInstance inst)
         {
             base.Equip(inst);
@@ -196,7 +198,7 @@ namespace SwiftKraft.Gameplay.Weapons
                 Item.AmmoData.CurrentAmmo--;
             }
 
-            public override bool CheckQueue() => Input.GetKeyDown(KeyCode.Mouse0) && Item.CurrentAmmo > 0;
+            public override bool CheckQueue() => Item.PlayerControlled && Input.GetKeyDown(KeyCode.Mouse0) && Item.CurrentAmmo > 0;
         }
 
         public class Idle : EquippedItemState<Firearm>
@@ -209,7 +211,7 @@ namespace SwiftKraft.Gameplay.Weapons
             {
                 if (Item.PlayerControlled)
                 {
-                    if (Input.GetKeyDown(KeyCode.Mouse0) && Item.CurrentAmmo > 0)
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                         Item.Attack();
 
                     if (Input.GetKeyDown(KeyCode.R) && Item.CurrentAmmo < Item.MaxAmmo)

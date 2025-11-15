@@ -10,6 +10,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public abstract class EquippedWeaponBase : EquippedItemDrawTime
     {
+        public const string AttackAction = "Attack";
+
         public readonly Dictionary<string, ModifiableStatistic> ExposedStats = new();
 
         public EquippedItemWaitState EquipState;
@@ -25,6 +27,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
             EquipStateInstance = EquipState;
             UnequipStateInstance = UnequipState;
+            RegisterAction(AttackAction, Attack);
         }
 
         protected override void Start()
@@ -52,12 +55,11 @@ namespace SwiftKraft.Gameplay.Weapons
             return stat != null;
         }
 
-        public virtual void Attack()
+        public virtual bool Attack()
         {
-            if (CurrentState != IdleStateInstance)
-                return;
             CurrentState = AttackStateInstance;
             OnAttack?.Invoke();
+            return true;
         }
 
         [Serializable]
