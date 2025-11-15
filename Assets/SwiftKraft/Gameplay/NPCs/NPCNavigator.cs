@@ -45,6 +45,8 @@ namespace SwiftKraft.Gameplay.NPCs
 
         [field: SerializeField]
         public bool LookAtWaypoint { get; set; }
+        [field: SerializeField]
+        public float MinLookWaypointDistance { get; set; } = 1f;
 
         public bool Stopped { get; set; }
 
@@ -74,7 +76,11 @@ namespace SwiftKraft.Gameplay.NPCs
             RepathTimer.Tick(Time.fixedDeltaTime);
 
             if (LookAtWaypoint)
-                Motor.WishLookPosition = CurrentWaypoint + Motor.LookPointHeight * Vector3.up;
+            {
+                Vector3 lookPos = CurrentWaypoint + Motor.LookPointHeight * Vector3.up;
+                if ((lookPos - Motor.LookPoint.position).sqrMagnitude > MinLookWaypointDistance * MinLookWaypointDistance)
+                Motor.WishLookPosition = lookPos;
+            }
 
             if (Vector3.Distance(transform.position, CurrentWaypoint) <= WaypointRadius)
             {
