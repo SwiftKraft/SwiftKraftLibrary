@@ -27,9 +27,7 @@ namespace SwiftKraft.Gameplay.Motors
                 if (value == Vector3.zero)
                     return;
 
-                Vector3 target = Quaternion.LookRotation(value.normalized, transform.up).eulerAngles;
-                target.x = -target.x;
-                WishLookRotation = Quaternion.Euler(target);
+                WishLookRotation = Quaternion.LookRotation(value.normalized, transform.up);
             }
         }
 

@@ -74,7 +74,7 @@ namespace SwiftKraft.Gameplay.NPCs
             RepathTimer.Tick(Time.fixedDeltaTime);
 
             if (LookAtWaypoint)
-                Motor.WishLookPosition = CurrentWaypoint + Motor.LookPoint.localPosition;
+                Motor.WishLookPosition = CurrentWaypoint + Motor.LookPointHeight * Vector3.up;
 
             if (Vector3.Distance(transform.position, CurrentWaypoint) <= WaypointRadius)
             {
