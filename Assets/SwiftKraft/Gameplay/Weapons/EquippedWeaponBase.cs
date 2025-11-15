@@ -1,5 +1,6 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
+using SwiftKraft.Gameplay.Projectiles;
 using SwiftKraft.Utils;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,8 @@ namespace SwiftKraft.Gameplay.Weapons
         [Serializable]
         public class BasicAttack : EquippedItemWaitState
         {
+            public float BaseDamage = 25f;
+
             public GameObject ProjectilePrefab;
             public Transform ShootPoint;
 
@@ -124,6 +127,9 @@ namespace SwiftKraft.Gameplay.Weapons
             public virtual void SpawnProjectile()
             {
                 GameObject go = Instantiate(ProjectilePrefab, ShootPoint.position, ShootPoint.rotation);
+
+                if (go.TryGetComponent(out ProjectileBase proj))
+                    proj.BaseDamage = BaseDamage;
 
                 if (go.TryGetComponent(out IPet pet))
                     pet.Owner = Item.Owner;
