@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 namespace SwiftKraft.Gameplay.Common.FPS.Demo
 {
-    [CreateAssetMenu(menuName = "SwiftKraft/Gameplay/Common/FPS/Demo/NPCs/Basic Enemy")]
-    public class NPCBasicEnemy : NPCStateBase
+    [CreateAssetMenu(menuName = "SwiftKraft/Gameplay/Common/FPS/Demo/NPCs/Basic Attacker")]
+    public class NPCBasicAttacker : NPCStateBase
     {
         public bool Attack;
         public Vector3 AttackCoordinates;
@@ -35,7 +35,6 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         {
             scanner = Core.Modules.Get<NPCScannerBase>();
             navigator = Core.Modules.Get<NPCNavigator>();
-            //ammo = Core.Modules.Get<NPCAttackerWeapon>().Weapon.GetComponent<WeaponAmmo>();
             lastRemembered = Attack ? AttackCoordinates : Core.transform.position;
         }
 
@@ -43,9 +42,6 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         public override void Tick()
         {
-            //if (!ammo.Reloading && ammo.CurrentAmmo <= 0)
-            //    ammo.StartReload();
-
             navigator.LookAtWaypoint = !scanner.HasTarget;
 
             if (scanner.HasTarget)
