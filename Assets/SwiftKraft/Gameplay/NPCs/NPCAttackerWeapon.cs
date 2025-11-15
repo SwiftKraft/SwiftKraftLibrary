@@ -27,7 +27,7 @@ namespace SwiftKraft.Gameplay.NPCs
             Lookable.WishLookRotation = Quaternion.LookRotation(direction, transform.up);
 
             if (EquippedWeapon != null || this.TryGetComponentInChildren(out EquippedWeapon))
-                EquippedWeapon.Attack();
+                EquippedWeapon.PerformAction(EquippedWeaponBase.AttackAction);
         }
     }
 }

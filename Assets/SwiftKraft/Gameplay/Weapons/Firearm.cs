@@ -3,6 +3,7 @@ using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
 using SwiftKraft.Utils;
 using System;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +11,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class Firearm : EquippedWeaponBase, IAmmo, IAimable
     {
+        public const string ReloadAction = "Reload";
+
         public Shoot AttackState;
         public Idle IdleState = new();
         public Reload ReloadState = new();
@@ -70,6 +73,8 @@ namespace SwiftKraft.Gameplay.Weapons
             }
 
             ReloadState.Init(this);
+
+            RegisterAction(ReloadAction, StartReload);
         }
 
         protected override void Update()
@@ -89,6 +94,16 @@ namespace SwiftKraft.Gameplay.Weapons
         }
 
         public override bool Attack() => CurrentAmmo > 0 && CurrentState == IdleStateInstance && base.Attack();
+
+        public virtual bool StartReload()
+        {
+            if (CurrentAmmo < MaxAmmo && CurrentState == IdleStateInstance)
+            {
+                CurrentState = ReloadState;
+                return true;
+            }
+            return false;
+        }
 
         public override void Equip(ItemInstance inst)
         {
@@ -212,14 +227,16 @@ namespace SwiftKraft.Gameplay.Weapons
                 if (Item.PlayerControlled)
                 {
                     if (Input.GetKeyDown(KeyCode.Mouse0))
-                        Item.Attack();
+                        Item.PerformAction(AttackAction);
 
-                    if (Input.GetKeyDown(KeyCode.R) && Item.CurrentAmmo < Item.MaxAmmo)
-                        Item.CurrentState = Item.ReloadState;
+                    if (Input.GetKeyDown(KeyCode.R))
+                        Item.PerformAction(ReloadAction);
 
                     if (Input.GetKeyDown(KeyCode.G))
                         Item.Parent.WishEquip = null;
                 }
+                else if (Item.CurrentAmmo <= 0)
+                    Item.PerformAction(ReloadAction);
             }
 
             public override void Tick() { }
