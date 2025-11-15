@@ -1,5 +1,6 @@
 using SwiftKraft.Gameplay.Interfaces;
 using SwiftKraft.Gameplay.Inventory.Items;
+using SwiftKraft.Gameplay.Projectiles;
 using SwiftKraft.Utils;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public abstract class EquippedWeaponBase : EquippedItemDrawTime
     {
+        public const string AttackAction = "Attack";
+
         public readonly Dictionary<string, ModifiableStatistic> ExposedStats = new();
 
         public EquippedItemWaitState EquipState;
@@ -25,6 +28,7 @@ namespace SwiftKraft.Gameplay.Weapons
 
             EquipStateInstance = EquipState;
             UnequipStateInstance = UnequipState;
+            RegisterAction(AttackAction, Attack);
         }
 
         protected override void Start()
@@ -52,17 +56,18 @@ namespace SwiftKraft.Gameplay.Weapons
             return stat != null;
         }
 
-        public virtual void Attack()
+        public virtual bool Attack()
         {
-            if (CurrentState != IdleStateInstance)
-                return;
             CurrentState = AttackStateInstance;
             OnAttack?.Invoke();
+            return true;
         }
 
         [Serializable]
         public class BasicAttack : EquippedItemWaitState
         {
+            public float BaseDamage = 25f;
+
             public GameObject ProjectilePrefab;
             public Transform ShootPoint;
 
@@ -122,6 +127,9 @@ namespace SwiftKraft.Gameplay.Weapons
             public virtual void SpawnProjectile()
             {
                 GameObject go = Instantiate(ProjectilePrefab, ShootPoint.position, ShootPoint.rotation);
+
+                if (go.TryGetComponent(out ProjectileBase proj))
+                    proj.BaseDamage = BaseDamage;
 
                 if (go.TryGetComponent(out IPet pet))
                     pet.Owner = Item.Owner;

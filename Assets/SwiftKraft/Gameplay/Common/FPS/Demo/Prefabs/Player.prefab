@@ -1343,7 +1343,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 591a748c951d9434d832c11716670a4c, type: 2}
+  - {fileID: -4565884009001823619, guid: 0337b2e492833f94bbd6fff841d745d6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2083,7 +2083,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 13ce5b300a5e0754c84d373fe1ee09ea, type: 2}
+  - {fileID: -840037777384891287, guid: 0337b2e492833f94bbd6fff841d745d6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3184,7 +3184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54102af1ba2a4e4ea651e1d36bb9522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 1000
   DestroyOnDeath: 0
   OnDeath:
     m_PersistentCalls:
