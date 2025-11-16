@@ -20,14 +20,19 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         {
             Attacker = GetComponent<NPCAttackerWeapon>();
             Equipper = GetComponent<IItemEquipper>();
-            instance = new ItemInstance(StartingItem);
+            if (StartingItem != null)
+                instance = new ItemInstance(StartingItem);
         }
 
-        private void Start() => Equipper.Equip(instance);
+        private void Start()
+        {
+            if (instance != null)
+                Equipper.Equip(instance);
+        }
 
         private void FixedUpdate()
         {
-            if (Attacker.EquippedWeapon == null)
+            if (Attacker.EquippedWeapon == null && Equipper.Current != null)
                 Attacker.EquippedWeapon = Equipper.Current as EquippedWeaponBase;
         }
     }
