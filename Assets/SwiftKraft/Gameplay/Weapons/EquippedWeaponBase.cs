@@ -13,7 +13,7 @@ namespace SwiftKraft.Gameplay.Weapons
     {
         public const string AttackAction = "Attack";
 
-        public readonly Dictionary<string, ModifiableStatistic> ExposedStats = new();
+        public readonly Blackboard<ModifiableStatistic> ExposedStats = new();
 
         public EquippedItemWaitState EquipState;
         public EquippedItemWaitState UnequipState;
@@ -37,29 +37,10 @@ namespace SwiftKraft.Gameplay.Weapons
             AttackStateInstance?.Init(this);
         }
 
-        public bool ExposeStat(string key, ModifiableStatistic stat)
-        {
-            if (ExposedStats.ContainsKey(key))
-                return false;
-
-            ExposedStats.Add(key, stat);
-            return true;
-        }
-
-        public bool ConcealStat(string key) => ExposedStats.Remove(key);
-
-        public ModifiableStatistic GetStat(string key) => ExposedStats.ContainsKey(key) ? ExposedStats[key] : null;
-
-        public bool TryGetStat(string key, out ModifiableStatistic stat)
-        {
-            stat = GetStat(key);
-            return stat != null;
-        }
-
         public virtual bool Attack()
         {
-            CurrentState = AttackStateInstance;
             OnAttack?.Invoke();
+            CurrentState = AttackStateInstance;
             return true;
         }
 

@@ -16,6 +16,8 @@ namespace SwiftKraft.Utils
             return true;
         }
 
+        public void Add(string name, T value) => TryAdd(name, value);
+
         public bool TryAdd<E>(string name, out E res) where E : T, new()
         {
             res = default;
