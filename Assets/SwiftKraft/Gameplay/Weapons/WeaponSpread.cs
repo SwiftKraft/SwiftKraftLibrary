@@ -1,6 +1,4 @@
 using SwiftKraft.Utils;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Weapons
@@ -32,14 +30,15 @@ namespace SwiftKraft.Gameplay.Weapons
             OriginalPosition = ModifyTransform.localPosition;
             OriginalRotation = ModifyTransform.localRotation;
 
-            Component.OnAttack += OnAttack;
+            Component.OnAttacking += OnAttacking;
 
             Component.ExposedStats.Add(SpreadAmountName, BaseAmount);
+            Component.ExposedStats.Add(SpreadMultiplierName, Multiplier);
         }
 
-        protected virtual void OnDestroy() => Component.OnAttack -= OnAttack;
+        protected virtual void OnDestroy() => Component.OnAttacking -= OnAttacking;
 
-        protected virtual void OnAttack()
+        protected virtual void OnAttacking()
         {
             ModifyTransform.SetLocalPositionAndRotation(OriginalPosition, OriginalRotation);
             Randomize(ModifyTransform);

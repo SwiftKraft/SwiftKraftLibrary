@@ -4359,6 +4359,7 @@ GameObject:
   - component: {fileID: 7792533232607691567}
   - component: {fileID: 3166869404018688174}
   - component: {fileID: 7543653201352354883}
+  - component: {fileID: 6360743940224426080}
   - component: {fileID: 2584018220074836143}
   - component: {fileID: 1098259891708741795}
   m_Layer: 6
@@ -4565,6 +4566,7 @@ MonoBehaviour:
   <MaxAmmo>k__BackingField: 18
   CameraFOV: 70
   ViewModelFOV: 45
+  AimSpreadMultiplier: 0.075
   AimInterpolater:
     <MaxValue>k__BackingField: 0
     <SmoothTime>k__BackingField: 0.1
@@ -4585,6 +4587,22 @@ MonoBehaviour:
   firstPerson: 1
   FPOrigin: {fileID: 275678322790986811}
   TPOrigin: {fileID: 4184123982594293025}
+--- !u!114 &6360743940224426080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411352932588748021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a66f0da1a5395e40b5616775409555b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseAmount:
+    <BaseValue>k__BackingField: 3
+    <Values>k__BackingField: []
+  ModifyTransform: {fileID: 2970867613494433255}
 --- !u!114 &2584018220074836143
 MonoBehaviour:
   m_ObjectHideFlags: 0

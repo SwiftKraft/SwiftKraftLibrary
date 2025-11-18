@@ -3,7 +3,6 @@ using SwiftKraft.Gameplay.Inventory.Items;
 using SwiftKraft.Gameplay.Projectiles;
 using SwiftKraft.Utils;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,6 +20,7 @@ namespace SwiftKraft.Gameplay.Weapons
         public EquippedItemState AttackStateInstance { get; protected set; }
 
         public event Action OnAttack;
+        public event Action OnAttacking;
 
         protected override void Awake()
         {
@@ -39,8 +39,9 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public virtual bool Attack()
         {
-            OnAttack?.Invoke();
+            OnAttacking?.Invoke();
             CurrentState = AttackStateInstance;
+            OnAttack?.Invoke();
             return true;
         }
 

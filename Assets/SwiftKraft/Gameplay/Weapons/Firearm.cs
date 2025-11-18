@@ -11,6 +11,8 @@ namespace SwiftKraft.Gameplay.Weapons
 {
     public class Firearm : EquippedWeaponBase, IAmmo, IAimable
     {
+        public const string BaseDamageName = "Firearm_BaseDamage";
+
         public const string ReloadAction = "Reload";
 
         public Shoot AttackState;
@@ -45,10 +47,14 @@ namespace SwiftKraft.Gameplay.Weapons
 
         public float AimProgress => AimInterpolater.CurrentValue;
 
+        public float AimSpreadMultiplier = 0.075f;
+
         public SmoothDampInterpolater AimInterpolater;
 
         CameraManager.FOVOverride.Override mainCamOverride;
         CameraManager.FOVOverride.Override viewModelOverride;
+
+        ModifiableStatistic.Modifier spreadMod;
 
         bool hasCamera;
 
@@ -77,6 +83,18 @@ namespace SwiftKraft.Gameplay.Weapons
             RegisterAction(ReloadAction, StartReload);
         }
 
+        protected override void Start()
+        {
+            base.Start();
+
+            if (ExposedStats.TryGet(WeaponSpread.SpreadMultiplierName, out ModifiableStatistic stat))
+            {
+                spreadMod = stat.AddModifier();
+                spreadMod.Type = ModifiableStatistic.ModifierType.Multiplication;
+                spreadMod.Value = 1f;
+            }
+        }
+
         protected override void Update()
         {
             base.Update();
@@ -85,6 +103,9 @@ namespace SwiftKraft.Gameplay.Weapons
 
             AimInterpolater.MaxValue = wishAim ? 1f : 0f;
             AimInterpolater.Tick(Time.deltaTime);
+
+            if (spreadMod != null)
+                spreadMod.Value = Mathf.Lerp(1f, AimSpreadMultiplier, AimProgress);
 
             if (hasCamera)
             {
