@@ -15,6 +15,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
         NPCScannerBase scanner;
         NPCNavigator navigator;
+        NPCAttackerBase attacker;
         //WeaponAmmo ammo;
 
         Vector3 lastRemembered;
@@ -30,11 +31,14 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
         float maxStrafeTimer = 6f;
 
         readonly Timer strafeTimer = new();
+        readonly Timer reactionTimer = new();
 
         public override void Begin()
         {
+            reactionTimer.Reset(Random.Range(0.2f, 1f));
             scanner = Core.Modules.Get<NPCScannerBase>();
             navigator = Core.Modules.Get<NPCNavigator>();
+            attacker = Core.Modules.Get<NPCAttackerBase>();
             lastRemembered = Attack ? AttackCoordinates : Core.transform.position;
         }
 
@@ -45,6 +49,13 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
             navigator.LookAtWaypoint = !scanner.HasTarget;
 
             if (scanner.HasTarget)
+                reactionTimer.Tick(Time.fixedDeltaTime);
+            else
+                reactionTimer.Reset();
+
+            attacker.AllowAttack = reactionTimer.Ended;
+
+            if (reactionTimer.Ended && scanner.HasTarget)
             {
                 strafeTimer.Tick(Time.fixedDeltaTime);
 
