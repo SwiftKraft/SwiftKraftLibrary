@@ -18,7 +18,7 @@ namespace SwiftKraft.Gameplay.Playables
         private void Awake()
         {
             Graph = PlayableGraph.Create(gameObject.name);
-            Mixer = AnimationLayerMixerPlayable.Create(Graph, Layers.Count);
+            Mixer = AnimationLayerMixerPlayable.Create(Graph, Layers.Count); // make addlayer methods, and apply avatarmask and weights.
             Graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
             Graph.Play();
         }
