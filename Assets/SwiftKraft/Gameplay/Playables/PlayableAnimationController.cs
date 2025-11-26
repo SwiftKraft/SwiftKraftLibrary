@@ -36,6 +36,14 @@ namespace SwiftKraft.Gameplay.Playables
             Graph.Stop();
             Graph.Destroy();
         }
+
+        public void AddLayer(PlayableAnimationLayer layer)
+        {
+            if (Layers.Contains(layer))
+                return;
+
+
+        }
     }
 
     [Serializable]
