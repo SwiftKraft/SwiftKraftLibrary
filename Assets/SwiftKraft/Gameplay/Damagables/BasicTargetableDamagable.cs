@@ -21,6 +21,8 @@ namespace SwiftKraft.Gameplay.Damagables
 
         public bool CanTarget => !IsDead;
 
+        public object GetStatus(string statusId) => null;
+
         protected override void Awake()
         {
             base.Awake();

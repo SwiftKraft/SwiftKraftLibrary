@@ -25,6 +25,9 @@ namespace SwiftKraft.Utils
 
         public void PlayAudio(float chanceOverride = -1f)
         {
+            if (!Audio.enabled)
+                return;
+
             if (chanceOverride < 0f)
                 chanceOverride = Chance;
 
