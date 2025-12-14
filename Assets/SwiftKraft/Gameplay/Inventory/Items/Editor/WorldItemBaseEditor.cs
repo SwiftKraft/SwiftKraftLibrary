@@ -1,9 +1,5 @@
 using SwiftKraft.Editors;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.UIElements;
-using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Inventory.Items.Editors
 {
