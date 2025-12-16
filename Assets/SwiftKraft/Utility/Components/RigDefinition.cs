@@ -38,7 +38,6 @@ namespace SwiftKraft.Utils
                 var dst = nodes[dstIndex];
 
                 dst.Transform.SetLocalPositionAndRotation(src.Transform.localPosition, src.Transform.localRotation);
-                dst.Transform.localScale = src.Transform.localScale;
 
                 if (!moveUnregistered)
                     continue;
