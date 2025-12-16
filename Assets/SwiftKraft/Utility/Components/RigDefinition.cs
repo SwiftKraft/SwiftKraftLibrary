@@ -19,8 +19,6 @@ namespace SwiftKraft.Utils
 
             if (source.Animator != null)
                 source.Animator.Update(0f);
-            else
-                Debug.Log("Source animator is null");
 
             int min = Mathf.Min(source.Transforms.Count, Transforms.Count);
             for (int i = 0; i < min; i++)
