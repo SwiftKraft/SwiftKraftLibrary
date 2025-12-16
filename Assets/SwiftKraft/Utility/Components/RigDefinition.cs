@@ -7,103 +7,57 @@ namespace SwiftKraft.Utils
     {
         public Transform Root;
 
-        [SerializeField]
-        private RigNode[] nodes;
+        public List<Transform> Transforms = new();
 
-        private Dictionary<string, int> pathToIndex;
+        public Animator Animator { get; private set; }
 
-        [System.Serializable]
-        private struct RigNode
-        {
-            public string Path;
-            public int ParentIndex;
-            public Transform Transform;
-        }
-
-        // ---------- PUBLIC API ----------
+        private void Awake() => Animator = GetComponentInChildren<Animator>();
 
         public void Replicate(RigDefinition source, bool moveUnregistered = true)
         {
-            if (source == null || source.nodes == null)
+            if (source == null) return;
+
+            if (source.Animator != null)
+                source.Animator.Update(0f);
+            else
+                Debug.Log("Source animator is null");
+
+            int min = Mathf.Min(source.Transforms.Count, Transforms.Count);
+            for (int i = 0; i < min; i++)
+                Transforms[i].SetLocalPositionAndRotation(source.Transforms[i].localPosition, source.Transforms[i].localRotation);
+
+            if (!moveUnregistered)
                 return;
-
-            EnsureMap();
-            source.EnsureMap();
-
-            foreach (var src in source.nodes)
-            {
-                if (!pathToIndex.TryGetValue(src.Path, out int dstIndex))
-                    continue;
-
-                var dst = nodes[dstIndex];
-
-                dst.Transform.SetLocalPositionAndRotation(src.Transform.localPosition, src.Transform.localRotation);
-
-                if (!moveUnregistered)
-                    continue;
-
-                for (int i = 0; i < src.Transform.childCount; i++)
-                {
-                    Transform child = src.Transform.GetChild(i);
-
-                    if (source.pathToIndex.ContainsKey(child.name))
-                        continue;
-
-                    child.SetParent(dst.Transform, worldPositionStays: true);
-                }
-            }
+            
+            for (int i = 0; i < min; i++)
+                foreach (Transform tr in source.Transforms[i])
+                    if (!source.Transforms.Contains(tr))
+                        tr.SetParent(Transforms[i], false);
         }
 
         public void Rebuild()
         {
             if (Root == null)
             {
-                nodes = null;
-                pathToIndex = null;
-                Debug.LogWarning("RigDefinition: Root is null, cannot rebuild rig definition.");
+                Debug.LogWarning("Root is null! ");
                 return;
             }
 
-            var list = new List<RigNode>();
-            BuildFlat(Root, -1, "", list);
-            nodes = list.ToArray();
-            pathToIndex = null;
-            Debug.Log($"RigDefinition: Rebuilt rig definition with {nodes.Length} nodes.");
+            Transforms.Clear();
+            RecursiveBuild(Root);
+
+            Debug.Log($"Rebuilt rig definition from root node: \"{Root.name}\", collecting {Transforms.Count} transforms.");
         }
 
-        // ---------- INTERNAL ----------
-
-        private void BuildFlat(
-            Transform t,
-            int parentIndex,
-            string parentPath,
-            List<RigNode> list)
+        private void RecursiveBuild(Transform cur)
         {
-            string path = string.IsNullOrEmpty(parentPath)
-                ? t.name
-                : $"{parentPath}/{t.name}";
+            Transforms.Add(cur);
 
-            int index = list.Count;
-
-            list.Add(new RigNode
-            {
-                Path = path,
-                ParentIndex = parentIndex,
-                Transform = t
-            });
-
-            for (int i = 0; i < t.childCount; i++)
-                BuildFlat(t.GetChild(i), index, path, list);
-        }
-
-        private void EnsureMap()
-        {
-            if (pathToIndex != null)
+            if (cur.childCount <= 0)
                 return;
 
-            pathToIndex = new Dictionary<string, int>(nodes.Length);
-            for (int i = 0; i < nodes.Length; i++)
-                pathToIndex[nodes[i].Path] = i;
+            foreach (Transform t in cur)
+                RecursiveBuild(t);
         }
     }
 }
