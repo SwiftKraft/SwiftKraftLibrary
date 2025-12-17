@@ -1,6 +1,5 @@
 using SwiftKraft.Utils;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ namespace SwiftKraft.Debugging
     public class TransformTracker : MonoBehaviour
     {
         public bool OnlyShowSelected = false;
-        [Subclass]
+        [SerializeReference, Subclass]
         public GizmosDrawer[] CurrentDrawers;
 
         public TransformDataScale Previous { get; private set; }
@@ -57,9 +56,31 @@ namespace SwiftKraft.Debugging
         public Color Color = Color.white;
         public float Duration = 1f;
 
+        public override void Draw(TransformTracker tracker) => Debug.DrawLine(tracker.transform.position, tracker.Previous.Position, Color, Duration);
+    }
+
+    public class TransformTrackerSphere : TransformTracker.GizmosDrawer
+    {
+        public Color Color = Color.white;
+        public float Radius = 0.25f;
+        public bool Trail = false;
+        public int Length = 10;
+
+        TransformDataScale[] array;
+        int availableLength = 0;
+
         public override void Draw(TransformTracker tracker)
         {
-            Debug.DrawLine(tracker.transform.position, tracker.Previous.Position, Color, Duration);
+            if (array == null || array.Length != Length)
+            {
+                array = new TransformDataScale[Length];
+                availableLength = 0;
+            }
+
+            if (availableLength < Length)
+            array[++availableLength - 1] = tracker.Previous;
+            else
+                array.s
         }
     }
 }

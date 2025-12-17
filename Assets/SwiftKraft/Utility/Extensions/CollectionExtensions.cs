@@ -80,6 +80,16 @@ namespace SwiftKraft.Utils
             return values[0];
         }
 
+        public static void Shift<T>(this T[] values, int amount = 1)
+        {
+            amount %= values.Length;
+
+            for (int i = values.Length - amount; i >= 0; i--)
+            {
+                values[i + amount] = values[i];
+            }
+        }
+
         public static bool InRange(this Array values, int id) => id >= 0 && id < values.Length;
         public static bool InRange(this ICollection values, int id) => id >= 0 && id < values.Count;
 
