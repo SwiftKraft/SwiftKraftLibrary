@@ -10,9 +10,14 @@ namespace SwiftKraft.Debugging
         [SerializeReference, Subclass]
         public GizmosDrawer[] CurrentDrawers;
 
-        public TransformDataScale Previous { get; private set; }
+        public TransformDataScale PreviousWorld { get; private set; }
+        public TransformDataScale PreviousLocal { get; private set; }
 
-        private void Awake() => Previous = new(transform);
+        private void Awake()
+        {
+            PreviousWorld = new(transform);
+            PreviousLocal = new(transform, true);
+        }
 
         public void Track()
         {
@@ -24,7 +29,8 @@ namespace SwiftKraft.Debugging
             foreach (GizmosDrawer drawer in CurrentDrawers)
                 drawer.Draw(this);
 
-            Previous = new(transform);
+            PreviousWorld = new(transform);
+            PreviousLocal = new(transform, true);
         }
 
         private void OnDrawGizmos()
@@ -55,33 +61,19 @@ namespace SwiftKraft.Debugging
         public Color Color = Color.white;
         public float Duration = 1f;
 
-        public override void Draw(TransformTracker tracker) => Debug.DrawLine(tracker.transform.position, tracker.Previous.Position, Color, Duration);
+        public override void Draw(TransformTracker tracker) => Debug.DrawLine(tracker.transform.position, tracker.PreviousWorld.Position, Color, Duration);
     }
 
     public class TransformTrackerSphere : TransformTracker.GizmosDrawer
     {
         public Color Color = Color.white;
         public float Radius = 0.25f;
-        public bool Trail = false;
-        public int Length = 10;
-
-        TransformDataScale[] trailArray;
-        int availableLength = 0;
 
         public override void Draw(TransformTracker tracker)
         {
-            if (trailArray == null || trailArray.Length != Length)
-            {
-                trailArray = new TransformDataScale[Length];
-                availableLength = 0;
-            }
-
-            if (availableLength < Length)
-                trailArray[++availableLength - 1] = tracker.Previous;
-            else
-            {
-
-            }
+            Gizmos.matrix = tracker.transform.localToWorldMatrix;
+            Gizmos.color = Color;
+            Gizmos.DrawWireSphere(default, Radius);
         }
     }
 }
