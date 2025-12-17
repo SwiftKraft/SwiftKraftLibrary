@@ -10,7 +10,7 @@ namespace SwiftKraft.Utils
     {
         public static T GetRandom<T>(this T[] values) => values.Length > 0 ? values[Random.Range(0, values.Length)] : default;
 
-        public static T GetRandom<T>(this List<T> values) => values.Count > 0 ? values[Random.Range(0, values.Count)] : default;
+        public static T GetRandom<T>(this IList<T> values) => values.Count > 0 ? values[Random.Range(0, values.Count)] : default;
 
         public static T GetRandom<T>(this T[] values, ref int lastRandom)
         {
@@ -80,13 +80,14 @@ namespace SwiftKraft.Utils
             return values[0];
         }
 
-        public static void Shift<T>(this T[] values, int amount = 1)
+        public static void Shift<T>(this T[] values, int amount = 1, bool destructive = false)
         {
-            amount %= values.Length;
+            if (values == null || values.Length == 0 || amount == 0)
+                return;
 
-            for (int i = values.Length - amount; i >= 0; i--)
+            for (int i = values.Length - 1; i >= 0; i--)
             {
-                values[i + amount] = values[i];
+                
             }
         }
 

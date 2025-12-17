@@ -1,6 +1,5 @@
 using SwiftKraft.Utils;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwiftKraft.Debugging
@@ -66,21 +65,23 @@ namespace SwiftKraft.Debugging
         public bool Trail = false;
         public int Length = 10;
 
-        TransformDataScale[] array;
+        TransformDataScale[] trailArray;
         int availableLength = 0;
 
         public override void Draw(TransformTracker tracker)
         {
-            if (array == null || array.Length != Length)
+            if (trailArray == null || trailArray.Length != Length)
             {
-                array = new TransformDataScale[Length];
+                trailArray = new TransformDataScale[Length];
                 availableLength = 0;
             }
 
             if (availableLength < Length)
-            array[++availableLength - 1] = tracker.Previous;
+                trailArray[++availableLength - 1] = tracker.Previous;
             else
-                array.s
+            {
+
+            }
         }
     }
 }
