@@ -1560,8 +1560,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8454196924467969413}
-  - component: {fileID: 5404405967239535287}
-  - component: {fileID: 6680810605490093835}
   m_Layer: 0
   m_Name: TP Model
   m_TagString: Untagged
@@ -1585,54 +1583,6 @@ Transform:
   - {fileID: 4299687378558958790}
   m_Father: {fileID: 4013005902616619962}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5404405967239535287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3714455379651550497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1474f0ec77da6f647af34382ce2e47e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prefab: {fileID: 8926322067412489059, guid: 9655601061c59ac4f9d3a794320adee3, type: 3}
-  MoveUnregistered: 0
-  OnSpawnEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &6680810605490093835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3714455379651550497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9984aa857043784bbecc208cb0e51fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Key: 13
-  OnPress:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5404405967239535287}
-        m_TargetAssemblyTypeName: SwiftKraft.Utils.RigSpawner, Assembly-CSharp
-        m_MethodName: Spawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3718333864169057617
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,7 +2732,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Root: {fileID: 807466738994965061}
   Transforms:
-  - {fileID: 807466738994965061}
   - {fileID: 6828449380030677249}
   - {fileID: 7238839234463885840}
   - {fileID: 4374163873612772182}

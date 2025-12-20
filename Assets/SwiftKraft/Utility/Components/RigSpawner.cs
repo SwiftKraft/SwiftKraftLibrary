@@ -7,7 +7,6 @@ namespace SwiftKraft.Utils
     public class RigSpawner : MonoBehaviour
     {
         public GameObject Prefab;
-        public bool MoveUnregistered = false;
 
         public RigDefinition ThisRig { get; private set; }
 
@@ -25,7 +24,7 @@ namespace SwiftKraft.Utils
             GameObject spawnee = Instantiate(Prefab, transform.position, transform.rotation);
 
             if (spawnee.TryGetComponentInChildren(out RigDefinition rig))
-                rig.Replicate(ThisRig, MoveUnregistered);
+                rig.Replicate(ThisRig);
 
             OnSpawn?.Invoke(spawnee);
             OnSpawnEvent?.Invoke(spawnee);
