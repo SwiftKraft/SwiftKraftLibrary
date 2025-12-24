@@ -1,14 +1,15 @@
+using SwiftKraft.Editors;
 using UnityEditor;
 using UnityEngine;
 
 namespace SwiftKraft.Utils.Editors
 {
     [CustomEditor(typeof(RigDefinition))]
-    public class RigDefinitionEditor : Editor
+    public class RigDefinitionEditor : SwiftKraftEditor
     {
         public override void OnInspectorGUI()
         {
-            DrawDefaultInspector();
+            DrawDefaultInspectorExcluding(nameof(RigDefinition.RootNode));
 
             RigDefinition rig = (RigDefinition)target;
 

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace SwiftKraft.Utils
@@ -23,6 +23,7 @@ namespace SwiftKraft.Utils
             }
         }
 
+        [Serializable]
         public struct TransformNode
         {
             public Transform Transform;
@@ -42,6 +43,8 @@ namespace SwiftKraft.Utils
         }
 
         public Transform Root;
+
+        [field: SerializeField, HideInInspector]
         public TransformNode RootNode { get; private set; }
 
         TransformDataNode queuedReplication;
@@ -56,7 +59,7 @@ namespace SwiftKraft.Utils
             }
         }
 
-        public void Replicate(RigDefinition source, bool moveUnregistered = false)
+        public void Replicate(RigDefinition source)
         {
             if (source == null) return;
 
