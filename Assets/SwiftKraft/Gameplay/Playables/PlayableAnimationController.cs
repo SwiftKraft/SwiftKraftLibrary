@@ -9,7 +9,7 @@ namespace SwiftKraft.Gameplay.Playables
 {
     public class PlayableAnimationController : MonoBehaviour
     {
-        public readonly List<PlayableAnimationLayer> Layers = new();
+        public List<PlayableAnimationLayer> Layers = new();
 
         public AnimationLayerMixerPlayable Mixer { get; private set; }
 
@@ -19,6 +19,10 @@ namespace SwiftKraft.Gameplay.Playables
         {
             Graph = PlayableGraph.Create(gameObject.name);
             Mixer = AnimationLayerMixerPlayable.Create(Graph, Layers.Count); // make addlayer methods, and apply avatarmask and weights.
+
+            foreach (var layer in Layers)
+                InitializeLayer(layer);
+
             Graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
             Graph.Play();
         }
@@ -37,15 +41,20 @@ namespace SwiftKraft.Gameplay.Playables
             Graph.Destroy();
         }
 
+        public void InitializeLayer(PlayableAnimationLayer layer)
+        {
+            layer.Initialize(Graph);
+            Mixer.AddInput(layer.Mixer, 0, 1f);
+            Mixer.SetLayerMaskFromAvatarMask((uint)(Layers.Count - 1), layer.Mask);
+        }
+
         public void AddLayer(PlayableAnimationLayer layer)
         {
             if (Layers.Contains(layer))
                 return;
 
             Layers.Add(layer);
-            layer.Initialize(Graph);
-            Mixer.AddInput(layer.Mixer, 0, 1f);
-            Mixer.SetLayerMaskFromAvatarMask((uint)(Layers.Count - 1), layer.Mask);
+            InitializeLayer(layer);
         }
 
         public void RemoveLayer(PlayableAnimationLayer layer)
@@ -98,10 +107,10 @@ namespace SwiftKraft.Gameplay.Playables
                     currentState.Initialize(Graph);
             }
         }
-        public PlayableAnimationState NextState
+        public PlayableAnimationState NextState // rework to use a list of states for more complex blending
         {
             get => nextState;
-            set
+            private set
             {
                 nextState = value;
 
@@ -132,6 +141,14 @@ namespace SwiftKraft.Gameplay.Playables
         {
             Graph = graph;
             Mixer = AnimationMixerPlayable.Create(graph, 2);
+        }
+
+        public void Play(PlayableAnimationState state)
+        {
+            if (state == null)
+                return;
+
+            NextState = state;
         }
 
         public void Update()
