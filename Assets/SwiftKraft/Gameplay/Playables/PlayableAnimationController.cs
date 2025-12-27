@@ -45,7 +45,8 @@ namespace SwiftKraft.Gameplay.Playables
         {
             layer.Initialize(Graph);
             Mixer.AddInput(layer.Mixer, 0, 1f);
-            Mixer.SetLayerMaskFromAvatarMask((uint)(Layers.Count - 1), layer.Mask);
+            if (layer.Mask != null)
+                Mixer.SetLayerMaskFromAvatarMask((uint)(Layers.Count - 1), layer.Mask);
         }
 
         public void AddLayer(PlayableAnimationLayer layer)
@@ -81,6 +82,14 @@ namespace SwiftKraft.Gameplay.Playables
             }
             Mixer = newMixer;
         }
+
+        public void Play(PlayableAnimationState state, int index)
+        {
+            if (!Layers.InRange(index))
+                return;
+
+            Layers[index]?.Play(state);
+        }
     }
 
     [Serializable]
@@ -95,11 +104,9 @@ namespace SwiftKraft.Gameplay.Playables
             {
                 currentState = value;
 
+                Mixer.DisconnectInput(0);
                 if (currentState == null)
-                {
-                    Mixer.DisconnectInput(0);
                     return;
-                }
 
                 Mixer.ConnectInput(0, currentState.Mixer, 0);
 
@@ -114,9 +121,10 @@ namespace SwiftKraft.Gameplay.Playables
             {
                 nextState = value;
 
+                Mixer.DisconnectInput(1);
+
                 if (nextState == null)
                 {
-                    Mixer.DisconnectInput(1);
                     Mixer.SetInputWeight(0, 1f);
                     Mixer.SetInputWeight(1, 0f);
                     return;
@@ -156,7 +164,10 @@ namespace SwiftKraft.Gameplay.Playables
             if (CurrentState != null)
                 CurrentState.Update();
             else if (NextState != null)
+            {
                 CurrentState = NextState;
+                NextState = null;
+            }
 
             if (NextState == null)
                 return;
