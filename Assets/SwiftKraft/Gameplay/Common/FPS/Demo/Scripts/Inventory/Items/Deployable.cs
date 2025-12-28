@@ -9,6 +9,7 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
     {
         public EquippedItemWaitState EquipState;
         public EquippedItemWaitState UnequipState;
+        public EquippedItemWaitState DeployState;
 
         public RaycastBuilder Builder { get; private set; }
 
@@ -22,19 +23,29 @@ namespace SwiftKraft.Gameplay.Common.FPS.Demo
 
             EquipStateInstance = EquipState;
             UnequipStateInstance = UnequipState;
+
+            DeployState.Init(this);
         }
 
         protected override void Update()
         {
             base.Update();
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) && Builder.TryBuild())
-                Instance.Despawn();
+            if (Input.GetKeyDown(KeyCode.Mouse0) && CurrentState == IdleStateInstance && Builder.TestBuild())
+                CurrentState = DeployState;
 
             if (Input.GetKeyDown(KeyCode.G))
                 Parent.WishEquip = null;
 
-            Builder.enabled = CurrentState == IdleStateInstance;
+            Builder.enabled = CurrentState == IdleStateInstance || CurrentState == DeployState;
+        }
+
+        public void Lock(bool state) => Builder.Lock = state;
+
+        public void Despawn()
+        {
+            if (Builder.TryBuild())
+                Instance.Despawn();
         }
     }
 }

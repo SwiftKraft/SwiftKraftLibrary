@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f62cdb46c5044b4f84daea5e875ac91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FOV: 40
+  FOV: 37
   CamAxisMultiplier: {x: 1, y: 1, z: 1, w: 1}
   CamMultiplier: 1
   Local: 1
@@ -2057,6 +2057,15 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       Sounds: []
+  - ID: Deploy
+    States:
+    - StateName: Deploy
+      CrossFade: 0.2
+      Weight: 0
+      OnPlay:
+        m_PersistentCalls:
+          m_Calls: []
+      Sounds: []
   SoundSource: {fileID: 0}
 --- !u!114 &5338421906542451486
 MonoBehaviour:
@@ -2341,6 +2350,68 @@ MonoBehaviour:
     OnEnd:
       m_PersistentCalls:
         m_Calls: []
+  DeployState:
+    WaitTimer:
+      StartEnded: 0
+      <MaxValue>k__BackingField: 1.8
+    OnStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4537192145855249539}
+          m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Common.FPS.Demo.Deployable,
+            Assembly-CSharp
+          m_MethodName: Lock
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1948899356845034811}
+          m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Weapons.ViewModelAnimator,
+            Assembly-CSharp
+          m_MethodName: PlayAnimation
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Deploy
+            m_BoolArgument: 1
+          m_CallState: 2
+    OnEnd:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4537192145855249539}
+          m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Common.FPS.Demo.Deployable,
+            Assembly-CSharp
+          m_MethodName: Despawn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4537192145855249539}
+          m_TargetAssemblyTypeName: SwiftKraft.Gameplay.Common.FPS.Demo.Deployable,
+            Assembly-CSharp
+          m_MethodName: Lock
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   Prefab: {fileID: 6479035059698927783, guid: 31f34f826528b4445b9e2fef9028c918, type: 3}
 --- !u!114 &1423288449812423635
 MonoBehaviour:

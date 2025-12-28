@@ -18,6 +18,8 @@ namespace SwiftKraft.Gameplay.Building
 
         public bool UseNormal;
 
+        public bool Lock { get; set; }
+
         public GameObject Prefab
         {
             get => _prefab;
@@ -55,9 +57,11 @@ namespace SwiftKraft.Gameplay.Building
             }
         }
 
+        public bool TestBuild() => canBuild;
+
         public bool TryBuild()
         {
-            if (canBuild)
+            if (TestBuild())
             {
                 Build();
                 return true;
@@ -76,7 +80,7 @@ namespace SwiftKraft.Gameplay.Building
 
         public void UpdateBlueprint()
         {
-            if (currentBlueprint == null)
+            if (Lock || currentBlueprint == null)
                 return;
 
             bool raycast = Physics.Raycast(CastPoint.position, CastPoint.forward, out RaycastHit _hit, CastRange, CastLayers, QueryTriggerInteraction.Ignore);
