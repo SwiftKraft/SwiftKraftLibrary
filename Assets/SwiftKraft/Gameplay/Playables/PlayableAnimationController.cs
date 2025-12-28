@@ -7,18 +7,25 @@ using UnityEngine.Playables;
 
 namespace SwiftKraft.Gameplay.Playables
 {
+    [RequireComponent(typeof(Animator))]
     public class PlayableAnimationController : MonoBehaviour
     {
         public List<PlayableAnimationLayer> Layers = new();
 
-        public AnimationLayerMixerPlayable Mixer { get; private set; }
+        public Animator Animator { get; private set; }
 
+        public AnimationLayerMixerPlayable Mixer { get; private set; }
+        public AnimationPlayableOutput Output { get; private set; }
         public PlayableGraph Graph { get; set; }
 
         private void Awake()
         {
+            Animator = GetComponent<Animator>();
             Graph = PlayableGraph.Create(gameObject.name);
+            Output = AnimationPlayableOutput.Create(Graph, "Animation", Animator);
             Mixer = AnimationLayerMixerPlayable.Create(Graph, Layers.Count); // make addlayer methods, and apply avatarmask and weights.
+
+            Output.SetSourcePlayable(Mixer);
 
             foreach (var layer in Layers)
                 InitializeLayer(layer);
