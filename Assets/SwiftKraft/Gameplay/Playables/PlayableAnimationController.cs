@@ -30,7 +30,7 @@ namespace SwiftKraft.Gameplay.Playables
             foreach (var layer in Layers)
                 InitializeLayer(layer);
 
-            Graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
+            Graph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
             Graph.Play();
         }
 
@@ -39,7 +39,7 @@ namespace SwiftKraft.Gameplay.Playables
             for (int i = 0; i < Layers.Count; i++)
                 Layers[i]?.Update();
 
-            Graph.Evaluate(Time.deltaTime);
+            //Graph.Evaluate(Time.deltaTime);
         }
 
         private void OnDestroy()
@@ -111,14 +111,15 @@ namespace SwiftKraft.Gameplay.Playables
             {
                 currentState = value;
 
-                Mixer.DisconnectInput(0);
+                Graph.Disconnect(Mixer, 0);
+
                 if (currentState == null)
                     return;
 
-                Mixer.ConnectInput(0, currentState.Mixer, 0);
-
                 if (!currentState.Initialized)
                     currentState.Initialize(Graph);
+
+                Graph.Connect(Mixer, 0, currentState.Mixer, 0);
             }
         }
         public PlayableAnimationState NextState // rework to use a list of states for more complex blending
@@ -128,7 +129,7 @@ namespace SwiftKraft.Gameplay.Playables
             {
                 nextState = value;
 
-                Mixer.DisconnectInput(1);
+                Graph.Disconnect(Mixer, 1);
 
                 if (nextState == null)
                 {
@@ -137,10 +138,10 @@ namespace SwiftKraft.Gameplay.Playables
                     return;
                 }
 
-                Mixer.ConnectInput(1, nextState.Mixer, 0);
-
                 if (!nextState.Initialized)
                     nextState.Initialize(Graph);
+
+                Graph.Connect(Mixer, 0, nextState.Mixer, 1);
             }
         }
         private PlayableAnimationState currentState;
@@ -228,6 +229,12 @@ namespace SwiftKraft.Gameplay.Playables
             BlendTreeUtility.BlendWeights(Animations, BlendFloat, ref weights);
             for (int i = 0; i < weights.Length; i++)
                 Mixer.SetInputWeight(i, weights[i]);
+        }
+
+        public void SetBlendFloat(int index, float blend)
+        {
+            if (BlendFloat.InRange(index))
+                BlendFloat[index] = blend;
         }
     }
 

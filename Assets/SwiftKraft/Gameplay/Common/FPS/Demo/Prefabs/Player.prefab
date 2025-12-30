@@ -1701,7 +1701,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4159377992665383887}
   - component: {fileID: 6572460490460557896}
-  - component: {fileID: 8986310623312379744}
+  - component: {fileID: 8989877080276163386}
+  - component: {fileID: 498977121125224734}
   - component: {fileID: 3200386036205459926}
   - component: {fileID: 594128346354544173}
   m_Layer: 0
@@ -1749,7 +1750,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8986310623312379744
+--- !u!114 &8989877080276163386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1758,17 +1759,84 @@ MonoBehaviour:
   m_GameObject: {fileID: 3671212784614742389}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfdf430c7449972469920a2aaeb1739e, type: 3}
+  m_Script: {fileID: 11500000, guid: 73183288fdb875f47921cd335b164843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XMovement: MoveX
-  ZMovement: MoveZ
+  Layers:
+  - Mask: {fileID: 0}
+--- !u!114 &498977121125224734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3671212784614742389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c852f1f18ea7494f96d5a684cb04661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State:
+    Animations:
+    - OriginalClip: {fileID: -8945691123924629249, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - 0
+      - 0
+      - 0
+    - OriginalClip: {fileID: -4308991486269971875, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - 0
+      - -1
+    - OriginalClip: {fileID: -5086680258256008354, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - -1
+      - -1
+    - OriginalClip: {fileID: -7504300058026583890, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - 1
+      - -1
+    - OriginalClip: {fileID: 6330626867763342537, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - 0
+      - 1
+    - OriginalClip: {fileID: 2145871499512271035, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - -1
+      - 1
+    - OriginalClip: {fileID: 4501052281216601132, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - 1
+      - 1
+    - OriginalClip: {fileID: -1036923472569861554, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - -1
+      - 0
+    - OriginalClip: {fileID: 2524296706169456545, guid: 854c4d002d4873f4586c0d663e51f2ec,
+        type: 3}
+      Position:
+      - 1
+      - 0
+    BlendFloat:
+    - 0
+    - 0
+    - 0
+  Layer: 0
+  MoveX: 0
+  MoveY: 1
   SmoothTime: 0.1
-  RotationOffset: {x: 0, y: 0, z: 0, w: 1}
+  RotationOffset: {x: 0, y: 0, z: 0}
   StateMultipliers:
   - {x: 0, y: 0}
   - {x: 2, y: 2}
-  Grounded: Grounded
+  Grounded: 2
 --- !u!114 &3200386036205459926
 MonoBehaviour:
   m_ObjectHideFlags: 0
