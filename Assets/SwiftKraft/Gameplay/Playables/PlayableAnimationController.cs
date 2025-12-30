@@ -119,7 +119,7 @@ namespace SwiftKraft.Gameplay.Playables
                 if (!currentState.Initialized)
                     currentState.Initialize(Graph);
 
-                Graph.Connect(Mixer, 0, currentState.Mixer, 0);
+                Graph.Connect(currentState.Mixer, 0, Mixer, 0);
             }
         }
         public PlayableAnimationState NextState // rework to use a list of states for more complex blending
@@ -141,7 +141,7 @@ namespace SwiftKraft.Gameplay.Playables
                 if (!nextState.Initialized)
                     nextState.Initialize(Graph);
 
-                Graph.Connect(Mixer, 0, nextState.Mixer, 1);
+                Graph.Connect(nextState.Mixer, 0, Mixer, 1);
             }
         }
         private PlayableAnimationState currentState;
@@ -217,7 +217,7 @@ namespace SwiftKraft.Gameplay.Playables
             for (int i = 0; i < Animations.Count; i++)
             {
                 Animations[i].Clip = AnimationClipPlayable.Create(graph, Animations[i].OriginalClip);
-                Mixer.ConnectInput(i, Animations[i].Clip, 0);
+                graph.Connect(Animations[i].Clip, 0, Mixer, i);
                 Mixer.SetInputWeight(i, 0f);
             }
 
