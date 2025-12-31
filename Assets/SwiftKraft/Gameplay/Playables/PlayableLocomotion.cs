@@ -10,8 +10,6 @@ namespace SwiftKraft.Gameplay.Playables
         public PlayableAnimationState State;
 
         public int Layer = 0;
-        public int MoveX = 0;
-        public int MoveY = 1;
 
         public float SmoothTime = 0.1f;
         public Vector3 RotationOffset;
@@ -21,9 +19,6 @@ namespace SwiftKraft.Gameplay.Playables
 
         public Vector2[] StateMultipliers;
 
-        [Header("Grounding")]
-        public int Grounded = 2;
-
         public MotorBase Motor { get; private set; }
         public PlayableAnimationController Animator { get; private set; }
 
@@ -31,7 +26,7 @@ namespace SwiftKraft.Gameplay.Playables
         protected IGroundable GroundableCache { get; set; }
 
         Vector2 vel;
-        float velGround;
+        //float velGround;
 
         protected virtual void Awake()
         {
@@ -42,6 +37,8 @@ namespace SwiftKraft.Gameplay.Playables
             if (Animator.Layers.Count < 0)
                 Animator.AddLayer(new PlayableAnimationLayer());
         }
+
+        protected virtual void Start() => Animator.Layers[Layer].Play(State);
 
         protected virtual void Update()
         {
@@ -55,12 +52,9 @@ namespace SwiftKraft.Gameplay.Playables
                 ? TargetDirection
                 : Vector2.SmoothDamp(CurrentDirection, TargetDirection, ref vel, SmoothTime);
 
-            CurrentGrounded = Mathf.SmoothDamp(CurrentGrounded, GroundableCache.IsGrounded ? 1f : 0f, ref velGround, SmoothTime);
+            // CurrentGrounded = Mathf.SmoothDamp(CurrentGrounded, GroundableCache.IsGrounded ? 1f : 0f, ref velGround, SmoothTime);
 
-            Animator.Layers[Layer].Play(State);
-            State.SetBlendFloat(MoveX, CurrentDirection.x);
-            State.SetBlendFloat(MoveY, CurrentDirection.y);
-            State.SetBlendFloat(Grounded, CurrentGrounded);
+            State.BlendPosition = CurrentDirection;
         }
 
         public float GetStateMultiplier(int state)
