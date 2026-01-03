@@ -115,7 +115,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7125772458112512996}
   - component: {fileID: 2906673442822443708}
-  - component: {fileID: 7621090940053209819}
   m_Layer: 8
   m_Name: Magazine
   m_TagString: Untagged
@@ -265,19 +264,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0057103503, y: -0.03542776, z: -0.01577944}
     m_Extent: {x: 0.0008068085, y: 0.0043558627, z: 0.002797814}
   m_DirtyAABB: 0
---- !u!114 &7621090940053209819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975107165637220088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636a111ab093e0b4e8d7fe04fddfe54c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Scriptable: {fileID: 11400000, guid: 60c2dbcf440fb7e48a90e5270d35bf84, type: 2}
 --- !u!1 &2385876473253341366
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +342,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7987124633929520808}
   - component: {fileID: 117524276197383711}
-  - component: {fileID: 4534744499592389884}
   m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
@@ -504,19 +489,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0057103503, y: -0.03542776, z: -0.01577944}
     m_Extent: {x: 0.0008068085, y: 0.0043558627, z: 0.002797814}
   m_DirtyAABB: 0
---- !u!114 &4534744499592389884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3268282050509345811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636a111ab093e0b4e8d7fe04fddfe54c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Scriptable: {fileID: 11400000, guid: dda0fc0fc14c2e74598cce9a28fbec0f, type: 2}
 --- !u!1 &3294868547953246318
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +756,6 @@ GameObject:
   - component: {fileID: 4280619847586004035}
   - component: {fileID: 5638258679784063825}
   - component: {fileID: 369432658084618824}
-  - component: {fileID: 2172504179741062993}
   m_Layer: 8
   m_Name: ProtoPistolItem
   m_TagString: Untagged
@@ -800,14 +771,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5964860817834573339}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 1, y: 1.1, z: 10.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8592277439102506947}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4280619847586004035
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -869,18 +840,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartType: {fileID: 0}
---- !u!114 &2172504179741062993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5964860817834573339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41b1f28b79eb5a34097ce9fa794a9a5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6070253145891102600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +975,6 @@ GameObject:
   m_Component:
   - component: {fileID: 697647569254016714}
   - component: {fileID: 1745390274500741003}
-  - component: {fileID: 4852510610926027989}
   m_Layer: 8
   m_Name: Underbarrel
   m_TagString: Untagged
@@ -1164,19 +1122,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0057103517, y: -0.028725678, z: -0.0130388625}
     m_Extent: {x: 0.0011681402, y: 0.0026406888, z: 0.0029506776}
   m_DirtyAABB: 0
---- !u!114 &4852510610926027989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7277079047482581009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636a111ab093e0b4e8d7fe04fddfe54c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Scriptable: {fileID: 11400000, guid: 06e78bfb5c05d54488e66ae89001e904, type: 2}
 --- !u!1 &8154757357055984831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1163,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6456315352336355772}
   - component: {fileID: 1068143736780023804}
-  - component: {fileID: 3253671541541652624}
   m_Layer: 8
   m_Name: Slide
   m_TagString: Untagged
@@ -1370,19 +1314,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.005710353, y: -0.025134604, z: -0.011082169}
     m_Extent: {x: 0.0008794614, y: 0.0065663643, z: 0.00395751}
   m_DirtyAABB: 0
---- !u!114 &3253671541541652624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8578394822447384121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636a111ab093e0b4e8d7fe04fddfe54c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Scriptable: {fileID: 11400000, guid: fecf356623bfe9e4dbe5a9093b9101cb, type: 2}
 --- !u!1 &8898021785918266055
 GameObject:
   m_ObjectHideFlags: 0
