@@ -1,4 +1,3 @@
-using SwiftKraft.Utils;
 using UnityEngine;
 
 namespace SwiftKraft.Gameplay.Animation
@@ -15,12 +14,10 @@ namespace SwiftKraft.Gameplay.Animation
         [field: SerializeField]
         public bool Active { get; set; } = true;
 
-        Vector3 posOffset;
-
         private void Start()
         {
-            Target = GetComponentInParent<AnimationReceiver>();
-            posOffset = transform.position - Target.Roots[RootIndex].position;
+            if (Target == null)
+                Target = GetComponentInParent<AnimationReceiver>();
         }
 
         private void LateUpdate()
@@ -28,12 +25,7 @@ namespace SwiftKraft.Gameplay.Animation
             if (!Active || Target == null || Root == null)
                 return;
 
-            if (Target.Roots.InRange(RootIndex))
-            {
-                Target.Copy(Root, RootIndex);
-                Transform tr = Target.Roots[RootIndex];
-                transform.position = tr.position + posOffset;
-            }
+            Target.Copy(Root, RootIndex);
         }
     }
 }

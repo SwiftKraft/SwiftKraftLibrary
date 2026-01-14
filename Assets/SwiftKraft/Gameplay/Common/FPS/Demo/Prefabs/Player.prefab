@@ -729,7 +729,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4163939447944985754}
-  - component: {fileID: 2334791602349025986}
   m_Layer: 0
   m_Name: TPWorkspace
   m_TagString: Untagged
@@ -752,22 +751,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4974719940755854161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2334791602349025986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2286987524921624877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c63344824888c94e9418f385fd40c82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Roots>k__BackingField:
-  - {fileID: 3330030146339553899}
-  - {fileID: 7789768305786209971}
-  - {fileID: 941757948167546876}
 --- !u!1 &2334196755076758798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,6 +1991,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4159377992665383887}
+  - {fileID: 6032842646633491090}
   m_Father: {fileID: 4013005902616619962}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2472175953263959568
@@ -3607,6 +3591,8 @@ MonoBehaviour:
     Reference: {fileID: 6061017516257229357}
   - Name: TP
     Reference: {fileID: 4163939447944985754}
+  - Name: TP.Anims
+    Reference: {fileID: 6032842646633491090}
   - Name: ShootPoint
     Reference: {fileID: 6061017516257229357}
 --- !u!114 &7291374657484388297
@@ -4060,6 +4046,54 @@ Transform:
   - {fileID: 7534034777452515941}
   m_Father: {fileID: 1115484121611095027}
   m_LocalEulerAnglesHint: {x: -0.26658472, y: -13.0788355, z: -176.35397}
+--- !u!1 &7719134033894961595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6032842646633491090}
+  - component: {fileID: 912194151799075765}
+  m_Layer: 0
+  m_Name: TPAnims
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6032842646633491090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719134033894961595}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8454196924467969413}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &912194151799075765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719134033894961595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c63344824888c94e9418f385fd40c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Roots>k__BackingField:
+  - {fileID: 3330030146339553899}
+  - {fileID: 7789768305786209971}
+  - {fileID: 941757948167546876}
 --- !u!1 &7785686638887547644
 GameObject:
   m_ObjectHideFlags: 0
