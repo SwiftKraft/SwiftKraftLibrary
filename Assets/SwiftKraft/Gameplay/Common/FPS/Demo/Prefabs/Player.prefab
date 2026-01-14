@@ -729,6 +729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4163939447944985754}
+  - component: {fileID: 2334791602349025986}
   m_Layer: 0
   m_Name: TPWorkspace
   m_TagString: Untagged
@@ -744,13 +745,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2286987524921624877}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0.29885533, z: 1.3942895}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_LocalRotation: {x: -8.659561e-17, y: -0.7071068, z: -0.7071068, w: -8.7157646e-33}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4974719940755854161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2334791602349025986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286987524921624877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c63344824888c94e9418f385fd40c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Roots>k__BackingField:
+  - {fileID: 3330030146339553899}
+  - {fileID: 7789768305786209971}
+  - {fileID: 941757948167546876}
 --- !u!1 &2334196755076758798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,7 +1751,6 @@ GameObject:
   - component: {fileID: 6572460490460557896}
   - component: {fileID: 2186639964678014135}
   - component: {fileID: 3200386036205459926}
-  - component: {fileID: 5624194308271754657}
   - component: {fileID: 594128346354544173}
   m_Layer: 0
   m_Name: MaleBase
@@ -1830,22 +1846,6 @@ MonoBehaviour:
   AdjustAngleMax: 45
   AdjustTime: 0.1
   AdjustOffset: 0
---- !u!114 &5624194308271754657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3671212784614742389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45cbcea0e8dc1546a7a0192a45f3052, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OverrideAnimationIdle: {fileID: 7400000, guid: 5ada157e600d8c746adff283c4cef4f1,
-    type: 2}
-  OverrideAnimationCustom: {fileID: 7400000, guid: 0b7c45276584c5f42abb630c94b0b770,
-    type: 2}
 --- !u!114 &594128346354544173
 MonoBehaviour:
   m_ObjectHideFlags: 0
