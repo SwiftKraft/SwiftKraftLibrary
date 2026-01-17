@@ -11,7 +11,7 @@ namespace SwiftKraft.Gameplay.Damagables
 
         public float CurrentHealth { get; set; }
 
-        public bool IsDead => CurrentHealth <= 0;
+        public bool IsDead { get; set; }
 
         public bool DestroyOnDeath;
 
@@ -30,7 +30,11 @@ namespace SwiftKraft.Gameplay.Damagables
 
         public void Death()
         {
+            if (IsDead)
+                return;
+
             OnDeath?.Invoke();
+            IsDead = true;
 
             if (DestroyOnDeath)
                 Destroy(gameObject);
